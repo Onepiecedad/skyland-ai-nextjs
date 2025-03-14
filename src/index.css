@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: rgb(0 0 0);
+  --transparent: transparent;
+  --blue-300: rgb(147 197 253);
+  --blue-400: rgb(96 165 250);
+  --blue-500: rgb(59 130 246);
+  --indigo-300: rgb(165 180 252);
+  --violet-200: rgb(221 214 254);
+}
