@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-context>
+    <!-- This file serves as a shared knowledge base for all LLMs working on this project -->
+    <!-- Please paste your XML content here -->
+    <company>
+        <name>Skyland AI Solutions</name>
+        <vision>
+            <description>AI automation partner for businesses that need custom, high-value AI implementations that make a measurable impact on their bottom line.</description>
+            <mission>Help service-based businesses automate, scale, and grow profitably by implementing intelligent, high-impact AI solutions.</mission>
+        </vision>
+        
+        <target-market>
+            <revenue-range>$1M–$5M+ annual revenue</revenue-range>
+            <investment-level>$2,500–$10,000 per month</investment-level>
+            <industries>
+                <industry>Real Estate &amp; Property Management</industry>
+                <industry>Call Centers &amp; Customer Service-Intensive Businesses</industry>
+                <industry>Boutique Hotels &amp; Guest Services</industry>
+                <industry>Travel Agencies &amp; Tour Operators</industry>
+            </industries>
+            <pain-points>
+                <point>Too much manual work</point>
+                <point>Time-consuming repetitive tasks</point>
+                <point>Inefficient workflows</point>
+                <point>Inconsistent lead generation</point>
+            </pain-points>
+        </target-market>
+
+        <services>
+            <service>
+                <name>AI-powered lead generation &amp; conversion automation</name>
+                <description>Ensures consistent flow of high-quality leads and increases conversion rates</description>
+            </service>
+            <service>
+                <name>AI-driven customer engagement</name>
+                <description>Voice and Chat automation reducing response times and improving customer interactions</description>
+            </service>
+            <service>
+                <name>AI-powered process automation</name>
+                <description>Eliminates repetitive administrative tasks and optimizes workflows</description>
+            </service>
+            <service>
+                <name>Industry-specific AI integrations</name>
+                <description>Custom AI solutions tailored to specific industry needs</description>
+            </service>
+        </services>
+    </company>
+
+    <website-project>
+        <tech-stack>
+            <framework>Vite + React + TypeScript</framework>
+            <styling>TailwindCSS + ShadCN UI</styling>
+            <animations>Framer Motion</animations>
+            <voice-ai>ElevenLabs with RAG</voice-ai>
+        </tech-stack>
+
+        <structure>
+            <components>
+                <component>
+                    <name>Aurora Background</name>
+                    <description>Visually stunning animated aurora effect as bottom layer</description>
+                    <status>Implemented</status>
+                </component>
+                <component>
+                    <name>Content Layer</name>
+                    <description>Transparent, scrollable top layer with text, images, and CTAs</description>
+                    <status>In Progress</status>
+                </component>
+                <component>
+                    <name>AI Voice Agent (Dana)</name>
+                    <description>Conversational AI using ElevenLabs for natural interaction</description>
+                    <status>Planned</status>
+                </component>
+                <component>
+                    <name>Theme Toggle</name>
+                    <description>Dark/Light mode support</description>
+                    <status>Implemented</status>
+                </component>
+            </components>
+        </structure>
+
+        <sections>
+            <section>
+                <name>Hero Section</name>
+                <headline>Let AI Handle Your Business While You Focus on Growth</headline>
+                <status>In Progress</status>
+            </section>
+            <section>
+                <name>Problem Section</name>
+                <headline>The Hard Truth: You're Wasting Time on Manual Work</headline>
+                <status>Planned</status>
+            </section>
+            <section>
+                <name>Solution Section</name>
+                <headline>Meet Your AI Business Partner</headline>
+                <status>Planned</status>
+            </section>
+            <section>
+                <name>Case Studies</name>
+                <status>Planned</status>
+            </section>
+            <section>
+                <name>Pricing</name>
+                <status>Planned</status>
+            </section>
+        </sections>
+
+        <current-state>
+            <completed>
+                <item>Basic application structure</item>
+                <item>Aurora background effect</item>
+                <item>Theme switching functionality</item>
+                <item>Development environment setup</item>
+            </completed>
+            <next-steps>
+                <step>Add more interactive components</step>
+                <step>Implement main content sections</step>
+                <step>Add routing</step>
+                <step>Enhance responsive design</step>
+                <step>Add more animations and transitions</step>
+            </next-steps>
+        </current-state>
+    </website-project>
+</project-context> 
