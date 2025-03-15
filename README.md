@@ -20,13 +20,13 @@ A modern web application built with React, TypeScript, and Vite, featuring a bea
 ```
 src/
 ├── components/
-│   ├── aurora-background.tsx  # Animated aurora effect component
-│   ├── voice-agent.tsx        # Dana - AI Voice Agent component
-│   └── theme-toggle.tsx       # Dark/light mode toggle
+│   ├── aurora-background.tsx  # For the animated effect
+│   ├── voice-agent.tsx        # Dana AI component
+│   ├── theme-toggle.tsx       # Dark/light mode switch
 ├── lib/
 │   └── utils.ts              # Utility functions
-├── App.tsx                   # Main application component
-├── main.tsx                  # Application entry point
+├── App.tsx                   # Main app component
+├── main.tsx                  # Entry point
 └── index.css                # Global styles
 ```
 
@@ -46,7 +46,7 @@ The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's
 ```html
 <!-- Voice Agent Widget -->
 <elevenlabs-convai agent-id="4mN4rizdi79gwLhFxlOu"></elevenlabs-convai>
-<script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+<script src="https://elevenlabs.io/convai-widget/index.js" async></script>
 ```
 
 ### Voice Agent Features

@@ -124,7 +124,16 @@
             <framework>Vite + React + TypeScript</framework>
             <styling>TailwindCSS + ShadCN UI components</styling>
             <animations>Framer Motion</animations>
-            <voice-ai>ElevenLabs with RAG</voice-ai>
+            <voice-ai>
+                <platform>ElevenLabs Convai</platform>
+                <implementation>
+                    <widget-id>4mN4rizdi79gwLhFxlOu</widget-id>
+                    <integration-code>
+                        <element>elevenlabs-convai agent-id="4mN4rizdi79gwLhFxlOu"</element>
+                        <script>src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"</script>
+                    </integration-code>
+                </implementation>
+            </voice-ai>
         </tech-stack>
 
         <structure>
@@ -141,12 +150,18 @@
                 </component>
                 <component>
                     <name>AI Voice Agent (Dana)</name>
-                    <description>Conversational AI using ElevenLabs for natural interaction</description>
+                    <description>Conversational AI using ElevenLabs Convai widget for natural interaction</description>
                     <features>
                         <feature>Understands user business type and pain points</feature>
                         <feature>Suggests personalized AI solutions</feature>
                         <feature>Natural-sounding voice interaction</feature>
+                        <feature>Pre-configured Convai agent with custom knowledge base</feature>
                     </features>
+                    <implementation-notes>
+                        <note>Widget can be embedded in any section</note>
+                        <note>Requires no additional backend setup</note>
+                        <note>Handles voice processing on ElevenLabs servers</note>
+                    </implementation-notes>
                     <status>Planned</status>
                 </component>
                 <component>
