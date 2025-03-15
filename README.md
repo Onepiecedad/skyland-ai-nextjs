@@ -2,6 +2,16 @@
 
 A modern web application for Skyland AI Solutions, built with React, TypeScript, and Vite, featuring a beautiful aurora background effect, AI voice integration, and dark mode support. This website showcases AI automation solutions for service-based businesses.
 
+## 📋 Table of Contents
+- [Project Overview](#-project-purpose)
+- [Business Context](#-about-skyland-ai-solutions)
+- [Website Structure](#-website-structure)
+- [Core Features](#-core-features)
+- [Technical Implementation](#-tech-stack)
+- [Development Guide](#-running-the-project)
+- [Market Analysis](#-market-analysis--insights)
+- [Contributing](#-contributing)
+
 ## 🎯 Project Purpose
 
 This website serves as the official platform for Skyland AI Solutions, an AI Automation Agency helping SMBs transform their operations through intelligent automation. Our platform aims to:
@@ -189,36 +199,75 @@ Unlike many AI providers, we don't just sell technology—we deliver business tr
 
 Companies that invest in AI-driven automation today will have a significant competitive edge over those that hesitate. Schedule a strategy call today and discover how our solutions can save you 30+ hours per month while scaling your revenue.
 
-## 🛠️ Tech Stack
+## 🎯 Target Industries
 
-- **Frontend Framework:** React 18.3
-- **Build Tool:** Vite 5.4
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS + ShadCN UI
-- **Animations:** Framer Motion
-- **Voice AI:** ElevenLabs Convai Widget
-- **Development Tools:**
-  - ESLint for code quality
-  - PostCSS for CSS processing
-  - Tailwind for utility-first CSS
+- Real Estate & Property Management
+- Call Centers & Customer Service
+- Boutique Hotels & Guest Services
+- Travel Agencies & Tour Operators
 
-## 📁 Project Structure
+## 📋 Website Structure
 
-```
-src/
-├── components/
-│   ├── aurora-background.tsx  # Animated aurora effect
-│   ├── voice-agent.tsx        # Dana AI component
-│   ├── theme-toggle.tsx       # Dark/light mode switch
-│   └── ui/                   # UI components
-├── lib/
-│   └── utils.ts              # Utility functions
-├── styles/                   # Tailwind styles
-├── pages/                    # Route pages
-├── App.tsx                   # Main component
-├── main.tsx                  # Entry point
-└── index.css                # Global styles
-```
+### 1️⃣ Hero Section — Instant Engagement
+- **Headline**: "Automate Your Business, Multiply Your Revenue — Let AI Do the Work"
+- **Subheadline**: "Skyland AI helps service businesses save 30+ hours/month and grow profitably"
+- **Visual Elements**:
+  - Aurora Background with gradient shifts
+  - Floating AI-themed icons
+- **CTAs**:
+  - Primary: "Get Your Free AI Audit"
+  - Secondary: "Ask Dana: How Can AI Help My Business?"
+- **Trust Indicators**: Client logos and success metrics
+
+### 2️⃣ Problem Showcase
+- Interactive timeline showing common business pain points
+- Statistics about manual task costs
+- Industry-specific challenges
+- Animated visualizations of workflow bottlenecks
+
+### 3️⃣ Solution Showcase
+- **AI Voice & Chat Demo**
+  - Live Dana integration
+  - Real-time conversation examples
+- **Lead Conversion Tools**
+  - Interactive dashboard preview
+  - ROI calculator
+- **Process Automation**
+  - Before/After workflow comparisons
+  - Time-saving metrics
+
+### 4️⃣ Case Studies Section
+- Industry-specific success stories
+- Video testimonials
+- ROI metrics and statistics
+- Interactive result showcases
+
+### 5️⃣ Implementation Process
+- 4-step visualization:
+  1. AI Audit
+  2. Custom Development
+  3. Integration
+  4. Optimization
+- Timeline estimates
+- Milestone indicators
+
+### 6️⃣ Pricing Section
+- Transparent pricing tiers
+- ROI comparisons
+- Feature breakdowns
+- Custom solution calculator
+
+### 7️⃣ AI-Powered FAQ
+- Live chat with Dana
+- Common question database
+- Dynamic response system
+- Security certifications
+
+### 8️⃣ Call-to-Action
+- Free consultation offer
+- AI strategy session booking
+- Lead capture system
+- Exit intent optimization
 
 ## ✨ Core Features
 
@@ -322,69 +371,6 @@ src/
 
 This website actively demonstrates our AI capabilities while providing an engaging, educational, and conversion-focused experience for visitors.
 
-## 📋 Website Structure
-
-### 1️⃣ Hero Section — Instant Engagement
-- **Headline**: "Automate Your Business, Multiply Your Revenue — Let AI Do the Work"
-- **Subheadline**: "Skyland AI helps service businesses save 30+ hours/month and grow profitably"
-- **Visual Elements**:
-  - Aurora Background with gradient shifts
-  - Floating AI-themed icons
-- **CTAs**:
-  - Primary: "Get Your Free AI Audit"
-  - Secondary: "Ask Dana: How Can AI Help My Business?"
-- **Trust Indicators**: Client logos and success metrics
-
-### 2️⃣ Problem Showcase
-- Interactive timeline showing common business pain points
-- Statistics about manual task costs
-- Industry-specific challenges
-- Animated visualizations of workflow bottlenecks
-
-### 3️⃣ Solution Showcase
-- **AI Voice & Chat Demo**
-  - Live Dana integration
-  - Real-time conversation examples
-- **Lead Conversion Tools**
-  - Interactive dashboard preview
-  - ROI calculator
-- **Process Automation**
-  - Before/After workflow comparisons
-  - Time-saving metrics
-
-### 4️⃣ Case Studies Section
-- Industry-specific success stories
-- Video testimonials
-- ROI metrics and statistics
-- Interactive result showcases
-
-### 5️⃣ Implementation Process
-- 4-step visualization:
-  1. AI Audit
-  2. Custom Development
-  3. Integration
-  4. Optimization
-- Timeline estimates
-- Milestone indicators
-
-### 6️⃣ Pricing Section
-- Transparent pricing tiers
-- ROI comparisons
-- Feature breakdowns
-- Custom solution calculator
-
-### 7️⃣ AI-Powered FAQ
-- Live chat with Dana
-- Common question database
-- Dynamic response system
-- Security certifications
-
-### 8️⃣ Call-to-Action
-- Free consultation offer
-- AI strategy session booking
-- Lead capture system
-- Exit intent optimization
-
 ## 🎙️ Voice AI Integration
 
 The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's how it's implemented:
@@ -408,12 +394,44 @@ The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's
 - Pre-configured with Skyland AI knowledge base
 - Responsive design adapts to all screen sizes
 
-## 🎯 Target Industries
+## 🌟 Key Differentiators
 
-- Real Estate & Property Management
-- Call Centers & Customer Service
-- Boutique Hotels & Guest Services
-- Travel Agencies & Tour Operators
+- Interactive AI Demo with Dana
+- Industry-Specific ROI Calculator
+- Video Testimonials
+- Transparent Pricing Comparison
+- Real-time AI Interaction
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework:** React 18.3
+- **Build Tool:** Vite 5.4
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + ShadCN UI
+- **Animations:** Framer Motion
+- **Voice AI:** ElevenLabs Convai Widget
+- **Development Tools:**
+  - ESLint for code quality
+  - PostCSS for CSS processing
+  - Tailwind for utility-first CSS
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── aurora-background.tsx  # Animated aurora effect
+│   ├── voice-agent.tsx        # Dana AI component
+│   ├── theme-toggle.tsx       # Dark/light mode switch
+│   └── ui/                   # UI components
+├── lib/
+│   └── utils.ts              # Utility functions
+├── styles/                   # Tailwind styles
+├── pages/                    # Route pages
+├── App.tsx                   # Main component
+├── main.tsx                  # Entry point
+└── index.css                # Global styles
+```
 
 ## 🚀 Current State
 
@@ -424,8 +442,9 @@ The project is in active development with the following components implemented:
 - Development environment setup
 - Voice AI integration (Dana)
 
-## 🏃‍♂️ Running the Project
+## 🏃‍♂️ Development Guide
 
+### Getting Started
 1. Install dependencies:
 ```bash
 npm install
@@ -438,23 +457,22 @@ npm run dev
 
 The application will be available at `http://localhost:8080`
 
-## 🛠️ Development Commands
-
+### Development Commands
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
 
-## 📦 Dependencies
+### Dependencies
 
-### Main Dependencies
+#### Main Dependencies
 - react
 - react-dom
 - clsx
 - lucide-react
 - tailwind-merge
 
-### Development Dependencies
+#### Development Dependencies
 - TypeScript
 - Vite
 - ESLint
@@ -462,7 +480,7 @@ The application will be available at `http://localhost:8080`
 - PostCSS
 - Autoprefixer
 
-## 🔜 Next Steps
+### Next Steps
 
 - [ ] Add more interactive components
 - [ ] Implement main content sections
@@ -475,14 +493,6 @@ The application will be available at `http://localhost:8080`
 - [ ] Style and integrate Dana (Voice Agent)
 - [ ] Implement lead generation forms
 - [ ] Add dynamic CTAs
-
-## 🌟 Key Differentiators
-
-- Interactive AI Demo with Dana
-- Industry-Specific ROI Calculator
-- Video Testimonials
-- Transparent Pricing Comparison
-- Real-time AI Interaction
 
 ## 📊 Market Analysis & Insights
 
