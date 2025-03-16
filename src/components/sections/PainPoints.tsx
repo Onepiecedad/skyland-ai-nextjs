@@ -1,6 +1,5 @@
-import { PhoneCall, Clock, Users, TrendingDown, ArrowRight } from 'lucide-react';
-import { PainPointCard } from '../ui/PainPointCard';
-import { Button } from '../ui/Button';
+import { PhoneCall, Clock, Users, TrendingDown } from 'lucide-react';
+import { ExpandableCard } from '../ui/ExpandableCard';
 
 const painPoints = [
   {
@@ -35,9 +34,9 @@ const painPoints = [
 
 export function PainPoints() {
   return (
-    <section className="relative py-32 font-inter">
+    <section className="relative py-24 font-inter">
       {/* Section Title */}
-      <div className="text-center mb-20">
+      <div className="text-center mb-16">
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.03em] leading-[1.15] text-center text-white/90">
           Are These Problems Slowing <br className="hidden sm:block" />Down Your Business?
         </h2>
@@ -46,7 +45,7 @@ export function PainPoints() {
       {/* Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4">
         {painPoints.map((point, index) => (
-          <PainPointCard
+          <ExpandableCard
             key={index}
             icon={point.icon}
             title={point.title}
@@ -55,17 +54,6 @@ export function PainPoints() {
             demoComponent={point.demoComponent}
           />
         ))}
-      </div>
-
-      {/* Section CTA */}
-      <div className="mt-20 text-center">
-        <Button 
-          size="lg"
-          className="group bg-blue-500/[0.03] hover:bg-blue-500/[0.08] text-base font-light tracking-[-0.01em] transition-all duration-300 text-white/80 hover:text-white"
-          icon={<ArrowRight className="text-blue-400/90 transition-all duration-300 transform group-hover:scale-125 group-hover:text-white" />}
-        >
-          Let AI Solve These Problems for You – See It in Action
-        </Button>
       </div>
     </section>
   );
