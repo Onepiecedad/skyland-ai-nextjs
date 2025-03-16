@@ -36,7 +36,7 @@ export function AISolutions() {
       </div>
 
       {/* Solutions Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto px-8">
         {solutions.map((solution, index) => (
           <ExpandableCard
             key={index}

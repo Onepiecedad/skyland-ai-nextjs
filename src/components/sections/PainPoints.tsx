@@ -43,7 +43,7 @@ export function PainPoints() {
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-8">
         {painPoints.map((point, index) => (
           <ExpandableCard
             key={index}

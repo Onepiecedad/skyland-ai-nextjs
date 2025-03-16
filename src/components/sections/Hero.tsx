@@ -2,18 +2,18 @@ import AIWidget from '../AIWidget';
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center -mt-16 font-inter">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+    <section className="relative min-h-[90vh] flex items-center -mt-16">
+      <div className="max-w-5xl mx-auto px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr,0.8fr] gap-12 lg:gap-16 items-center">
           {/* Left Side - Headlines */}
-          <div className="space-y-12">
+          <div className="space-y-14">
             {/* Primary Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-[-0.03em] leading-[1.15] text-left text-white/90 transition-colors duration-300">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-[-0.03em] leading-[1.15] text-white/90 transition-colors duration-300">
               What If Growing Your Business Didn't Mean More Work?
             </h1>
 
             {/* Supporting Headlines */}
-            <div className="space-y-8 text-white/75">
+            <div className="space-y-10 text-white/75">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extralight tracking-[-0.02em] leading-[1.3]">
                 What If AI Could Handle 80% of Your Work—Effortlessly?
               </h2>
@@ -24,7 +24,7 @@ export function Hero() {
           </div>
 
           {/* Right Side - AI Widget */}
-          <div className="lg:pt-12">
+          <div className="lg:pt-4 lg:-mr-8">
             <AIWidget />
           </div>
         </div>

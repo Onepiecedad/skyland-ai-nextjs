@@ -18,7 +18,6 @@ export function Layout({ children, className }: LayoutProps) {
         {/* Main Content */}
         <main className={cn(
           "flex-1 relative z-10",
-          "backdrop-blur-[2px]",
           className
         )}>
           {children}
@@ -26,7 +25,7 @@ export function Layout({ children, className }: LayoutProps) {
 
         {/* Footer */}
         <footer className="relative z-10 backdrop-blur-sm border-t border-white/10">
-          <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto px-8">
             <p className="text-center text-sm text-slate-400">
               © {new Date().getFullYear()} Skyland AI Solutions. All rights reserved.
             </p>

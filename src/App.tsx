@@ -4,8 +4,8 @@ import { PainPoints } from './components/sections/PainPoints';
 import { AISolutions } from './components/sections/AISolutions';
 import { IndustrySpecific } from './components/sections/IndustrySpecific';
 import { HowItWorks } from './components/sections/HowItWorks';
-import { Features } from './components/sections/Features';
-import { CTA } from './components/sections/CTA';
+import { FAQ } from './components/sections/FAQ';
+import { Pricing } from "./components/sections/Pricing";
 
 export default function App() {
   return (
@@ -15,8 +15,8 @@ export default function App() {
       <AISolutions />
       <IndustrySpecific />
       <HowItWorks />
-      <Features />
-      <CTA />
+      <FAQ />
+      <Pricing />
     </Layout>
   );
 }
