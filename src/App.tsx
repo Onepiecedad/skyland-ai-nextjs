@@ -3,6 +3,7 @@ import { Hero } from './components/sections/Hero';
 import { PainPoints } from './components/sections/PainPoints';
 import { AISolutions } from './components/sections/AISolutions';
 import { IndustrySpecific } from './components/sections/IndustrySpecific';
+import { HowItWorks } from './components/sections/HowItWorks';
 import { Features } from './components/sections/Features';
 import { CTA } from './components/sections/CTA';
 
@@ -13,6 +14,7 @@ export default function App() {
       <PainPoints />
       <AISolutions />
       <IndustrySpecific />
+      <HowItWorks />
       <Features />
       <CTA />
     </Layout>
