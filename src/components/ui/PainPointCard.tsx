@@ -26,83 +26,96 @@ export function PainPointCard({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className={cn(
-      'relative group cursor-pointer transition-all duration-300',
-      'rounded-xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm',
-      'hover:border-zinc-700 hover:bg-zinc-900/80',
-      className
-    )}>
-      {/* Main Card Content */}
+    <>
+      {/* Card Trigger */}
       <div 
         onClick={() => setIsExpanded(true)}
-        className="p-6 space-y-4"
+        className={cn(
+          "p-8 rounded-2xl backdrop-blur-lg transition-all duration-500 group/card cursor-pointer",
+          "bg-blue-500/[0.03] hover:bg-blue-500/[0.05]",
+          "border border-white/[0.03] hover:border-white/[0.08]",
+          "hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.15)]",
+          className
+        )}
       >
-        {/* Icon and Title */}
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{icon}</span>
-          <h3 className="text-xl font-semibold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-            {title}
-          </h3>
+        <div className="flex items-start gap-6">
+          <div className="transition-transform duration-500 group-hover/card:scale-125 group-hover/card:rotate-3">
+            {icon}
+          </div>
+          <div className="space-y-3">
+            <h3 className="text-xl sm:text-2xl font-extralight tracking-[-0.02em] leading-[1.3] text-white/80 transition-colors duration-300 group-hover/card:text-white">
+              {title}
+            </h3>
+            <p className="text-lg font-extralight tracking-[-0.015em] leading-[1.4] text-white/60 transition-colors duration-300 group-hover/card:text-white/90">
+              {description}
+            </p>
+          </div>
         </div>
-        
-        {/* Description */}
-        <p className="text-zinc-400">
-          {description}
-        </p>
       </div>
 
-      {/* Expanded Menu */}
+      {/* Modal */}
       {isExpanded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80">
-          <div className="relative w-full max-w-2xl bg-zinc-900 rounded-xl border border-zinc-800 p-6">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl">
             {/* Close Button */}
             <button
               onClick={() => setIsExpanded(false)}
-              className="absolute top-4 right-4 p-2 rounded-lg hover:bg-zinc-800 transition-colors"
+              className="absolute -top-12 right-0 p-2 rounded-lg hover:bg-zinc-800/50 transition-colors text-white/80 hover:text-white"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
 
-            {/* Content */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                  {title}
-                </h3>
-                <p className="mt-2 text-zinc-400">{description}</p>
-              </div>
-
-              {/* Solution */}
-              <div>
-                <h4 className="text-lg font-medium text-white">AI Solution</h4>
-                <p className="mt-2 text-zinc-400">{solution}</p>
-              </div>
-
-              {/* Demo Area */}
-              {demoComponent && (
-                <div className="mt-6 p-4 rounded-lg bg-zinc-800/50">
-                  {demoComponent}
+            {/* Content Container */}
+            <div className="bg-blue-500/[0.02] backdrop-blur-xl rounded-2xl border border-white/[0.05] p-8">
+              <div className="space-y-8">
+                {/* Header */}
+                <div className="space-y-4">
+                  <h3 className="text-2xl sm:text-3xl font-extralight tracking-[-0.02em] leading-[1.3] text-white/90">
+                    {title}
+                  </h3>
+                  <p className="text-lg font-extralight tracking-[-0.015em] leading-[1.4] text-white/70">
+                    {description}
+                  </p>
                 </div>
-              )}
 
-              {/* CTA */}
-              <div className="flex justify-end gap-4 mt-6">
-                <Button
-                  variant="outline"
-                  onClick={() => setIsExpanded(false)}
-                >
-                  Close
-                </Button>
-                <Button
-                  onClick={onDemoClick}
-                >
-                  Let AI Solve This
-                </Button>
+                {/* Solution */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-extralight tracking-[-0.02em] leading-[1.3] text-white/80">
+                    AI Solution
+                  </h4>
+                  <p className="text-lg font-extralight tracking-[-0.015em] leading-[1.4] text-white/60">
+                    {solution}
+                  </p>
+                </div>
+
+                {/* Demo Area */}
+                {demoComponent && (
+                  <div className="p-6 rounded-xl bg-blue-500/[0.02] border border-white/[0.03]">
+                    {demoComponent}
+                  </div>
+                )}
+
+                {/* Actions */}
+                <div className="flex justify-end gap-4 pt-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsExpanded(false)}
+                    className="bg-white/[0.02] hover:bg-white/[0.05] border-white/[0.05] hover:border-white/[0.08] text-white/80 hover:text-white"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={onDemoClick}
+                    className="group bg-blue-500/[0.1] hover:bg-blue-500/[0.15] text-white/90 hover:text-white"
+                  >
+                    Let AI Solve This
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 } 
