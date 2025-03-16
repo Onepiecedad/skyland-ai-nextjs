@@ -1,58 +1,46 @@
-import { ArrowRight, Bot } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Content */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-white to-zinc-400 bg-clip-text text-transparent">
-            Your AI Employee,{' '}
-            <span className="block mt-2">Ready in Minutes</span>
-          </h1>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">
-            Skyland AI helps businesses save time, increase revenue, and streamline operations with AI-powered automation.
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
-            <Button 
-              size="lg" 
-              className="group bg-indigo-500/10 hover:bg-indigo-500/20 backdrop-blur-sm border-0"
-              icon={<ArrowRight className="transition-transform group-hover:translate-x-1" />}
-            >
-              See AI in Action Now
-            </Button>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="group border-indigo-500/20 hover:bg-indigo-500/10 backdrop-blur-sm"
-            >
-              Get My AI Growth Plan
-            </Button>
-          </div>
-          
-          {/* Trust Indicator */}
-          <p className="text-sm text-zinc-500 flex items-center justify-center gap-2">
-            <Bot className="w-4 h-4 text-indigo-400" />
-            No credit card required. See results in minutes.
-          </p>
-        </div>
+    <section className="relative min-h-[90vh] flex items-center -mt-16 font-inter">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Side - Headlines */}
+          <div className="space-y-10">
+            {/* Primary Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-[-0.03em] leading-[1.15] text-left text-white/90 transition-colors duration-300">
+              What If Growing Your Business Didn't Mean More Work?
+            </h1>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
-          <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-indigo-500/10 text-center group hover:bg-white/10 transition-all">
-            <div className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-indigo-300 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">30+</div>
-            <div className="text-zinc-400">Hours Saved Monthly</div>
+            {/* Supporting Headlines */}
+            <div className="space-y-6 text-white/75">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extralight tracking-[-0.02em] leading-[1.3]">
+                What If AI Could Handle 80% of Your Work—Effortlessly?
+              </h2>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-extralight tracking-[-0.015em] leading-[1.4]">
+                What If You Had an Employee That Worked 24/7—For Free?
+              </h3>
+            </div>
           </div>
-          <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-indigo-500/10 text-center group hover:bg-white/10 transition-all">
-            <div className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-indigo-300 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">90%</div>
-            <div className="text-zinc-400">Faster Response Time</div>
-          </div>
-          <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-indigo-500/10 text-center group hover:bg-white/10 transition-all">
-            <div className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-indigo-300 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">24/7</div>
-            <div className="text-zinc-400">AI Availability</div>
+
+          {/* Right Side - CTAs */}
+          <div className="flex flex-col items-start lg:items-end gap-5 mt-6 lg:mt-0">
+            <Button 
+              size="lg"
+              className="group bg-white/8 hover:bg-white/12 text-base font-light tracking-[-0.01em] w-full lg:w-auto transition-all duration-300 backdrop-blur-sm"
+              icon={<ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />}
+            >
+              Watch AI Handle Your Work
+            </Button>
+
+            <Button 
+              size="lg"
+              variant="secondary"
+              className="group bg-white/5 hover:bg-white/8 text-base font-light tracking-[-0.01em] w-full lg:w-auto transition-all duration-300 backdrop-blur-sm"
+            >
+              Get Your Growth Plan
+            </Button>
           </div>
         </div>
       </div>
