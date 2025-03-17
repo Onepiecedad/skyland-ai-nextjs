@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Bot } from "lucide-react";
+import { Bot, Mic } from "lucide-react";
 import { cn } from "../lib/utils";
 
 declare global {
@@ -72,38 +72,84 @@ const AIWidget = () => {
   }, [isOpen]);
 
   return (
-    <>
-      {/* Card Trigger */}
+    <div className="relative">
+      {/* Main Card */}
       <div 
-        onClick={() => setIsOpen(true)}
         className={cn(
-          "p-6 rounded-xl backdrop-blur-xl transition-all duration-500 group/card cursor-pointer",
-          "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
-          "border border-white/[0.08]",
-          "hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
-          "hover:border-blue-400/[0.2]",
+          "relative p-6 sm:p-7 rounded-2xl",
+          "bg-gradient-to-br from-blue-400/[0.08] to-blue-400/[0.02]",
+          "border border-blue-400/10",
+          "backdrop-blur-xl",
+          "transition-all duration-500",
+          "group/card",
           "hover:scale-[1.02]",
-          "hover:shadow-[0_0_20px_-5px_rgba(96,165,250,0.2)]"
+          "hover:border-blue-400/20",
+          "hover:from-blue-400/[0.12] hover:to-blue-400/[0.04]",
+          "hover:shadow-[0_0_40px_-5px_rgba(96,165,250,0.2)]"
         )}
       >
-        <div className="flex items-start gap-5">
-          <div className={cn(
-            "transition-all duration-500",
-            "transform-gpu",
-            "group-hover/card:scale-110",
-            "group-hover/card:rotate-3",
-            "group-hover/card:animate-wiggle"
-          )}>
-            <Bot className="w-10 h-10 text-blue-400/80 transition-colors duration-500" />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 rounded-2xl" />
+
+        {/* Content */}
+        <div className="relative space-y-6">
+          {/* Header */}
+          <div className="flex items-start gap-4">
+            <div className={cn(
+              "transition-all duration-500",
+              "transform-gpu",
+              "group-hover/card:scale-110",
+              "group-hover/card:rotate-3",
+              "group-hover/card:animate-wiggle"
+            )}>
+              <Bot className="w-10 h-10 text-blue-400/90 transition-colors duration-500 group-hover/card:text-blue-400" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-[20px] font-normal tracking-[-0.02em] leading-[1.3] text-white/90 transition-colors duration-300 group-hover/card:text-white">
+                Want to Make More & Work Less? Ask Dana How AI Can Help!
+              </h3>
+              <p className="text-base font-light tracking-[-0.015em] leading-[1.4] text-white/70 transition-colors duration-300 group-hover/card:text-white/85">
+                AI can grow revenue, cut costs, and free up your time—instantly.
+              </p>
+            </div>
           </div>
-          <div className="space-y-2.5">
-            <h3 className="text-lg font-light tracking-[-0.02em] leading-[1.3] text-white/80 transition-colors duration-300 group-hover/card:text-white/95">
-              Want to Make More & Work Less? Ask Dana How AI Can Help!
-            </h3>
-            <p className="text-base font-light tracking-[-0.015em] leading-[1.4] text-white/60 transition-colors duration-300 group-hover/card:text-white/80">
-              AI can grow revenue, cut costs, and free up your time—instantly.
-            </p>
-          </div>
+
+          {/* Voice Button */}
+          <button 
+            onClick={() => setIsOpen(true)}
+            className={cn(
+              "w-full py-3.5 px-5 rounded-xl",
+              "bg-gradient-to-br from-blue-400/[0.15] to-blue-400/[0.05]",
+              "border border-blue-400/15",
+              "backdrop-blur-lg",
+              "transition-all duration-500",
+              "group/button relative",
+              "hover:scale-[1.02]",
+              "hover:border-blue-400/30",
+              "hover:from-blue-400/[0.2] hover:to-blue-400/[0.08]",
+              "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.25)]",
+              "overflow-hidden"
+            )}
+          >
+            {/* Button Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/15 to-transparent opacity-0 group-hover/button:opacity-100 transition-opacity duration-500" />
+            
+            {/* Button Content */}
+            <div className="relative flex items-center justify-center gap-2.5">
+              <div className={cn(
+                "transition-all duration-500",
+                "transform-gpu",
+                "group-hover/button:scale-110",
+                "group-hover/button:rotate-3",
+                "group-hover/button:animate-wiggle"
+              )}>
+                <Mic className="w-5 h-5 text-blue-400/90 transition-colors duration-500 group-hover/button:text-blue-400" />
+              </div>
+              <span className="text-base font-light text-white/85 transition-colors duration-300 group-hover/button:text-white">
+                Ask Dana a Question
+              </span>
+            </div>
+          </button>
         </div>
       </div>
 
@@ -133,7 +179,7 @@ const AIWidget = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

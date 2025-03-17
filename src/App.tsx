@@ -7,6 +7,7 @@ import { HowItWorks } from './components/sections/HowItWorks';
 import { FAQ } from './components/sections/FAQ';
 import { Pricing } from "./components/sections/Pricing";
 import { About } from './components/sections/About';
+import { Contact } from './components/sections/Contact';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <FAQ />
       <Pricing />
       <About />
+      <Contact />
     </Layout>
   );
 }
