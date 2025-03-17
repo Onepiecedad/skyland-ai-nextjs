@@ -1,5 +1,6 @@
 import { Layout } from './components/layout/Layout';
 import { Hero } from './components/sections/Hero';
+import { About } from './components/sections/About';
 import { PainPoints } from './components/sections/PainPoints';
 import { AISolutions } from './components/sections/AISolutions';
 import { IndustrySpecific } from './components/sections/IndustrySpecific';
@@ -11,6 +12,7 @@ export default function App() {
   return (
     <Layout>
       <Hero />
+      <About />
       <PainPoints />
       <AISolutions />
       <IndustrySpecific />
