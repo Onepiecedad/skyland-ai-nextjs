@@ -34,16 +34,16 @@ const painPoints = [
 
 export function PainPoints() {
   return (
-    <section className="relative py-24 font-inter">
+    <section className="relative py-16 sm:py-20 lg:py-24 font-inter">
       {/* Section Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.03em] leading-[1.15] text-center text-white/90">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.03em] leading-[1.15] text-center text-white/90 px-4 sm:px-0">
           Are These Problems Slowing <br className="hidden sm:block" />Down Your Business?
         </h2>
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {painPoints.map((point, index) => (
           <ExpandableCard
             key={index}
