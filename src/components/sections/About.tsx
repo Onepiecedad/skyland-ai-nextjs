@@ -5,7 +5,7 @@ import { Lightbulb, Rocket, Shield, Users, Target, Phone } from 'lucide-react';
 
 const aboutCards = [
   {
-    icon: <Lightbulb className="w-12 h-12 text-blue-500/80" />,
+    icon: <Lightbulb className="w-7 h-7 text-blue-500/80" />,
     title: "Why Skyland AI Was Built – The Future of Work Starts Here",
     description: "Breaking Free from Manual Work",
     solution: "We built Skyland AI to help businesses stop working harder and start working smarter. Our mission is to eliminate repetitive tasks and unlock limitless growth through intelligent automation.",
@@ -18,7 +18,7 @@ const aboutCards = [
     )
   },
   {
-    icon: <Rocket className="w-12 h-12 text-blue-400/80" />,
+    icon: <Rocket className="w-7 h-7 text-blue-400/80" />,
     title: "How AI Scales Your Business—Without Adding More Work",
     description: "AI-Powered Automation That Works 24/7",
     solution: "Our AI-powered automation acts like a full-time employee—without the overhead. We provide comprehensive solutions that handle everything from customer inquiries to complex workflows.",
@@ -31,7 +31,7 @@ const aboutCards = [
     )
   },
   {
-    icon: <Shield className="w-12 h-12 text-blue-300/80" />,
+    icon: <Shield className="w-7 h-7 text-blue-300/80" />,
     title: "Why Businesses Choose Skyland AI – Smarter, Faster, Stronger",
     description: "Custom-Tailored AI Solutions",
     solution: "Unlike generic chatbots or automation tools, we don't just sell AI—we design AI to fit your business. Every solution is built around your specific workflows and needs.",
@@ -45,7 +45,7 @@ const aboutCards = [
     )
   },
   {
-    icon: <Users className="w-12 h-12 text-blue-200/80" />,
+    icon: <Users className="w-7 h-7 text-blue-200/80" />,
     title: "AI for Growth-Driven Businesses – Is Yours Next?",
     description: "Industries That Thrive on Efficiency",
     solution: "The industries we serve have one thing in common: They thrive on fast response times and efficiency. AI gives them an unfair advantage by eliminating the bottlenecks holding them back.",
@@ -81,23 +81,23 @@ const aboutCards = [
 
 export function About() {
   return (
-    <section id="who-we-are" className="relative py-24 font-inter">
+    <section id="who-we-are" className="relative py-14 sm:py-16 font-inter">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent"></div>
       
       {/* Section Content */}
-      <div className="max-w-5xl mx-auto px-8">
-        {/* Main Headline */}
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.02em] leading-[1.2] text-center text-white mb-8">
-          What's Really Slowing Your Business Down?
-        </h2>
-
-        {/* Enhanced Subtext */}
-        <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.4] text-center text-white/90 mb-24 max-w-4xl mx-auto">
-          The biggest growth killer in business isn't lack of customers—it's <span className="font-normal text-white relative inline-block">wasted time <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></span></span>. Every minute spent on repetitive tasks is a minute not spent growing your business.
-        </p>
+      <div className="max-w-[1120px] mx-auto px-4 sm:px-6">
+        {/* Section Title */}
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="text-[42px] md:text-[48px] font-extralight tracking-[-0.03em] leading-[1.1] text-center text-white/90">
+            What's Really Slowing Your Business Down?
+          </h2>
+          <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.4] text-white/80 mt-4 max-w-3xl mx-auto">
+            The biggest growth killer in business isn't lack of customers—it's <span className="font-normal text-white relative inline-block">wasted time <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></span></span>. Every minute spent on repetitive tasks is a minute not spent growing your business.
+          </p>
+        </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           {aboutCards.map((card, index) => (
             <ExpandableCard
               key={index}
@@ -106,21 +106,20 @@ export function About() {
               description={card.description}
               solution={card.solution}
               demoComponent={card.demoComponent}
-              className="p-10"
             />
           ))}
         </div>
 
         {/* Final CTA */}
-        <div className="text-center space-y-8 mt-32 mb-16">
-          <h3 className="text-3xl sm:text-4xl font-extralight tracking-[-0.02em] leading-[1.3] text-white/90">
+        <div className="text-center space-y-6 mt-20 sm:mt-24">
+          <h3 className="text-[32px] md:text-[36px] font-extralight tracking-[-0.02em] leading-[1.2] text-white/90">
             The Future is AI—Are You Ready?
           </h3>
           <p className="text-lg sm:text-xl font-light tracking-[-0.01em] leading-[1.6] text-white/80 max-w-2xl mx-auto">
             AI is the competitive edge separating fast-growing businesses from those stuck in outdated systems.
             We only take a handful of new clients each month—don't get left behind.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 pt-8">
             <div className="flex justify-end">
               <Button 
                 variant="primary"

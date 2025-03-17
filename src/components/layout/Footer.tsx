@@ -128,31 +128,32 @@ export function Footer() {
 
   return (
     <footer className="relative mt-auto border-t border-white/10">
-      <div className="py-12 md:py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr,auto] gap-12 md:gap-16">
+      <div className="py-10 md:py-14 px-6 md:px-12">
+        <div className="max-w-[1120px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-[1.2fr,0.8fr] gap-8 md:gap-12">
             {/* Left Side - Company Info */}
-            <div className="space-y-8 text-center md:text-left">
+            <div className="space-y-6 text-center md:text-left">
               {/* Logo & Mission */}
               <div className="space-y-4">
-                <h4 className="text-xl font-light tracking-wider text-white">SKYLAND AI</h4>
-                <p className="text-[16px] leading-relaxed text-white/80 font-light max-w-md mx-auto md:mx-0">
+                <h4 className="text-2xl font-light tracking-wider text-white">SKYLAND AI</h4>
+                <p className="text-lg leading-relaxed text-white/80 font-light max-w-md mx-auto md:mx-0">
                   Transforming businesses through AI automation. We help companies save time, reduce costs, and grow revenue with custom AI solutions.
                 </p>
               </div>
 
               {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-center md:justify-start gap-2 text-white/80 hover:text-white transition-colors">
-                  <Mail className="w-4 h-4" />
-                  <a href="mailto:info@skylandai.se">info@skylandai.se</a>
+              <div className="space-y-4">
+                <div className="flex items-center justify-center md:justify-start gap-3 text-white/90 hover:text-white transition-colors">
+                  <Mail className="w-5 h-5" />
+                  <a href="mailto:info@skylandai.se" className="text-lg font-light hover:text-blue-400/90 transition-colors">info@skylandai.se</a>
                 </div>
-                <div className="flex items-center justify-center md:justify-start gap-2 text-white/80 hover:text-white transition-colors">
-                  <Linkedin className="w-4 h-4" />
+                <div className="flex items-center justify-center md:justify-start gap-3 text-white/90 hover:text-white transition-colors">
+                  <Linkedin className="w-5 h-5" />
                   <a 
                     href="https://linkedin.com/company/skylandai" 
                     target="_blank" 
                     rel="noopener noreferrer"
+                    className="text-lg font-light hover:text-blue-400/90 transition-colors"
                   >
                     LinkedIn
                   </a>
@@ -161,14 +162,14 @@ export function Footer() {
             </div>
 
             {/* Right Side - Navigation */}
-            <nav className="space-y-8 text-center md:text-right">
+            <nav className="space-y-6 text-center md:text-right">
               {/* Navigation Links */}
-              <ul className="space-y-4">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3 md:block md:space-y-3">
                 {navigation.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
-                      className="text-white/70 hover:text-white/90 transition-colors"
+                      className="text-lg text-white/80 hover:text-white transition-colors block py-1"
                       onClick={(e) => {
                         e.preventDefault();
                         const element = document.querySelector(item.href);
@@ -184,7 +185,7 @@ export function Footer() {
               </ul>
 
               {/* Copyright */}
-              <p className="text-sm text-white/60 font-light">
+              <p className="text-base text-white/60 font-light">
                 © {new Date().getFullYear()} Skyland AI. All rights reserved.
               </p>
             </nav>

@@ -114,17 +114,17 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24">
+    <section id="contact" className="relative py-14 sm:py-16 font-inter">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
       
-      {/* Get In Touch Section */}
-      <div className="relative max-w-5xl mx-auto px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.02em] leading-[1.2] text-white/90 mb-4">
+      {/* Section Content */}
+      <div className="relative max-w-[1120px] mx-auto px-4 sm:px-6">
+        {/* Section Title */}
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="text-[42px] md:text-[48px] font-extralight tracking-[-0.03em] leading-[1.1] text-center text-white/90">
             Get In Touch
           </h2>
-          <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.6] text-white/70 max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.4] text-white/80 mt-4 max-w-3xl mx-auto">
             Ready to transform your business with AI? Let's talk about your goals and how we can help you achieve them.
           </p>
         </div>
@@ -133,7 +133,7 @@ export function Contact() {
         <form className="max-w-2xl mx-auto space-y-6">
           {/* Name Field */}
           <div className="space-y-2">
-            <label htmlFor="name" className="block text-lg font-light text-white/70">
+            <label htmlFor="name" className="block text-lg font-light text-white/80">
               Name
             </label>
             <input
@@ -143,21 +143,19 @@ export function Contact() {
               onChange={handleChange}
               className={cn(
                 "w-full",
-                "bg-gradient-to-br from-blue-400/[0.08] to-blue-400/[0.02]",
-                "text-white/80",
-                "border border-blue-400/10",
-                "backdrop-blur-xl",
+                "bg-blue-600/20",
+                "text-white/90",
+                "border border-blue-500/20",
+                "backdrop-blur-sm",
                 "rounded-xl",
                 "px-4 py-3",
-                "text-base font-light",
-                "transition-all duration-500",
-                "placeholder:text-white/20",
-                "hover:border-blue-400/20",
-                "hover:from-blue-400/[0.12] hover:to-blue-400/[0.04]",
+                "text-lg font-light",
+                "transition-all duration-300",
+                "placeholder:text-white/30",
+                "hover:border-blue-400/30",
+                "hover:bg-blue-500/30",
                 "focus:outline-none",
-                "focus:border-blue-400/30",
-                "focus:from-blue-400/[0.15] focus:to-blue-400/[0.05]",
-                "focus:shadow-[0_0_30px_-5px_rgba(96,165,250,0.2)]",
+                "focus:border-blue-400/40",
                 errors.name && "border-red-400/30 focus:border-red-400/30"
               )}
               placeholder="Your name"
@@ -169,7 +167,7 @@ export function Contact() {
 
           {/* Email Field */}
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-lg font-light text-white/70">
+            <label htmlFor="email" className="block text-lg font-light text-white/80">
               Email
             </label>
             <input
@@ -179,21 +177,19 @@ export function Contact() {
               onChange={handleChange}
               className={cn(
                 "w-full",
-                "bg-gradient-to-br from-blue-400/[0.08] to-blue-400/[0.02]",
-                "text-white/80",
-                "border border-blue-400/10",
-                "backdrop-blur-xl",
+                "bg-blue-600/20",
+                "text-white/90",
+                "border border-blue-500/20",
+                "backdrop-blur-sm",
                 "rounded-xl",
                 "px-4 py-3",
-                "text-base font-light",
-                "transition-all duration-500",
-                "placeholder:text-white/20",
-                "hover:border-blue-400/20",
-                "hover:from-blue-400/[0.12] hover:to-blue-400/[0.04]",
+                "text-lg font-light",
+                "transition-all duration-300",
+                "placeholder:text-white/30",
+                "hover:border-blue-400/30",
+                "hover:bg-blue-500/30",
                 "focus:outline-none",
-                "focus:border-blue-400/30",
-                "focus:from-blue-400/[0.15] focus:to-blue-400/[0.05]",
-                "focus:shadow-[0_0_30px_-5px_rgba(96,165,250,0.2)]",
+                "focus:border-blue-400/40",
                 errors.email && "border-red-400/30 focus:border-red-400/30"
               )}
               placeholder="your@email.com"
@@ -205,7 +201,7 @@ export function Contact() {
 
           {/* Message Field */}
           <div className="space-y-2">
-            <label htmlFor="message" className="block text-lg font-light text-white/70">
+            <label htmlFor="message" className="block text-lg font-light text-white/80">
               Message
             </label>
             <textarea
@@ -215,22 +211,20 @@ export function Contact() {
               rows={4}
               className={cn(
                 "w-full",
-                "bg-gradient-to-br from-blue-400/[0.08] to-blue-400/[0.02]",
-                "text-white/80",
-                "border border-blue-400/10",
-                "backdrop-blur-xl",
+                "bg-blue-600/20",
+                "text-white/90",
+                "border border-blue-500/20",
+                "backdrop-blur-sm",
                 "rounded-xl",
                 "px-4 py-3",
-                "text-base font-light",
-                "transition-all duration-500",
+                "text-lg font-light",
+                "transition-all duration-300",
                 "resize-none",
-                "placeholder:text-white/20",
-                "hover:border-blue-400/20",
-                "hover:from-blue-400/[0.12] hover:to-blue-400/[0.04]",
+                "placeholder:text-white/30",
+                "hover:border-blue-400/30",
+                "hover:bg-blue-500/30",
                 "focus:outline-none",
-                "focus:border-blue-400/30",
-                "focus:from-blue-400/[0.15] focus:to-blue-400/[0.05]",
-                "focus:shadow-[0_0_30px_-5px_rgba(96,165,250,0.2)]",
+                "focus:border-blue-400/40",
                 errors.message && "border-red-400/30 focus:border-red-400/30"
               )}
               placeholder="Tell us about your business and how we can help..."
@@ -241,48 +235,66 @@ export function Contact() {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-end pt-2">
+          <div className="flex justify-end pt-4">
             <Button
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
                 handleSubmit(e);
               }}
+              disabled={status === 'loading'}
               className={cn(
-                "flex items-center justify-center",
-                "w-14 h-14",
-                "bg-gradient-to-br from-blue-400/[0.15] to-blue-400/[0.05]",
-                "border border-blue-400/15",
-                "backdrop-blur-xl",
-                "rounded-xl",
+                "px-8 py-6 w-full",
+                "bg-blue-400/[0.08]",
+                "text-white/90 hover:text-white",
                 "transition-all duration-500",
-                "group/button relative",
+                "rounded-2xl text-lg font-light",
+                "border border-blue-400/10",
+                "backdrop-blur-sm",
+                "flex items-center justify-center gap-3",
+                "group relative",
                 "hover:scale-[1.02]",
                 "hover:border-blue-400/30",
-                "hover:from-blue-400/[0.2] hover:to-blue-400/[0.08]",
-                "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.25)]",
-                status === 'loading' && "opacity-50 pointer-events-none"
+                "hover:bg-blue-400/[0.12]",
+                "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
+                "overflow-hidden",
+                status === 'loading' && "opacity-70 cursor-not-allowed"
               )}
-              aria-label={
-                status === 'loading' ? 'Sending message...' :
-                status === 'success' ? 'Message sent successfully' :
-                status === 'error' ? 'Failed to send message' :
-                'Send message'
-              }
             >
-              <div className={cn(
-                "transition-all duration-500",
-                "transform-gpu",
-                "group-hover/button:scale-110",
-                "group-hover/button:rotate-3",
-                "group-hover/button:animate-wiggle"
-              )}>
-                {status === 'loading' && <Loader2 className="h-5 w-5 animate-spin text-blue-400/90" aria-hidden="true" />}
-                {status === 'success' && <CheckCircle className="h-5 w-5 text-green-400/90" aria-hidden="true" />}
-                {status === 'error' && <XCircle className="h-5 w-5 text-red-400/90" aria-hidden="true" />}
-                {status === 'idle' && <Send className="h-5 w-5 text-blue-400/90" aria-hidden="true" />}
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {status === 'loading' ? (
+                <>
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                  <span>Sending...</span>
+                </>
+              ) : status === 'success' ? (
+                <>
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>Message Sent!</span>
+                </>
+              ) : status === 'error' ? (
+                <>
+                  <XCircle className="w-6 h-6 text-red-400" />
+                  <span>Failed to Send</span>
+                </>
+              ) : (
+                <>
+                  <Send className={cn(
+                    "w-6 h-6 text-blue-500/80",
+                    "transition-all duration-500",
+                    "group-hover:scale-110",
+                    "group-hover:rotate-3",
+                    "group-hover:animate-wiggle"
+                  )} />
+                  <span>Send Message</span>
+                </>
+              )}
             </Button>
           </div>
+          
+          {/* Error Message */}
+          {errorMessage && (
+            <p className="text-sm text-red-400/70 text-center mt-4">{errorMessage}</p>
+          )}
         </form>
       </div>
     </section>
