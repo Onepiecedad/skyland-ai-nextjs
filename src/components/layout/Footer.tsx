@@ -118,182 +118,189 @@ export function Footer() {
   };
 
   return (
-    <footer id="contact" className="relative mt-0 pt-16 pb-12 px-8 sm:px-12">
-      {/* Contact Form Section */}
-      <div className="relative z-20 max-w-lg mx-auto mb-24">
-        <div className="text-center mb-16">
-          <h2 className="text-[32px] font-light text-white/90 mb-4">Get In Touch</h2>
-          <p className="text-[16px] font-light text-white/80 leading-[1.6] max-w-md mx-auto">
-            Ready to transform your business with AI? Let's talk.
+    <footer className="relative mt-16 font-inter">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
+      
+      {/* Get In Touch Section */}
+      <div className="relative max-w-5xl mx-auto px-8 pb-24">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.02em] leading-[1.2] text-white/80 mb-4">
+            Get In Touch
+          </h2>
+          <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.6] text-white/60 max-w-2xl mx-auto">
+            Ready to transform your business with AI? Let's talk about your goals and how we can help you achieve them.
           </p>
         </div>
 
-        <form 
-          onSubmit={handleSubmit}
-          aria-label="Contact form"
-          className={cn(
-            "p-10 rounded-2xl backdrop-blur-2xl transition-all duration-400 group/card",
-            "bg-gradient-to-b from-blue-400/[0.03] to-transparent",
-            "hover:from-blue-400/[0.04] hover:to-blue-400/[0.01]",
-            "border border-white/[0.08] hover:border-white/[0.1]",
-            "hover:scale-[1.01] hover:shadow-[0_0_30px_-15px_rgba(96,165,250,0.1)]",
-            "transform-gpu relative",
-            "space-y-8"
-          )}
-        >
-          {/* Glow effect container */}
-          <div className="absolute inset-0 rounded-2xl transition-opacity duration-500 opacity-0 group-hover/card:opacity-100">
-            <div className="absolute inset-px rounded-2xl bg-gradient-to-b from-blue-400/[0.06] to-transparent" />
-          </div>
-
-          <div className="relative space-y-6">
-            <div className="group/input">
-              <label htmlFor="name" className="block text-sm font-light text-white/80 mb-2 group-hover/card:text-white/95 transition-colors duration-300">
-                Name
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? "name-error" : undefined}
-                  className={cn(
-                    "w-full bg-white/[0.03] rounded-lg px-4 py-3",
-                    "text-white placeholder:text-white/25",
-                    "border transition-all duration-300",
-                    errors.name 
-                      ? "border-red-400/50 focus:border-red-400 focus:shadow-[0_0_1rem_0_rgba(248,113,113,0.1)]" 
-                      : "border-white/[0.08] focus:border-blue-400/40 focus:shadow-[0_0_1rem_0_rgba(96,165,250,0.1)]",
-                    "group-hover/card:border-white/[0.12]",
-                    "outline-none",
-                    "font-light text-base",
-                    "focus:scale-[1.01] focus:bg-white/[0.04]",
-                    "transform-gpu"
-                  )}
-                  placeholder="Your name"
-                />
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/0 via-blue-400/0 to-blue-400/0 opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
-              {errors.name && (
-                <p id="name-error" className="mt-2 text-sm font-light text-red-400" role="alert">{errors.name}</p>
+        {/* Contact Form */}
+        <form className="max-w-2xl mx-auto space-y-6">
+          {/* Name Field */}
+          <div className="space-y-2">
+            <label htmlFor="name" className="block text-lg font-light text-white/70">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={formData.name}
+              onChange={(e) => handleChange(e)}
+              className={cn(
+                // Base styles
+                "w-full",
+                "bg-gradient-to-r from-blue-400/[0.02] via-blue-500/[0.02] to-blue-400/[0.02]",
+                "text-white/80",
+                "border border-white/[0.06]",
+                "backdrop-blur-xl",
+                "rounded-xl",
+                "px-4 py-3",
+                "text-base font-light",
+                "transition-all duration-500",
+                "placeholder:text-white/20",
+                
+                // Focus & Hover styles
+                "focus:outline-none",
+                "hover:from-blue-400/[0.04] hover:via-blue-500/[0.04] hover:to-blue-400/[0.04]",
+                "hover:border-blue-400/[0.1]",
+                "focus:from-blue-400/[0.04] focus:via-blue-500/[0.04] focus:to-blue-400/[0.04]",
+                "focus:border-blue-400/[0.1]",
+                "focus:shadow-[0_0_20px_-5px_rgba(96,165,250,0.1)]",
+                
+                // Error state
+                errors.name && "border-red-400/30 focus:border-red-400/30"
               )}
-            </div>
-
-            <div className="group/input">
-              <label htmlFor="email" className="block text-sm font-light text-white/80 mb-2 group-hover/card:text-white/95 transition-colors duration-300">
-                Email
-              </label>
-              <div className="relative">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                  className={cn(
-                    "w-full bg-white/[0.03] rounded-lg px-4 py-3",
-                    "text-white placeholder:text-white/25",
-                    "border transition-all duration-300",
-                    errors.email 
-                      ? "border-red-400/50 focus:border-red-400 focus:shadow-[0_0_1rem_0_rgba(248,113,113,0.1)]" 
-                      : "border-white/[0.08] focus:border-blue-400/40 focus:shadow-[0_0_1rem_0_rgba(96,165,250,0.1)]",
-                    "group-hover/card:border-white/[0.12]",
-                    "outline-none",
-                    "font-light text-base",
-                    "focus:scale-[1.01] focus:bg-white/[0.04]",
-                    "transform-gpu"
-                  )}
-                  placeholder="your@email.com"
-                />
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/0 via-blue-400/0 to-blue-400/0 opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
-              {errors.email && (
-                <p id="email-error" className="mt-2 text-sm font-light text-red-400" role="alert">{errors.email}</p>
-              )}
-            </div>
-
-            <div className="group/input">
-              <label htmlFor="message" className="block text-sm font-light text-white/80 mb-2 group-hover/card:text-white/95 transition-colors duration-300">
-                Message
-              </label>
-              <div className="relative">
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  aria-invalid={!!errors.message}
-                  aria-describedby={errors.message ? "message-error" : undefined}
-                  className={cn(
-                    "w-full bg-white/[0.03] rounded-lg px-4 py-3",
-                    "text-white placeholder:text-white/25",
-                    "border transition-all duration-300",
-                    errors.message 
-                      ? "border-red-400/50 focus:border-red-400 focus:shadow-[0_0_1rem_0_rgba(248,113,113,0.1)]" 
-                      : "border-white/[0.08] focus:border-blue-400/40 focus:shadow-[0_0_1rem_0_rgba(96,165,250,0.1)]",
-                    "group-hover/card:border-white/[0.12]",
-                    "outline-none",
-                    "font-light text-base",
-                    "focus:scale-[1.01] focus:bg-white/[0.04]",
-                    "transform-gpu",
-                    "resize-none"
-                  )}
-                  placeholder="Tell us about your project..."
-                />
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/0 via-blue-400/0 to-blue-400/0 opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
-              {errors.message && (
-                <p id="message-error" className="mt-2 text-sm font-light text-red-400" role="alert">{errors.message}</p>
-              )}
-            </div>
-          </div>
-
-          <Button
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-              e.preventDefault();
-              handleSubmit(e);
-            }}
-            className={cn(
-              "w-full flex items-center justify-center gap-2",
-              "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
-              "hover:from-blue-400/[0.06] hover:via-blue-500/[0.06] hover:to-blue-400/[0.06]",
-              "text-white/75 hover:text-white/90",
-              "border border-white/[0.08] hover:border-blue-400/[0.15]",
-              "transition-all duration-300",
-              "hover:shadow-[0_0_15px_-5px_rgba(96,165,250,0.15)]",
-              "rounded-lg px-5 py-3",
-              "text-base font-light",
-              "backdrop-blur-xl",
-              "transform-gpu hover:scale-[1.02]",
-              status === 'loading' && "opacity-50 pointer-events-none"
+              placeholder="Your name"
+            />
+            {errors.name && (
+              <p className="text-sm text-red-400/70">{errors.name}</p>
             )}
-            aria-label={
-              status === 'loading' ? 'Sending message...' :
-              status === 'success' ? 'Message sent successfully' :
-              status === 'error' ? 'Failed to send message' :
-              'Send message'
-            }
-          >
-            <div className="transition-transform duration-400 group-hover/card:scale-110 group-hover/card:rotate-2">
-              {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
-              {status === 'success' && <CheckCircle className="h-4 w-4 text-green-400" aria-hidden="true" />}
-              {status === 'error' && <XCircle className="h-4 w-4 text-red-400" aria-hidden="true" />}
-              {status === 'idle' && <Send className="h-4 w-4" aria-hidden="true" />}
-            </div>
-            {status === 'loading' ? 'Sending...' : 
-             status === 'success' ? 'Sent!' :
-             status === 'error' ? 'Failed' : 'Send Message'}
-          </Button>
-          
-          {errorMessage && (
-            <p className="mt-4 text-sm font-light text-center text-red-400/80" role="alert">{errorMessage}</p>
-          )}
+          </div>
+
+          {/* Email Field */}
+          <div className="space-y-2">
+            <label htmlFor="email" className="block text-lg font-light text-white/70">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={(e) => handleChange(e)}
+              className={cn(
+                // Base styles
+                "w-full",
+                "bg-gradient-to-r from-blue-400/[0.02] via-blue-500/[0.02] to-blue-400/[0.02]",
+                "text-white/80",
+                "border border-white/[0.06]",
+                "backdrop-blur-xl",
+                "rounded-xl",
+                "px-4 py-3",
+                "text-base font-light",
+                "transition-all duration-500",
+                "placeholder:text-white/20",
+                
+                // Focus & Hover styles
+                "focus:outline-none",
+                "hover:from-blue-400/[0.04] hover:via-blue-500/[0.04] hover:to-blue-400/[0.04]",
+                "hover:border-blue-400/[0.1]",
+                "focus:from-blue-400/[0.04] focus:via-blue-500/[0.04] focus:to-blue-400/[0.04]",
+                "focus:border-blue-400/[0.1]",
+                "focus:shadow-[0_0_20px_-5px_rgba(96,165,250,0.1)]",
+                
+                // Error state
+                errors.email && "border-red-400/30 focus:border-red-400/30"
+              )}
+              placeholder="your@email.com"
+            />
+            {errors.email && (
+              <p className="text-sm text-red-400/70">{errors.email}</p>
+            )}
+          </div>
+
+          {/* Message Field */}
+          <div className="space-y-2">
+            <label htmlFor="message" className="block text-lg font-light text-white/70">
+              Message
+            </label>
+            <textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => handleChange(e)}
+              rows={4}
+              className={cn(
+                // Base styles
+                "w-full",
+                "bg-gradient-to-r from-blue-400/[0.02] via-blue-500/[0.02] to-blue-400/[0.02]",
+                "text-white/80",
+                "border border-white/[0.06]",
+                "backdrop-blur-xl",
+                "rounded-xl",
+                "px-4 py-3",
+                "text-base font-light",
+                "transition-all duration-500",
+                "resize-none",
+                "placeholder:text-white/20",
+                
+                // Focus & Hover styles
+                "focus:outline-none",
+                "hover:from-blue-400/[0.04] hover:via-blue-500/[0.04] hover:to-blue-400/[0.04]",
+                "hover:border-blue-400/[0.1]",
+                "focus:from-blue-400/[0.04] focus:via-blue-500/[0.04] focus:to-blue-400/[0.04]",
+                "focus:border-blue-400/[0.1]",
+                "focus:shadow-[0_0_20px_-5px_rgba(96,165,250,0.1)]",
+                
+                // Error state
+                errors.message && "border-red-400/30 focus:border-red-400/30"
+              )}
+              placeholder="Tell us about your business and how we can help..."
+            />
+            {errors.message && (
+              <p className="text-sm text-red-400/70">{errors.message}</p>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <div className="flex justify-end pt-2">
+            <Button
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                handleSubmit(e);
+              }}
+              className={cn(
+                "flex items-center justify-center",
+                "w-16 h-16",
+                "bg-gradient-to-r from-blue-400/[0.02] via-blue-500/[0.02] to-blue-400/[0.02]",
+                "hover:from-blue-400/[0.04] hover:via-blue-500/[0.04] hover:to-blue-400/[0.04]",
+                "text-white/70 hover:text-white/90",
+                "border border-white/[0.06] hover:border-blue-400/[0.1]",
+                "transition-all duration-500",
+                "hover:shadow-[0_0_20px_-5px_rgba(96,165,250,0.1)]",
+                "rounded-xl",
+                "backdrop-blur-xl",
+                "transform-gpu hover:scale-[1.02]",
+                "group/button",
+                status === 'loading' && "opacity-50 pointer-events-none"
+              )}
+              aria-label={
+                status === 'loading' ? 'Sending message...' :
+                status === 'success' ? 'Message sent successfully' :
+                status === 'error' ? 'Failed to send message' :
+                'Send message'
+              }
+            >
+              <div className={cn(
+                "transition-all duration-500",
+                "group-hover/button:scale-110",
+                "group-hover/button:rotate-3",
+                "group-hover/button:animate-wiggle"
+              )}>
+                {status === 'loading' && <Loader2 className="h-6 w-6 animate-spin text-blue-400/60" aria-hidden="true" />}
+                {status === 'success' && <CheckCircle className="h-6 w-6 text-green-400/60" aria-hidden="true" />}
+                {status === 'error' && <XCircle className="h-6 w-6 text-red-400/60" aria-hidden="true" />}
+                {status === 'idle' && <Send className="h-6 w-6 text-blue-400/60" aria-hidden="true" />}
+              </div>
+            </Button>
+          </div>
         </form>
       </div>
 

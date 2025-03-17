@@ -77,21 +77,30 @@ const AIWidget = () => {
       <div 
         onClick={() => setIsOpen(true)}
         className={cn(
-          "p-6 sm:p-7 rounded-2xl backdrop-blur-lg transition-all duration-500 group/card cursor-pointer",
-          "bg-blue-500/[0.03] hover:bg-blue-500/[0.05]",
-          "border border-white/[0.03] hover:border-white/[0.08]",
-          "hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.15)]"
+          "p-6 rounded-xl backdrop-blur-xl transition-all duration-500 group/card cursor-pointer",
+          "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
+          "border border-white/[0.08]",
+          "hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
+          "hover:border-blue-400/[0.2]",
+          "hover:scale-[1.02]",
+          "hover:shadow-[0_0_20px_-5px_rgba(96,165,250,0.2)]"
         )}
       >
         <div className="flex items-start gap-5">
-          <div className="transition-transform duration-500 group-hover/card:scale-125 group-hover/card:rotate-3">
-            <Bot className="w-10 h-10 sm:w-12 sm:h-12 text-blue-500/80 transition-colors duration-500 group-hover/card:text-blue-400" />
+          <div className={cn(
+            "transition-all duration-500",
+            "transform-gpu",
+            "group-hover/card:scale-110",
+            "group-hover/card:rotate-3",
+            "group-hover/card:animate-wiggle"
+          )}>
+            <Bot className="w-10 h-10 text-blue-400/80 transition-colors duration-500" />
           </div>
           <div className="space-y-2.5">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-extralight tracking-[-0.02em] leading-[1.3] text-white/80 transition-colors duration-300 group-hover/card:text-white">
+            <h3 className="text-lg font-light tracking-[-0.02em] leading-[1.3] text-white/80 transition-colors duration-300 group-hover/card:text-white/95">
               Want to Make More & Work Less? Ask Dana How AI Can Help!
             </h3>
-            <p className="text-base sm:text-lg font-extralight tracking-[-0.015em] leading-[1.4] text-white/60 transition-colors duration-300 group-hover/card:text-white/90">
+            <p className="text-base font-light tracking-[-0.015em] leading-[1.4] text-white/60 transition-colors duration-300 group-hover/card:text-white/80">
               AI can grow revenue, cut costs, and free up your time—instantly.
             </p>
           </div>
