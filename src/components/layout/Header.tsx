@@ -1,99 +1,149 @@
-import React, { useState } from 'react';
-import { Brain, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/utils';
 
 const navigation = [
-  { name: 'Solutions', href: '#solutions' },
-  { name: 'Case Studies', href: '#case-studies' },
+  { name: 'AI Solutions', href: '#ai-solutions' },
+  { name: 'Industries', href: '#industry-specific' },
+  { name: 'How It Works', href: '#how-it-works' },
+  { name: 'FAQ', href: '#faq' },
   { name: 'Pricing', href: '#pricing' },
-  { name: 'About', href: '#about' },
+  { name: 'Who We Are', href: '#who-we-are' }
 ];
+
+function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  e.preventDefault();
+  const targetId = href.substring(1);
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - 20;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+}
+
+function handleContactClick(e: React.MouseEvent<HTMLButtonElement>) {
+  e.preventDefault();
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    const elementPosition = contactSection.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - 20;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+}
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="relative z-20">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-        <div className="flex w-full items-center justify-between py-6">
-          {/* Logo */}
-          <div className="flex items-center">
-            <a href="/" className="flex items-center gap-2">
-              <Brain className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-light tracking-wider text-white">SKYLAND AI</span>
-            </a>
-          </div>
+    <>
+      {/* Floating Menu Button */}
+      <button
+        type="button"
+        className={cn(
+          "fixed top-6 right-6 z-50",
+          "rounded-full p-3",
+          "bg-black/20 backdrop-blur-lg",
+          "border border-white/10",
+          "text-white/80 hover:text-white",
+          "transition-all duration-200",
+          isScrolled ? "opacity-50 hover:opacity-100" : "opacity-100"
+        )}
+        onClick={() => setMobileMenuOpen(true)}
+      >
+        <span className="sr-only">Open menu</span>
+        <Menu className="h-6 w-6" aria-hidden="true" />
+      </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-base text-slate-300 hover:text-white transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-            <Button
-              href="#contact"
-              size="sm"
-              variant="primary"
-            >
-              Contact Us
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white focus:outline-none"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <span className="sr-only">Open main menu</span>
-              {mobileMenuOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        <div
+      {/* Menu Overlay */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-50 pointer-events-none"
+        )}
+      >
+        {/* Backdrop */}
+        <div 
           className={cn(
-            "md:hidden",
-            "absolute top-full left-0 right-0",
-            "backdrop-blur-lg bg-black/20",
-            "transition-all duration-200 ease-in-out",
-            mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+            "absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300",
+            mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
+          )}
+          onClick={() => setMobileMenuOpen(false)}
+        />
+        
+        {/* Menu Panel */}
+        <div 
+          className={cn(
+            "absolute top-0 right-0 h-full w-[280px] bg-black/40 backdrop-blur-xl",
+            "transform transition-transform duration-300 ease-out",
+            "border-l border-white/10",
+            mobileMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full"
           )}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block px-3 py-2 rounded-md text-base text-slate-300 hover:text-white hover:bg-white/5"
-              >
-                {item.name}
-              </a>
-            ))}
-            <div className="px-3 py-2">
+          <div className="relative h-full p-6 flex flex-col">
+            <button
+              type="button"
+              className="absolute top-6 right-6 rounded-full p-2 text-white/60 hover:text-white transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="sr-only">Close menu</span>
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+
+            <nav className="mt-16 flex-1">
+              <div className="space-y-1">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => {
+                      handleNavClick(e, item.href);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="block py-2 text-base font-light text-white/60 hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
               <Button
-                href="#contact"
-                variant="primary"
-                className="w-full"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  handleContactClick(e);
+                  setMobileMenuOpen(false);
+                }}
+                className={cn(
+                  "mt-8 w-full text-base font-light",
+                  "bg-white/5 hover:bg-white/10",
+                  "text-white/80 hover:text-white",
+                  "transition-colors duration-200",
+                  "rounded-lg px-5 py-2",
+                  "border border-white/10 hover:border-white/20"
+                )}
               >
                 Contact Us
               </Button>
-            </div>
+            </nav>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </>
   );
 } 

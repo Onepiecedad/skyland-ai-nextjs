@@ -1,8 +1,22 @@
+import { Brain } from 'lucide-react';
 import AIWidget from '../AIWidget';
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center -mt-16">
+    <section className="relative min-h-[90vh] flex items-center pt-24 sm:pt-32">
+      {/* Logo */}
+      <a 
+        href="#" 
+        className="absolute top-8 left-8 flex items-center gap-2 group"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      >
+        <Brain className="h-8 w-8 text-blue-400 group-hover:text-blue-300 transition-colors" />
+        <span className="text-xl font-light tracking-wider text-white group-hover:text-white/90 transition-colors">SKYLAND AI</span>
+      </a>
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr,0.8fr] gap-12 lg:gap-16 items-center">
           {/* Left Side - Headlines */}

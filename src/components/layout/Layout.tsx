@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuroraBackground } from '../aurora-background';
 import { Header } from './Header';
+import { Footer } from './Footer';
 import { cn } from '../../lib/utils';
 
 interface LayoutProps {
@@ -24,13 +25,7 @@ export function Layout({ children, className }: LayoutProps) {
         </main>
 
         {/* Footer */}
-        <footer className="relative z-10 backdrop-blur-sm border-t border-white/10">
-          <div className="max-w-5xl mx-auto px-8">
-            <p className="text-center text-sm text-slate-400">
-              © {new Date().getFullYear()} Skyland AI Solutions. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </AuroraBackground>
   );

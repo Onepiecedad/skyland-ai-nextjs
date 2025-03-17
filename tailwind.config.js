@@ -5,7 +5,8 @@ export default {
     extend: {
       animation: {
         aurora: 'aurora 60s linear infinite',
-        float: 'float 0.4s ease-out forwards'
+        float: 'float 0.4s ease-out forwards',
+        wiggle: 'wiggle 2s ease-in-out infinite'
       },
       keyframes: {
         aurora: {
@@ -21,6 +22,11 @@ export default {
             transform: 'translateY(0) scale(1)',
             opacity: '1'
           }
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(2deg)' },
+          '75%': { transform: 'rotate(-2deg)' }
         }
       },
     },

@@ -34,7 +34,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="relative py-24 font-inter">
+    <section id="how-it-works" className="relative py-24 font-inter">
       {/* Section Title */}
       <div className="text-center mb-16">
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.03em] leading-[1.15] text-center text-white/90">

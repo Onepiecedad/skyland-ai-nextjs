@@ -1,151 +1,192 @@
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/utils';
+import { ExpandableCard } from '../ui/ExpandableCard';
+import { Lightbulb, Rocket, Shield, Users, Target, Phone } from 'lucide-react';
+
+const aboutCards = [
+  {
+    icon: <Lightbulb className="w-12 h-12 text-blue-500/80" />,
+    title: "Why Skyland AI Was Built – The Future of Work Starts Here",
+    description: "Breaking Free from Manual Work",
+    solution: "We built Skyland AI to help businesses stop working harder and start working smarter. Our mission is to eliminate repetitive tasks and unlock limitless growth through intelligent automation.",
+    demoComponent: (
+      <div className="space-y-4 text-white/70">
+        <p>• What if your business could respond to leads instantly—without lifting a finger?</p>
+        <p>• What if AI could handle 80% of your workload—so you can focus on growth?</p>
+        <p>• What if scaling didn't mean hiring more people—but making your existing systems smarter?</p>
+      </div>
+    )
+  },
+  {
+    icon: <Rocket className="w-12 h-12 text-blue-400/80" />,
+    title: "How AI Scales Your Business—Without Adding More Work",
+    description: "AI-Powered Automation That Works 24/7",
+    solution: "Our AI-powered automation acts like a full-time employee—without the overhead. We provide comprehensive solutions that handle everything from customer inquiries to complex workflows.",
+    demoComponent: (
+      <div className="space-y-4 text-white/70">
+        <p>• AI Assistants That Work 24/7 – Instantly handling customer inquiries, lead responses, and admin tasks</p>
+        <p>• AI Voice Agents That Replace Call Centers – Answering calls, qualifying leads, and booking appointments automatically</p>
+        <p>• Workflow Automation That Eliminates Repetitive Tasks – From customer service to backend operations</p>
+      </div>
+    )
+  },
+  {
+    icon: <Shield className="w-12 h-12 text-blue-300/80" />,
+    title: "Why Businesses Choose Skyland AI – Smarter, Faster, Stronger",
+    description: "Custom-Tailored AI Solutions",
+    solution: "Unlike generic chatbots or automation tools, we don't just sell AI—we design AI to fit your business. Every solution is built around your specific workflows and needs.",
+    demoComponent: (
+      <div className="space-y-4 text-white/70">
+        <p>• Custom-Tailored to Your Needs – Every AI system is built around your workflows</p>
+        <p>• Fast & Effortless Implementation – AI working in days, not months</p>
+        <p>• ROI That Pays for Itself – AI-powered businesses save up to 40% more time and convert leads 2x faster</p>
+        <p>• Backed by Industry Insights – Our AI automation strategies are based on real-world business case studies</p>
+      </div>
+    )
+  },
+  {
+    icon: <Users className="w-12 h-12 text-blue-200/80" />,
+    title: "AI for Growth-Driven Businesses – Is Yours Next?",
+    description: "Industries That Thrive on Efficiency",
+    solution: "The industries we serve have one thing in common: They thrive on fast response times and efficiency. AI gives them an unfair advantage by eliminating the bottlenecks holding them back.",
+    demoComponent: (
+      <div className="space-y-4 text-white/70">
+        <p>• Real Estate & Property Management – AI nurtures leads & books viewings 24/7</p>
+        <p>• Call Centers & Customer Support – AI voice agents cut wait times by 70%</p>
+        <p>• Hotels & Hospitality – AI-powered booking assistants increase direct reservations</p>
+        <p>• Travel Agencies & E-Commerce – AI automates customer interactions & sales</p>
+        <div className="mt-8 text-center">
+          <p className="text-white/90 mb-4">See how AI can transform your business today</p>
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => window.open('#contact', '_self')}
+            className={cn(
+              "px-6 py-3",
+              "bg-blue-400/[0.1] hover:bg-blue-400/[0.15]",
+              "text-white/90 hover:text-white",
+              "transition-all duration-300",
+              "rounded-xl text-base font-light",
+              "border border-blue-400/[0.15] hover:border-blue-400/[0.25]",
+              "backdrop-blur-2xl"
+            )}
+          >
+            Book Your Free Strategy Call
+          </Button>
+        </div>
+      </div>
+    )
+  }
+];
 
 export function About() {
   return (
-    <section className="relative py-20">
+    <section id="who-we-are" className="relative py-24 font-inter">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent"></div>
       
       {/* Section Content */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Intro */}
-        <div className="space-y-6 text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-[-0.03em] leading-[1.15] text-white/90">
-            What If Growing Your Business Didn't Mean More Work?
-          </h2>
-          <p className="text-xl sm:text-2xl font-extralight text-white/80">
-            At Skyland AI Solutions, we don't just build AI—we redefine how businesses operate.
-          </p>
-          <p className="text-lg sm:text-xl font-light text-white/70 max-w-3xl mx-auto">
-            We believe AI isn't just a tool—it's a fundamental shift in how companies run, scale, and compete. Businesses that embrace automation today will dominate their industries tomorrow.
-          </p>
-        </div>
+      <div className="max-w-5xl mx-auto px-8">
+        {/* Main Headline */}
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[-0.02em] leading-[1.2] text-center text-white mb-8">
+          What's Really Slowing Your Business Down?
+        </h2>
 
-        {/* Why We Exist */}
-        <div className="space-y-8 mb-16">
-          <h3 className="text-2xl sm:text-3xl font-extralight text-white/90 text-center">Why We Exist</h3>
-          <p className="text-lg text-white/70 text-center">
-            Too many businesses are drowning in repetitive tasks, slow lead response, and scaling struggles.
-          </p>
-          <div className="space-y-4 max-w-3xl mx-auto text-lg sm:text-xl font-light">
-            <p className="flex items-center gap-3 text-white/80">
-              <span className="text-blue-400">🔹</span>
-              What if your business ran 24/7—without hiring more staff?
-            </p>
-            <p className="flex items-center gap-3 text-white/80">
-              <span className="text-blue-400">🔹</span>
-              What if AI could handle 80% of your work—instantly?
-            </p>
-            <p className="flex items-center gap-3 text-white/80">
-              <span className="text-blue-400">🔹</span>
-              What if scaling didn't mean increasing payroll?
-            </p>
-          </div>
-          <p className="text-lg text-white/80 text-center max-w-3xl mx-auto">
-            That's why we created Skyland AI: to help businesses break free from manual work and unlock limitless growth.
-          </p>
-        </div>
+        {/* Enhanced Subtext */}
+        <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.4] text-center text-white/90 mb-24 max-w-4xl mx-auto">
+          The biggest growth killer in business isn't lack of customers—it's <span className="font-normal text-white relative inline-block">wasted time <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></span></span>. Every minute spent on repetitive tasks is a minute not spent growing your business.
+        </p>
 
-        {/* What We Do */}
-        <div className="space-y-8 mb-16">
-          <h3 className="text-2xl sm:text-3xl font-extralight text-white/90 text-center">What We Do</h3>
-          <div className="space-y-4 max-w-3xl mx-auto text-lg">
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">🚀</span>
-              <span>AI Assistants That Work Like a 24/7 Employee – Handling customer inquiries, lead responses & admin tasks.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">⚡</span>
-              <span>AI Voice Agents That Replace Call Centers – Answering calls, qualifying leads & booking appointments.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">📈</span>
-              <span>AI Automation That Eliminates Repetitive Work – From customer service to backend workflows.</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Why Trust Skyland AI */}
-        <div className="space-y-8 mb-16">
-          <h3 className="text-2xl sm:text-3xl font-extralight text-white/90 text-center">Why Trust Skyland AI?</h3>
-          <p className="text-lg text-white/70 text-center">
-            Unlike generic automation providers, we don't sell one-size-fits-all AI. Every AI system we create is:
-          </p>
-          <div className="space-y-4 max-w-3xl mx-auto text-lg">
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-emerald-400 shrink-0">✅</span>
-              <span>Tailored to Your Business – Designed to fit your exact workflows.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-emerald-400 shrink-0">✅</span>
-              <span>Fast to Implement – No complex setup. AI working within days.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-emerald-400 shrink-0">✅</span>
-              <span>Built by Automation Experts – The same AI we use to run our own business.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-emerald-400 shrink-0">✅</span>
-              <span>ROI-Driven – Automation that increases revenue & cuts costs.</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Who We Help */}
-        <div className="space-y-8 mb-16">
-          <h3 className="text-2xl sm:text-3xl font-extralight text-white/90 text-center">Who We Help</h3>
-          <p className="text-lg text-white/70 text-center">
-            We specialize in service-based industries that struggle with manual tasks and scalability:
-          </p>
-          <div className="space-y-4 max-w-3xl mx-auto text-lg">
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">🏡</span>
-              <span>Real Estate & Property Management – AI that nurtures leads & books viewings.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">📞</span>
-              <span>Call Centers & Customer Support – AI voice agents that cut wait times.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">🏨</span>
-              <span>Hotels & Hospitality – AI booking assistants that increase direct reservations.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">✈️</span>
-              <span>Travel Agencies – AI-driven itinerary management & lead conversion.</span>
-            </p>
-            <p className="flex items-start gap-3 text-white/80">
-              <span className="text-blue-400 shrink-0">🛒</span>
-              <span>E-Commerce – AI-powered customer support & sales automation.</span>
-            </p>
-          </div>
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+          {aboutCards.map((card, index) => (
+            <ExpandableCard
+              key={index}
+              icon={card.icon}
+              title={card.title}
+              description={card.description}
+              solution={card.solution}
+              demoComponent={card.demoComponent}
+              className="p-10"
+            />
+          ))}
         </div>
 
         {/* Final CTA */}
-        <div className="text-center space-y-6">
-          <h3 className="text-2xl sm:text-3xl font-extralight text-white/90">The Future is AI—Are You Ready?</h3>
-          <p className="text-lg text-white/80">
-            AI is already changing how businesses operate. The question is: will you adapt, or be left behind?
+        <div className="text-center space-y-8 mt-32 mb-16">
+          <h3 className="text-3xl sm:text-4xl font-extralight tracking-[-0.02em] leading-[1.3] text-white/90">
+            The Future is AI—Are You Ready?
+          </h3>
+          <p className="text-lg sm:text-xl font-light tracking-[-0.01em] leading-[1.6] text-white/80 max-w-2xl mx-auto">
+            AI is the competitive edge separating fast-growing businesses from those stuck in outdated systems.
+            We only take a handful of new clients each month—don't get left behind.
           </p>
-          <div className="space-y-4">
-            <p className="text-lg text-white/90">
-              🚀 We only take a handful of new clients each month. Book your free AI strategy call before spots fill up!
-            </p>
-            <Button 
-              variant="primary"
-              size="lg"
-              onClick={() => window.open('#contact', '_self')}
-              className={cn(
-                "px-8 py-4",
-                "bg-blue-600/20 hover:bg-blue-500/30",
-                "text-blue-200/90 hover:text-blue-100",
-                "transition-all duration-300",
-                "rounded-xl text-lg font-light",
-                "border border-blue-500/20 hover:border-blue-400/30"
-              )}
-            >
-              Book a Free AI Strategy Call
-            </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 max-w-5xl mx-auto">
+            <div className="flex justify-end">
+              <Button 
+                variant="primary"
+                size="lg"
+                onClick={() => window.open('#demo', '_self')}
+                className={cn(
+                  "px-8 py-6 w-full md:w-[90%]",
+                  "bg-blue-400/[0.08]",
+                  "text-white/90 hover:text-white",
+                  "transition-all duration-500",
+                  "rounded-2xl text-lg font-light",
+                  "border border-blue-400/10",
+                  "backdrop-blur-sm",
+                  "flex items-center gap-3",
+                  "group relative",
+                  "hover:scale-[1.02]",
+                  "hover:border-blue-400/30",
+                  "hover:bg-blue-400/[0.12]",
+                  "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
+                  "overflow-hidden"
+                )}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Rocket className={cn(
+                  "w-12 h-12 text-blue-500/80",
+                  "transition-all duration-500",
+                  "group-hover:scale-110",
+                  "group-hover:rotate-3",
+                  "group-hover:animate-wiggle"
+                )} />
+                <span className="relative">Watch AI Work – Get Your Free Demo</span>
+              </Button>
+            </div>
+            <div className="flex justify-start">
+              <Button 
+                variant="primary"
+                size="lg"
+                onClick={() => window.open('#contact', '_self')}
+                className={cn(
+                  "px-8 py-6 w-full md:w-[90%]",
+                  "bg-blue-400/[0.08]",
+                  "text-white/90 hover:text-white",
+                  "transition-all duration-500",
+                  "rounded-2xl text-lg font-light",
+                  "border border-blue-400/10",
+                  "backdrop-blur-sm",
+                  "flex items-center gap-3",
+                  "group relative",
+                  "hover:scale-[1.02]",
+                  "hover:border-blue-400/30",
+                  "hover:bg-blue-400/[0.12]",
+                  "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
+                  "overflow-hidden"
+                )}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Phone className={cn(
+                  "w-12 h-12 text-blue-500/80",
+                  "transition-all duration-500",
+                  "group-hover:scale-110",
+                  "group-hover:rotate-3",
+                  "group-hover:animate-wiggle"
+                )} />
+                <span className="relative">Book Your Free AI Strategy Call – Limited Spots!</span>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

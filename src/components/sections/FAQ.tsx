@@ -12,12 +12,34 @@ const faqCards = [
     demoComponent: (
       <div className="space-y-6">
         <div className="flex flex-col items-center gap-4">
-          <button className="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-400/20 hover:from-blue-500/30 hover:to-blue-400/30 flex items-center justify-center transition-all duration-300 group">
-            <Mic className="w-10 h-10 text-blue-400 group-hover:text-blue-300 transition-colors" />
+          <button 
+            className={cn(
+              "relative w-20 h-20 rounded-full",
+              "bg-blue-400/[0.08]",
+              "border border-blue-400/10",
+              "backdrop-blur-sm",
+              "flex items-center justify-center",
+              "transition-all duration-500",
+              "group",
+              "hover:scale-[1.02]",
+              "hover:border-blue-400/30",
+              "hover:bg-blue-400/[0.12]",
+              "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]"
+            )}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+            <Mic className={cn(
+              "w-12 h-12",
+              "text-blue-500/80",
+              "transition-all duration-500",
+              "transform-gpu",
+              "group-hover:scale-110",
+              "group-hover:animate-wiggle"
+            )} />
           </button>
-          <p className="text-lg text-white/90">Get instant voice answers</p>
+          <p className="text-lg font-light text-white/90">Get instant voice answers</p>
         </div>
-        <div className="text-center text-sm text-white/60">Voice Demo Coming Soon</div>
+        <div className="text-center text-base font-light text-white/70">Voice Demo Coming Soon</div>
       </div>
     )
   },
@@ -30,11 +52,26 @@ const faqCards = [
       <div className="space-y-6">
         <div className="relative">
           <textarea 
-            className="w-full h-32 bg-slate-800/50 border border-white/10 rounded-lg p-4 text-white/90 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500/50 placeholder:text-white/40"
+            className={cn(
+              "w-full h-32",
+              "bg-blue-400/[0.08]",
+              "border border-blue-400/10",
+              "backdrop-blur-sm",
+              "rounded-xl",
+              "p-4",
+              "text-white/90",
+              "resize-none",
+              "transition-all duration-500",
+              "focus:outline-none",
+              "focus:border-blue-400/30",
+              "focus:bg-blue-400/[0.12]",
+              "focus:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
+              "placeholder:text-white/40"
+            )}
             placeholder="How can AI transform my business?"
           />
         </div>
-        <div className="text-center text-sm text-white/60">Chat Demo Coming Soon</div>
+        <div className="text-center text-base font-light text-white/70">Chat Demo Coming Soon</div>
       </div>
     )
   }
@@ -42,7 +79,7 @@ const faqCards = [
 
 export function FAQ() {
   return (
-    <section className="relative py-20">
+    <section id="faq" className="relative py-20">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent"></div>
       
       {/* Section Content */}

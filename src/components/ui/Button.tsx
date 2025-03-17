@@ -1,55 +1,97 @@
 import { cn } from "../../lib/utils";
-import { ReactNode } from "react";
 
-interface ButtonProps {
-  children: ReactNode;
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg" | "xl";
-  className?: string;
-  icon?: ReactNode;
-  onClick?: () => void;
+const baseStyles = {
+  primary: cn(
+    // Base styles
+    "bg-blue-400/[0.08]",
+    "text-white/90",
+    "border border-blue-400/10",
+    "backdrop-blur-sm",
+    "rounded-2xl",
+    "font-light",
+    "transition-all duration-500",
+    "group relative",
+    "overflow-hidden",
+    "flex items-center gap-3",
+    
+    // Hover effects
+    "hover:text-white",
+    "hover:scale-[1.02]",
+    "hover:border-blue-400/30",
+    "hover:bg-blue-400/[0.12]",
+    "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]"
+  ),
+  secondary: cn(
+    // Similar styles but with different color scheme
+    "bg-blue-400/[0.06]",
+    "text-white/80",
+    "border border-white/10",
+    "backdrop-blur-sm",
+    "rounded-2xl",
+    "font-light",
+    "transition-all duration-500",
+    "group relative",
+    "overflow-hidden",
+    "flex items-center gap-3",
+    
+    // Hover effects
+    "hover:text-white/95",
+    "hover:scale-[1.02]",
+    "hover:border-blue-400/20",
+    "hover:bg-blue-400/[0.1]",
+    "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.2)]"
+  ),
+};
+
+const sizeStyles = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-base",
+  lg: "px-8 py-6 text-lg",
+};
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: keyof typeof baseStyles;
+  size?: keyof typeof sizeStyles;
+  icon?: React.ReactNode;
 }
 
 export function Button({
-  children,
+  className,
   variant = "primary",
   size = "md",
-  className,
   icon,
-  onClick,
+  children,
+  ...props
 }: ButtonProps) {
-  const variants = {
-    primary: "bg-indigo-500/10 hover:bg-indigo-500/20 text-white",
-    secondary: "bg-green-500/10 hover:bg-green-500/20 text-white",
-    outline: "border border-indigo-500/20 hover:bg-indigo-500/10 text-white",
-  };
-
-  const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2",
-    lg: "px-6 py-3",
-    xl: "px-8 py-4 text-lg",
-  };
-
   return (
     <button
-      onClick={onClick}
       className={cn(
-        // Base styles
-        "rounded-lg font-medium transition-all duration-200",
-        "backdrop-blur-sm",
-        // Apply variant styles
-        variants[variant],
-        // Apply size styles
-        sizes[size],
-        // Add icon spacing if icon exists
-        icon && "flex items-center gap-2",
-        // Apply custom classes
+        baseStyles[variant],
+        sizeStyles[size],
         className
       )}
+      {...props}
     >
-      {children}
-      {icon && icon}
+      <div 
+        className={cn(
+          "absolute inset-0",
+          "bg-gradient-to-r from-transparent via-blue-400/10 to-transparent",
+          "opacity-0 group-hover:opacity-100",
+          "transition-opacity duration-500",
+          "-z-10"
+        )}
+      />
+      {icon && (
+        <span className={cn(
+          "transition-all duration-500",
+          "transform-gpu",
+          "group-hover:scale-110",
+          "group-hover:animate-wiggle"
+        )}>
+          {icon}
+        </span>
+      )}
+      <span className="relative">{children}</span>
     </button>
   );
 } 
