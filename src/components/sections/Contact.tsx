@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/utils';
+import { useToast } from '../../contexts/ToastContext';
+import { LoadingSpinner } from '../ui/LoadingSpinner';
 
 type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export function Contact() {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,33 +27,6 @@ export function Contact() {
 
   const [status, setStatus] = useState<SubmissionStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // Create a constant for shared input styles at the top of the component
-  const inputStyles = [
-    // Base styles matching the CSS
-    "w-full",
-    "px-3 py-3",  // padding: 12px
-    "my-2",       // margin: 8px 0
-    "rounded-md", // border-radius: 6px
-    "border border-white/20", // border: 1px solid rgba(255, 255, 255, 0.2)
-    "bg-white/10",  // background: rgba(255, 255, 255, 0.1)
-    "text-white",   // color: white
-    "text-base",    // font-size: 16px
-    "transition-all duration-300 ease-in-out",
-
-    // Placeholder styles
-    "placeholder:text-white/50",  // color: rgba(255, 255, 255, 0.5)
-    "placeholder:transition-colors",
-    "placeholder:duration-300",
-    "placeholder:ease-in-out",
-
-    // Focus states
-    "focus:placeholder:text-white/90", // color: rgba(255, 255, 255, 0.9)
-    "focus:border-white/80",           // border-color: rgba(255, 255, 255, 0.8)
-    "focus:shadow-[0_0_8px_rgba(255,255,255,0.3)]", // box-shadow: 0 0 8px rgba(255, 255, 255, 0.3)
-    "focus:bg-white/15",               // background: rgba(255, 255, 255, 0.15)
-    "focus:outline-none",
-  ];
 
   const validateForm = () => {
     const newErrors = {
@@ -93,6 +69,7 @@ export function Contact() {
     e.preventDefault();
     
     if (!validateForm()) {
+      showToast('error', 'Please fill in all required fields correctly');
       return;
     }
 
@@ -142,6 +119,7 @@ export function Contact() {
       }
 
       setStatus('success');
+      showToast('success', 'Message sent successfully! We\'ll get back to you soon.');
       setFormData({ name: '', email: '', phone: '', website: '', message: '' });
       
       setTimeout(() => {
@@ -151,7 +129,9 @@ export function Contact() {
     } catch (error) {
       console.error('Form submission error:', error);
       setStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong');
+      const errorMsg = error instanceof Error ? error.message : 'Something went wrong';
+      setErrorMessage(errorMsg);
+      showToast('error', errorMsg);
       
       setTimeout(() => {
         setStatus('idle');
@@ -178,9 +158,7 @@ export function Contact() {
     <section id="contact" className="relative py-8 sm:py-10 font-inter">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
       
-      {/* Section Content */}
       <div className="relative max-w-[1120px] mx-auto px-4 sm:px-6">
-        {/* Section Title */}
         <div className="text-center mb-5 md:mb-6">
           <h2 className="text-[36px] md:text-[42px] font-extralight tracking-[-0.03em] leading-[1.1] text-center text-white/90">
             Get In Touch
@@ -190,73 +168,71 @@ export function Contact() {
           </p>
         </div>
 
-        {/* Contact Form */}
         <form className="max-w-2xl mx-auto space-y-3">
-          {/* Name Field */}
           <div className="space-y-1">
             <label htmlFor="name" className="block text-base font-light text-white/80">
               Name
             </label>
-            <div className="group">
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                className={cn(
-                  inputStyles,
-                  errors.name && "border-red-400/30 focus:border-red-400/30"
-                )}
-                placeholder="Your name"
-              />
-            </div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className={cn(
+                "w-full px-3 py-3 rounded-md",
+                errors.name && "border-red-400/30"
+              )}
+              placeholder="Your name"
+            />
             {errors.name && (
               <p className="text-xs text-red-400/70 mt-1">{errors.name}</p>
             )}
           </div>
 
-          {/* Email and Phone Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {/* Email Field */}
             <div className="space-y-1">
               <label htmlFor="email" className="block text-base font-light text-white/80">
                 Email
               </label>
-              <div className="group">
+              <div className="group relative">
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   value={formData.email}
                   onChange={handleChange}
                   className={cn(
-                    inputStyles,
-                    errors.email && "border-red-400/30 focus:border-red-400/30"
+                    "w-full px-3 py-3 rounded-md",
+                    errors.email && "border-red-400/30"
                   )}
                   placeholder="your@email.com"
                 />
+                <div className="form-field-hover-gradient" />
               </div>
               {errors.email && (
                 <p className="text-xs text-red-400/70 mt-1">{errors.email}</p>
               )}
             </div>
 
-            {/* Phone Field */}
             <div className="space-y-1">
               <label htmlFor="phone" className="block text-base font-light text-white/80">
                 Phone (optional)
               </label>
-              <div className="group">
+              <div className="group relative">
                 <input
                   type="tel"
                   id="phone"
+                  name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   className={cn(
-                    inputStyles,
-                    errors.phone && "border-red-400/30 focus:border-red-400/30"
+                    "w-full px-3 py-3 rounded-md",
+                    errors.phone && "border-red-400/30"
                   )}
                   placeholder="+46 70 123 4567"
                 />
+                <div className="form-field-hover-gradient" />
               </div>
               {errors.phone && (
                 <p className="text-xs text-red-400/70 mt-1">{errors.phone}</p>
@@ -264,114 +240,95 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Website Field */}
           <div className="space-y-1">
             <label htmlFor="website" className="block text-base font-light text-white/80">
               Company Website (optional)
             </label>
-            <div className="group">
-              <input
-                type="url"
-                id="website"
-                value={formData.website}
-                onChange={handleChange}
-                className={cn(
-                  inputStyles,
-                  errors.website && "border-red-400/30 focus:border-red-400/30"
-                )}
-                placeholder="https://company.com"
-              />
-            </div>
+            <input
+              type="url"
+              id="website"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              className={cn(
+                "w-full px-3 py-3 rounded-md",
+                errors.website && "border-red-400/30"
+              )}
+              placeholder="https://company.com"
+            />
             {errors.website && (
               <p className="text-xs text-red-400/70 mt-1">{errors.website}</p>
             )}
           </div>
 
-          {/* Message Field */}
           <div className="space-y-1">
             <label htmlFor="message" className="block text-base font-light text-white/80">
               Message
             </label>
-            <div className="group">
-              <textarea
-                id="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={3}
-                className={cn(
-                  inputStyles,
-                  "resize-none",
-                  errors.message && "border-red-400/30 focus:border-red-400/30"
-                )}
-                placeholder="Tell us about your business and how we can help..."
-              />
-            </div>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={3}
+              className={cn(
+                "w-full px-3 py-3 rounded-md resize-none",
+                errors.message && "border-red-400/30"
+              )}
+              placeholder="Tell us about your business and how we can help..."
+            />
             {errors.message && (
               <p className="text-xs text-red-400/70 mt-1">{errors.message}</p>
             )}
           </div>
 
-          {/* Submit Button */}
-          <div className="flex justify-end pt-2">
+          <div className="mt-4 flex justify-end">
             <Button
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                e.preventDefault();
-                handleSubmit(e);
-              }}
+              type="submit"
+              onClick={handleSubmit}
               disabled={status === 'loading'}
               className={cn(
-                "p-3",
-                "w-[60px] h-[60px]",
+                "w-full sm:w-auto min-w-[160px]",
                 "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
-                "text-white/95 hover:text-white",
                 "border border-white/[0.08]",
-                "backdrop-blur-sm",
-                "rounded-full",
-                "flex items-center justify-center",
-                "group relative",
-                "hover:scale-[1.05]",
-                "hover:border-blue-400/[0.2]",
-                "hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
-                "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
-                "overflow-hidden",
+                "backdrop-blur-[4px]",
+                "text-white/70",
                 "transition-all duration-300",
+                "hover:bg-gradient-to-r hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
+                "hover:border-blue-400/20",
+                "hover:text-white",
+                "hover:shadow-[0_0_20px_-5px_rgba(96,165,250,0.2)]",
+                "focus:outline-none",
+                "focus:bg-gradient-to-r focus:from-blue-400/[0.08] focus:via-blue-500/[0.08] focus:to-blue-400/[0.08]",
+                "focus:border-blue-400/20",
+                "focus:text-white",
+                "focus:shadow-[0_0_20px_-5px_rgba(96,165,250,0.2)]",
                 status === 'loading' && "opacity-70 cursor-not-allowed"
               )}
-              aria-label="Send Message"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {status === 'loading' ? (
-                <Loader2 className="w-7 h-7 animate-spin text-blue-400/80" />
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Sending...
+                </>
               ) : status === 'success' ? (
-                <CheckCircle className="w-7 h-7 text-green-400" />
+                <>
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Sent!
+                </>
               ) : status === 'error' ? (
-                <XCircle className="w-7 h-7 text-red-400" />
+                <>
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Try Again
+                </>
               ) : (
-                <div className="relative w-7 h-7 flex items-center justify-center group-hover:animate-pulse">
-                  <Send className={cn(
-                    "w-7 h-7 text-blue-500/90",
-                    "absolute",
-                    "group-hover:text-blue-400",
-                    "group-hover:scale-[1.3]",
-                    "transition-all duration-300 ease-in-out"
-                  )} />
-                  <Send className={cn(
-                    "w-7 h-7 text-blue-400/0",
-                    "absolute",
-                    "group-hover:text-blue-400/30",
-                    "group-hover:scale-[1.6]",
-                    "group-hover:animate-ping",
-                    "transition-all duration-300 ease-in-out"
-                  )} />
-                </div>
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Message
+                </>
               )}
             </Button>
           </div>
-          
-          {/* Error Message */}
-          {errorMessage && (
-            <p className="text-xs text-red-400/70 text-center mt-1">{errorMessage}</p>
-          )}
         </form>
       </div>
     </section>
