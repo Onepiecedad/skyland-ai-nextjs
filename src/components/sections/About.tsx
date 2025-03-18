@@ -127,22 +127,22 @@ export function About() {
                 onClick={() => window.open('#demo', '_self')}
                 className={cn(
                   "px-8 py-6 w-full md:w-[90%]",
-                  "bg-blue-400/[0.08]",
-                  "text-white/90 hover:text-white",
-                  "transition-all duration-500",
-                  "rounded-2xl text-lg font-light",
-                  "border border-blue-400/10",
+                  "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
+                  "text-white/95 hover:text-white",
+                  "border border-white/[0.08]",
                   "backdrop-blur-sm",
+                  "rounded-xl text-lg font-light",
                   "flex items-center gap-3",
                   "group relative",
                   "hover:scale-[1.02]",
-                  "hover:border-blue-400/30",
-                  "hover:bg-blue-400/[0.12]",
-                  "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
-                  "overflow-hidden"
+                  "hover:border-blue-400/[0.2]",
+                  "hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
+                  "hover:shadow-[0_0_20px_-5px_rgba(96,165,250,0.2)]",
+                  "overflow-hidden",
+                  "transition-all duration-300"
                 )}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Rocket className={cn(
                   "w-12 h-12 text-blue-500/80",
                   "transition-all duration-500",
@@ -160,22 +160,22 @@ export function About() {
                 onClick={() => window.open('#contact', '_self')}
                 className={cn(
                   "px-8 py-6 w-full md:w-[90%]",
-                  "bg-blue-400/[0.08]",
-                  "text-white/90 hover:text-white",
-                  "transition-all duration-500",
-                  "rounded-2xl text-lg font-light",
-                  "border border-blue-400/10",
+                  "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
+                  "text-white/95 hover:text-white",
+                  "border border-white/[0.08]",
                   "backdrop-blur-sm",
+                  "rounded-xl text-lg font-light",
                   "flex items-center gap-3",
                   "group relative",
                   "hover:scale-[1.02]",
-                  "hover:border-blue-400/30",
-                  "hover:bg-blue-400/[0.12]",
-                  "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
-                  "overflow-hidden"
+                  "hover:border-blue-400/[0.2]",
+                  "hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
+                  "hover:shadow-[0_0_20px_-5px_rgba(96,165,250,0.2)]",
+                  "overflow-hidden",
+                  "transition-all duration-300"
                 )}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Phone className={cn(
                   "w-12 h-12 text-blue-500/80",
                   "transition-all duration-500",

@@ -9,22 +9,55 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    website: '',
     message: ''
   });
 
   const [errors, setErrors] = useState({
     name: '',
     email: '',
+    phone: '',
+    website: '',
     message: ''
   });
 
   const [status, setStatus] = useState<SubmissionStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Create a constant for shared input styles at the top of the component
+  const inputStyles = [
+    // Base styles matching the CSS
+    "w-full",
+    "px-3 py-3",  // padding: 12px
+    "my-2",       // margin: 8px 0
+    "rounded-md", // border-radius: 6px
+    "border border-white/20", // border: 1px solid rgba(255, 255, 255, 0.2)
+    "bg-white/10",  // background: rgba(255, 255, 255, 0.1)
+    "text-white",   // color: white
+    "text-base",    // font-size: 16px
+    "transition-all duration-300 ease-in-out",
+
+    // Placeholder styles
+    "placeholder:text-white/50",  // color: rgba(255, 255, 255, 0.5)
+    "placeholder:transition-colors",
+    "placeholder:duration-300",
+    "placeholder:ease-in-out",
+
+    // Focus states
+    "focus:placeholder:text-white/90", // color: rgba(255, 255, 255, 0.9)
+    "focus:border-white/80",           // border-color: rgba(255, 255, 255, 0.8)
+    "focus:shadow-[0_0_8px_rgba(255,255,255,0.3)]", // box-shadow: 0 0 8px rgba(255, 255, 255, 0.3)
+    "focus:bg-white/15",               // background: rgba(255, 255, 255, 0.15)
+    "focus:outline-none",
+  ];
+
   const validateForm = () => {
     const newErrors = {
       name: '',
       email: '',
+      phone: '',
+      website: '',
       message: ''
     };
 
@@ -36,6 +69,16 @@ export function Contact() {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
+    }
+
+    // Phone validation (optional field)
+    if (formData.phone.trim() && !/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/.test(formData.phone.trim())) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    // Website validation (optional field)
+    if (formData.website.trim() && !/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(formData.website.trim())) {
+      newErrors.website = 'Please enter a valid website URL';
     }
 
     if (!formData.message.trim()) {
@@ -57,17 +100,22 @@ export function Contact() {
     setErrorMessage('');
 
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || '/api/contact';
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || '/api/contact';
+      console.log('Submitting to webhook URL:', webhookUrl);
       
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        mode: 'cors',
         body: JSON.stringify({
           workflow_data: {
             name: formData.name,
             email: formData.email,
+            phone: formData.phone,
+            website: formData.website,
             message: formData.message,
             timestamp: new Date().toISOString(),
             source: 'website_contact_form'
@@ -75,13 +123,26 @@ export function Contact() {
         }),
       });
 
+      console.log('Response status:', response.status);
+      let responseData;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        responseData = await response.json();
+      } else {
+        responseData = await response.text();
+      }
+      console.log('Response data:', responseData);
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || 'Failed to send message');
+        throw new Error(
+          typeof responseData === 'object' && responseData.message 
+            ? responseData.message 
+            : 'Failed to send message'
+        );
       }
 
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', website: '', message: '' });
       
       setTimeout(() => {
         setStatus('idle');
@@ -114,128 +175,144 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-14 sm:py-16 font-inter">
+    <section id="contact" className="relative py-8 sm:py-10 font-inter">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
       
       {/* Section Content */}
       <div className="relative max-w-[1120px] mx-auto px-4 sm:px-6">
         {/* Section Title */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="text-[42px] md:text-[48px] font-extralight tracking-[-0.03em] leading-[1.1] text-center text-white/90">
+        <div className="text-center mb-5 md:mb-6">
+          <h2 className="text-[36px] md:text-[42px] font-extralight tracking-[-0.03em] leading-[1.1] text-center text-white/90">
             Get In Touch
           </h2>
-          <p className="text-xl sm:text-2xl font-light tracking-[-0.015em] leading-[1.4] text-white/80 mt-4 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl font-light tracking-[-0.015em] leading-[1.3] text-white/90 mt-2 max-w-3xl mx-auto">
             Ready to transform your business with AI? Let's talk about your goals and how we can help you achieve them.
           </p>
         </div>
 
         {/* Contact Form */}
-        <form className="max-w-2xl mx-auto space-y-6">
+        <form className="max-w-2xl mx-auto space-y-3">
           {/* Name Field */}
-          <div className="space-y-2">
-            <label htmlFor="name" className="block text-lg font-light text-white/80">
+          <div className="space-y-1">
+            <label htmlFor="name" className="block text-base font-light text-white/80">
               Name
             </label>
-            <input
-              type="text"
-              id="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={cn(
-                "w-full",
-                "bg-blue-600/20",
-                "text-white/90",
-                "border border-blue-500/20",
-                "backdrop-blur-sm",
-                "rounded-xl",
-                "px-4 py-3",
-                "text-lg font-light",
-                "transition-all duration-300",
-                "placeholder:text-white/30",
-                "hover:border-blue-400/30",
-                "hover:bg-blue-500/30",
-                "focus:outline-none",
-                "focus:border-blue-400/40",
-                errors.name && "border-red-400/30 focus:border-red-400/30"
-              )}
-              placeholder="Your name"
-            />
+            <div className="group">
+              <input
+                type="text"
+                id="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={cn(
+                  inputStyles,
+                  errors.name && "border-red-400/30 focus:border-red-400/30"
+                )}
+                placeholder="Your name"
+              />
+            </div>
             {errors.name && (
-              <p className="text-sm text-red-400/70">{errors.name}</p>
+              <p className="text-xs text-red-400/70 mt-1">{errors.name}</p>
             )}
           </div>
 
-          {/* Email Field */}
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-lg font-light text-white/80">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={cn(
-                "w-full",
-                "bg-blue-600/20",
-                "text-white/90",
-                "border border-blue-500/20",
-                "backdrop-blur-sm",
-                "rounded-xl",
-                "px-4 py-3",
-                "text-lg font-light",
-                "transition-all duration-300",
-                "placeholder:text-white/30",
-                "hover:border-blue-400/30",
-                "hover:bg-blue-500/30",
-                "focus:outline-none",
-                "focus:border-blue-400/40",
-                errors.email && "border-red-400/30 focus:border-red-400/30"
+          {/* Email and Phone Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {/* Email Field */}
+            <div className="space-y-1">
+              <label htmlFor="email" className="block text-base font-light text-white/80">
+                Email
+              </label>
+              <div className="group">
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={cn(
+                    inputStyles,
+                    errors.email && "border-red-400/30 focus:border-red-400/30"
+                  )}
+                  placeholder="your@email.com"
+                />
+              </div>
+              {errors.email && (
+                <p className="text-xs text-red-400/70 mt-1">{errors.email}</p>
               )}
-              placeholder="your@email.com"
-            />
-            {errors.email && (
-              <p className="text-sm text-red-400/70">{errors.email}</p>
+            </div>
+
+            {/* Phone Field */}
+            <div className="space-y-1">
+              <label htmlFor="phone" className="block text-base font-light text-white/80">
+                Phone (optional)
+              </label>
+              <div className="group">
+                <input
+                  type="tel"
+                  id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={cn(
+                    inputStyles,
+                    errors.phone && "border-red-400/30 focus:border-red-400/30"
+                  )}
+                  placeholder="+46 70 123 4567"
+                />
+              </div>
+              {errors.phone && (
+                <p className="text-xs text-red-400/70 mt-1">{errors.phone}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Website Field */}
+          <div className="space-y-1">
+            <label htmlFor="website" className="block text-base font-light text-white/80">
+              Company Website (optional)
+            </label>
+            <div className="group">
+              <input
+                type="url"
+                id="website"
+                value={formData.website}
+                onChange={handleChange}
+                className={cn(
+                  inputStyles,
+                  errors.website && "border-red-400/30 focus:border-red-400/30"
+                )}
+                placeholder="https://company.com"
+              />
+            </div>
+            {errors.website && (
+              <p className="text-xs text-red-400/70 mt-1">{errors.website}</p>
             )}
           </div>
 
           {/* Message Field */}
-          <div className="space-y-2">
-            <label htmlFor="message" className="block text-lg font-light text-white/80">
+          <div className="space-y-1">
+            <label htmlFor="message" className="block text-base font-light text-white/80">
               Message
             </label>
-            <textarea
-              id="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={4}
-              className={cn(
-                "w-full",
-                "bg-blue-600/20",
-                "text-white/90",
-                "border border-blue-500/20",
-                "backdrop-blur-sm",
-                "rounded-xl",
-                "px-4 py-3",
-                "text-lg font-light",
-                "transition-all duration-300",
-                "resize-none",
-                "placeholder:text-white/30",
-                "hover:border-blue-400/30",
-                "hover:bg-blue-500/30",
-                "focus:outline-none",
-                "focus:border-blue-400/40",
-                errors.message && "border-red-400/30 focus:border-red-400/30"
-              )}
-              placeholder="Tell us about your business and how we can help..."
-            />
+            <div className="group">
+              <textarea
+                id="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={3}
+                className={cn(
+                  inputStyles,
+                  "resize-none",
+                  errors.message && "border-red-400/30 focus:border-red-400/30"
+                )}
+                placeholder="Tell us about your business and how we can help..."
+              />
+            </div>
             {errors.message && (
-              <p className="text-sm text-red-400/70">{errors.message}</p>
+              <p className="text-xs text-red-400/70 mt-1">{errors.message}</p>
             )}
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-end pt-4">
+          <div className="flex justify-end pt-2">
             <Button
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
@@ -243,57 +320,57 @@ export function Contact() {
               }}
               disabled={status === 'loading'}
               className={cn(
-                "px-8 py-6 w-full",
-                "bg-blue-400/[0.08]",
-                "text-white/90 hover:text-white",
-                "transition-all duration-500",
-                "rounded-2xl text-lg font-light",
-                "border border-blue-400/10",
+                "p-3",
+                "w-[60px] h-[60px]",
+                "bg-gradient-to-r from-blue-400/[0.04] via-blue-500/[0.04] to-blue-400/[0.04]",
+                "text-white/95 hover:text-white",
+                "border border-white/[0.08]",
                 "backdrop-blur-sm",
-                "flex items-center justify-center gap-3",
+                "rounded-full",
+                "flex items-center justify-center",
                 "group relative",
-                "hover:scale-[1.02]",
-                "hover:border-blue-400/30",
-                "hover:bg-blue-400/[0.12]",
+                "hover:scale-[1.05]",
+                "hover:border-blue-400/[0.2]",
+                "hover:from-blue-400/[0.08] hover:via-blue-500/[0.08] hover:to-blue-400/[0.08]",
                 "hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
                 "overflow-hidden",
+                "transition-all duration-300",
                 status === 'loading' && "opacity-70 cursor-not-allowed"
               )}
+              aria-label="Send Message"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {status === 'loading' ? (
-                <>
-                  <Loader2 className="w-6 h-6 animate-spin" />
-                  <span>Sending...</span>
-                </>
+                <Loader2 className="w-7 h-7 animate-spin text-blue-400/80" />
               ) : status === 'success' ? (
-                <>
-                  <CheckCircle className="w-6 h-6 text-green-400" />
-                  <span>Message Sent!</span>
-                </>
+                <CheckCircle className="w-7 h-7 text-green-400" />
               ) : status === 'error' ? (
-                <>
-                  <XCircle className="w-6 h-6 text-red-400" />
-                  <span>Failed to Send</span>
-                </>
+                <XCircle className="w-7 h-7 text-red-400" />
               ) : (
-                <>
+                <div className="relative w-7 h-7 flex items-center justify-center group-hover:animate-pulse">
                   <Send className={cn(
-                    "w-6 h-6 text-blue-500/80",
-                    "transition-all duration-500",
-                    "group-hover:scale-110",
-                    "group-hover:rotate-3",
-                    "group-hover:animate-wiggle"
+                    "w-7 h-7 text-blue-500/90",
+                    "absolute",
+                    "group-hover:text-blue-400",
+                    "group-hover:scale-[1.3]",
+                    "transition-all duration-300 ease-in-out"
                   )} />
-                  <span>Send Message</span>
-                </>
+                  <Send className={cn(
+                    "w-7 h-7 text-blue-400/0",
+                    "absolute",
+                    "group-hover:text-blue-400/30",
+                    "group-hover:scale-[1.6]",
+                    "group-hover:animate-ping",
+                    "transition-all duration-300 ease-in-out"
+                  )} />
+                </div>
               )}
             </Button>
           </div>
           
           {/* Error Message */}
           {errorMessage && (
-            <p className="text-sm text-red-400/70 text-center mt-4">{errorMessage}</p>
+            <p className="text-xs text-red-400/70 text-center mt-1">{errorMessage}</p>
           )}
         </form>
       </div>

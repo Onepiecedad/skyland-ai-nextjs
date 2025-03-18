@@ -60,6 +60,68 @@
   background-color: rgba(96, 165, 250, 0.5);
 }
 
+/* Custom form styling */
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea {
+  background: linear-gradient(to right, rgba(96, 165, 250, 0.04), rgba(59, 130, 246, 0.04), rgba(96, 165, 250, 0.04)) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  transition: all 0.3s !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+#contact input[type="text"]::placeholder,
+#contact input[type="email"]::placeholder,
+#contact textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact textarea:hover {
+  background: linear-gradient(to right, rgba(96, 165, 250, 0.08), rgba(59, 130, 246, 0.08), rgba(96, 165, 250, 0.08)) !important;
+  border-color: rgba(96, 165, 250, 0.2) !important;
+  box-shadow: 0 0 20px -5px rgba(96, 165, 250, 0.2) !important;
+  transform: scale(1.01) !important;
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+#contact input[type="text"]:focus,
+#contact input[type="email"]:focus,
+#contact textarea:focus {
+  background: linear-gradient(to right, rgba(96, 165, 250, 0.08), rgba(59, 130, 246, 0.08), rgba(96, 165, 250, 0.08)) !important;
+  border-color: rgba(96, 165, 250, 0.2) !important;
+  box-shadow: 0 0 20px -5px rgba(96, 165, 250, 0.2) !important;
+  outline: none !important;
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Add gradient hover effect to form fields */
+#contact .form-field-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+#contact .form-field-hover-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent, rgba(96, 165, 250, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  border-radius: 0.75rem;
+}
+
+#contact input:hover ~ .form-field-hover-gradient,
+#contact textarea:hover ~ .form-field-hover-gradient {
+  opacity: 1;
+}
+
 :root {
   --black: rgb(0 0 0);
   --transparent: transparent;
@@ -68,4 +130,26 @@
   --blue-500: rgb(59 130 246);
   --indigo-300: rgb(165 180 252);
   --violet-200: rgb(221 214 254);
+}
+
+.group:hover input::placeholder, 
+.group:hover textarea::placeholder {
+    color: white !important; /* Pure white with !important to override any other styles */
+    text-shadow: none !important; /* No shadow for clean effect */
+    transition: color 0.15s ease-in-out !important; /* Faster transition */
+}
+
+/* Default placeholder style */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important; /* Match menu's text-white/60 value exactly */
+    transition: color 0.15s ease-in-out !important;
+}
+
+/* Override any other placeholder styles */
+#contact input[type="text"]::placeholder,
+#contact input[type="email"]::placeholder,
+#contact textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  transition: color 0.15s ease-in-out !important;
 }

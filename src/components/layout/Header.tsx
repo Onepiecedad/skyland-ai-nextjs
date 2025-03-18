@@ -123,23 +123,17 @@ export function Header() {
                     {item.name}
                   </a>
                 ))}
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    handleNavClick(e, '#contact');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block py-2 text-base font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Contact Us
+                </a>
               </div>
-              <Button
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  handleContactClick(e);
-                  setMobileMenuOpen(false);
-                }}
-                className={cn(
-                  "mt-8 w-full text-base font-light",
-                  "bg-white/5 hover:bg-white/10",
-                  "text-white/80 hover:text-white",
-                  "transition-colors duration-200",
-                  "rounded-lg px-5 py-2",
-                  "border border-white/10 hover:border-white/20"
-                )}
-              >
-                Contact Us
-              </Button>
             </nav>
           </div>
         </div>
