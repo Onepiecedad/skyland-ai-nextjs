@@ -1,27 +1,21 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '../../lib/utils';
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
 interface PageTransitionProps {
-  children: React.ReactNode;
-  className?: string;
+  children: ReactNode;
 }
 
-export function PageTransition({ children, className }: PageTransitionProps) {
+export function PageTransition({ children }: PageTransitionProps) {
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut"
-        }}
-        className={cn("min-h-screen", className)}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.4,
+        ease: "easeOut"
+      }}
+    >
+      {children}
+    </motion.div>
   );
 } 

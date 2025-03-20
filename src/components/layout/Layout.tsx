@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuroraBackground } from '../aurora-background';
+import { AuroraBackground } from '../ui/AuroraBackground';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { cn } from '../../lib/utils';

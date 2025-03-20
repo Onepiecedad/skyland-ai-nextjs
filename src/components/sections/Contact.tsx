@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/utils';
@@ -77,9 +77,24 @@ export function Contact() {
     setErrorMessage('');
 
     try {
-      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || '/api/contact';
+      const webhookUrl = 'https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b';
       console.log('Submitting to webhook URL:', webhookUrl);
       
+      const formSubmissionData = {
+        "Full Name": formData.name,
+        "Conversation Id": "form-" + Date.now(),
+        "Date Submitted": new Date().toISOString().split('.')[0]+"Z",
+        "Email": formData.email,
+        "Phone Number": formData.phone,
+        "Companies": formData.website,
+        "User intent": "Contact form submission",
+        "Message": formData.message,
+        "Transcript": "", // Empty for form submissions
+        "Summary": "", // Empty for form submissions
+        "Sentiment": "neutral",
+        "Source": "website_contact_form"
+      };
+
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
@@ -87,17 +102,7 @@ export function Contact() {
           'Accept': 'application/json',
         },
         mode: 'cors',
-        body: JSON.stringify({
-          workflow_data: {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            website: formData.website,
-            message: formData.message,
-            timestamp: new Date().toISOString(),
-            source: 'website_contact_form'
-          }
-        }),
+        body: JSON.stringify(formSubmissionData)
       });
 
       console.log('Response status:', response.status);
@@ -153,6 +158,58 @@ export function Contact() {
       }));
     }
   };
+
+  useEffect(() => {
+    // Listen for conversation end event from ElevenLabs widget
+    const handleConversationEnd = async (event: any) => {
+      try {
+        const webhookUrl = 'https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b';
+        
+        // Extract conversation data from the event
+        const { transcript, summary, sentiment } = event.detail;
+        
+        // Prepare data in the format we tested, including form data
+        const conversationData = {
+          "Full Name": formData.name,
+          "Conversation Id": "dana-" + Date.now(),
+          "Date Submitted": new Date().toISOString().split('.')[0]+"Z",
+          "Email": formData.email,
+          "Phone Number": formData.phone,
+          "Companies": formData.website, // Using website field for company
+          "User intent": summary?.split('.')[0] || "",
+          "Message": formData.message,
+          "Transcript": transcript || "",
+          "Summary": summary || "",
+          "Sentiment": sentiment || "neutral",
+          "Source": "dana_voice_agent"
+        };
+
+        // Send data to webhook
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(conversationData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        console.log('Conversation data sent successfully');
+      } catch (error) {
+        console.error('Error sending conversation data:', error);
+      }
+    };
+
+    window.addEventListener('conversationEnd', handleConversationEnd);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener('conversationEnd', handleConversationEnd);
+    };
+  }, [formData]); // Add formData as dependency
 
   return (
     <section id="contact" className="relative py-8 sm:py-10 font-inter">

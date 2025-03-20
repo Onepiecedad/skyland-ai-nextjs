@@ -1,5 +1,4 @@
 import { Brain } from 'lucide-react';
-import AIWidget from '../AIWidget';
 
 export function Hero() {
   return (
@@ -38,8 +37,7 @@ export function Hero() {
           </div>
 
           {/* Right Side - AI Widget */}
-          <div className="flex items-center lg:pt-0">
-            <AIWidget />
+          <div className="flex flex-col items-center justify-center">
           </div>
         </div>
       </div>
