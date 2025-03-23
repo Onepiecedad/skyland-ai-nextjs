@@ -158,7 +158,7 @@ export function HeroWidget() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-0 relative z-[100]">
       <div className="flex md:justify-end justify-center">
-        <div className="bg-black/90 rounded-xl p-5 w-full max-w-sm md:max-w-md backdrop-blur-[2px] sm:backdrop-blur-md border border-white/[0.08] overflow-hidden relative shadow-xl transition-[height,opacity] duration-300">
+        <div className="backdrop-blur-sm bg-black/40 rounded-xl p-5 w-full max-w-sm md:max-w-md border border-white/10 shadow-xl overflow-hidden relative transition-[height,opacity,shadow] duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
           <div className="flex flex-col w-full gap-y-6 min-h-[180px] transition-[height] duration-300 ease-in-out">
             <div className="w-full pb-1">
               <h3 className="text-white/95 text-lg font-medium leading-snug max-w-[90%] break-words hyphens-auto">
