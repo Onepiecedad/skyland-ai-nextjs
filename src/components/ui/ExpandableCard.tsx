@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { cn } from '../../lib/utils';
+import { DanaWidget } from './DanaWidget';
+import { Button } from './Button';
+import { Mic } from 'lucide-react';
 
 interface ExpandableCardProps {
   icon: React.ReactNode;
@@ -8,6 +11,8 @@ interface ExpandableCardProps {
   solution: string;
   demoComponent?: React.ReactNode;
   className?: string;
+  showDana?: boolean;
+  danaWelcomeText?: string;
 }
 
 export function ExpandableCard({
@@ -16,9 +21,12 @@ export function ExpandableCard({
   description,
   solution,
   demoComponent,
-  className
+  className,
+  showDana = false,
+  danaWelcomeText
 }: ExpandableCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showDanaWidget, setShowDanaWidget] = useState(false);
 
   return (
     <>
@@ -59,7 +67,7 @@ export function ExpandableCard({
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 rounded-xl" />
 
         {/* Icon container */}
-        <div className="relative flex items-center mb-3">
+        <div className="mb-4">
           <div className={cn(
             "transition-all duration-300",
             "transform-gpu",
@@ -81,13 +89,16 @@ export function ExpandableCard({
       {isExpanded && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6"
-          onClick={() => setIsExpanded(false)}
+          onClick={() => {
+            setIsExpanded(false);
+            setShowDanaWidget(false);
+          }}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fade-in" />
           
           {/* Expanded Card Container */}
-          <div 
+          <div
             className={cn(
               "relative",
               "w-full max-w-2xl mx-auto",
@@ -131,10 +142,30 @@ export function ExpandableCard({
                   <p className="text-lg font-normal leading-[1.8] text-white/95">{solution}</p>
                 </div>
 
-                {/* Demo Component */}
-                {demoComponent && (
+                {/* Demo Component or Dana Widget */}
+                {(demoComponent || showDana) && (
                   <div className="pt-7 border-t border-blue-400/20">
-                    {demoComponent}
+                    {showDana && !showDanaWidget && (
+                      <div className="flex flex-col items-center gap-4">
+                        <Button
+                          onClick={() => setShowDanaWidget(true)}
+                          className="group relative w-full py-4"
+                        >
+                          <Mic className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                          <span className="ml-2">Ask Dana About This Solution</span>
+                        </Button>
+                      </div>
+                    )}
+                    {showDana && showDanaWidget && (
+                      <div className="relative w-full aspect-[3/2] rounded-lg overflow-hidden">
+                        <DanaWidget
+                          welcomeText={danaWelcomeText || `Hi! I'd love to tell you more about our ${title.toLowerCase()}. What would you like to know?`}
+                          showIntro={false}
+                          className="w-full h-full"
+                        />
+                      </div>
+                    )}
+                    {!showDana && demoComponent && demoComponent}
                   </div>
                 )}
               </div>

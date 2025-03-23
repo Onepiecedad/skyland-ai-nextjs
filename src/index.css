@@ -113,13 +113,3 @@
   --indigo-300: rgb(165 180 252);
   --violet-200: rgb(221 214 254);
 }
-
-.elevenlabs-widget-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  max-width: 400px;
-  width: 100%;
-  background: transparent;
-}

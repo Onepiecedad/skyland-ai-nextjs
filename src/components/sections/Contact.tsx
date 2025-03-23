@@ -146,17 +146,10 @@ export function Contact() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [id]: value
+      [e.target.name]: e.target.value
     }));
-    if (errors[id as keyof typeof errors]) {
-      setErrors(prev => ({
-        ...prev,
-        [id]: ''
-      }));
-    }
   };
 
   useEffect(() => {

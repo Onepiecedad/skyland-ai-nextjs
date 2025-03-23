@@ -5,9 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:safe": "powershell -File cleanup-ports.ps1 && npm run dev",
+    "dev:clean": "powershell -File cleanup.ps1 && vite --host",
+    "dev:auto": "powershell -File watch-dev.ps1",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cleanup": "powershell -File cleanup.ps1"
   },
   "dependencies": {
     "@11labs/react": "^0.0.8",
@@ -16,6 +20,7 @@
     "elevenlabs": "^1.54.0",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.344.0",
+    "node-fetch": "^2.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.4.0",

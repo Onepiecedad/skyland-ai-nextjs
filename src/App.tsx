@@ -15,7 +15,6 @@ import { Pricing } from './components/sections/Pricing';
 import { FAQ } from './components/sections/FAQ';
 import { Contact } from './components/sections/Contact';
 import { BackToTop } from './components/ui/BackToTop';
-import DanaVoiceAgent from './components/DanaVoiceAgent';
 import './App.css';
 
 interface ErrorBoundaryProps {
@@ -101,9 +100,6 @@ function AppContent() {
           <Pricing />
           <FAQ />
           <Contact />
-          <DanaVoiceAgent 
-            agentId="4mN4rizdi79gwLhFxlOu"
-          />
         </main>
         <Footer />
         <BackToTop />
