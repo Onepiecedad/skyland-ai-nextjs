@@ -1,0 +1,1 @@
+export const PricingSection = () => <section>Pricing</section>
