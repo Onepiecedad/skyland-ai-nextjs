@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { PrimaryButton } from '../ui/PrimaryButton';
 import { cn } from '../../lib/utils';
+import { glass, hover, transition } from "@/lib/theme";
 
 const navigation = [
   { name: 'AI Solutions', href: '#ai-solutions' },
@@ -62,10 +63,9 @@ export function Header() {
         className={cn(
           "fixed top-6 right-6 z-50",
           "rounded-full p-3",
-          "bg-black/20 backdrop-blur-lg",
-          "border border-white/10",
-          "text-white/80 hover:text-white",
-          "transition-all duration-200",
+          glass.card,
+          transition.base,
+          hover.card,
           isScrolled ? "opacity-50 hover:opacity-100" : "opacity-100"
         )}
         onClick={() => setMobileMenuOpen(true)}
@@ -83,7 +83,8 @@ export function Header() {
         {/* Backdrop */}
         <div 
           className={cn(
-            "absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300",
+            glass.overlay,
+            transition.base,
             mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
           )}
           onClick={() => setMobileMenuOpen(false)}
@@ -92,9 +93,9 @@ export function Header() {
         {/* Menu Panel */}
         <div 
           className={cn(
-            "absolute top-0 right-0 h-full w-[280px] bg-black/40 backdrop-blur-xl",
-            "transform transition-transform duration-300 ease-out",
-            "border-l border-white/10",
+            glass.modal,
+            "absolute top-0 right-0 h-full w-[280px]",
+            transition.base,
             mobileMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full"
           )}
         >

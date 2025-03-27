@@ -1,11 +1,11 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
-import { Toast, ToastType } from '../components/ui/Toast';
+"use client";
 
-interface ToastContextType {
-  showToast: (type: ToastType, message: string) => void;
-}
+import { createContext, useContext, useState, ReactNode } from "react";
+import { CheckCircle, XCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { glass, hover, transition } from "@/lib/theme";
 
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
+type ToastType = "success" | "error";
 
 interface Toast {
   id: number;
@@ -13,39 +13,59 @@ interface Toast {
   message: string;
 }
 
+interface ToastContextType {
+  showToast: (type: ToastType, message: string) => void;
+}
+
+const ToastContext = createContext<ToastContextType | undefined>(undefined);
+
+// Export the context provider component
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const [counter, setCounter] = useState(0);
 
-  const showToast = useCallback((type: ToastType, message: string) => {
-    const id = counter;
-    setCounter(prev => prev + 1);
-    setToasts(prev => [...prev, { id, type, message }]);
-  }, [counter]);
-
-  const removeToast = useCallback((id: number) => {
-    setToasts(prev => prev.filter(toast => toast.id !== id));
-  }, []);
+  const showToast = (type: ToastType, message: string) => {
+    const id = Date.now();
+    setToasts((prev) => [...prev, { id, type, message }]);
+    
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 3000);
+  };
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {toasts.map(toast => (
-        <Toast
-          key={toast.id}
-          type={toast.type}
-          message={toast.message}
-          onClose={() => removeToast(toast.id)}
-        />
-      ))}
+      <div className="fixed bottom-4 right-4 space-y-2 z-50">
+        {toasts.map(({ id, type, message }) => (
+          <div
+            key={id}
+            className={cn(
+              "flex items-center gap-2 px-4 py-2",
+              glass.card,
+              hover.card,
+              transition.base,
+              type === "success" ? "border-green-400/30" : "border-red-400/30"
+            )}
+          >
+            {type === "success" ? (
+              <CheckCircle className="w-5 h-5 text-green-400" />
+            ) : (
+              <XCircle className="w-5 h-5 text-red-400" />
+            )}
+            <span className="text-white/90">{message}</span>
+          </div>
+        ))}
+      </div>
     </ToastContext.Provider>
   );
 }
 
+// Export the hook as a named export
 export function useToast() {
   const context = useContext(ToastContext);
-  if (context === undefined) {
-    throw new Error('useToast must be used within a ToastProvider');
+  if (!context) {
+    throw new Error("useToast must be used within ToastProvider");
   }
   return context;
 } 

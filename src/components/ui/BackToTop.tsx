@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
+import { cn } from "@/lib/utils";
+import { glass, hover, transition } from "@/lib/theme";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +45,13 @@ export function BackToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg hover:bg-white/10 transition-colors z-[100] group"
+          className={cn(
+            "fixed bottom-4 right-4 md:bottom-8 md:right-8 p-2.5 rounded-full",
+            glass.card,
+            transition.base,
+            hover.card,
+            "z-[100] group"
+          )}
           aria-label="Scroll to top"
         >
           <ChevronUp className="w-5 h-5 text-white/60 group-hover:text-white/90 transition-colors" />

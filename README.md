@@ -472,21 +472,21 @@ The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's
 
 ```
 src/
-├── components/
-│   ├── aurora-background.tsx  # Animated aurora effect
-│   ├── voice-agent.tsx        # Dana AI component
-│   ├── theme-toggle.tsx       # Dark/light mode switch
-│   └── ui/                   # UI components
-├── lib/
-│   └── utils.ts              # Utility functions
-├── styles/                   # Tailwind styles
-├── pages/                    # Route pages
-├── App.tsx                   # Main component
-├── main.tsx                  # Entry point
-└── index.css                # Global styles
+├── app/                     # Next.js app directory
+├── components/             # React components
+│   ├── ui/                # Reusable UI components
+│   ├── sections/          # Page sections
+│   └── cards/            # Card components
+├── contexts/              # React contexts
+├── hooks/                 # Custom React hooks
+├── lib/                   # Utility functions and configuration
+│   ├── theme.ts          # Theme and design system
+│   └── utils.ts          # Helper functions
+├── services/             # External service integrations
+└── index.css            # Global styles and Tailwind imports
 ```
 
-## 🚀 Current State
+## �� Current State
 
 The project is in active development with the following components implemented:
 - Basic application structure
@@ -673,4 +673,142 @@ The application will be available at `http://localhost:8080`
 
 ## 🤝 Contributing
 
-Feel free to contribute to this project by creating issues or submitting pull requests. This project is part of Skyland AI Solutions' mission to make AI automation accessible to service-based businesses. 
+Feel free to contribute to this project by creating issues or submitting pull requests. This project is part of Skyland AI Solutions' mission to make AI automation accessible to service-based businesses.
+
+## Aurora Background Effect
+
+The aurora background effect is a key visual element of the website, creating a dynamic and engaging atmosphere. Here are the current settings and implementation details:
+
+### CSS Variables
+```css
+/* Aurora Colors */
+--black: rgb(0 0 0);
+--transparent: transparent;
+--blue-300: rgb(147 197 253);
+--blue-400: rgb(96 165 250);
+--blue-500: rgb(59 130 246);
+--indigo-300: rgb(165 180 252);
+--violet-200: rgb(221 214 254);
+```
+
+### Gradient Configuration
+```css
+/* Dark Base Gradient */
+--dark-gradient: repeating-linear-gradient(
+  100deg,
+  var(--black) 0%,
+  var(--black) 7%,
+  var(--transparent) 10%,
+  var(--transparent) 12%,
+  var(--black) 16%
+);
+
+/* Aurora Effect Gradient */
+--aurora-gradient: repeating-linear-gradient(
+  100deg,
+  var(--blue-500) 10%,
+  var(--indigo-300) 15%,
+  var(--blue-300) 20%,
+  var(--violet-200) 25%,
+  var(--blue-400) 30%
+);
+```
+
+### Animation Settings
+```css
+/* Animation Properties */
+--aurora-animation: aurora 60s linear infinite;
+
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+```
+
+### Visual Effects
+```css
+/* Blur and Opacity */
+backdrop-filter: blur(10px);
+opacity: 0.5;
+mix-blend-mode: difference;
+
+/* Radial Mask */
+mask-image: radial-gradient(
+  ellipse at 100% 0%,
+  black 10%,
+  var(--transparent) 70%
+);
+```
+
+### Performance Optimizations
+```css
+/* Performance Settings */
+will-change: background-position;
+transform: translateZ(0);
+```
+
+### Implementation Notes
+- The effect uses multiple layered gradients for depth
+- Animation is optimized for performance with GPU acceleration
+- Responsive design adapts to different screen sizes
+- Reduced motion preferences are respected
+- Mobile-optimized with adjusted opacity and blur
+
+### Usage
+The aurora background is implemented in the `AuroraBackground` component and can be used as follows:
+
+```tsx
+import { AuroraBackground } from "@/components/ui/AuroraBackground";
+
+function YourComponent() {
+  return (
+    <div>
+      <AuroraBackground />
+      {/* Your content */}
+    </div>
+  );
+}
+```
+
+### Customization
+To modify the aurora effect:
+1. Adjust color variables in `index.css`
+2. Modify gradient angles and positions
+3. Change animation duration in keyframes
+4. Adjust blur and opacity values
+5. Update mask gradient for different fade effects
+
+### Browser Support
+- Works in all modern browsers
+- Fallback styles for older browsers
+- Optimized for Chrome, Firefox, Safari, and Edge 
+
+# Styling Organization
+
+The project's styling is organized into three main parts:
+
+1. Theme System (`src/lib/theme.ts`)
+   - Design tokens (colors, spacing, typography)
+   - Component variants
+   - Animation settings
+   - Shared effects (glass, hover)
+
+2. Global Styles (`src/index.css`)
+   - Tailwind imports
+   - CSS variables
+   - Global reset
+   - Utility classes
+   - Animation keyframes
+
+3. Component Styles
+   - Tailwind utility classes
+   - Theme values from theme.ts
+   - Component-specific styles
+
+# Aurora Background Documentation
+
+[Previous aurora documentation remains unchanged...] 
