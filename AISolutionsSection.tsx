@@ -1,0 +1,1 @@
+export const AISolutionsSection = () => <section>AI Solutions</section>

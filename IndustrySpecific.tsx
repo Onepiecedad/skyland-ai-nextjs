@@ -1,0 +1,1 @@
+export const IndustrySpecific = () => <section>Industry</section>

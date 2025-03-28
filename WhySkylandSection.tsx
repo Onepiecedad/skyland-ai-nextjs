@@ -1,0 +1,1 @@
+export const WhySkylandSection = () => <section>Why Skyland</section>
