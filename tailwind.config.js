@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       animation: {
         aurora: "aurora 60s linear infinite",
+        gradient: "gradient 15s ease infinite",
       },
       keyframes: {
         aurora: {
@@ -18,6 +19,17 @@ module.exports = {
           },
           to: {
             backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
+        gradient: {
+          "0%": {
+            backgroundPosition: "0% 50%",
+          },
+          "50%": {
+            backgroundPosition: "100% 50%",
+          },
+          "100%": {
+            backgroundPosition: "0% 50%",
           },
         },
       },
