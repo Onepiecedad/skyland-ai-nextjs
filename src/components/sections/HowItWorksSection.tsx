@@ -1,19 +1,26 @@
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { SectionHeading } from "@/components/MainHeading";
-import { DanaButton } from "@/components/ui/DanaButton";
-import { colors, radius, shadow } from "@/lib/theme";
+import { cn } from "@/lib/utils";
+import { glass, hover, transition, layout, typography } from "@/lib/theme";
 
-function HowItWorksSection() {
+export function HowItWorksSection() {
   return (
-    <SectionWrapper id="how-it-works">
-      <SectionHeading
-        title="Your AI Employee—Fully Trained in Days, No Effort Required"
-        subtitle="You focus on the results—we'll handle the setup. Just follow 4 simple steps."
-      />
+    <section id="how-it-works" className={cn("py-20", layout.container)}>
+      <div className={layout.elementSpacing}>
+        <h2 className={cn(typography.heading, "text-3xl sm:text-4xl")}>
+          Your AI Employee—Fully Trained in Days, No Effort Required
+        </h2>
+        <p className={cn(typography.paragraph, "max-w-2xl")}>
+          You focus on the results—we'll handle the setup. Just follow 4 simple steps.
+        </p>
+      </div>
 
       <ol className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 text-white/85 mt-12">
         <li
-          className={`bg-white/5 border border-white/10 backdrop-blur-md p-6 ${radius.card} ${shadow.card}`}
+          className={cn(
+            glass.card,
+            transition.base,
+            hover.card,
+            "p-6"
+          )}
         >
           <div className="text-5xl font-bold text-blue-400 mb-4">1</div>
           <h3 className="text-lg font-semibold text-white/90 mb-2">
@@ -28,7 +35,12 @@ function HowItWorksSection() {
         </li>
 
         <li
-          className={`bg-white/5 border border-white/10 backdrop-blur-md p-6 ${radius.card} ${shadow.card}`}
+          className={cn(
+            glass.card,
+            transition.base,
+            hover.card,
+            "p-6"
+          )}
         >
           <div className="text-5xl font-bold text-blue-400 mb-4">2</div>
           <h3 className="text-lg font-semibold text-white/90 mb-2">
@@ -43,7 +55,12 @@ function HowItWorksSection() {
         </li>
 
         <li
-          className={`bg-white/5 border border-white/10 backdrop-blur-md p-6 ${radius.card} ${shadow.card}`}
+          className={cn(
+            glass.card,
+            transition.base,
+            hover.card,
+            "p-6"
+          )}
         >
           <div className="text-5xl font-bold text-blue-400 mb-4">3</div>
           <h3 className="text-lg font-semibold text-white/90 mb-2">
@@ -58,7 +75,12 @@ function HowItWorksSection() {
         </li>
 
         <li
-          className={`bg-white/5 border border-white/10 backdrop-blur-md p-6 ${radius.card} ${shadow.card}`}
+          className={cn(
+            glass.card,
+            transition.base,
+            hover.card,
+            "p-6"
+          )}
         >
           <div className="text-5xl font-bold text-blue-400 mb-4">4</div>
           <h3 className="text-lg font-semibold text-white/90 mb-2">
@@ -72,12 +94,6 @@ function HowItWorksSection() {
           </p>
         </li>
       </ol>
-
-      <div className="mt-12 text-center">
-        <DanaButton />
-      </div>
-    </SectionWrapper>
+    </section>
   );
-}
-
-export default HowItWorksSection; 
+} 

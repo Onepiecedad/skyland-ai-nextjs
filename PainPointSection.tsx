@@ -1,1 +1,0 @@
-export const PainPointSection = () => <section>Pain Points</section>

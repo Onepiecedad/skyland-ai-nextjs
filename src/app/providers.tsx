@@ -1,9 +1,12 @@
-'use client';
+"use client";
 
-import { ToastProvider } from '@/contexts/ToastContext';
+import { ReactNode } from "react";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: { children: ReactNode }) {
   return (
-    <ToastProvider>
+    <>
       {children}
+    </>
+  );
+}
  

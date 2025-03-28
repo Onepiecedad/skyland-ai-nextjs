@@ -1,10 +1,9 @@
-import { useOverlay } from "@/components/cards/OverlayProvider";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { SectionHeading } from "@/components/MainHeading";
-import { ExpandableCard } from "@/components/cards/ExpandableCard";
-import { IconKey } from "@/components/cards/iconMap";
+import { iconMap, IconKey } from "@/components/cards/iconMap";
 import { DanaButton } from "@/components/ui/DanaButton";
+import { Card } from "@/components/ui/Card";
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
+import { layout, typography, glass, hover, transition } from "@/lib/theme";
 
 interface IndustrySolution {
   iconKey: IconKey;
@@ -13,9 +12,7 @@ interface IndustrySolution {
   expandedContent: React.ReactNode;
 }
 
-function IndustrySolutionsSection() {
-  const { setOverlay } = useOverlay();
-
+export function IndustrySolutionsSection() {
   const solutions: IndustrySolution[] = [
     {
       iconKey: "phone",
@@ -88,29 +85,29 @@ function IndustrySolutionsSection() {
   ];
 
   return (
-    <SectionWrapper id="industry-solutions" className="bg-black/5">
-      <SectionHeading
-        title="Real AI, Solving Real Problems—Across Industries"
-        subtitle="From real estate to hospitality to customer support—AI is already handling the work that slows businesses down."
-      />
-
-      <div 
-        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-        role="list"
-        aria-label="Industry Solutions"
-      >
-        {solutions.map((solution, index) => (
-          <ExpandableCard
-            key={index}
-            icon={solution.iconKey}
-            title={solution.title}
-            description={solution.description}
-            expandedContent={solution.expandedContent}
-          />
-        ))}
+    <section id="industry-solutions" className={cn("py-20 bg-black/5", layout.container)}>
+      <div className={layout.elementSpacing}>
+        <h2 className={cn(typography.heading, "text-3xl sm:text-4xl")}>
+          Real AI, Solving Real Problems—Across Industries
+        </h2>
+        <p className={cn(typography.paragraph, "max-w-2xl")}>
+          From real estate to hospitality to customer support—AI is already handling the work that slows businesses down.
+        </p>
       </div>
-    </SectionWrapper>
-  );
-}
 
-export default IndustrySolutionsSection; 
+      <div className={cn("grid", layout.cardGap, "mt-12")}>
+        {solutions.map((solution, i) => {
+          return (
+            <Card
+              key={i}
+              icon={solution.iconKey}
+              title={solution.title}
+              description={solution.description}
+              expandedContent={solution.expandedContent}
+            />
+          );
+        })}
+      </div>
+    </section>
+  );
+} 

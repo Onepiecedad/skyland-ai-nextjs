@@ -3,7 +3,6 @@
 import { Suspense, lazy } from 'react';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { LoadingState } from '@/components/ui/LoadingState';
-import { ScrollToTop } from '@/components/ScrollToTop';
 
 // Lazy load sections that are not immediately visible
 const LazyPainPointSection = lazy(() => import('@/components/sections/PainPointSection'));
@@ -51,8 +50,6 @@ export default function HomePage() {
       <Suspense fallback={<LoadingState />}>
         <LazyContactSection />
       </Suspense>
-      
-      <ScrollToTop />
     </>
   );
 } 

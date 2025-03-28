@@ -1,1 +1,0 @@
-export const HeroSection = () => <section>Hero</section>

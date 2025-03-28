@@ -1,1 +1,0 @@
-export const ContactSection = () => <section>Contact</section>

@@ -1,13 +1,12 @@
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeading } from "@/components/MainHeading";
-import { DanaButton } from "@/components/ui/DanaButton";
 
-function PricingSection() {
+export function PricingSection() {
   return (
     <SectionWrapper id="pricing">
       <SectionHeading
-        title="AI That Pays for Itself"
-        subtitle="See measurable savings and growth tailored to your business in just two weeks."
+        title="Pricing"
+        subtitle="Flexible pricing that scales with your needs."
       />
 
       <div className="max-w-3xl mx-auto space-y-6 text-white/80 text-base leading-relaxed text-center mt-12">
@@ -27,13 +26,7 @@ function PricingSection() {
           Try AI risk-free for two weeks and see how it can start driving results immediately.
           The question isn't the price—it's how much value we can create.
         </p>
-
-        <div className="pt-4">
-          <DanaButton />
-        </div>
       </div>
     </SectionWrapper>
   );
-}
-
-export default PricingSection; 
+} 

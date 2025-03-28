@@ -1,18 +1,19 @@
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeading } from "@/components/MainHeading";
-import { ExpandableCard } from "@/components/cards/ExpandableCard";
-import { IconKey } from "@/components/cards/iconMap";
-import { DanaButton } from "@/components/ui/DanaButton";
+import { iconMap, IconKey } from "@/components/cards/iconMap";
+import { Card } from "@/components/ui/Card";
+import { cn } from "@/lib/utils";
+import { layout, typography, glass, hover, transition } from "@/lib/theme";
 
-interface AiSolution {
+interface Solution {
   iconKey: IconKey;
   title: string;
   description: string;
   expandedContent: React.ReactNode;
 }
 
-function AiSolutionsSection() {
-  const solutions: AiSolution[] = [
+export function AiSolutionsSection() {
+  const solutions: Solution[] = [
     {
       iconKey: "phone",
       title: "AI Voice Agents",
@@ -28,9 +29,6 @@ function AiSolutionsSection() {
           </p>
           <p>And they don't just talk—they take action.</p>
           <p>Push updates directly to your CRM. Trigger workflows. Route calls. All with zero human effort.</p>
-          <div className="pt-4">
-            <DanaButton />
-          </div>
         </>
       )
     },
@@ -55,9 +53,6 @@ function AiSolutionsSection() {
           <p>
             From lead gen to personal productivity, these assistants do the work of a full team—without the overhead.
           </p>
-          <div className="pt-4">
-            <DanaButton />
-          </div>
         </>
       )
     },
@@ -78,9 +73,6 @@ function AiSolutionsSection() {
           <p>
             Whether you need full process automation or help eliminating small inefficiencies, these systems are built to adapt to your business—not the other way around.
           </p>
-          <div className="pt-4">
-            <DanaButton />
-          </div>
         </>
       )
     }
@@ -89,27 +81,20 @@ function AiSolutionsSection() {
   return (
     <SectionWrapper id="ai-solutions">
       <SectionHeading
-        title="AI Solutions That Do the Work for You"
-        subtitle="From missed calls to admin overload—these AI tools handle real work so you don't have to."
+        title="AI That Works Like You Do"
+        subtitle="Our AI solutions adapt to your business—not the other way around."
       />
 
-      <div 
-        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-        role="list"
-        aria-label="AI Solutions"
-      >
-        {solutions.map((solution, index) => (
-          <ExpandableCard
-            key={index}
+      <div className="grid gap-8 mt-12">
+        {solutions.map((solution, i) => (
+          <Card
+            key={i}
             icon={solution.iconKey}
             title={solution.title}
             description={solution.description}
-            expandedContent={solution.expandedContent}
           />
         ))}
       </div>
     </SectionWrapper>
   );
-}
-
-export default AiSolutionsSection; 
+} 

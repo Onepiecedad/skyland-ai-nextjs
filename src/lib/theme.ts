@@ -34,8 +34,22 @@ export const colors = {
   }
 };
 
-// Default styling for icons
-export const defaultIconClass = "text-blue-400 flex-shrink-0";
+// Spacing and layout
+export const spacing = {
+  sectionY: "py-20 sm:py-28",
+  container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
+  cardGap: "gap-6 sm:grid-cols-2 lg:grid-cols-3",
+  elementSpacing: "space-y-4",
+};
+
+// Typography styles
+export const typography = {
+  heading: "text-white/90 text-3xl sm:text-4xl md:text-5xl font-extralight tracking-[-0.03em] leading-tight",
+  subheading: "text-white/70 text-lg font-light max-w-2xl mx-auto mt-4",
+  paragraph: "text-white/70 text-base font-light",
+  label: "text-sm text-white/70",
+  buttonText: "text-sm font-medium text-white",
+};
 
 // Rounded corners for different elements
 export const radius = {
@@ -49,15 +63,6 @@ export const radius = {
 export const shadow = {
   card: "shadow-md hover:shadow-xl transition-shadow duration-300",
   button: "shadow-md hover:shadow-lg transition-shadow duration-200",
-  text: "drop-shadow-sm"
-};
-
-// Spacing and container sizes
-export const spacing = {
-  sectionY: "py-20 sm:py-28",
-  container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
-  cardGap: "gap-6 sm:grid-cols-2 lg:grid-cols-3",
-  elementSpacing: "space-y-4",
 };
 
 // Animations and transitions
@@ -66,50 +71,24 @@ export const transition = {
   fast: "transition duration-100 ease-in",
 };
 
-// Typography styles
-export const typography = {
-  heading: "text-white/90 text-3xl sm:text-4xl md:text-5xl font-extralight tracking-[-0.03em] leading-tight",
-  subheading: "text-white/70 text-lg font-light max-w-2xl mx-auto mt-4",
-  paragraph: "text-white/70 text-base font-light",
-  label: "text-sm text-white/70",
-  buttonText: "text-sm font-medium text-white"
+// Font weights
+export const font = {
+  base: "font-sans",
+  light: "font-extralight",
+  medium: "font-medium",
 };
 
 // Glassmorphism effects
 export const glass = {
-  card: [
-    'bg-white/[0.07]',
-    'backdrop-blur-xl',
-    'border border-white/[0.15]'
-  ].join(" "),
-  
-  modal: [
-    'bg-black/80',
-    'backdrop-blur-2xl',
-    'border border-white/[0.15]'
-  ].join(" "),
-  
-  overlay: [
-    'bg-black/60',
-    'backdrop-blur-sm'
-  ].join(" ")
+  card: "bg-black/20 backdrop-blur-lg border border-white/[0.08] rounded-xl",
+  layer1: "bg-black/20 backdrop-blur-sm",
+  layer2: "bg-black/40 backdrop-blur-md",
 };
 
 // Hover effects
 export const hover = {
-  card: [
-    'hover:bg-white/[0.09]',
-    'hover:border-white/20',
-    'hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]',
-    'transition-all duration-300'
-  ].join(" "),
-  
-  button: [
-    'hover:bg-white/[0.12]',
-    'hover:border-white/25',
-    'hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]',
-    'transition-all duration-200'
-  ].join(" ")
+  card: "hover:border-white/[0.15] hover:bg-black/30",
+  scale: "hover:scale-[1.02]",
 };
 
 // Initialize dark mode
@@ -119,8 +98,5 @@ export function initializeDarkMode() {
   document.body.style.color = colors.textPrimary;
 }
 
-export const font = {
-  base: "font-sans",
-  light: "font-extralight",
-  medium: "font-medium",
-}; 
+// Default styling for icons
+export const defaultIconClass = "text-blue-400 flex-shrink-0"; 

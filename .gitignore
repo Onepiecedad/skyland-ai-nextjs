@@ -9,6 +9,13 @@
 # Production
 /build
 /dist
+.next
+.out
+.turbo
+
+# Hosting outputs
+/.vercel
+/.netlify
 
 # Misc
 .DS_Store
@@ -17,11 +24,15 @@
 .env.test.local
 .env.production.local
 .env
+*.local
+*.swp
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+*.cache
 
 # Editor directories and files
 .vscode/*
@@ -35,3 +46,6 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# ESLint cache
+.eslintcache

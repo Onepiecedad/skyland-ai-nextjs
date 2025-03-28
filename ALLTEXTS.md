@@ -1,6 +1,6 @@
 // BaseCard.tsx
 import { useOverlay } from "@/components/overlay/OverlayProvider"
-import { defaultIconClass } from "@/shared"
+import { defaultIconClass } from "@/lib/theme"
 import clsx from "clsx"
 
 interface BaseCardProps {

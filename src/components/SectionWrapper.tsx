@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { spacing } from "@/lib/theme";
 
 interface SectionWrapperProps {
   id?: string;
@@ -12,13 +13,12 @@ export function SectionWrapper({ id, children, className = "" }: SectionWrapperP
     <section 
       id={id} 
       className={cn(
-        "w-full",
-        "py-20",
-        "px-6 md:px-8",
+        "w-full relative z-10",
+        spacing.sectionY,
         className
       )}
     >
-      <div className="max-w-[1120px] mx-auto">
+      <div className={spacing.container}>
         {children}
       </div>
     </section>

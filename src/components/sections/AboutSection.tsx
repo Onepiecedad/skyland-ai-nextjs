@@ -2,7 +2,7 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeading } from "@/components/MainHeading";
 import { DanaButton } from "@/components/ui/DanaButton";
 
-function AboutSection() {
+export function AboutSection() {
   return (
     <SectionWrapper id="about">
       <SectionHeading
@@ -92,6 +92,4 @@ function AboutSection() {
       </div>
     </SectionWrapper>
   );
-}
-
-export default AboutSection; 
+} 

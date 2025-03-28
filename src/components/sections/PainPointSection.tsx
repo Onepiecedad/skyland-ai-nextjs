@@ -1,10 +1,7 @@
-import { useOverlay } from "@/components/cards/OverlayProvider";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { SectionHeading } from "@/components/MainHeading";
-import { ExpandableCard } from "@/components/cards/ExpandableCard";
-import { IconKey } from "@/components/cards/iconMap";
-import { DanaButton } from "@/components/ui/DanaButton";
+import { iconMap, IconKey } from "@/components/cards/iconMap";
+import { Card } from "@/components/ui/Card";
 import { cn } from "@/lib/utils";
+import { layout, typography, glass, hover, transition } from "@/lib/theme";
 
 interface PainPoint {
   iconKey: IconKey;
@@ -13,7 +10,7 @@ interface PainPoint {
   expandedContent: React.ReactNode;
 }
 
-function PainPointSection() {
+export function PainPointSection() {
   const painPoints: PainPoint[] = [
     {
       iconKey: "phone",
@@ -31,9 +28,6 @@ function PainPointSection() {
           <p>This isn't about replacing you.</p>
           <p>It's about reclaiming your time and sealing the cracks in your growth.</p>
           <p>Now your customers get answers. You stay in control. And growth stops leaking through the cracks.</p>
-          <div className="pt-4">
-            <DanaButton autoExpand={false} />
-          </div>
         </>
       )
     },
@@ -52,9 +46,6 @@ function PainPointSection() {
           <p>This isn't about cutting corners.</p>
           <p>It's about cutting through the busywork that's holding you back.</p>
           <p>Now your business runs smoother. Your team works smarter. And you? You lead instead of manage.</p>
-          <div className="pt-4">
-            <DanaButton autoExpand={false} />
-          </div>
         </>
       )
     },
@@ -73,9 +64,6 @@ function PainPointSection() {
           <p>This isn't about replacing human connection.</p>
           <p>It's about making sure you never miss another opportunity.</p>
           <p>Now your leads get instant attention. Your pipeline stays full. And your business grows while you sleep.</p>
-          <div className="pt-4">
-            <DanaButton autoExpand={false} />
-          </div>
         </>
       )
     },
@@ -94,38 +82,35 @@ function PainPointSection() {
           <p>This isn't about replacing your team.</p>
           <p>It's about empowering them to do more—without burning out.</p>
           <p>Now your business grows smoothly. Your team stays lean. And scaling feels natural, not painful.</p>
-          <div className="pt-4">
-            <DanaButton autoExpand={false} />
-          </div>
         </>
       )
     }
   ];
 
   return (
-    <section className={cn(
-      "relative py-20 md:py-24"
-    )}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading
-          title="What's Really Slowing Your Business Down?"
-          subtitle="The biggest growth killer in business isn't lack of customers—it's wasted time. Every minute spent on repetitive tasks is a minute not spent growing your business."
-        />
+    <section id="pain-points" className={cn("py-20", layout.container)}>
+      <div className={layout.elementSpacing}>
+        <h2 className={cn(typography.heading, "text-3xl sm:text-4xl")}>
+          Sound Familiar? You're Not Alone.
+        </h2>
+        <p className={cn(typography.paragraph, "max-w-2xl")}>
+          These are the exact challenges that drive business owners to AI—and the solutions that help them break free.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {painPoints.map((point, index) => (
-            <ExpandableCard
-              key={index}
-              icon={point.iconKey}
-              title={point.title}
-              description={point.description}
-              expandedContent={point.expandedContent}
+      <div className={cn("grid", layout.cardGap, "mt-12")}>
+        {painPoints.map((painPoint, i) => {
+          return (
+            <Card
+              key={i}
+              icon={painPoint.iconKey}
+              title={painPoint.title}
+              description={painPoint.description}
+              expandedContent={painPoint.expandedContent}
             />
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );
-}
-
-export default PainPointSection; 
+} 

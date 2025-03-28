@@ -3,23 +3,24 @@
 import { useState } from 'react';
 import { SectionWrapper } from '@/components/SectionWrapper';
 import { SectionHeading } from '@/components/MainHeading';
-import { ExpandableCard } from '@/components/cards/ExpandableCard';
-import { IconKey } from '@/components/cards/iconMap';
-import { DanaButton } from '@/components/ui/DanaButton';
+import { iconMap, IconKey } from '@/components/cards/iconMap';
+import { Card } from '@/components/ui/Card';
+import { cn } from '@/lib/utils';
+import { layout, typography, glass, hover, transition } from '@/lib/theme';
 
 interface FAQ {
   iconKey: IconKey;
-  title: string;
-  description: string;
-  answer: React.ReactNode;
+  question: string;
+  answer: string;
+  expandedContent: React.ReactNode;
 }
 
 const faqs: FAQ[] = [
   {
     iconKey: "bot",
-    title: "Is this AI hard to set up?",
-    description: "I'm not technical—how do I get started?",
-    answer: (
+    question: "Is this AI hard to set up?",
+    answer: "I'm not technical—how do I get started?",
+    expandedContent: (
       <>
         <p className="text-white/70 mb-2">
           Nope! We do everything for you. After a short call, we build, train and test the system. You don't need to code, configure, or connect anything yourself.
@@ -32,9 +33,9 @@ const faqs: FAQ[] = [
   },
   {
     iconKey: "zap",
-    title: "What can I automate with this?",
-    description: "Which tasks can AI take over?",
-    answer: (
+    question: "What can I automate with this?",
+    answer: "Which tasks can AI take over?",
+    expandedContent: (
       <>
         <p className="text-white/70 mb-2">
           Common tasks include: call answering, lead intake, FAQs, booking, reminders, support, follow-ups, CRM updates and more.
@@ -47,9 +48,9 @@ const faqs: FAQ[] = [
   },
   {
     iconKey: "building",
-    title: "Can this connect to my systems?",
-    description: "Like my CRM or calendar?",
-    answer: (
+    question: "Can this connect to my systems?",
+    answer: "Like my CRM or calendar?",
+    expandedContent: (
       <>
         <p className="text-white/70 mb-2">
           Yes! We can integrate with most popular tools—Google Calendar, Notion, Airtable, HubSpot, Zapier, and more.
@@ -60,34 +61,24 @@ const faqs: FAQ[] = [
   },
 ];
 
-function FAQSection() {
+export function FAQSection() {
   return (
     <SectionWrapper id="faq">
       <SectionHeading
-        title="Frequently Asked Questions"
-        subtitle="Still unsure? Get quick answers here—or talk to Dana directly."
+        title="Common Questions About AI"
+        subtitle="Get answers to the most common questions about implementing AI in your business."
       />
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+      <div className="grid gap-8 mt-12">
         {faqs.map((faq, i) => (
-          <ExpandableCard
+          <Card
             key={i}
             icon={faq.iconKey}
-            title={faq.title}
-            description={faq.description}
-            expandedContent={
-              <>
-                {faq.answer}
-                <div className="mt-4">
-                  <DanaButton />
-                </div>
-              </>
-            }
+            title={faq.question}
+            description={faq.answer}
           />
         ))}
       </div>
     </SectionWrapper>
   );
-}
-
-export default FAQSection; 
+} 

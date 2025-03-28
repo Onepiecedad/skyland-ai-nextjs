@@ -1,138 +1,137 @@
 "use client";
 
-import { useState } from "react";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { SectionHeading } from "@/components/MainHeading";
-import { AnimatedButton } from "@/components/ui/AnimatedButton";
-import { Loader2, Send, CheckCircle, XCircle } from "lucide-react";
-import { useToast } from "@/contexts/ToastContext";
-import { InputField } from "@/components/ui/InputField";
+import { useState, FormEvent } from "react";
+import { DanaButton } from "@/components/ui/DanaButton";
 import { cn } from "@/lib/utils";
+import { glass, hover, transition, layout, typography } from "@/lib/theme";
 
-type Status = "idle" | "loading" | "success" | "error";
-
-function ContactSection() {
-  const { showToast } = useToast();
-  const [status, setStatus] = useState<Status>("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    website: "",
     message: "",
   });
 
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    website: "",
-    message: "",
-  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
-    const errs = { ...errors };
-    let valid = true;
-    if (!formData.name) (errs.name = "Name required"), (valid = false);
-    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email))
-      (errs.email = "Valid email required"), (valid = false);
-    if (formData.phone && !/^\+?\d{6,15}$/.test(formData.phone))
-      (errs.phone = "Invalid phone"), (valid = false);
-    if (formData.website && !/^https?:\/\/.+/.test(formData.website))
-      (errs.website = "Invalid website"), (valid = false);
-    if (!formData.message) (errs.message = "Message required"), (valid = false);
-    setErrors(errs);
-    return valid;
+    const newErrors: Record<string, string> = {};
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.message) newErrors.message = "Message is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: any) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validate()) return showToast("error", "Fix errors before sending.");
-    setStatus("loading");
+    if (!validate()) {
+      console.log("Fix errors before sending.");
+      return;
+    }
 
     try {
-      const webhook = "https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b";
-
-      await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        mode: "cors",
-        body: JSON.stringify({
-          "Full Name": formData.name,
-          "Email": formData.email,
-          "Phone Number": formData.phone,
-          "Companies": formData.website,
-          "Message": formData.message,
-          "User intent": "Contact form submission",
-          "Conversation Id": "form-" + Date.now(),
-          "Date Submitted": new Date().toISOString(),
-          "Source": "website_contact_form",
-        }),
-      });
-
-      setStatus("success");
-      showToast("success", "Message sent!");
-      setFormData({ name: "", email: "", phone: "", website: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    } catch (err: any) {
-      setStatus("error");
-      showToast("error", "Failed to send. Try again.");
-      setTimeout(() => setStatus("idle"), 3000);
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log("Message sent!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Failed to send message:", error);
     }
   };
 
   return (
-    <section id="contact" className="relative scroll-mt-24 py-16 sm:py-24 pb-32">
-      <SectionHeading
-        title="Get In Touch"
-        subtitle="Ready to transform your business with AI? Let's talk about your goals and how we can help you achieve them."
-      />
-
-      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-5 mt-12">
-        <InputField label="Name" id="name" value={formData.name} onChange={handleChange} error={errors.name} />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <InputField label="Email" id="email" type="email" value={formData.email} onChange={handleChange} error={errors.email} />
-          <InputField label="Phone (optional)" id="phone" type="tel" value={formData.phone} onChange={handleChange} error={errors.phone} />
-        </div>
-        <InputField label="Website (optional)" id="website" value={formData.website} onChange={handleChange} error={errors.website} />
-
-        <div className="space-y-1">
-          <label htmlFor="message" className="block text-sm font-light text-white/80">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            value={formData.message}
-            onChange={handleChange}
-            className={cn("w-full rounded-md p-3 resize-none", errors.message && "border border-red-400/40")}
-            placeholder="Tell us about your business..."
-          />
-          {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message}</p>}
+    <section className={cn("py-20", layout.container)}>
+      <div className={cn("grid", layout.cardGap, "items-center")}>
+        <div className={layout.elementSpacing}>
+          <h2 className={cn(typography.heading, "text-3xl sm:text-4xl")}>
+            Get in Touch
+          </h2>
+          <p className={cn(typography.paragraph, "max-w-2xl")}>
+            Ready to transform your business with AI? Let's discuss how we can help you achieve your goals.
+          </p>
         </div>
 
-        <div className="pt-4 flex justify-end">
-          <AnimatedButton
-            type="submit"
-            disabled={status === "loading"}
-            variant="primary"
-            size="lg"
-            className="w-full sm:w-auto"
-          >
-            {status === "loading" ? (
-              <Loader2 className="w-5 h-5 animate-spin mr-2" />
-            ) : (
-              <Send className="w-5 h-5 mr-2" />
-            )}
-            {status === "loading" ? "Sending..." : "Send Message"}
-          </AnimatedButton>
-        </div>
-      </form>
+        <form onSubmit={handleSubmit} className={cn(
+          "w-full max-w-xl",
+          glass.card,
+          transition.base,
+          hover.card,
+          "p-6"
+        )}>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                className={cn(
+                  "w-full px-4 py-2 rounded-lg",
+                  "bg-white/5 border border-white/10",
+                  "text-white placeholder-white/50",
+                  "focus:outline-none focus:ring-2 focus:ring-blue-500",
+                  errors.name && "border-red-500"
+                )}
+              />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={formData.email}
+                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                className={cn(
+                  "w-full px-4 py-2 rounded-lg",
+                  "bg-white/5 border border-white/10",
+                  "text-white placeholder-white/50",
+                  "focus:outline-none focus:ring-2 focus:ring-blue-500",
+                  errors.email && "border-red-500"
+                )}
+              />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-1">
+                Message
+              </label>
+              <textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                rows={4}
+                className={cn(
+                  "w-full px-4 py-2 rounded-lg",
+                  "bg-white/5 border border-white/10",
+                  "text-white placeholder-white/50",
+                  "focus:outline-none focus:ring-2 focus:ring-blue-500",
+                  errors.message && "border-red-500"
+                )}
+              />
+              {errors.message && (
+                <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+              )}
+            </div>
+
+            <div className="pt-4">
+              <DanaButton />
+            </div>
+          </div>
+        </form>
+      </div>
     </section>
   );
-}
-
-export default ContactSection; 
+} 

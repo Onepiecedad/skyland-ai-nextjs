@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { PrimaryButton } from '../ui/PrimaryButton';
 import { cn } from '../../lib/utils';
 import { glass, hover, transition } from "@/lib/theme";
 

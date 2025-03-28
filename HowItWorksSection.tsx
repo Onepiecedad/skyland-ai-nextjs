@@ -1,1 +1,0 @@
-export const HowItWorksSection = () => <section>How it Works</section>
