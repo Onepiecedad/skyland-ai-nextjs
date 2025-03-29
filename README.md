@@ -12,6 +12,7 @@ A modern web application for Skyland AI Solutions, built with React, TypeScript,
 - [Development Guide](#-running-the-project)
 - [Market Analysis](#-market-analysis--insights)
 - [Contributing](#-contributing)
+- [Webhooks & Integration](#-webhooks-&-integration)
 
 ## 🎯 Project Purpose
 
@@ -486,7 +487,7 @@ src/
 └── index.css            # Global styles and Tailwind imports
 ```
 
-## �� Current State
+## 📋 Current State
 
 The project is in active development with the following components implemented:
 - Basic application structure
@@ -812,3 +813,78 @@ The project's styling is organized into three main parts:
 # Aurora Background Documentation
 
 [Previous aurora documentation remains unchanged...] 
+
+## Webhooks & Integration
+
+### N8N Webhooks Configuration
+
+The site uses two different N8N webhooks for data handling:
+
+#### 1. Contact Form Webhook
+- **URL**: `https://skylandai.app.n8n.cloud/webhook/395ed9c4-a6dd-4428-91da-73e50b089783`
+- **Environment Variable**: `VITE_N8N_WEBHOOK_URL`
+- **Purpose**: Handles standard contact form submissions
+- **Data Structure**:
+  ```typescript
+  {
+    name: string;
+    email: string;
+    phone: string;
+    website?: string;
+    message: string;
+    timestamp: string;
+    source: 'website_contact_form';
+  }
+  ```
+
+#### 2. Dana Conversation Webhook
+- **URL**: `https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b`
+- **Purpose**: Handles AI conversation data from Dana
+- **Data Structure**:
+  ```typescript
+  {
+    "Full Name": string;
+    "Conversation Id": string;
+    "Date Submitted": string; // ISO format
+    "Email": string;
+    "Phone Number": string;
+    "Companies": string;
+    "User Intent": string;
+    "Message": string;
+    "Transcript": string;
+    "Summary": string;
+    "Sentiment": "positive" | "neutral" | "negative";
+    "Source": "dana_voice_agent";
+  }
+  ```
+
+### Testing Webhooks
+
+To test the webhooks, use the provided test scripts:
+
+1. **Contact Form Test**:
+```bash
+node test-webhook.js
+```
+
+2. **Dana Conversation Test**:
+```bash
+node test-dana-conversation.js
+```
+
+### Airtable Integration
+
+The webhooks send data to Airtable with the following field mappings:
+
+- Full Name → Name/Contact column
+- Email → Email column
+- Phone Number → Phone column
+- Companies → Company column
+- Message → Message/Notes column
+- User Intent → Lead Source/Intent column
+- Conversation Id → Unique ID column
+- Transcript → Notes/Conversation column
+- Summary → Summary/Notes column
+- Sentiment → Sentiment column
+- Source → Lead Source column
+- Date Submitted → Date column 
