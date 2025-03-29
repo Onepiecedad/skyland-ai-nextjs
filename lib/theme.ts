@@ -17,6 +17,7 @@ export const colors = {
   // Pure colors
   white: "#ffffff",
   black: "#000000",
+  transparent: "transparent",
   
   // Depth colors for gradients and effects
   blue: {
@@ -25,12 +26,30 @@ export const colors = {
     500: "#3b82f6",
     600: "#2563eb"
   },
-  
-  // Aurora colors
-  aurora: {
-    blue: "rgba(59,130,246,0.5)",
-    purple: "rgba(168,85,247,0.5)",
-    green: "rgba(16,185,129,0.5)"
+
+  indigo: {
+    300: "#a5b4fc"
+  },
+
+  violet: {
+    200: "#ddd6fe"
+  }
+};
+
+// Aurora effect configuration
+export const aurora = {
+  gradients: {
+    white: "repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)",
+    dark: "repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)",
+    colors: "repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)"
+  },
+  backgroundSize: "300%,_200%",
+  backgroundPosition: "50%_50%,50%_50%",
+  blur: "blur-[10px]",
+  after: {
+    backgroundSize: "200%,_100%",
+    backgroundAttachment: "fixed",
+    mixBlendMode: "difference" as const
   }
 };
 

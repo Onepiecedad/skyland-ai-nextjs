@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import React, { ReactNode } from "react";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
-  children: ReactNode;
+  children?: ReactNode;
   showRadialGradient?: boolean;
 }
 
@@ -17,7 +17,7 @@ export const AuroraBackground = ({
     <>
       <div
         className={cn(
-          "fixed inset-0 -z-10 overflow-hidden bg-zinc-50 dark:bg-zinc-900 transition-bg",
+          "fixed inset-0 -z-10 overflow-hidden bg-black",
           className
         )}
         {...props}
@@ -32,7 +32,7 @@ export const AuroraBackground = ({
             dark:[background-image:var(--dark-gradient),var(--aurora)]
             [background-size:300%,_200%]
             [background-position:50%_50%,50%_50%]
-            filter blur-[10px] invert dark:invert-0
+            filter blur-[10px]
             after:content-[""] after:absolute after:inset-0 
             after:[background-image:var(--white-gradient),var(--aurora)]
             after:dark:[background-image:var(--dark-gradient),var(--aurora)]
