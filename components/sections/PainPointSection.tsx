@@ -24,21 +24,21 @@ function PainPointSectionBase() {
         >
           {/* Section Heading */}
           <div className="text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white/85 leading-[1.1] tracking-tight text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-[2.25rem] font-light text-white/85 leading-[1.1] tracking-tight text-center">
               Which of These Problems Is Costing You the Most Right Now?
             </h2>
-            <div className="mt-4 space-y-2">
-              <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-2xl mx-auto text-center whitespace-pre-line">
-                {"These issues don't just slow you down—they quietly drain your time, energy, and\nprofit."}
+            <div className="mt-6 space-y-2">
+              <p className="text-base md:text-lg text-white/65 leading-relaxed max-w-[44rem] mx-auto text-center">
+                These issues don't just slow you down—they quietly drain your time, energy, and profit.
               </p>
-              <p className="text-base md:text-lg italic text-white/50 leading-relaxed max-w-2xl mx-auto text-center">
+              <p className="text-base md:text-lg italic text-white/50 leading-relaxed max-w-xl mx-auto text-center">
                 AI can start fixing them in days—not months.
               </p>
             </div>
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 w-full">
             <Card
               icon={<PhoneCall className="h-5 w-5 text-white/40 stroke-1.5" />}
               title="Every missed call could be a lost client."
@@ -67,7 +67,7 @@ function PainPointSectionBase() {
                 spacing.elementSpacing,
                 effects.glass.light,
                 radius.xl,
-                effects.hover.scale,
+                "transition duration-300 hover:shadow-xl hover:scale-[1.015]",
                 "min-h-[160px]"
               )}
             />
@@ -99,7 +99,7 @@ function PainPointSectionBase() {
                 spacing.elementSpacing,
                 effects.glass.light,
                 radius.xl,
-                effects.hover.scale,
+                "transition duration-300 hover:shadow-xl hover:scale-[1.015]",
                 "min-h-[160px]"
               )}
             />
@@ -130,7 +130,7 @@ function PainPointSectionBase() {
                 spacing.elementSpacing,
                 effects.glass.light,
                 radius.xl,
-                effects.hover.scale,
+                "transition duration-300 hover:shadow-xl hover:scale-[1.015]",
                 "min-h-[160px]"
               )}
             />
@@ -159,7 +159,7 @@ function PainPointSectionBase() {
                 spacing.elementSpacing,
                 effects.glass.light,
                 radius.xl,
-                effects.hover.scale,
+                "transition duration-300 hover:shadow-xl hover:scale-[1.015]",
                 "min-h-[160px]"
               )}
             />
