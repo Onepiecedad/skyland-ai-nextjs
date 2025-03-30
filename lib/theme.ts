@@ -28,6 +28,7 @@ export const spacing = {
     card: "p-6",
     section: "px-6 md:px-12",
     none: "",
+    modal: "p-6 md:p-8",
   },
   width: {
     full: "w-full",

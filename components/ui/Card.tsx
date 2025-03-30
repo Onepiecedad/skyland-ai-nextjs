@@ -58,14 +58,18 @@ function CardBase({
         tabIndex={0}
         data-theme-debug="Card"
       >
-        <div className={cn(spacing.flex.col)}>
-          {icon && <div className={cn(colors.text.accent, spacing.stack.sm)}>{icon}</div>}
-          <div>
-            <h3 className={cn(typography.heading.h3, colors.text.primary)}>
+        <div className="flex flex-col gap-4">
+          {icon && (
+            <div className="flex items-center justify-start">
+              {icon}
+            </div>
+          )}
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg md:text-xl font-medium text-white/90">
               {title}
             </h3>
             {description && (
-              <p className={cn(typography.text.sm, colors.text.secondary, spacing.stack.sm)}>
+              <p className="text-sm md:text-base text-white/60 leading-relaxed">
                 {description}
               </p>
             )}
@@ -75,33 +79,41 @@ function CardBase({
 
       {isOpen && (
         <Modal onClose={handleClose} isOpen={isOpen}>
-          <div className={cn(spacing.elementSpacing, spacing.maxWidth.lg)}>
-            <div className={cn(spacing.flex.between, spacing.stack.md)}>
-              <div>
-                {icon && <div className={cn(typography.icon, spacing.stack.md)}>{icon}</div>}
-                <h3 className={typography.heading.h3}>{title}</h3>
-                {description && <p className={cn(typography.text.base, spacing.stack.sm)}>{description}</p>}
+          <div className="flex flex-col h-full">
+            <div className="flex-none">
+              <div className={cn(spacing.flex.between, spacing.stack.md)}>
+                <div>
+                  {icon && <div className={cn(typography.icon, spacing.stack.md)}>{icon}</div>}
+                  <h3 className={typography.heading.h3}>{title}</h3>
+                  {description && <p className={cn(typography.text.base, spacing.stack.sm)}>{description}</p>}
+                </div>
               </div>
             </div>
-            {cta && <div className={cn(spacing.elementSpacing, typography.paragraph)}>{cta}</div>}
-            {showDanaButton && (
-              <button
-                onClick={onDanaClick}
-                className={cn(
-                  typography.buttonText,
-                  colors.text.primary,
-                  effects.glass.lighter,
-                  effects.hover.scale,
-                  radius.lg,
-                  spacing.padding.card,
-                  spacing.stack.md,
-                  effects.transition
-                )}
-                data-theme-debug="Card-Button"
-              >
-                Talk to Dana
-              </button>
-            )}
+            
+            <div className="flex-1 overflow-y-auto py-4">
+              {cta && <div className={cn(typography.paragraph)}>{cta}</div>}
+            </div>
+
+            <div className="flex-none pt-4">
+              {showDanaButton && (
+                <button
+                  onClick={onDanaClick}
+                  className={cn(
+                    typography.buttonText,
+                    colors.text.primary,
+                    effects.glass.lighter,
+                    effects.hover.scale,
+                    radius.lg,
+                    spacing.padding.card,
+                    spacing.stack.md,
+                    effects.transition
+                  )}
+                  data-theme-debug="Card-Button"
+                >
+                  Talk to Dana
+                </button>
+              )}
+            </div>
           </div>
         </Modal>
       )}

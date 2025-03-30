@@ -27,10 +27,14 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
             effects.glass.light,
             radius.xl,
             spacing.padding.modal,
-            "w-full max-w-xl"
+            "w-full max-w-xl",
+            "max-h-[90vh]",
+            "flex flex-col"
           )}
         >
-          {children}
+          <div className="overflow-y-auto flex-1">
+            {children}
+          </div>
         </Dialog.Panel>
       </div>
     </Dialog>

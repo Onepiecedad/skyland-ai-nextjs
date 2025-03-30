@@ -2,9 +2,10 @@
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { SectionHeading } from '@/components/MainHeading';
-import { spacing, typography, glass } from "@/lib/theme";
+import { spacing, typography, effects } from "@/lib/theme";
 import { cn } from "@/lib/utils";
-import { validate } from "@/lib/withValidation";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import type { ThemeSection } from "@/lib/utils/theme-validator";
 
 interface FAQ {
   question: string;
@@ -35,17 +36,17 @@ function FAQSectionBase() {
       />
 
       <div className={spacing.container}>
-        <div className={cn(spacing.gridCols[1], spacing.elementSpacing)}>
+        <div className={cn(spacing.stack.lg, spacing.elementSpacing)}>
           {faqs.map((faq, index) => (
             <div
               key={index}
               className={cn(
-                glass.layer1,
+                effects.glass.light,
                 spacing.padding.card,
                 "rounded-lg"
               )}
             >
-              <h3 className={cn(typography.heading, spacing.elementSpacing)}>{faq.question}</h3>
+              <h3 className={cn(typography.heading.h3, spacing.elementSpacing)}>{faq.question}</h3>
               <p className={typography.paragraph}>{faq.answer}</p>
             </div>
           ))}
@@ -55,4 +56,4 @@ function FAQSectionBase() {
   );
 }
 
-export const FAQSection = validate(FAQSectionBase); 
+export const FAQSection = withThemeValidation(FAQSectionBase, "FAQSection", ["sections", "typography", "spacing", "effects"] as ThemeSection[]); 

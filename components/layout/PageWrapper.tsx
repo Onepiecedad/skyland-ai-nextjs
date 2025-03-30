@@ -1,13 +1,15 @@
 import React from 'react';
 import { spacing } from "@/lib/theme";
 import { cn } from "@/lib/utils";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import type { ThemeSection } from "@/lib/utils/theme-validator";
 
 interface PageWrapperProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export function PageWrapper({ children, className }: PageWrapperProps) {
+function PageWrapperBase({ children, className }: PageWrapperProps) {
   return (
     <div className={cn(
       "relative w-full",
@@ -27,4 +29,8 @@ export function PageWrapper({ children, className }: PageWrapperProps) {
       </main>
     </div>
   );
-} 
+}
+
+const PageWrapper = withThemeValidation(PageWrapperBase, "PageWrapper", ["layout", "spacing"] as ThemeSection[]);
+
+export default PageWrapper; 

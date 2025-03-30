@@ -4,7 +4,8 @@ import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Container";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { cn } from "@/lib/utils";
-import { validate } from "@/lib/withValidation";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import type { ThemeSection } from "@/lib/utils/theme-validator";
 
 function HeroSectionBase() {
   return (
@@ -76,4 +77,6 @@ function HeroSectionBase() {
   );
 }
 
-export const HeroSection = validate(HeroSectionBase); 
+const HeroSection = withThemeValidation(HeroSectionBase, "HeroSection", ["sections", "typography", "spacing"] as ThemeSection[]); 
+
+export default HeroSection; 

@@ -1,6 +1,7 @@
-import { spacing, typography, glass } from "@/lib/theme";
+import { spacing, typography, effects } from "@/lib/theme";
 import { cn } from "@/lib/utils";
-import { validate } from "@/lib/withValidation";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import type { ThemeSection } from "@/lib/utils/theme-validator";
 
 interface Industry {
   title: string;
@@ -28,19 +29,19 @@ const industries: Industry[] = [
 
 function IndustrySolutionsSectionBase() {
   return (
-    <section className={spacing.padding.sectionY}>
+    <section className={spacing.section.base}>
       <div className={spacing.container}>
-        <div className={cn(spacing.gridCols[2], spacing.elementSpacing)}>
+        <div className={cn(spacing.stack.lg, spacing.elementSpacing)}>
           {industries.map((industry, index) => (
             <div
               key={index}
               className={cn(
-                glass.layer1,
+                effects.glass.light,
                 spacing.padding.card,
                 "rounded-lg"
               )}
             >
-              <h3 className={cn(typography.heading, spacing.elementSpacing)}>{industry.title}</h3>
+              <h3 className={cn(typography.heading.h3, spacing.elementSpacing)}>{industry.title}</h3>
               <p className={typography.paragraph}>{industry.description}</p>
             </div>
           ))}
@@ -50,4 +51,4 @@ function IndustrySolutionsSectionBase() {
   );
 }
 
-export const IndustrySolutionsSection = validate(IndustrySolutionsSectionBase); 
+export const IndustrySolutionsSection = withThemeValidation(IndustrySolutionsSectionBase, "IndustrySolutionsSection", ["sections", "typography", "spacing", "effects"] as ThemeSection[]); 

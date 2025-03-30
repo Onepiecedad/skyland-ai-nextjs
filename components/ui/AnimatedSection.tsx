@@ -1,7 +1,8 @@
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { spacing, transition, glass } from '@/lib/theme';
-import { validate } from '@/lib/withValidation';
+import { spacing, transition, effects } from '@/lib/theme';
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
+import type { ThemeSection } from "@/lib/utils/theme-validator";
 
 interface AnimatedSectionProps extends Omit<HTMLMotionProps<"div">, "className"> {
   className?: string;
@@ -26,8 +27,8 @@ function AnimatedSectionBase({
       }}
       className={cn(
         spacing.section.base,
-        transition,
-        useGlass && glass.layer1,
+        transition.base,
+        useGlass && effects.glass.light,
         className
       )}
       {...props}
@@ -42,4 +43,4 @@ function AnimatedSectionBase({
   );
 }
 
-export const AnimatedSection = validate(AnimatedSectionBase); 
+export const AnimatedSection = withThemeValidation(AnimatedSectionBase, "AnimatedSection", ["sections", "typography", "spacing", "effects", "transition"] as ThemeSection[]); 

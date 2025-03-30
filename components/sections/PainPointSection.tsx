@@ -5,7 +5,8 @@ import { PhoneCall, Inbox, Clock, Settings2 } from "lucide-react";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
-import { validate } from "@/lib/withValidation";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import type { ThemeSection } from "@/lib/utils/theme-validator";
 import { typography, effects, radius, spacing } from "@/lib/theme";
 
 function PainPointSectionBase() {
@@ -170,4 +171,6 @@ function PainPointSectionBase() {
   );
 }
 
-export const PainPointSection = validate(PainPointSectionBase); 
+const PainPointSection = withThemeValidation(PainPointSectionBase, "PainPointSection", ["sections", "typography", "spacing", "effects", "radius"] as ThemeSection[]); 
+
+export default PainPointSection; 
