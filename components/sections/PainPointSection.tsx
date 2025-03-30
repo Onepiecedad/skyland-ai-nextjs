@@ -3,34 +3,34 @@
 import { Card } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
 import { spacing, typography } from '@/lib/theme';
-import { IconKey } from '@/components/cards/iconMap';
-import { useOverlay } from '@/contexts/OverlayProvider';
-import { glass, hover, transition } from '@/lib/theme';
+import type { IconKey } from '@/components/cards/iconMap';
 
 interface PainPoint {
   iconKey: IconKey;
   title: string;
   description: string;
   expandedContent: React.ReactNode;
+  bullets: string[];
 }
 
 const painPoints: PainPoint[] = [
   {
-    iconKey: "phone",
+    iconKey: "missed-calls" as IconKey,
     title: "Missed Opportunities",
     description: "Every missed call, delayed response, or after-hours inquiry is potential revenue slipping away.",
     expandedContent: (
-      <div className="space-y-4">
+      <div className={spacing.elementSpacing}>
         <p>Every business faces the same challenge: opportunities don't wait for business hours.</p>
         <p>While you sleep, potential customers are:</p>
-        <ul className="list-disc list-inside space-y-2 pl-4">
-          <li>Searching for solutions</li>
-          <li>Making purchasing decisions</li>
-          <li>Moving on to competitors who respond faster</li>
+        <ul className={spacing.elementSpacing}>
+          <li>• Searching for your services</li>
+          <li>• Making purchasing decisions</li>
+          <li>• Choosing your competitors who respond faster</li>
         </ul>
-        <p>What if you never missed another opportunity—day or night?</p>
+        <p>Don't let another opportunity slip through the cracks.</p>
       </div>
-    )
+    ),
+    bullets: []
   },
   {
     iconKey: "message-square",
@@ -48,7 +48,8 @@ const painPoints: PainPoint[] = [
         <p>It's about cutting through the busywork that's holding you back.</p>
         <p>Now your business runs smoother. Your team works smarter. And you? You lead instead of manage.</p>
       </>
-    )
+    ),
+    bullets: []
   },
   {
     iconKey: "clock",
@@ -66,7 +67,8 @@ const painPoints: PainPoint[] = [
         <p>It's about making sure you never miss another opportunity.</p>
         <p>Now your leads get instant attention. Your pipeline stays full. And your business grows while you sleep.</p>
       </>
-    )
+    ),
+    bullets: []
   },
   {
     iconKey: "zap",
@@ -84,13 +86,12 @@ const painPoints: PainPoint[] = [
         <p>It's about empowering them to do more—without burning out.</p>
         <p>Now your business grows smoothly. Your team stays lean. And scaling feels natural, not painful.</p>
       </>
-    )
+    ),
+    bullets: []
   }
 ];
 
 export default function PainPointSection() {
-  const { openModal } = useOverlay();
-
   return (
     <section 
       id="pain-points" 
@@ -98,38 +99,22 @@ export default function PainPointSection() {
         "relative flex flex-col items-center justify-center",
         "min-h-[100vh] w-full",
         "bg-black/40 backdrop-blur-sm",
-        spacing.sectionY
+        spacing.padding.sectionY
       )}
+      data-theme-debug={`spacing:${spacing.padding.sectionY}`}
     >
-      <div className={cn("container mx-auto px-4 space-y-16", spacing.container)}>
-        <h2 className={cn(
-          typography.heading,
-          "text-center"
-        )}>
-          Common Pain Points We Solve
+      <div className={spacing.container}>
+        <h2 className={cn(typography.heading, "text-center", spacing.elementSpacing)}>
+          Common Pain Points
         </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className={spacing.gridCols[2]}>
           {painPoints.map((point, index) => (
             <Card
               key={index}
               icon={point.iconKey}
               title={point.title}
               description={point.description}
-              onClick={() => openModal(
-                <div className="space-y-6">
-                  <h2 className={cn(typography.heading, "text-2xl")}>{point.title}</h2>
-                  <div className={typography.paragraph}>
-                    {point.expandedContent}
-                  </div>
-                </div>
-              )}
-              className={cn(
-                glass.card,
-                hover.card,
-                transition.base,
-                "hover:scale-[1.02]"
-              )}
+              cta={point.expandedContent}
             />
           ))}
         </div>

@@ -11,12 +11,11 @@ export function SectionHeading({ title, subtitle, align = "center" }: SectionHea
   return (
     <div className={cn(
       spacing.elementSpacing,
-      "mb-12",
       align === "center" ? "text-center" : "text-left"
     )}>
-      <h2 className={typography.heading}>{title}</h2>
+      <h2 className={typography.heading.h2}>{title}</h2>
       {subtitle && (
-        <p className={typography.subheading}>{subtitle}</p>
+        <p className={typography.text.lg}>{subtitle}</p>
       )}
     </div>
   );

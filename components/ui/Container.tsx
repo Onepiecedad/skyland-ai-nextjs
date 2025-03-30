@@ -1,75 +1,39 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React from "react";
+import { spacing } from "@/lib/theme";
 import { GlassLayer } from "./GlassLayer";
 
-interface ContainerProps extends React.HTMLProps<HTMLDivElement> {
+interface ContainerProps {
+  children: React.ReactNode;
   className?: string;
-  glassIntensity?: "light" | "medium" | "heavy";
-  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
-  padding?: "none" | "sm" | "md" | "lg";
   glass?: boolean;
-  noGlassBorder?: boolean;
-  noGlassShadow?: boolean;
-  rounded?: boolean;
+  padding?: keyof typeof spacing.padding;
 }
 
-const maxWidthClasses = {
-  sm: "max-w-screen-sm",
-  md: "max-w-screen-md",
-  lg: "max-w-screen-lg",
-  xl: "max-w-screen-xl",
-  "2xl": "max-w-screen-2xl",
-  full: "max-w-full",
-};
-
-const paddingClasses = {
-  none: "p-0",
-  sm: "px-4 py-6",
-  md: "px-6 py-8",
-  lg: "px-8 py-12",
-};
-
-export function Container({
-  children,
-  className,
-  glassIntensity = "medium",
-  maxWidth = "xl",
-  padding = "md",
-  glass = true,
-  noGlassBorder = false,
-  noGlassShadow = false,
-  rounded = true,
-  ...props
+export function Container({ 
+  children, 
+  className, 
+  glass: useGlass = true,
+  padding = "none"
 }: ContainerProps) {
-  const content = (
-    <div className={cn(paddingClasses[padding])}>
-      {children}
-    </div>
+  const containerClasses = cn(
+    spacing.maxWidth.container,
+    spacing.padding[padding],
+    className
   );
 
+  if (useGlass) {
+    return (
+      <GlassLayer className={containerClasses}>
+        {children}
+      </GlassLayer>
+    );
+  }
+
   return (
-    <div
-      className={cn(
-        "mx-auto w-full",
-        maxWidthClasses[maxWidth],
-        className
-      )}
-      {...props}
-    >
-      {glass ? (
-        <GlassLayer 
-          intensity={glassIntensity}
-          noBorder={noGlassBorder}
-          noShadow={noGlassShadow}
-          rounded={rounded}
-        >
-          {content}
-        </GlassLayer>
-      ) : (
-        content
-      )}
+    <div className={containerClasses}>
+      {children}
     </div>
   );
 } 

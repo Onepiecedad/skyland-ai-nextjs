@@ -1,6 +1,6 @@
 // BaseCard.tsx
 import { useOverlay } from "@/components/overlay/OverlayProvider"
-import { defaultIconClass } from "@/lib/theme"
+import { typography } from "@/lib/theme"
 import clsx from "clsx"
 
 interface BaseCardProps {
@@ -39,7 +39,7 @@ export const BaseCard: React.FC<BaseCardProps> = ({
       onClick={handleClick}
     >
       <div className="flex items-start gap-4">
-        {icon && <div className={defaultIconClass}>{icon}</div>}
+        {icon && <div className={typography.icon}>{icon}</div>}
         <div>
           <h3 className="text-white font-semibold text-lg">{title}</h3>
           {description && <p className="text-sm text-white/70 mt-1">{description}</p>}

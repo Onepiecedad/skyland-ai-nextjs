@@ -3,30 +3,55 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8080 || next dev -p 3000",
+    "dev": "next dev -p 8080",
     "dev:clear": "powershell -ExecutionPolicy Bypass -File ./scripts/clear-port.ps1",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "format": "prettier --write .",
+    "validate": "tsc --noEmit"
   },
   "dependencies": {
-    "@11labs/react": "^0.0.8",
     "@heroicons/react": "^2.1.1",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.7",
     "framer-motion": "^10.18.0",
-    "lucide-react": "^0.344.0",
-    "next": "latest",
+    "lucide-react": "^0.485.0",
+    "next": "^15.2.4",
+    "node-fetch": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^15.2.4",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
     "autoprefixer": "^10.4.18",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.2",
     "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

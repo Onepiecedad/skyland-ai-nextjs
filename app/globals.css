@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .stack-space > * + * {
+    margin-top: 1rem;
+  }
+}
+
 :root {
   --black: #000000;
   --white: #ffffff;

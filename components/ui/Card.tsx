@@ -1,100 +1,88 @@
-import { ReactNode } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { glass, hover, transition, typography, spacing, colors, defaultIconClass } from "@/lib/theme";
-import { IconKey, iconMap } from "@/components/cards/iconMap";
-import { Brain } from "lucide-react";
-import { layout } from "@/lib/theme";
+import { typography, spacing, glass, radius, hover } from "@/lib/theme";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import { Modal } from "@/components/ui/Modal";
 
-interface CardProps {
-  icon?: IconKey;
-  title?: string;
-  description?: string | string[];
-  children?: ReactNode;
+export interface CardProps {
+  title: string;
+  description?: string;
+  icon?: React.ReactNode;
+  cta?: React.ReactNode;
+  showDanaButton?: boolean;
+  onDanaClick?: () => void;
   className?: string;
-  onClick?: () => void;
-  footer?: ReactNode;
-  headerContent?: ReactNode;
-  expandedContent?: ReactNode;
 }
 
-export function Card({ 
-  icon, 
-  title, 
-  description, 
-  children, 
+function CardBase({
+  title,
+  description,
+  icon,
+  cta,
+  showDanaButton,
+  onDanaClick,
   className,
-  onClick,
-  footer,
-  headerContent,
-  expandedContent
 }: CardProps) {
-  const Icon = icon ? (iconMap[icon] || Brain) : null;
-  const descriptions = Array.isArray(description) ? description : description ? [description] : [];
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
   return (
-    <div 
-      className={cn(
-        glass.card,
-        hover.card,
-        transition.base,
-        spacing.elementSpacing,
-        onClick && "cursor-pointer",
-        className
-      )}
-      onClick={onClick}
-    >
-      {/* Header */}
-      {(Icon || headerContent) && (
-        <div className={cn(
-          layout.flexCenter,
-          "gap-2 group"
-        )}>
-          {Icon && (
-            <Icon className={cn(
-              defaultIconClass,
-              spacing.icon.md,
-              `group-hover:text-[${colors.primary}]`
-            )} />
-          )}
-          {headerContent}
-        </div>
-      )}
-
-      {/* Content */}
-      <div className={cn(
-        spacing.elementSpacing,
-        !Icon && !headerContent && "-mt-6"
-      )}>
-        {title && (
-          <h3 className={cn(
-            typography.subheading,
-            "text-lg"
-          )}>
-            {title}
-          </h3>
+    <>
+      <button
+        className={cn(
+          glass.layer1,
+          spacing.padding.card,
+          radius.lg,
+          hover.scale,
+          "cursor-pointer transition duration-300 ease-in-out w-full text-left",
+          className
         )}
-        
-        {descriptions.length > 0 && (
-          <div className={spacing.elementSpacing}>
-            {descriptions.map((desc, index) => (
-              <p key={index} className={typography.paragraph}>{desc}</p>
-            ))}
+        onClick={handleOpen}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleOpen();
+          }
+        }}
+        tabIndex={0}
+        data-theme-debug={`glass:${glass.layer1}; spacing:${spacing.padding.card}; radius:${radius.lg}`}
+      >
+        <div className={spacing.flex.between}>
+          {icon && <div className={typography.icon}>{icon}</div>}
+          <div>
+            <h3 className={typography.heading.h3}>{title}</h3>
+            {description && <p className={typography.text.base}>{description}</p>}
           </div>
-        )}
-
-        {children}
-        {expandedContent}
-      </div>
-
-      {/* Footer */}
-      {footer && (
-        <div className={cn(
-          "mt-auto",
-          spacing.elementSpacing
-        )}>
-          {footer}
         </div>
+        {cta && <div className={spacing.elementSpacing}>{cta}</div>}
+      </button>
+
+      {isOpen && (
+        <Modal onClose={handleClose} isOpen={isOpen}>
+          <div className={cn(spacing.elementSpacing)}>
+            <div className="flex justify-between items-center">
+              <h3 className={typography.heading.h3}>{title}</h3>
+            </div>
+            {description && <p className={cn(typography.text.base, spacing.elementSpacing)}>{description}</p>}
+            {cta && <div className={spacing.elementSpacing}>{cta}</div>}
+            {showDanaButton && (
+              <button
+                onClick={onDanaClick}
+                className={cn(spacing.elementSpacing, "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600")}
+              >
+                Talk to Dana
+              </button>
+            )}
+          </div>
+        </Modal>
       )}
-    </div>
+    </>
   );
-} 
+}
+
+export const Card = withThemeValidation(
+  CardBase,
+  "Card",
+  ["typography", "spacing", "glass", "radius", "hover"]
+); 

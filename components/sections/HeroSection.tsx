@@ -1,124 +1,79 @@
 "use client";
 
-import React, { useRef } from 'react';
-import { Brain } from "lucide-react";
-import { DanaButton } from "@/components/ui/DanaButton";
-import { motion } from "framer-motion";
-import { colors, shadow, spacing, typography, glass, hover, transition, layout, sizes, zIndex } from "@/lib/theme";
+import { Logo } from "@/components/ui/Logo";
+import { Container } from "@/components/ui/Container";
+import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { cn } from "@/lib/utils";
-import { SectionWrapper } from "@/components/SectionWrapper";
+import { validate } from "@/lib/withValidation";
 
-export function HeroSection() {
-  const heroRef = useRef<HTMLElement>(null);
-
-  const handleDanaClick = () => {
-    // Dana widget open logic here
-  };
-
+function HeroSectionBase() {
   return (
-    <section
-      ref={heroRef}
+    <SectionWrapper
       id="hero"
-      className={cn(
-        "relative min-h-screen",
-        layout.flexCenter,
-        spacing.sectionY,
-        `bg-gradient-to-b from-[${colors.backgroundDark}] via-[${colors.backgroundDark}]/90 to-[${colors.backgroundDark}]`
-      )}
+      className="relative flex flex-col"
     >
-      {/* Logo top-left */}
-      <a
-        href="#"
-        className={cn(
-          "absolute",
-          spacing.positions.header,
-          layout.flexCenter,
-          "gap-2 group",
-          zIndex.modal
-        )}
-        onClick={(e) => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
+      {/* Logo positioned absolutely */}
+      <Logo className="absolute top-8 left-8 md:left-12" />
+      
+      {/* Main content centered */}
+      <Container
+        glass={false}
+        padding="none"
+        className="flex-1 flex items-center"
       >
-        <Brain className={cn(
-          spacing.icon.md,
-          `text-[${colors.primary}]`,
-          `group-hover:text-[${colors.primaryHover}]`,
-          transition.base
-        )} />
-        <span className={cn(
-          typography.label,
-          "tracking-widest",
-          `text-[${colors.textPrimary}]`,
-          `group-hover:text-[${colors.textSecondary}]`,
-          transition.base
-        )}>
-          SKYLAND AI
-        </span>
-      </a>
-
-      <div className={spacing.container}>
-        <div className={cn(
-          layout.gridCols[2],
-          "gap-8 md:gap-16 items-center"
-        )}>
-          {/* Headlines */}
-          <div className={spacing.elementSpacing}>
-            <h1 className={typography.heading}>
+        <div
+          className={cn(
+            "w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+            "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
+          )}
+        >
+          {/* Left column */}
+          <div
+            className={cn(
+              "flex flex-col justify-center",
+              "text-left",
+              "max-w-2xl"
+            )}
+          >
+            <h1 
+              className={cn(
+                "text-4xl md:text-5xl lg:text-6xl",
+                "font-light",
+                "text-white/70",
+                "tracking-normal",
+                "leading-tight",
+                "mt-6 mb-4"
+              )}
+            >
               What If Growing Your Business Didn't Mean More Work?
             </h1>
 
-            <div className={spacing.elementSpacing}>
-              <h2 className={cn(
-                typography.subheading,
-                "text-lg sm:text-xl lg:text-2xl"
-              )}>
+            <div className="space-y-6">
+              <h2 
+                className={cn(
+                  "text-lg md:text-xl",
+                  "text-white/80"
+                )}
+              >
                 What If AI Could Handle 80% of Your Work—Effortlessly?
               </h2>
-              <h3 className={cn(
-                typography.paragraph,
-                "text-base sm:text-lg lg:text-xl"
-              )}>
+              <h3 
+                className={cn(
+                  "text-base",
+                  "text-white/60"
+                )}
+              >
                 What If You Had an Employee That Worked 24/7—For Free?
               </h3>
             </div>
           </div>
 
-          {/* Dana button */}
-          <div className={cn(
-            "relative",
-            layout.flexCenter,
-            "md:justify-end",
-            zIndex.above
-          )}>
-            <div className={cn(
-              "w-full",
-              sizes.maxWidth.card,
-              glass.card,
-              hover.card,
-              transition.base,
-              spacing.elementSpacing,
-              spacing.padding.card
-            )}>
-              <div className={spacing.elementSpacing}>
-                <h4 className={cn(
-                  typography.subheading,
-                  "text-lg font-medium leading-snug"
-                )}>
-                  Want to save 10+ hours a week—without changing how you work?
-                </h4>
-                <p className={typography.paragraph}>
-                  What's the one task you'd automate today if you could?
-                </p>
-              </div>
-              <div className={spacing.padding.section}>
-                <DanaButton onClick={handleDanaClick} />
-              </div>
-            </div>
-          </div>
+          {/* Right column: empty for now but prepared for future content */}
+          <div className="hidden lg:block" />
         </div>
-      </div>
-    </section>
+      </Container>
+    </SectionWrapper>
   );
-} 
+}
+
+export const HeroSection = validate(HeroSectionBase); 

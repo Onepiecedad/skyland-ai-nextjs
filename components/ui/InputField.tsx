@@ -1,49 +1,46 @@
+import { spacing, typography } from "@/lib/theme";
 import { cn } from "@/lib/utils";
-import { typography, radius, glass, colors, spacing } from "@/lib/theme";
 
 interface InputFieldProps {
-  id: string;
   label: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
+  placeholder?: string;
   error?: string;
-  type?: "text" | "email" | "tel" | "url";
+  className?: string;
 }
 
-export function InputField({ id, label, value, onChange, error, type = "text" }: InputFieldProps) {
+export function InputField({
+  label,
+  type = "text",
+  placeholder,
+  error,
+  className
+}: InputFieldProps) {
   return (
-    <div className={spacing.elementSpacing}>
+    <div className={cn(
+      spacing.stack.sm,
+      className
+    )}>
       <label 
-        htmlFor={id} 
-        className={cn(
-          typography.label,
-          "block"
-        )}
+        className={typography.label}
       >
         {label}
       </label>
+      
       <input
-        id={id}
-        name={id}
         type={type}
-        value={value}
-        onChange={onChange}
+        placeholder={placeholder}
         className={cn(
-          "w-full p-3",
-          radius.small,
-          glass.layer1,
-          typography.paragraph,
+          "w-full bg-white/5 rounded-md px-4 py-2",
           "border border-white/10",
-          "focus:outline-none focus:border-white/20",
-          "placeholder:text-white/30",
-          error && "border-red-400/40"
+          "focus:outline-none focus:ring-2 focus:ring-blue-500/50"
         )}
-        placeholder={label}
       />
+
       {error && (
         <p className={cn(
-          typography.label,
-          "text-red-400"
+          typography.text.sm,
+          "text-red-500"
         )}>
           {error}
         </p>

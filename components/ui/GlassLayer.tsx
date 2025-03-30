@@ -1,49 +1,43 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { colors, glass, transition, radius } from "@/lib/theme";
-import React from "react";
+import { glass, border, radius, effects } from "@/lib/theme";
+import { withThemeValidation } from "@/lib/theme-validation";
 
-interface GlassLayerProps extends React.HTMLProps<HTMLDivElement> {
+type GlassIntensity = keyof typeof glass;
+
+interface GlassLayerProps {
   className?: string;
-  intensity?: "light" | "medium" | "heavy";
+  children?: React.ReactNode;
+  intensity?: GlassIntensity;
   noBorder?: boolean;
   noShadow?: boolean;
-  rounded?: boolean;
-  variant?: keyof typeof glass;
+  rounded?: keyof typeof radius;
 }
 
-export function GlassLayer({
+function GlassLayerBase({ 
+  className, 
   children,
-  className,
-  intensity = "medium",
+  intensity = "layer1",
   noBorder = false,
   noShadow = false,
-  rounded = true,
-  variant = "layer1",
-  ...props
+  rounded = "xl"
 }: GlassLayerProps) {
-  const intensityStyles = {
-    light: `bg-white/[0.03] backdrop-blur-[2px]`,
-    medium: `bg-white/[0.05] backdrop-blur-[4px]`,
-    heavy: `bg-white/[0.08] backdrop-blur-[6px]`,
-  };
-
   return (
-    <div
+    <div 
       className={cn(
-        "relative w-full",
-        rounded && radius.modal,
-        !noBorder && `border border-[${colors.borderGlass}]`,
-        !noShadow && "shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]",
-        glass[variant],
-        intensityStyles[intensity],
-        transition.base,
+        glass[intensity],
+        !noBorder && border.glass,
+        !noShadow && "shadow-lg",
+        radius[rounded],
+        effects.transition,
         className
       )}
-      {...props}
+      data-theme-debug={`glass-layer:intensity=${intensity},rounded=${rounded}`}
     >
       {children}
     </div>
   );
-} 
+}
+
+export const GlassLayer = withThemeValidation(GlassLayerBase); 

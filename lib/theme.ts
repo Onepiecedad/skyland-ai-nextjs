@@ -1,3 +1,9 @@
+// 🔒 theme.ts is now frozen. Design tokens are finalized and ready for production.
+// This file serves as the single source of truth for all design tokens in the application.
+// All components should reference these tokens instead of using hardcoded values.
+
+import { cn } from "@/lib/utils";
+
 // Colors used throughout the site
 export const colors = {
   // Text colors with depth
@@ -33,6 +39,24 @@ export const colors = {
 
   violet: {
     200: "#ddd6fe"
+  },
+
+  // Colors and backgrounds
+  text: {
+    primary: "text-white",
+    secondary: "text-white/85",
+    tertiary: "text-white/75",
+    accent: "text-blue-400",
+    accentHover: "group-hover:text-blue-300",
+    logo: {
+      icon: "text-blue-400 group-hover:text-blue-300",
+      text: "text-white/90 group-hover:text-white"
+    },
+    hero: {
+      heading: "text-white/80",
+      subheading: "text-white/70",
+      tertiary: "text-white/65"
+    }
   }
 };
 
@@ -63,49 +87,149 @@ export const zIndex = {
 
 // Sizes and dimensions
 export const sizes = {
-  maxWidth: {
-    card: "max-w-sm md:max-w-md",
-    container: "max-w-6xl",
-  },
+  card: "max-w-sm md:max-w-md",
 };
 
 // Spacing and layout
 export const spacing = {
-  sectionY: "py-20 sm:py-28",
   container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
   cardGap: "gap-6 sm:grid-cols-2 lg:grid-cols-3",
-  elementSpacing: "space-y-4",
+  elementSpacing: "stack-space",
+  section: {
+    base: "relative min-h-screen",
+    hero: {
+      outer: "min-h-screen pt-24 pb-10 md:pb-14",
+      inner: "space-y-6 md:space-y-8",
+      content: "space-y-4 md:space-y-6"
+    }
+  },
+  flex: {
+    center: "flex items-center justify-center",
+    between: "flex items-center justify-between",
+    col: "flex flex-col",
+    row: "flex flex-row",
+    responsive: "flex-col sm:flex-row"
+  },
   icon: {
     sm: "h-4 w-4",
     md: "h-6 w-6",
     lg: "h-8 w-8"
   },
   positions: {
-    header: "top-8 left-6 sm:left-10",
+    header: "top-8 left-6 sm:left-10"
   },
   padding: {
     card: "p-5",
-    section: "pt-3",
+    modal: "p-6",
+    sectionY: "py-8 md:py-12 lg:py-16",
+    lg: "py-12",
+    none: ""
   },
-};
-
-export const layout = {
-  flexCenter: "flex items-center justify-center",
-  flexBetween: "flex items-center justify-between",
+  width: {
+    full: "w-full",
+    screen: "w-screen",
+  },
+  maxWidth: {
+    sm: "max-w-sm",
+    md: "max-w-md",
+    lg: "max-w-4xl",
+    xl: "max-w-6xl",
+    "2xl": "max-w-screen-2xl",
+    full: "max-w-full",
+    hero: "max-w-2xl",
+    container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+  },
+  gap: {
+    sm: "gap-2",
+    md: "gap-4",
+    lg: "gap-6",
+    hero: "gap-8 md:gap-12 lg:gap-20"
+  },
   gridCols: {
     1: "grid grid-cols-1",
     2: "grid grid-cols-1 md:grid-cols-2",
     3: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-  }
+  },
+  stack: {
+    sm: "space-y-2",
+    md: "space-y-4",
+    lg: "space-y-8",
+    hero: "space-y-6 md:space-y-8",
+    sub: "space-y-4 md:space-y-6"
+  },
+  grid: {
+    base: "grid",
+    cols: {
+      1: "grid-cols-1",
+      2: "grid-cols-1 md:grid-cols-2",
+      3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+    },
+    center: "items-center",
+    hero: "grid grid-cols-1 md:grid-cols-2 items-center"
+  },
+  alignment: {
+    centerLeft: "text-center md:text-left"
+  },
+  size: {
+    heroRight: "w-full h-48 md:h-auto"
+  },
+  xs: "0.25rem",
+  sm: "0.5rem",
+  md: "1rem",
+  lg: "1.5rem",
+  xl: "2rem",
+  "2xl": "3rem",
+  "3xl": "4rem",
+  "4xl": "6rem"
 };
 
 // Typography styles
-export const typography = {
-  heading: "text-white/90 text-3xl sm:text-4xl md:text-5xl font-extralight tracking-[-0.03em] leading-tight",
-  subheading: "text-white/70 text-lg font-light max-w-2xl mx-auto mt-4",
-  paragraph: "text-white/70 text-base font-light",
-  label: "text-sm text-white/70",
-  buttonText: "text-sm font-medium text-white",
+export interface TypographyStyles {
+  text: {
+    base: string;
+    sm: string;
+    lg: string;
+  };
+  heading: {
+    h1: string;
+    h2: string;
+    h3: string;
+    h4: string;
+  };
+  hero: {
+    heading: string;
+    subheading: string;
+    tertiary: string;
+  };
+  logo: string;
+  label: string;
+  buttonText: string;
+  icon: string;
+  paragraph: string;
+}
+
+export const typography: TypographyStyles = {
+  text: {
+    base: "text-base leading-relaxed",
+    sm: "text-sm leading-relaxed",
+    lg: "text-lg leading-relaxed"
+  },
+  heading: {
+    h1: "text-4xl sm:text-5xl font-bold tracking-tight",
+    h2: "text-3xl sm:text-4xl font-semibold",
+    h3: "text-2xl sm:text-3xl font-medium",
+    h4: "text-xl sm:text-2xl font-medium"
+  },
+  hero: {
+    heading: "text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mt-6",
+    subheading: "text-lg md:text-xl text-white/80",
+    tertiary: "text-base text-white/60"
+  },
+  logo: "text-xl font-medium tracking-tight",
+  label: "text-sm font-medium",
+  buttonText: "text-sm font-medium",
+  icon: "text-lg",
+  paragraph: "text-base leading-relaxed text-white/80"
 };
 
 // Rounded corners for different elements
@@ -114,12 +238,25 @@ export const radius = {
   modal: "rounded-2xl",
   button: "rounded-full",
   small: "rounded-md",
+  none: "rounded-none",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  xl: "rounded-xl",
+  "2xl": "rounded-2xl",
+  full: "rounded-full"
 };
 
 // Shadows for depth
 export const shadow = {
   card: "shadow-md hover:shadow-xl transition-shadow duration-300",
   button: "shadow-md hover:shadow-lg transition-shadow duration-200",
+  none: "shadow-none",
+  sm: "shadow-sm",
+  md: "shadow-md",
+  lg: "shadow-lg",
+  xl: "shadow-xl",
+  "2xl": "shadow-2xl"
 };
 
 // Animations and transitions
@@ -136,20 +273,33 @@ export const font = {
 };
 
 // Glassmorphism effects
-interface GlassEffects {
-  card: string;
+export interface GlassEffects {
   layer1: string;
   layer2: string;
+  layer3: string;
   overlay: string;
-  modal: string;
 }
 
 export const glass: GlassEffects = {
-  card: "bg-black/20 backdrop-blur-lg border border-white/[0.08] rounded-xl",
-  layer1: "bg-black/20 backdrop-blur-sm",
-  layer2: "bg-black/40 backdrop-blur-md",
-  overlay: "bg-black/40 backdrop-blur-sm",
-  modal: "bg-black/30 backdrop-blur-lg border border-white/[0.08]"
+  layer1: cn(
+    "bg-white/5",
+    "backdrop-blur-sm",
+    "border border-white/10"
+  ),
+  layer2: cn(
+    "bg-white/10",
+    "backdrop-blur-md",
+    "border border-white/20"
+  ),
+  layer3: cn(
+    "bg-white/15",
+    "backdrop-blur-lg",
+    "border border-white/30"
+  ),
+  overlay: cn(
+    "bg-black/50",
+    "backdrop-blur-sm"
+  )
 };
 
 // Hover effects
@@ -158,12 +308,155 @@ export const hover = {
   scale: "hover:scale-[1.02]",
 };
 
-// Initialize dark mode
-export function initializeDarkMode() {
-  document.documentElement.classList.add('dark');
-  document.body.style.backgroundColor = colors.backgroundDark;
-  document.body.style.color = colors.textPrimary;
-}
+// Colors and effects
+export const effects = {
+  glass: {
+    light: "bg-white/10 hover:bg-white/20",
+    lighter: "bg-white/5 hover:bg-white/10"
+  },
+  text: {
+    gradient: "bg-gradient-to-r from-blue-400 to-purple-600 text-transparent bg-clip-text"
+  },
+  transition: "transition-all duration-200 ease-in-out",
+  hover: {
+    scale: "hover:scale-105",
+    lift: "hover:-translate-y-1"
+  }
+};
 
-// Default styling for icons
-export const defaultIconClass = "text-blue-400 flex-shrink-0"; 
+// Border tokens
+export const border = {
+  none: "border-0",
+  sm: "border",
+  md: "border-2",
+  lg: "border-4",
+  glass: "border border-white/[0.08]"
+};
+
+// Container defaults
+export const container = {
+  default: "max-w-6xl mx-auto px-6 sm:px-8"
+};
+
+// Gap tokens
+export const gap = {
+  sm: "gap-2",
+  md: "gap-4",
+  lg: "gap-6",
+  xl: "gap-8",
+  "2xl": "gap-12",
+  hero: "gap-8 md:gap-12 lg:gap-20"
+};
+
+// Grid tokens
+export const grid = {
+  base: "grid",
+  cols: {
+    1: "grid-cols-1",
+    2: "grid-cols-1 md:grid-cols-2",
+    3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+  },
+  hero: "grid grid-cols-1 md:grid-cols-2 items-center"
+};
+
+// Stack tokens
+export const stack = {
+  sm: "space-y-2",
+  md: "space-y-4",
+  lg: "space-y-8",
+  hero: "space-y-6 md:space-y-8"
+};
+
+// Alignment tokens
+export const alignment = {
+  centerLeft: "text-center md:text-left"
+};
+
+// Button theme - must be defined after all other tokens
+export const button = {
+  size: {
+    sm: "h-8 px-4",
+    md: "h-10 px-6",
+    lg: "h-12 px-8"
+  },
+  variant: {
+    primary: cn(
+      `bg-[${colors.primary}]`,
+      colors.text.primary,
+      `hover:bg-[${colors.primaryHover}]`
+    ),
+    secondary: cn(
+      `bg-[${colors.backgroundGlass}]`,
+      colors.text.primary,
+      `hover:bg-[${colors.backgroundGlass}]/20`
+    ),
+    outline: cn(
+      `bg-[${colors.transparent}]`,
+      colors.text.primary,
+      border.glass,
+      shadow.card
+    )
+  },
+  base: {
+    layout: spacing.flex.center,
+    radius: radius.button,
+    typography: typography.buttonText,
+    transition: transition.base,
+    shadow: shadow.button,
+    focus: "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white",
+    disabled: "disabled:pointer-events-none disabled:opacity-50"
+  }
+};
+
+export interface Theme {
+  colors: {
+    primary: string;
+    secondary: string;
+    background: string;
+    foreground: string;
+    [key: string]: string;
+  };
+  spacing: {
+    base: string;
+    sm: string;
+    lg: string;
+    [key: string]: string;
+  };
+  typography: {
+    h1: string;
+    h2: string;
+    h3: string;
+    h4: string;
+    [key: string]: string;
+  };
+  radius: {
+    sm: string;
+    md: string;
+    lg: string;
+    [key: string]: string;
+  };
+  transition: {
+    base: string;
+    fast: string;
+    slow: string;
+    [key: string]: string;
+  };
+  glass: {
+    base: string;
+    [key: string]: string;
+  };
+  sizes: {
+    card: string;
+    [key: string]: string;
+  };
+  hover: {
+    base: string;
+    [key: string]: string;
+  };
+  zIndex: {
+    modal: number;
+    overlay: number;
+    dropdown: number;
+    [key: string]: number;
+  };
+} 

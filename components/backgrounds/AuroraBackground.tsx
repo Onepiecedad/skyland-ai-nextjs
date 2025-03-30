@@ -1,18 +1,19 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React, { ReactNode } from "react";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children?: ReactNode;
   showRadialGradient?: boolean;
 }
 
-export const AuroraBackground = ({
+function AuroraBackgroundBase({
   className,
   children,
   showRadialGradient = true,
   ...props
-}: AuroraBackgroundProps) => {
+}: AuroraBackgroundProps) {
   return (
     <>
       <div
@@ -48,4 +49,10 @@ export const AuroraBackground = ({
       {children}
     </>
   );
-}; 
+}
+
+export const AuroraBackground = withThemeValidation(
+  AuroraBackgroundBase,
+  'AuroraBackground',
+  ['colors']
+); 

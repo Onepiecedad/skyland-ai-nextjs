@@ -1,6 +1,7 @@
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { spacing, transition, glass } from '@/lib/theme';
+import { validate } from '@/lib/withValidation';
 
 interface AnimatedSectionProps extends Omit<HTMLMotionProps<"div">, "className"> {
   className?: string;
@@ -8,7 +9,7 @@ interface AnimatedSectionProps extends Omit<HTMLMotionProps<"div">, "className">
   useGlass?: boolean;
 }
 
-export function AnimatedSection({ 
+function AnimatedSectionBase({ 
   children, 
   className,
   useGlass = false,
@@ -24,8 +25,8 @@ export function AnimatedSection({
         ease: "easeOut"
       }}
       className={cn(
-        spacing.sectionY,
-        transition.base,
+        spacing.section.base,
+        transition,
         useGlass && glass.layer1,
         className
       )}
@@ -39,4 +40,6 @@ export function AnimatedSection({
       </div>
     </motion.div>
   );
-} 
+}
+
+export const AnimatedSection = validate(AnimatedSectionBase); 

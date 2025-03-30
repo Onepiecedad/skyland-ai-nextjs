@@ -7,6 +7,7 @@ import { AboutSection } from './AboutSection';
 import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
 import { ContactSection } from './ContactSection';
+import { TestSection } from './TestSection';
 
 export function PageSections() {
   return (
@@ -20,6 +21,7 @@ export function PageSections() {
       <PricingSection />
       <FAQSection />
       <ContactSection />
+      <TestSection />
     </>
   );
 } 
