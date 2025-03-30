@@ -20,8 +20,11 @@ export function SectionWrapper({
     <section
       id={id}
       className={cn(
+        "relative w-full",
+        "min-h-screen",
+        "flex flex-col",
+        "items-center justify-center",
         spacing.section.base,
-        spacing.section.hero.outer,
         className
       )}
       data-theme-debug={dataThemeDebug}

@@ -10,7 +10,7 @@ function HeroSectionBase() {
   return (
     <SectionWrapper
       id="hero"
-      className="relative flex flex-col"
+      className="relative"
     >
       {/* Logo positioned absolutely */}
       <Logo className="absolute top-8 left-8 md:left-12" />

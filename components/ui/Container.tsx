@@ -18,7 +18,7 @@ export function Container({
   padding = "none"
 }: ContainerProps) {
   const containerClasses = cn(
-    spacing.maxWidth.container,
+    spacing.container,
     spacing.padding[padding],
     className
   );

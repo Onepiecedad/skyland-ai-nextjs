@@ -1,88 +1,132 @@
-import { typography, colors, spacing, radius, transition, glass, hover, zIndex } from '@/lib/theme';
-import { type Theme } from '../theme';
+import { 
+  typography, 
+  spacing, 
+  radius, 
+  colors,
+  effects,
+  border,
+  transition,
+  shadow
+} from "@/lib/theme";
+import { type Theme, type TypographyStyles, type GlassEffects } from '../theme';
 
-export type ThemeSection = 'typography' | 'colors' | 'spacing' | 'radius' | 'transition' | 'glass' | 'sizes' | 'hover' | 'zIndex';
+export type ThemeSection = 
+  | 'typography' 
+  | 'colors' 
+  | 'spacing' 
+  | 'radius' 
+  | 'transition'
+  | 'effects'
+  | 'border'
+  | 'shadow';
 
 type ThemeValue = string | number | { [key: string]: ThemeValue };
 
-function getAllSpacingValues(spacing: { [key: string]: ThemeValue }): string[] {
-  const values: string[] = [];
-  const traverse = (obj: { [key: string]: ThemeValue }) => {
-    for (const key in obj) {
-      if (typeof obj[key] === 'string') {
-        values.push(obj[key]);
-      } else if (typeof obj[key] === 'object') {
-        traverse(obj[key] as { [key: string]: ThemeValue });
-      }
+function getAllThemeValues(obj: any): string[] {
+  const values = new Set<string>();
+
+  function traverse(current: any) {
+    if (!current) return;
+    
+    if (typeof current === 'string') {
+      // Split the string in case it contains multiple classes
+      current.split(' ').forEach(cls => values.add(cls));
+    } else if (typeof current === 'object') {
+      Object.values(current).forEach(value => traverse(value));
     }
-  };
-  traverse(spacing);
-  return values;
+  }
+
+  traverse(obj);
+  return Array.from(values);
+}
+
+function classesMatch(usedClass: string, themeValue: string): boolean {
+  // Split compound classes
+  const usedParts = usedClass.split(' ');
+  const themeParts = themeValue.split(' ');
+  
+  // Check if any part matches
+  return usedParts.some(used => 
+    themeParts.some(theme => {
+      // Remove modifiers for base comparison
+      const usedBase = used.split(':').pop()?.split('/')[0] || '';
+      const themeBase = theme.split(':').pop()?.split('/')[0] || '';
+      return usedBase === themeBase || used.includes(themeBase) || theme.includes(usedBase);
+    })
+  );
 }
 
 // Hjälpfunktion för att validera att en komponent använder theme-värden
-export function validateThemeUsage(componentName: string, usedClasses: string[], requiredThemeSections: ThemeSection[]) {
-  // I development mode, validera theme-användning
-  if (process.env.NODE_ENV === 'development') {
-    const missingThemeValues: string[] = [];
+export function validateThemeUsage(
+  componentName: string,
+  usedClasses: string[],
+  allowedTokens: string[]
+): boolean {
+  console.log(`[Theme Debug] Validating ${componentName}`);
+  console.log(`[Theme Debug] Used classes:`, usedClasses);
 
-    requiredThemeSections.forEach(section => {
-      switch (section) {
-        case 'typography':
-          if (!usedClasses.some(cls => Object.values(typography).some(t => cls.includes(t)))) {
-            missingThemeValues.push('typography');
-          }
-          break;
-        case 'colors':
-          if (!usedClasses.some(cls => Object.values(colors).some(c => cls.includes(String(c))))) {
-            missingThemeValues.push('colors');
-          }
-          break;
-        case 'spacing':
-          const allSpacingValues = getAllSpacingValues(spacing);
-          if (!usedClasses.some(cls => allSpacingValues.some(s => cls.includes(s)))) {
-            missingThemeValues.push('spacing');
-          }
-          break;
-        case 'radius':
-          if (!usedClasses.some(cls => Object.values(radius).some(r => cls.includes(r)))) {
-            missingThemeValues.push('radius');
-          }
-          break;
-        case 'transition':
-          if (!usedClasses.some(cls => Object.values(transition).some(t => cls.includes(t)))) {
-            missingThemeValues.push('transition');
-          }
-          break;
-        case 'glass':
-          if (!usedClasses.some(cls => Object.values(glass).some(g => cls.includes(g)))) {
-            missingThemeValues.push('glass');
-          }
-          break;
-        case 'sizes':
-          if (!usedClasses.some(cls => Object.values(spacing.maxWidth).some(s => cls.includes(s)))) {
-            missingThemeValues.push('sizes');
-          }
-          break;
-        case 'hover':
-          if (!usedClasses.some(cls => Object.values(hover).some(h => cls.includes(h)))) {
-            missingThemeValues.push('hover');
-          }
-          break;
-        case 'zIndex':
-          if (!usedClasses.some(cls => Object.values(zIndex).some(z => cls.includes(z)))) {
-            missingThemeValues.push('zIndex');
-          }
-          break;
-      }
-    });
+  const themeTokens = {
+    typography,
+    spacing,
+    radius,
+    colors,
+    effects,
+    border,
+    transition,
+    shadow
+  };
 
-    if (missingThemeValues.length > 0) {
-      console.warn(
-        `[Theme Warning] Component "${componentName}" might not be using theme values for: ${missingThemeValues.join(', ')}. ` +
-        'Please ensure all styles come from the theme file.'
-      );
+  const missingThemeValues: string[] = [];
+
+  allowedTokens.forEach(section => {
+    let themeValues: string[] = [];
+    
+    switch (section) {
+      case 'typography':
+        themeValues = getAllThemeValues(typography);
+        break;
+      case 'spacing':
+        themeValues = getAllThemeValues(spacing);
+        break;
+      case 'radius':
+        themeValues = getAllThemeValues(radius);
+        break;
+      case 'colors':
+        themeValues = getAllThemeValues(colors);
+        break;
+      case 'effects':
+        themeValues = getAllThemeValues(effects);
+        break;
+      case 'border':
+        themeValues = getAllThemeValues(border);
+        break;
+      case 'transition':
+        themeValues = getAllThemeValues(transition);
+        break;
+      case 'shadow':
+        themeValues = getAllThemeValues(shadow);
+        break;
     }
+
+    console.log(`[Theme Debug] ${section} values:`, themeValues);
+
+    const matches = usedClasses.filter(cls => themeValues.includes(cls));
+    console.log(`[Theme Debug] Matches found for ${section}:`, matches);
+
+    if (matches.length === 0) {
+      missingThemeValues.push(section);
+    }
+  });
+
+  if (missingThemeValues.length > 0) {
+    console.warn(
+      `[Theme Warning] Component "${componentName}" is not using any values from these theme sections: ${missingThemeValues.join(', ')}.\n` +
+      'Please ensure all styles come from the theme file.'
+    );
+    return false;
+  } else {
+    console.log('[Theme Debug] All theme sections validated successfully!');
+    return true;
   }
 }
 

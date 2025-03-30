@@ -10,14 +10,17 @@ interface PageWrapperProps {
 export function PageWrapper({ children, className }: PageWrapperProps) {
   return (
     <div className={cn(
-      "relative min-h-screen",
-      spacing.flex.center,
-      "flex-col",
+      "relative w-full",
+      "flex flex-col",
+      "overflow-x-hidden",
+      "min-h-screen",
       className
     )}>
       {/* Main Content */}
       <main className={cn(
-        "flex-1 relative z-10",
+        "relative z-10",
+        "flex flex-col",
+        "w-full",
         className
       )}>
         {children}

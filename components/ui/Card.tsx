@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { typography, spacing, glass, radius, hover } from "@/lib/theme";
+import { 
+  typography, 
+  spacing, 
+  radius, 
+  colors, 
+  effects
+} from "@/lib/theme";
 import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
 import { Modal } from "@/components/ui/Modal";
 
@@ -32,11 +38,15 @@ function CardBase({
     <>
       <button
         className={cn(
-          glass.layer1,
+          effects.glass.light,
+          effects.hover.scale,
+          radius.xl,
           spacing.padding.card,
-          radius.lg,
-          hover.scale,
-          "cursor-pointer transition duration-300 ease-in-out w-full text-left",
+          effects.transition.base,
+          spacing.width.full,
+          spacing.height.full,
+          spacing.alignment.left,
+          effects.interaction.cursor.pointer,
           className
         )}
         onClick={handleOpen}
@@ -46,30 +56,48 @@ function CardBase({
           }
         }}
         tabIndex={0}
-        data-theme-debug={`glass:${glass.layer1}; spacing:${spacing.padding.card}; radius:${radius.lg}`}
+        data-theme-debug="Card"
       >
-        <div className={spacing.flex.between}>
-          {icon && <div className={typography.icon}>{icon}</div>}
+        <div className={cn(spacing.flex.col)}>
+          {icon && <div className={cn(colors.text.accent, spacing.stack.sm)}>{icon}</div>}
           <div>
-            <h3 className={typography.heading.h3}>{title}</h3>
-            {description && <p className={typography.text.base}>{description}</p>}
+            <h3 className={cn(typography.heading.h3, colors.text.primary)}>
+              {title}
+            </h3>
+            {description && (
+              <p className={cn(typography.text.sm, colors.text.secondary, spacing.stack.sm)}>
+                {description}
+              </p>
+            )}
           </div>
         </div>
-        {cta && <div className={spacing.elementSpacing}>{cta}</div>}
       </button>
 
       {isOpen && (
         <Modal onClose={handleClose} isOpen={isOpen}>
-          <div className={cn(spacing.elementSpacing)}>
-            <div className="flex justify-between items-center">
-              <h3 className={typography.heading.h3}>{title}</h3>
+          <div className={cn(spacing.elementSpacing, spacing.maxWidth.lg)}>
+            <div className={cn(spacing.flex.between, spacing.stack.md)}>
+              <div>
+                {icon && <div className={cn(typography.icon, spacing.stack.md)}>{icon}</div>}
+                <h3 className={typography.heading.h3}>{title}</h3>
+                {description && <p className={cn(typography.text.base, spacing.stack.sm)}>{description}</p>}
+              </div>
             </div>
-            {description && <p className={cn(typography.text.base, spacing.elementSpacing)}>{description}</p>}
-            {cta && <div className={spacing.elementSpacing}>{cta}</div>}
+            {cta && <div className={cn(spacing.elementSpacing, typography.paragraph)}>{cta}</div>}
             {showDanaButton && (
               <button
                 onClick={onDanaClick}
-                className={cn(spacing.elementSpacing, "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600")}
+                className={cn(
+                  typography.buttonText,
+                  colors.text.primary,
+                  effects.glass.lighter,
+                  effects.hover.scale,
+                  radius.lg,
+                  spacing.padding.card,
+                  spacing.stack.md,
+                  effects.transition
+                )}
+                data-theme-debug="Card-Button"
               >
                 Talk to Dana
               </button>
@@ -84,5 +112,5 @@ function CardBase({
 export const Card = withThemeValidation(
   CardBase,
   "Card",
-  ["typography", "spacing", "glass", "radius", "hover"]
+  ["typography", "spacing", "radius", "colors", "effects"]
 ); 

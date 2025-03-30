@@ -1,10 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { glass, border, radius, effects } from "@/lib/theme";
-import { withThemeValidation } from "@/lib/theme-validation";
+import { effects, border, radius } from "@/lib/theme";
+import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
 
-type GlassIntensity = keyof typeof glass;
+type GlassIntensity = "light" | "lighter";
 
 interface GlassLayerProps {
   className?: string;
@@ -18,7 +18,7 @@ interface GlassLayerProps {
 function GlassLayerBase({ 
   className, 
   children,
-  intensity = "layer1",
+  intensity = "light",
   noBorder = false,
   noShadow = false,
   rounded = "xl"
@@ -26,18 +26,22 @@ function GlassLayerBase({
   return (
     <div 
       className={cn(
-        glass[intensity],
+        intensity === "light" ? effects.glass.light : effects.glass.lighter,
         !noBorder && border.glass,
         !noShadow && "shadow-lg",
         radius[rounded],
-        effects.transition,
+        effects.transition.base,
         className
       )}
-      data-theme-debug={`glass-layer:intensity=${intensity},rounded=${rounded}`}
+      data-theme-debug={`GlassLayer:intensity=${intensity},rounded=${rounded}`}
     >
       {children}
     </div>
   );
 }
 
-export const GlassLayer = withThemeValidation(GlassLayerBase); 
+export const GlassLayer = withThemeValidation(
+  GlassLayerBase,
+  "GlassLayer",
+  ["effects", "border", "radius"]
+); 

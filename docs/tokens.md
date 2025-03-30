@@ -40,6 +40,13 @@ glass.medium          // Medium glass effect
 effects.hover.scale   // Hover scale effect
 ```
 
+### Interaction
+```typescript
+effects.interaction.cursor.pointer        // cursor-pointer
+effects.interaction.cursor.wait           // cursor-wait
+effects.interaction.cursor.notAllowed     // cursor-not-allowed
+```
+
 ### Layout
 ```typescript
 grid.cols.2           // 2-column responsive grid

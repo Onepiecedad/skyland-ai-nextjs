@@ -1,124 +1,173 @@
 'use client';
 
 import { Card } from '@/components/ui/Card';
-import { cn } from '@/lib/utils';
-import { spacing, typography } from '@/lib/theme';
-import type { IconKey } from '@/components/cards/iconMap';
+import { PhoneCall, Inbox, Clock, Settings2 } from "lucide-react";
+import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { Container } from "@/components/ui/Container";
+import { cn } from "@/lib/utils";
+import { validate } from "@/lib/withValidation";
+import { typography, effects, radius, spacing } from "@/lib/theme";
 
-interface PainPoint {
-  iconKey: IconKey;
-  title: string;
-  description: string;
-  expandedContent: React.ReactNode;
-  bullets: string[];
+function PainPointSectionBase() {
+  return (
+    <SectionWrapper id="pain-points">
+      <Container
+        glass={false}
+        padding="none"
+        className="flex-1 flex items-center py-8 md:py-6 lg:py-4"
+      >
+        <div
+          className={cn(
+            "w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+            "flex flex-col items-center"
+          )}
+        >
+          {/* Section Heading */}
+          <div className="text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white/85 leading-[1.1] tracking-tight text-center">
+              Which of These Problems Is Costing You the Most Right Now?
+            </h2>
+            <div className="mt-4 space-y-2">
+              <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-2xl mx-auto text-center whitespace-pre-line">
+                {"These issues don't just slow you down—they quietly drain your time, energy, and\nprofit."}
+              </p>
+              <p className="text-base md:text-lg italic text-white/50 leading-relaxed max-w-2xl mx-auto text-center">
+                AI can start fixing them in days—not months.
+              </p>
+            </div>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-8">
+            <Card
+              icon={<PhoneCall className="h-5 w-5 text-white/40 stroke-1.5" />}
+              title="Every missed call could be a lost client."
+              description="What if your business could respond instantly—even when you can't?"
+              cta={
+                <>
+                  <p>How many did you miss today?</p>
+                  <p>You're deep in work—then the phone rings. Again. And again.</p>
+                  <p>Same questions. Same interruptions. Same stress.</p>
+                  <p>And every missed call? That's a cold lead. A lost sale.</p>
+                  <p>How much is one client worth to you? Now multiply that by ten.</p>
+                  <p>Now imagine this:</p>
+                  <p>An AI voice assistant that answers instantly—24/7.</p>
+                  <p>It books appointments. Handles FAQs. Qualifies leads—without you lifting a finger.</p>
+                  <p>This isn't about replacing you.</p>
+                  <p>It's about reclaiming your time and sealing the cracks in your growth.</p>
+                  <p>Now your customers get answers. You stay in control.</p>
+                  <p>And growth stops leaking through the cracks.</p>
+                  <p>💬 Talk to Dana to see what that could look like in your business.</p>
+                </>
+              }
+              showDanaButton={true}
+              className={cn(
+                typography.text.base,
+                typography.heading.h3,
+                spacing.elementSpacing,
+                effects.glass.light,
+                radius.xl,
+                effects.hover.scale,
+                "min-h-[160px]"
+              )}
+            />
+
+            <Card
+              icon={<Inbox className="h-5 w-5 text-white/40 stroke-1.5" />}
+              title="Still buried in admin that doesn't grow your business?"
+              description="What if your daily busywork ran itself—without extra staff?"
+              cta={
+                <>
+                  <p>What if you could free up hours and finally focus on real growth?</p>
+                  <p>You didn't start your business to spend your days filling out forms, updating spreadsheets, or chasing paperwork.</p>
+                  <p>But somehow, all that "small stuff" eats up your time—and pulls your focus away from the work that actually moves the needle.</p>
+                  <p>It's not just exhausting. It's expensive.</p>
+                  <p>Because every hour spent on admin is an hour not spent on growth.</p>
+                  <p>Now imagine this:</p>
+                  <p>AI systems that quietly run your backend operations—automating reports, scheduling, client intake, follow-ups, and more.</p>
+                  <p>No new hires. No complicated tech.</p>
+                  <p>Just your workflows—streamlined and self-managing.</p>
+                  <p>This isn't about doing more.</p>
+                  <p>It's about finally doing what matters most.</p>
+                  <p>💬 Talk to Dana to find out what your business could automate first.</p>
+                </>
+              }
+              showDanaButton={true}
+              className={cn(
+                typography.text.base,
+                typography.heading.h3,
+                spacing.elementSpacing,
+                effects.glass.light,
+                radius.xl,
+                effects.hover.scale,
+                "min-h-[160px]"
+              )}
+            />
+
+            <Card
+              icon={<Clock className="h-5 w-5 text-white/40 stroke-1.5" />}
+              title="Losing leads because you didn't respond fast enough?"
+              description="What if your leads got a reply in seconds—not hours?"
+              cta={
+                <>
+                  <p>What if your leads never went cold again?</p>
+                  <p>You had their attention—but you didn't reply fast enough.</p>
+                  <p>They moved on. Or worse—your competitor beat you to it.</p>
+                  <p>In today's world, leads expect instant answers.</p>
+                  <p>If you're not responding within minutes, you're losing deals you never even knew you had.</p>
+                  <p>Now imagine this:</p>
+                  <p>AI-powered assistants that engage new leads the moment they reach out—via chat, voice, or form.</p>
+                  <p>They qualify, respond, and even book meetings while you focus on the work that matters.</p>
+                  <p>No missed messages. No cold leads.</p>
+                  <p>Just warm conversations happening on autopilot.</p>
+                  <p>💬 Talk to Dana to see how fast you could start winning back lost leads.</p>
+                </>
+              }
+              showDanaButton={true}
+              className={cn(
+                typography.text.base,
+                typography.heading.h3,
+                spacing.elementSpacing,
+                effects.glass.light,
+                radius.xl,
+                effects.hover.scale,
+                "min-h-[160px]"
+              )}
+            />
+
+            <Card
+              icon={<Settings2 className="h-5 w-5 text-white/40 stroke-1.5" />}
+              title="Scaling feels impossible without hiring more staff?"
+              description="What if your operations scaled automatically as your business grew?"
+              cta={
+                <>
+                  <p>What if you could serve more clients—without growing your team?</p>
+                  <p>Growth should feel exciting—not exhausting.</p>
+                  <p>But when every new client means more staff, more training, and more overhead… scaling starts to feel like a trap.</p>
+                  <p>What if your business could handle more leads, more clients, and more complexity—without growing your team?</p>
+                  <p>That's what AI automation delivers.</p>
+                  <p>It replaces manual busywork with intelligent systems that work behind the scenes—handling onboarding, follow-ups, scheduling, reporting, and more.</p>
+                  <p>No burnout. No bloated payroll.</p>
+                  <p>Just a lean, scalable business that grows without friction.</p>
+                  <p>💬 Talk to Dana to see how your business could scale faster—with less stress.</p>
+                </>
+              }
+              showDanaButton={true}
+              className={cn(
+                typography.text.base,
+                typography.heading.h3,
+                spacing.elementSpacing,
+                effects.glass.light,
+                radius.xl,
+                effects.hover.scale,
+                "min-h-[160px]"
+              )}
+            />
+          </div>
+        </div>
+      </Container>
+    </SectionWrapper>
+  );
 }
 
-const painPoints: PainPoint[] = [
-  {
-    iconKey: "missed-calls" as IconKey,
-    title: "Missed Opportunities",
-    description: "Every missed call, delayed response, or after-hours inquiry is potential revenue slipping away.",
-    expandedContent: (
-      <div className={spacing.elementSpacing}>
-        <p>Every business faces the same challenge: opportunities don't wait for business hours.</p>
-        <p>While you sleep, potential customers are:</p>
-        <ul className={spacing.elementSpacing}>
-          <li>• Searching for your services</li>
-          <li>• Making purchasing decisions</li>
-          <li>• Choosing your competitors who respond faster</li>
-        </ul>
-        <p>Don't let another opportunity slip through the cracks.</p>
-      </div>
-    ),
-    bullets: []
-  },
-  {
-    iconKey: "message-square",
-    title: "Still buried in admin that doesn't grow your business?",
-    description: "What if your daily busywork ran itself—without extra staff?",
-    expandedContent: (
-      <>
-        <p>Admin tasks are necessary—but not where your genius lies.</p>
-        <p>Every form filled. Every email sent. Every document processed.</p>
-        <p>It's all time you could spend on strategy. On growth. On life.</p>
-        <p>Picture this instead:</p>
-        <p>Your AI assistant handles it all. Forms? Filled. Emails? Drafted. Documents? Processed.</p>
-        <p>While you focus on what really matters: Growing your business.</p>
-        <p>This isn't about cutting corners.</p>
-        <p>It's about cutting through the busywork that's holding you back.</p>
-        <p>Now your business runs smoother. Your team works smarter. And you? You lead instead of manage.</p>
-      </>
-    ),
-    bullets: []
-  },
-  {
-    iconKey: "clock",
-    title: "Losing leads because you didn't respond fast enough?",
-    description: "What if your leads got a reply in seconds—not hours?",
-    expandedContent: (
-      <>
-        <p>In sales, timing is everything. But you can't be everywhere at once.</p>
-        <p>Every delayed response. Every missed opportunity. Every lost lead.</p>
-        <p>It all adds up to revenue slipping through your fingers.</p>
-        <p>But what if you could respond instantly—every time?</p>
-        <p>Your AI assistant never sleeps. Never delays. Never misses a chance.</p>
-        <p>It engages leads the moment they reach out. Qualifies them. Books meetings.</p>
-        <p>This isn't about replacing human connection.</p>
-        <p>It's about making sure you never miss another opportunity.</p>
-        <p>Now your leads get instant attention. Your pipeline stays full. And your business grows while you sleep.</p>
-      </>
-    ),
-    bullets: []
-  },
-  {
-    iconKey: "zap",
-    title: "Scaling feels impossible without hiring more staff?",
-    description: "What if your operations scaled automatically as your business grew?",
-    expandedContent: (
-      <>
-        <p>Growth should be exciting—not exhausting.</p>
-        <p>But right now? More clients mean more work. More work means more staff.</p>
-        <p>And more staff means more management, more overhead, more complexity.</p>
-        <p>Imagine a different way:</p>
-        <p>Your AI system scales instantly. Handles more volume. Maintains quality.</p>
-        <p>No hiring sprees. No training periods. No growing pains.</p>
-        <p>This isn't about replacing your team.</p>
-        <p>It's about empowering them to do more—without burning out.</p>
-        <p>Now your business grows smoothly. Your team stays lean. And scaling feels natural, not painful.</p>
-      </>
-    ),
-    bullets: []
-  }
-];
-
-export default function PainPointSection() {
-  return (
-    <section 
-      id="pain-points" 
-      className={cn(
-        "relative flex flex-col items-center justify-center",
-        "min-h-[100vh] w-full",
-        "bg-black/40 backdrop-blur-sm",
-        spacing.padding.sectionY
-      )}
-      data-theme-debug={`spacing:${spacing.padding.sectionY}`}
-    >
-      <div className={spacing.container}>
-        <h2 className={cn(typography.heading, "text-center", spacing.elementSpacing)}>
-          Common Pain Points
-        </h2>
-        <div className={spacing.gridCols[2]}>
-          {painPoints.map((point, index) => (
-            <Card
-              key={index}
-              icon={point.iconKey}
-              title={point.title}
-              description={point.description}
-              cta={point.expandedContent}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-} 
+export const PainPointSection = validate(PainPointSectionBase); 
