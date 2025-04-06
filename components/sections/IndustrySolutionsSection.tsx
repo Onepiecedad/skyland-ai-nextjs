@@ -1,54 +1,87 @@
-import { spacing, typography, effects } from "@/lib/theme";
-import { cn } from "@/lib/utils";
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
-import type { ThemeSection } from "@/lib/utils/theme-validator";
+'use client';
 
-interface Industry {
-  title: string;
-  description: string;
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { BaseSection } from '@/components/ui/BaseSection';
+import { ContentStack } from '@/components/ui/ContentStack';
+import { Card } from '@/components/ui/Card';
+import { GridSection } from '@/components/ui/GridSection';
+import { spacing, typography, colors, effects, radius } from '@/lib/theme';
+import { Building2, Factory, Stethoscope, BarChart3 } from 'lucide-react';
+
+interface IndustrySolutionsSectionProps {
+  className?: string;
 }
 
-const industries: Industry[] = [
-  {
-    title: "Healthcare",
-    description: "Streamline patient care, automate administrative tasks, and enhance medical record management with AI-powered solutions.",
-  },
-  {
-    title: "Finance",
-    description: "Automate risk assessment, fraud detection, and customer service while ensuring compliance and security.",
-  },
-  {
-    title: "Real Estate",
-    description: "Optimize property management, automate lead follow-ups, and streamline document processing with intelligent automation.",
-  },
-  {
-    title: "Legal",
-    description: "Enhance document review, automate contract analysis, and streamline case management with AI assistance.",
-  },
-];
+export function IndustrySolutionsSection({ className }: IndustrySolutionsSectionProps) {
+  const industries = [
+    {
+      id: "enterprise",
+      icon: <Building2 className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+      title: "Enterprise",
+      description: "Transform your business with scalable AI solutions.",
+    },
+    {
+      id: "manufacturing",
+      icon: <Factory className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+      title: "Manufacturing",
+      description: "Optimize production and quality control processes.",
+    },
+    {
+      id: "healthcare",
+      icon: <Stethoscope className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+      title: "Healthcare",
+      description: "Streamline patient care, scheduling, and administrative tasks.",
+    },
+    {
+      id: "finance",
+      icon: <BarChart3 className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+      title: "Finance",
+      description: "Enhance financial operations and risk management.",
+    }
+  ];
 
-function IndustrySolutionsSectionBase() {
   return (
-    <section className={spacing.section.base}>
-      <div className={spacing.container}>
-        <div className={cn(spacing.stack.lg, spacing.elementSpacing)}>
-          {industries.map((industry, index) => (
-            <div
-              key={index}
-              className={cn(
-                effects.glass.light,
-                spacing.padding.card,
-                "rounded-lg"
-              )}
-            >
-              <h3 className={cn(typography.heading.h3, spacing.elementSpacing)}>{industry.title}</h3>
-              <p className={typography.paragraph}>{industry.description}</p>
+    <BaseSection
+      id="industry-solutions"
+      className={cn(
+        spacing.section.base,
+        spacing.padding.section,
+        effects.glass,
+        className
+      )}
+      ariaLabel="Industry Solutions"
+    >
+      <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding, "w-full max-w-7xl")}>
+        <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
+          <h2 className={cn(typography.heading.h2, colors.text.primary)}>
+            Industry Solutions
+          </h2>
+          <p className={cn(typography.text.lg, colors.text.secondary, spacing.stack.md)}>
+            Discover how our AI solutions can transform your industry
+          </p>
+        </ContentStack>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
+          {industries.map((industry) => (
+            <div key={industry.id} className={cn(spacing.flex.col, spacing.gap.md)}>
+              {industry.icon}
+              <Card
+                title={industry.title}
+                description={industry.description}
+                ariaLabel={`AI for ${industry.title}`}
+                className={cn(
+                  effects.hover.scale,
+                  effects.transition.base,
+                  "bg-white/5 w-full",
+                  effects.shadow.card,
+                  radius.lg
+                )}
+              />
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </ContentStack>
+    </BaseSection>
   );
-}
-
-export const IndustrySolutionsSection = withThemeValidation(IndustrySolutionsSectionBase, "IndustrySolutionsSection", ["sections", "typography", "spacing", "effects"] as ThemeSection[]); 
+} 

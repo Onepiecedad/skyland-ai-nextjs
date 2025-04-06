@@ -1,47 +1,37 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { effects, border, radius } from "@/lib/theme";
+import { effects } from "@/lib/theme/tokens/effects";
 import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
 
-type GlassIntensity = "light" | "lighter";
-
 interface GlassLayerProps {
+  children: React.ReactNode;
   className?: string;
-  children?: React.ReactNode;
-  intensity?: GlassIntensity;
-  noBorder?: boolean;
-  noShadow?: boolean;
-  rounded?: keyof typeof radius;
+  intensity?: keyof typeof effects.glass;
+  suppressHydrationWarning?: boolean;
 }
 
-function GlassLayerBase({ 
-  className, 
+function GlassLayerBase({
   children,
-  intensity = "light",
-  noBorder = false,
-  noShadow = false,
-  rounded = "xl"
+  className,
+  intensity = 'medium',
+  suppressHydrationWarning
 }: GlassLayerProps) {
   return (
-    <div 
+    <div
       className={cn(
-        intensity === "light" ? effects.glass.light : effects.glass.lighter,
-        !noBorder && border.glass,
-        !noShadow && "shadow-lg",
-        radius[rounded],
-        effects.transition.base,
+        effects.glass[intensity],
         className
       )}
-      data-theme-debug={`GlassLayer:intensity=${intensity},rounded=${rounded}`}
+      suppressHydrationWarning={suppressHydrationWarning}
     >
       {children}
     </div>
   );
 }
 
-export const GlassLayer = withThemeValidation(
+export const GlassLayer = withThemeValidation<GlassLayerProps>(
   GlassLayerBase,
-  "GlassLayer",
-  ["effects", "border", "radius"]
+  'GlassLayer',
+  ['effects']
 ); 

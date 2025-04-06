@@ -11,8 +11,36 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        black: '#000000',
+        transparent: 'transparent',
+        'blue-300': '#93c5fd',
+        'blue-400': '#60a5fa',
+        'blue-500': '#3b82f6',
+        'indigo-300': '#a5b4fc',
+        'violet-200': '#ddd6fe',
+        primary: {
+          DEFAULT: '#4C00FF',
+          50: '#E5CCFF',
+          100: '#D1B3FF',
+          200: '#B280FF',
+          300: '#944DFF',
+          400: '#751AFF',
+          500: '#4C00FF',
+          600: '#3900BF',
+          700: '#260080',
+          800: '#130040',
+          900: '#000000',
+        },
+      },
+      ringColor: {
+        primary: '#4C00FF',
+      },
+      ringOpacity: {
+        50: '0.5',
+      },
       animation: {
-        aurora: "aurora 60s linear infinite",
+        aurora: "aurora 120s linear infinite",
       },
       keyframes: {
         aurora: {
@@ -20,7 +48,7 @@ const config: Config = {
             backgroundPosition: "50% 50%, 50% 50%",
           },
           to: {
-            backgroundPosition: "350% 50%, 350% 50%",
+            backgroundPosition: "150% 50%, 150% 50%",
           },
         },
       },

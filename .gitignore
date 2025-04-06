@@ -59,3 +59,11 @@ next-env.d.ts
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Keep example file
+!.env.example

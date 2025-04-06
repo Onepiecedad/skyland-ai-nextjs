@@ -1,6 +1,6 @@
 // BaseCard.tsx
 import { useOverlay } from "@/components/overlay/OverlayProvider"
-import { typography } from "@/lib/theme"
+import { typography } from "@/lib/theme/typography"
 import clsx from "clsx"
 
 interface BaseCardProps {

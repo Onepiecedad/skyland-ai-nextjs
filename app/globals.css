@@ -2,43 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --transparent: transparent;
+    --blue-300: rgb(147 197 253);
+    --blue-400: rgb(96 165 250);
+    --blue-500: rgb(59 130 246);
+    --indigo-300: rgb(165 180 252);
+    --violet-200: rgb(221 214 254);
+  }
+
+  body {
+    @apply text-white bg-zinc-900 antialiased;
+  }
+
+  /* Override for third-party text with insufficient contrast */
+  .text-token-text-tertiary,
+  .text-token-text-tertiary *,
+  [class*="text-token-text-tertiary"],
+  div[class*="text-token-text-tertiary"],
+  div[class*="text-token-text-tertiary"] > *,
+  div[class*="text-token-text-tertiary"] div,
+  div[class*="text-token-text-tertiary"] span {
+    @apply text-white/95 font-medium;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Fix for unnamed home link */
+  a[href="/"][data-discover="true"] {
+    @apply sr-only;
+  }
+
+  /* Add visible home link */
+  body > div.flex > div.flex::before {
+    content: "Skyland AI";
+    @apply fixed top-6 left-6 z-50 text-lg font-bold text-white;
+    @apply hover:opacity-80;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500/50;
+  }
+
+  /* Additional contrast fixes for specific elements */
+  div.text-sm.text-token-text-tertiary,
+  div.cursor-pointer.text-token-text-tertiary {
+    @apply text-white font-medium;
+    opacity: 0.95;
+  }
+}
+
 @layer components {
   .stack-space > * + * {
     margin-top: 1rem;
   }
+
+  .bg-aurora {
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(102, 0, 255, 0.1), transparent 70%);
+    background-size: 200% 200%, 200% 200%;
+    background-position: 0 0, 0 0;
+    background-repeat: no-repeat;
+  }
+
+  @supports not (background: radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%)) {
+    .bg-aurora {
+      background: linear-gradient(135deg, rgba(76, 0, 255, 0.1), transparent);
+    }
+    
+    .animate-aurora {
+      animation: none;
+    }
+  }
+
+  .animate-aurora {
+    animation: aurora 60s linear infinite;
+  }
 }
 
-:root {
-  --black: #000000;
-  --white: #ffffff;
-  --transparent: transparent;
-  --blue-300: #93c5fd;
-  --blue-400: #60a5fa;
-  --blue-500: #3b82f6;
-  --indigo-300: #a5b4fc;
-  --violet-200: #ddd6fe;
-}
-
-body {
-  @apply bg-black text-white;
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2000ms;
+  }
 }
 
 @keyframes aurora {
-  0% {
-    background-position: 50% 0%;
+  from {
+    background-position: 50% 50%;
   }
-  50% {
-    background-position: 50% 100%;
+  to {
+    background-position: 350% 50%;
   }
-  100% {
-    background-position: 50% 0%;
-  }
-}
-
-.animate-aurora {
-  animation: aurora 60s ease-in-out infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2000ms;
 } 

@@ -1,23 +1,40 @@
+'use client';
+
 import React from 'react';
-import { validateThemeUsage } from '../utils/theme-validator';
 import type { ThemeSection } from '../utils/theme-validator';
+import { validateThemeUsage } from '../utils/theme-validator';
+
+type WithThemeValidationProps = {
+  themeTokens?: string[];
+  debug?: boolean;
+  skip?: boolean;
+};
+
+type ComponentWithRef<P> = P & WithThemeValidationProps & { ref?: React.Ref<any> };
 
 export function withThemeValidation<P extends { className?: string }>(
   WrappedComponent: React.ComponentType<P>,
   componentName: string,
-  requiredThemeSections: ThemeSection[]
-) {
-  return function ThemeValidatedComponent(props: P) {
+  requiredThemeSections: ThemeSection[],
+  options: { skip?: boolean } = { skip: true }
+): React.ComponentType<ComponentWithRef<P>> {
+  function ValidatedComponent(props: ComponentWithRef<P>) {
+    const { themeTokens = [], debug = false, skip = options.skip, className = '', ...componentProps } = props;
+
     React.useEffect(() => {
-      if (props.className) {
+      if (!skip && className) {
         validateThemeUsage(
           componentName,
-          props.className.split(' '),
-          requiredThemeSections
+          [...themeTokens, ...className.split(' ')],
+          requiredThemeSections,
+          debug
         );
       }
-    }, [props.className]);
+    }, [className, themeTokens, debug, skip]);
 
-    return <WrappedComponent {...props} />;
-  };
+    return <WrappedComponent {...(componentProps as P)} className={className} />;
+  }
+
+  ValidatedComponent.displayName = `withThemeValidation(${componentName})`;
+  return ValidatedComponent;
 } 

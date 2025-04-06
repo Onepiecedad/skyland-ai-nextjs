@@ -1,8 +1,8 @@
 import React from 'react';
-import { spacing } from "@/lib/theme";
+import { spacing } from "@/lib/theme/tokens/spacing";
 import { cn } from "@/lib/utils";
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
-import type { ThemeSection } from "@/lib/utils/theme-validator";
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
+import type { ThemeSection } from '@/lib/utils/theme-validator';
 
 interface PageWrapperProps {
   children: React.ReactNode;
@@ -11,26 +11,17 @@ interface PageWrapperProps {
 
 function PageWrapperBase({ children, className }: PageWrapperProps) {
   return (
-    <div className={cn(
-      "relative w-full",
-      "flex flex-col",
-      "overflow-x-hidden",
-      "min-h-screen",
+    <main className={cn(
+      spacing.section.base,
+      spacing.width.full,
+      spacing.flex.col,
+      spacing.gap.lg,
       className
     )}>
-      {/* Main Content */}
-      <main className={cn(
-        "relative z-10",
-        "flex flex-col",
-        "w-full",
-        className
-      )}>
-        {children}
-      </main>
-    </div>
+      {children}
+    </main>
   );
 }
 
-const PageWrapper = withThemeValidation(PageWrapperBase, "PageWrapper", ["layout", "spacing"] as ThemeSection[]);
-
-export default PageWrapper; 
+const themeSections: ThemeSection[] = ['spacing', 'layout'];
+export const PageWrapper = withThemeValidation(PageWrapperBase, "PageWrapper", themeSections); 

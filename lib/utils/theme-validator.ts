@@ -1,132 +1,250 @@
-import { 
-  typography, 
-  spacing, 
-  radius, 
-  colors,
-  effects,
-  border,
-  transition,
-  shadow
-} from "@/lib/theme";
-import { type Theme, type TypographyStyles, type GlassEffects } from '../theme';
+import { typography } from "../theme/tokens/typography";
+import { spacing } from "../theme/tokens/spacing";
+import { radius } from "../theme/tokens/radius";
+import { colors } from "../theme/tokens/colors";
+import { effects } from "../theme/tokens/effects";
+import { layout } from "../theme/tokens/layout";
+import { border } from "../theme/tokens/border";
+import { warnOnce, logThemeDebugInfo } from './theme-debug';
 
 export type ThemeSection = 
   | 'typography' 
   | 'colors' 
   | 'spacing' 
-  | 'radius' 
-  | 'transition'
+  | 'radius'
   | 'effects'
-  | 'border'
-  | 'shadow';
+  | 'layout'
+  | 'border';
 
-type ThemeValue = string | number | { [key: string]: ThemeValue };
+type ThemeTokens = {
+  typography: typeof typography;
+  spacing: typeof spacing;
+  radius: typeof radius;
+  colors: typeof colors;
+  effects: typeof effects;
+  layout: typeof layout;
+  border: typeof border;
+};
 
-function getAllThemeValues(obj: any): string[] {
-  const values = new Set<string>();
+type RecursiveRecord = {
+  [key: string]: string | number | RecursiveRecord;
+};
 
-  function traverse(current: any) {
+const themeTokens: ThemeTokens = {
+  typography,
+  spacing,
+  radius,
+  colors,
+  effects,
+  layout,
+  border
+};
+
+type ThemeValue = {
+  path: string;
+  value: string;
+  parts: string[];
+};
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+function debugLog(...args: unknown[]): void {
+  if (isDevelopment) {
+    console.log(...args);
+  }
+}
+
+type ClassPart = {
+  original: string;
+  normalized: string;
+};
+
+function normalizeClassName(className: string): string {
+  // Remove responsive/state prefixes while preserving the base class
+  return className.replace(/^(sm|md|lg|xl|2xl|hover|focus|active|group-hover|dark):/g, '');
+}
+
+function getClassParts(className: string): ClassPart[] {
+  // Split compound classes and normalize each part
+  return className.split(' ')
+    .map(part => part.trim())
+    .filter(Boolean)
+    .map(part => ({
+      original: part,
+      normalized: normalizeClassName(part)
+    }));
+}
+
+function getValueFromPath(obj: any, path: string[]): string | undefined {
+  let current = obj;
+  for (const key of path) {
+    if (current === undefined || current === null) return undefined;
+    current = current[key];
+  }
+  return typeof current === 'string' ? current : undefined;
+}
+
+function getAllThemeValues(obj: RecursiveRecord, section: ThemeSection): ThemeValue[] {
+  const values: ThemeValue[] = [];
+
+  function traverse(current: RecursiveRecord | string | number, path: string[] = []): void {
     if (!current) return;
     
     if (typeof current === 'string') {
-      // Split the string in case it contains multiple classes
-      current.split(' ').forEach(cls => values.add(cls));
+      // Add both the object path and individual classes
+      const fullPath = [section, ...path].join('.');
+      const classes = current.split(' ').map(cls => cls.trim()).filter(Boolean);
+      
+      values.push({
+        path: fullPath,
+        value: current,
+        parts: classes
+      });
     } else if (typeof current === 'object') {
-      Object.values(current).forEach(value => traverse(value));
+      Object.entries(current).forEach(([key, value]) => {
+        traverse(value, [...path, key]);
+      });
     }
   }
 
   traverse(obj);
-  return Array.from(values);
+  return values;
 }
 
-function classesMatch(usedClass: string, themeValue: string): boolean {
-  // Split compound classes
-  const usedParts = usedClass.split(' ');
-  const themeParts = themeValue.split(' ');
+function classesMatch(usedClass: string, themeValue: ThemeValue): boolean {
+  // First check if it's a direct object path reference
+  if (usedClass === themeValue.path) {
+    return true;
+  }
+
+  // If the used class is an object path, get its actual value
+  if (usedClass.includes('.')) {
+    const pathParts = usedClass.split('.');
+    const section = pathParts[0] as ThemeSection;
+    if (section && themeTokens[section]) {
+      const value = getValueFromPath(themeTokens[section], pathParts.slice(1));
+      if (value === themeValue.value) {
+        return true;
+      }
+      usedClass = value || usedClass;
+    }
+  }
+
+  // Get all parts of the used class, including original and normalized versions
+  const usedParts = getClassParts(usedClass);
   
-  // Check if any part matches
-  return usedParts.some(used => 
-    themeParts.some(theme => {
-      // Remove modifiers for base comparison
-      const usedBase = used.split(':').pop()?.split('/')[0] || '';
-      const themeBase = theme.split(':').pop()?.split('/')[0] || '';
-      return usedBase === themeBase || used.includes(themeBase) || theme.includes(usedBase);
-    })
-  );
+  // For each part of the used class, check if it matches any theme value
+  return usedParts.some(({ original, normalized }) => {
+    // Check for exact matches (including responsive variants)
+    if (themeValue.parts.includes(original)) {
+      return true;
+    }
+
+    // Check for normalized matches (without responsive/state prefixes)
+    if (themeValue.parts.some(part => normalizeClassName(part) === normalized)) {
+      return true;
+    }
+
+    // Check for partial matches (e.g., "text-lg" in "hover:text-lg")
+    return themeValue.parts.some(part => {
+      const normalizedPart = normalizeClassName(part);
+      return normalizedPart.includes(normalized) || normalized.includes(normalizedPart);
+    });
+  });
 }
 
-// Hjälpfunktion för att validera att en komponent använder theme-värden
 export function validateThemeUsage(
   componentName: string,
   usedClasses: string[],
-  allowedTokens: string[]
-): boolean {
-  console.log(`[Theme Debug] Validating ${componentName}`);
-  console.log(`[Theme Debug] Used classes:`, usedClasses);
+  requiredThemeSections: ThemeSection[],
+  debug: boolean = false
+): void {
+  if (process.env.NODE_ENV !== 'development' || !process.env.NEXT_PUBLIC_THEME_DEBUG) {
+    return;
+  }
 
-  const themeTokens = {
-    typography,
-    spacing,
-    radius,
-    colors,
-    effects,
-    border,
-    transition,
-    shadow
-  };
+  // Get all unique classes from the component
+  const uniqueClasses = Array.from(new Set(usedClasses));
 
-  const missingThemeValues: string[] = [];
+  if (debug) {
+    debugLog(
+      `[Theme Validation] Component: ${componentName}`,
+      '\nUsed classes:', uniqueClasses
+    );
+  }
 
-  allowedTokens.forEach(section => {
-    let themeValues: string[] = [];
-    
-    switch (section) {
-      case 'typography':
-        themeValues = getAllThemeValues(typography);
-        break;
-      case 'spacing':
-        themeValues = getAllThemeValues(spacing);
-        break;
-      case 'radius':
-        themeValues = getAllThemeValues(radius);
-        break;
-      case 'colors':
-        themeValues = getAllThemeValues(colors);
-        break;
-      case 'effects':
-        themeValues = getAllThemeValues(effects);
-        break;
-      case 'border':
-        themeValues = getAllThemeValues(border);
-        break;
-      case 'transition':
-        themeValues = getAllThemeValues(transition);
-        break;
-      case 'shadow':
-        themeValues = getAllThemeValues(shadow);
-        break;
+  const foundMatches: Partial<Record<ThemeSection, Set<string>>> = {};
+  const unmatchedClasses: Set<string> = new Set(uniqueClasses);
+
+  // Get theme values for each required section
+  requiredThemeSections.forEach(section => {
+    foundMatches[section] = new Set();
+    const themeValues = getAllThemeValues(themeTokens[section], section);
+
+    if (debug) {
+      debugLog(
+        `[Theme Validation] ${section} theme values:`,
+        themeValues.map(v => `${v.path} = ${v.value}`)
+      );
     }
 
-    console.log(`[Theme Debug] ${section} values:`, themeValues);
+    uniqueClasses.forEach(usedClass => {
+      const matches = themeValues.filter(token => 
+        classesMatch(usedClass, token)
+      );
+      
+      if (matches.length > 0) {
+        matches.forEach(match => {
+          foundMatches[section]!.add(match.path);
+          unmatchedClasses.delete(usedClass);
+        });
+      } else if (debug) {
+        debugLog(
+          `[Theme Validation] No matches found for class "${usedClass}" in section "${section}"`
+        );
+      }
+    });
 
-    const matches = usedClasses.filter(cls => themeValues.includes(cls));
-    console.log(`[Theme Debug] Matches found for ${section}:`, matches);
-
-    if (matches.length === 0) {
-      missingThemeValues.push(section);
+    if (debug) {
+      debugLog(
+        `[Theme Validation] ${section} matches:`,
+        Array.from(foundMatches[section] || [])
+      );
     }
   });
 
-  if (missingThemeValues.length > 0) {
-    console.warn(
-      `[Theme Warning] Component "${componentName}" is not using any values from these theme sections: ${missingThemeValues.join(', ')}.\n` +
-      'Please ensure all styles come from the theme file.'
+  // Check which sections are missing tokens
+  const missingSections = requiredThemeSections.filter(
+    section => !foundMatches[section] || foundMatches[section]!.size === 0
+  );
+
+  if (missingSections.length > 0 && debug) {
+    const foundTokens = requiredThemeSections
+      .filter(section => foundMatches[section] && foundMatches[section]!.size > 0)
+      .map(section => ({
+        section,
+        tokens: Array.from(foundMatches[section]!)
+      }));
+
+    warnOnce(
+      `[Theme Validation Warning] Component "${componentName}" is not using any values from theme sections: ${missingSections.join(', ')}`,
+      '\nFound tokens:', foundTokens.map(({ section, tokens }) => `\n  ${section}: ${tokens.join(', ')}`),
+      '\nUnmatched classes:', Array.from(unmatchedClasses)
     );
-    return false;
-  } else {
-    console.log('[Theme Debug] All theme sections validated successfully!');
-    return true;
+
+    if (debug) {
+      logThemeDebugInfo({
+        componentName,
+        usedClasses: uniqueClasses,
+        matchedSections: Object.fromEntries(
+          Object.entries(foundMatches).map(([section, tokens]) => [
+            section,
+            Array.from(tokens || [])
+          ])
+        ) as Record<ThemeSection, string[]>,
+        unmatchedClasses: Array.from(unmatchedClasses)
+      });
+    }
   }
 }
 
@@ -135,11 +253,9 @@ export interface ThemeValidationResult {
   errors: string[];
 }
 
-export function validateTheme(theme: Partial<Theme>): ThemeValidationResult {
+export function validateTheme(theme: Partial<ThemeTokens>): ThemeValidationResult {
   const errors: string[] = [];
   
-  // Add your theme validation logic here
-  // Example:
   if (!theme.colors) {
     errors.push('Theme must include colors');
   }
@@ -154,15 +270,15 @@ export function validateTheme(theme: Partial<Theme>): ThemeValidationResult {
   };
 }
 
-export function validateThemeProperty<T extends keyof Theme>(
-  theme: Partial<Theme>,
+export function validateThemeProperty<T extends keyof ThemeTokens>(
+  theme: Partial<ThemeTokens>,
   property: T,
   requiredKeys: string[]
 ): ThemeValidationResult {
   const errors: string[] = [];
   
   if (!theme[property]) {
-    errors.push(`Theme must include ${property}`);
+    errors.push(`Theme must include ${String(property)}`);
     return { isValid: false, errors };
   }
   
@@ -170,7 +286,7 @@ export function validateThemeProperty<T extends keyof Theme>(
   const missingKeys = requiredKeys.filter(key => !propertyValue[key]);
   
   if (missingKeys.length > 0) {
-    errors.push(`Missing required ${property} keys: ${missingKeys.join(', ')}`);
+    errors.push(`Missing required ${String(property)} keys: ${missingKeys.join(', ')}`);
   }
   
   return {

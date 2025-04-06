@@ -1,4 +1,4 @@
-import { colors } from './theme';
+import { colors } from './aurora/theme';
 
 export function initializeDarkMode() {
   document.documentElement.classList.add('dark');

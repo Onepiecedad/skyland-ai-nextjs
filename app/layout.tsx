@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AuroraBackground } from "@/components/backgrounds";
-import { typography } from "@/lib/theme";
+import { colors } from "@/lib/theme/tokens/colors";
+import { typography } from "@/lib/theme/tokens/typography";
 import { cn } from "@/lib/utils";
+import { Inter } from 'next/font/google';
+import { SectionProvider } from "@/lib/context/SectionContext";
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI'],
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
-  title: "Skyland AI",
-  description: "AI-powered business automation",
-  icons: {
-    icon: "/favicon.ico"
-  }
+  title: "Skyland AI - Transforming Business with AI",
+  description: "Discover how Skyland AI can help your business leverage artificial intelligence for automation, insights, and growth.",
 };
 
 export default function RootLayout({
@@ -18,16 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark [color-scheme:dark]">
-      <body className={cn(
-        "min-h-screen bg-zinc-50 dark:bg-zinc-900",
-        typography.text.base
-      )}>
-        <AuroraBackground>
-          <div className="relative z-10">
-            {children}
-          </div>
-        </AuroraBackground>
+    <html lang="en" className={cn("dark", inter.variable)}>
+      <body
+        className={cn(
+          colors.surface.default,
+          typography.text.base,
+          "font-sans antialiased"
+        )}
+      >
+        <SectionProvider>
+          {children}
+        </SectionProvider>
       </body>
     </html>
   );

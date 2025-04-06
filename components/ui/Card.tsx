@@ -1,128 +1,174 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { 
-  typography, 
-  spacing, 
-  radius, 
-  colors, 
-  effects
-} from "@/lib/theme";
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
-import { Modal } from "@/components/ui/Modal";
+import { useId, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
+import { typography } from '@/lib/theme/tokens/typography';
+import { colors } from '@/lib/theme/tokens/colors';
+import { layout } from '@/lib/theme/tokens/layout';
+import { effects } from '@/lib/theme/tokens/effects';
+import { radius } from '@/lib/theme/tokens/radius';
+import { Modal } from './Modal';
 
-export interface CardProps {
+interface CardProps {
   title: string;
-  description?: string;
-  icon?: React.ReactNode;
-  cta?: React.ReactNode;
-  showDanaButton?: boolean;
-  onDanaClick?: () => void;
+  description: string;
+  expandedContent?: React.ReactNode;
   className?: string;
+  ariaLabel?: string;
+  variant?: 'three' | 'four' | 'six';
+  centerText?: boolean;
 }
 
 function CardBase({
   title,
   description,
-  icon,
-  cta,
-  showDanaButton,
-  onDanaClick,
+  expandedContent,
   className,
+  ariaLabel,
+  variant = 'three',
+  centerText = false
 }: CardProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const generatedId = useId();
+  const descriptionId = `${generatedId}-description`;
 
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const handleOpenModal = () => {
+    if (expandedContent) {
+      setIsModalOpen(true);
+    }
+  };
 
-  return (
-    <>
-      <button
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (expandedContent && (e.key === 'Enter' || e.key === ' ' || e.key === 'Space')) {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+  };
+
+  const textAlignment = centerText ? 'text-center' : 'text-left';
+
+  // Anpassa rubriken beroende på variant och textlängd
+  const getTitleElement = () => {
+    // Specialhantering för kortare titlar eller speciella varianter
+    if (variant === 'four' && title.length <= 15) {
+      return (
+        <h3 className={cn(
+          typography.heading.h3,
+          colors.text.primary,
+          'mb-3 tracking-tight break-words hyphens-auto'
+        )}>
+          {title}
+        </h3>
+      );
+    }
+
+    // Anpassa rubrikstorleken baserat på variant
+    const headingSize = 
+      variant === 'four' ? typography.heading.h4 : 
+      variant === 'six' ? typography.heading.h5 : 
+      typography.heading.h3;
+
+    return (
+      <h3 className={cn(
+        headingSize,
+        colors.text.primary,
+        'mb-3 tracking-tight break-words hyphens-auto whitespace-normal'
+      )}>
+        {title}
+      </h3>
+    );
+  };
+
+  const cardContent = (
+    <div className={cn(
+      'flex flex-col justify-between h-full',
+      typography.text.base, 
+      colors.text.primary,
+      textAlignment,
+      'break-words hyphens-auto overflow-hidden',
+      centerText ? 'items-center' : ''
+    )}>
+      {getTitleElement()}
+      <p
+        id={descriptionId}
         className={cn(
-          effects.glass.light,
-          effects.hover.scale,
-          radius.xl,
-          spacing.padding.card,
-          effects.transition.base,
-          spacing.width.full,
-          spacing.height.full,
-          spacing.alignment.left,
-          effects.interaction.cursor.pointer,
-          className
+          variant === 'four' ? typography.text.sm : typography.text.base,
+          colors.text.secondary,
+          'max-w-prose break-words hyphens-auto whitespace-normal',
+          centerText ? 'mx-auto' : ''
         )}
-        onClick={handleOpen}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleOpen();
-          }
-        }}
-        tabIndex={0}
-        data-theme-debug="Card"
       >
-        <div className="flex flex-col gap-4">
-          {icon && (
-            <div className="flex items-center justify-start">
-              {icon}
-            </div>
+        {description}
+      </p>
+    </div>
+  );
+
+  // Standardklasser för alla kort
+  const standardCardClasses = cn(
+    // Grundlayout men utan bakgrund
+    'flex flex-col justify-between rounded-xl min-w-[220px]',
+    layout.card.responsive[variant],
+    // Premium effekter för korten
+    "backdrop-blur-sm bg-white/5 border border-white/10 hover:border-white/20",
+    effects.shadow.premium,
+    effects.hover.premium,
+    effects.transition.base,
+    radius.lg,
+    // Typografi
+    typography.text.base,
+    colors.text.primary,
+    // Ytterligare anpassning
+    textAlignment,
+    'h-full',
+    className
+  );
+
+  // If there's expandedContent, make the card a button for better accessibility
+  if (expandedContent) {
+    return (
+      <>
+        <button
+          type="button"
+          onClick={handleOpenModal}
+          onKeyDown={handleKeyDown}
+          aria-label={ariaLabel || title}
+          aria-expanded={isModalOpen}
+          aria-controls={`${descriptionId}-modal`}
+          className={cn(
+            standardCardClasses,
+            'cursor-pointer w-full',
+            typography.weight.normal,
+            'hover:shadow-xl hover:border-white/20'
           )}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg md:text-xl font-medium text-white/90">
-              {title}
-            </h3>
-            {description && (
-              <p className="text-sm md:text-base text-white/60 leading-relaxed">
-                {description}
-              </p>
-            )}
-          </div>
-        </div>
-      </button>
-
-      {isOpen && (
-        <Modal onClose={handleClose} isOpen={isOpen}>
-          <div className="flex flex-col h-full">
-            <div className="flex-none">
-              <div className={cn(spacing.flex.between, spacing.stack.md)}>
-                <div>
-                  {icon && <div className={cn(typography.icon, spacing.stack.md)}>{icon}</div>}
-                  <h3 className={typography.heading.h3}>{title}</h3>
-                  {description && <p className={cn(typography.text.base, spacing.stack.sm)}>{description}</p>}
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto py-4">
-              {cta && <div className={cn(typography.paragraph)}>{cta}</div>}
-            </div>
-
-            <div className="flex-none pt-4">
-              {showDanaButton && (
-                <button
-                  onClick={onDanaClick}
-                  className={cn(
-                    typography.buttonText,
-                    colors.text.primary,
-                    effects.glass.lighter,
-                    effects.hover.scale,
-                    radius.lg,
-                    spacing.padding.card,
-                    spacing.stack.md,
-                    effects.transition
-                  )}
-                  data-theme-debug="Card-Button"
-                >
-                  Talk to Dana
-                </button>
-              )}
-            </div>
-          </div>
+        >
+          {cardContent}
+        </button>
+        
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          closeButtonLabel="Close"
+          aria-labelledby={`${descriptionId}-title`}
+        >
+          {expandedContent}
         </Modal>
-      )}
-    </>
+      </>
+    );
+  }
+
+  // For cards without expandedContent, use a regular div
+  return (
+    <div
+      role="article"
+      aria-label={ariaLabel || title}
+      className={standardCardClasses}
+    >
+      {cardContent}
+    </div>
   );
 }
 
-export const Card = withThemeValidation(
+export const Card = withThemeValidation<CardProps>(
   CardBase,
-  "Card",
-  ["typography", "spacing", "radius", "colors", "effects"]
+  'Card',
+  ['typography', 'colors', 'layout', 'effects', 'radius']
 ); 

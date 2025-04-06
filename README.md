@@ -10,6 +10,7 @@ A modern web application for Skyland AI Solutions, built with React, TypeScript,
 - [Implementation Progress](#-implementation-progress)
 - [Technical Implementation](#-tech-stack)
 - [Development Guide](#-running-the-project)
+- [Theme Validation](#-theme-validation)
 - [Market Analysis](#-market-analysis--insights)
 - [Contributing](#-contributing)
 - [Webhooks & Integration](#-webhooks-&-integration)
@@ -516,6 +517,9 @@ The application will be available at `http://localhost:8080`
 - `npm run build` - Build for production
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
+
+### Theme Validation
+For detailed information about our theme validation system and component development guidelines, see [Theme Validation Guide](docs/THEME_VALIDATION.md).
 
 ### Dependencies
 

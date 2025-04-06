@@ -1,107 +1,218 @@
 'use client';
 
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { SectionHeading } from '@/components/MainHeading';
-import { spacing, typography, effects, radius } from "@/lib/theme";
-import { cn } from "@/lib/utils";
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
-import type { ThemeSection } from "@/lib/utils/theme-validator";
+import React from 'react';
+import { BaseSection } from "@/components/ui/BaseSection";
+import { ContentStack } from "@/components/ui/ContentStack";
 import { Card } from "@/components/ui/Card";
+import { GridSection } from "@/components/ui/GridSection";
+import { cn } from "@/lib/utils";
+import { colors } from "@/lib/theme/tokens/colors";
+import { effects } from "@/lib/theme/tokens/effects";
+import { radius } from "@/lib/theme/tokens/radius";
+import { spacing } from "@/lib/theme/tokens/spacing";
+import { typography } from "@/lib/theme/tokens/typography";
+import { Search, Lightbulb, Rocket, Target } from 'lucide-react';
 
-interface Step {
-  title: string;
-  subtitle: string;
-  description: string;
-  details: string[];
-}
-
-const steps: Step[] = [
+const howItWorksSteps = [
   {
-    title: "Book Your Free AI Strategy Call",
-    subtitle: "Let's Talk About What's Not Working—And How to Fix It Fast",
-    description: "Let's break down your workflow to uncover time-wasters, bottlenecks, and untapped opportunities—then map out how AI can fix them fast.",
-    details: [
-      "This 15-minute call is where your transformation starts.",
-      "We'll walk through your daily workflows and identify what's costing you time, money, and momentum.",
-      "You'll get expert insight into what's possible with AI—without the jargon or sales pitch.",
-      "Just clarity, strategy, and next steps you can act on."
-    ]
+    id: "discovery",
+    icon: <Search className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Discovery",
+    description: "We analyze your business to identify the highest-impact opportunities for AI.",
+    modalContent: (
+      <ContentStack spacing="md">
+        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
+          In-Depth Business Analysis
+        </h4>
+        <div className={cn(spacing.stack.md)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            What we assess:
+          </p>
+          <div className={cn(spacing.stack.sm)}>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Current workflows and bottlenecks
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Time-consuming manual tasks
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Growth opportunities
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Cost reduction potential
+            </p>
+          </div>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            We identify exactly where AI can create the most value for your business.
+          </p>
+        </div>
+      </ContentStack>
+    )
   },
   {
-    title: "Get Your Custom AI Plan",
-    subtitle: "Your Custom AI Plan—Built for Growth and Efficiency",
-    description: "You'll receive a personalized automation roadmap—tailored to your workflows, goals, and growth potential.",
-    details: [
-      "After the strategy call, you'll receive a tailored automation plan based on your workflows, goals, and biggest opportunities.",
-      "No generic advice—just clear, actionable next steps.",
-      "We'll show you what to automate, how it works, and the results you can expect.",
-      "You'll know exactly what it costs, what it delivers, and how quickly it can go live—so you can move forward with total confidence."
-    ]
+    id: "solution-design",
+    icon: <Lightbulb className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Solution Design",
+    description: "We create a custom AI solution tailored to your specific needs and goals.",
+    modalContent: (
+      <ContentStack spacing="md">
+        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
+          Custom Solution Development
+        </h4>
+        <div className={cn(spacing.stack.md)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Our design process:
+          </p>
+          <div className={cn(spacing.stack.sm)}>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Tailored AI architecture
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Integration planning
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Workflow optimization
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • ROI projections
+            </p>
+          </div>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Every solution is built specifically for your business needs and goals.
+          </p>
+        </div>
+      </ContentStack>
+    )
   },
   {
-    title: "We Build & Test Your AI Solution",
-    subtitle: "Your AI Solution—Fully Built, Tested, and Ready to Launch",
-    description: "We build, train, and test your custom AI system—so it's ready to perform from day one.",
-    details: [
-      "Once you approve the plan, we get to work.",
-      "Your custom AI system is built, trained, and configured to match your workflows, rules, and preferences.",
-      "We handle the complexity—so you don't have to lift a finger.",
-      "You'll preview the system, test it live, and make any final tweaks—so it works exactly how you want it.",
-      "Launch in days, not months."
-    ]
+    id: "implementation",
+    icon: <Rocket className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Implementation",
+    description: "We deploy your AI solution with minimal disruption to your operations.",
+    modalContent: (
+      <ContentStack spacing="md">
+        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
+          Seamless Deployment
+        </h4>
+        <div className={cn(spacing.stack.md)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Implementation steps:
+          </p>
+          <div className={cn(spacing.stack.sm)}>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • System integration
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Team training
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Process transition
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Performance testing
+            </p>
+          </div>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Get up and running quickly with minimal disruption to your business.
+          </p>
+        </div>
+      </ContentStack>
+    )
   },
   {
-    title: "Launch & Start Seeing Results",
-    subtitle: "Your AI Gets Smarter—So You Keep Getting Better Results",
-    description: "Your AI system goes live—and keeps getting smarter with every interaction.",
-    details: [
-      "Once your system goes live, it doesn't just run—it learns.",
-      "Every call, click, and conversation helps your AI improve accuracy, speed, and impact automatically.",
-      "We monitor performance, refine workflows, and make smart updates—so your results keep compounding.",
-      "No extra work on your part. Just better outcomes, week after week."
-    ]
+    id: "optimization",
+    icon: <Target className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Optimization",
+    description: "We continuously improve your AI solution to maximize ROI and performance.",
+    modalContent: (
+      <ContentStack spacing="md">
+        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
+          Continuous Improvement
+        </h4>
+        <div className={cn(spacing.stack.md)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Optimization focus:
+          </p>
+          <div className={cn(spacing.stack.sm)}>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Performance monitoring
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • ROI tracking
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • System refinement
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • Capability expansion
+            </p>
+          </div>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            We ensure your AI solution keeps getting better and delivering more value.
+          </p>
+        </div>
+      </ContentStack>
+    )
   }
 ];
 
-function HowItWorksSectionBase() {
+export function HowItWorksSection() {
   return (
-    <SectionWrapper id="how-it-works">
-      <SectionHeading
-        title="Your AI Employee—Fully Trained in Days, No Effort Required"
-        subtitle="You focus on the results—we'll handle the setup. Just follow 4 simple steps."
-      />
+    <BaseSection
+      id="how-it-works"
+      className={cn(
+        spacing.section.base,
+        spacing.padding.section,
+        effects.glass
+      )}
+      ariaLabel="How It Works"
+    >
+      <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding)}>
+        <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
+          <h2 
+            className={cn(
+              typography.heading.h2,
+              colors.text.primary
+            )}
+          >
+            How We Transform Your Business
+          </h2>
+          <p 
+            className={cn(
+              typography.text.lg,
+              colors.text.secondary,
+              spacing.stack.md
+            )}
+          >
+            A proven process that delivers results in weeks, not months
+          </p>
+        </ContentStack>
 
-      <div className={spacing.container}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-12 w-full">
-          {steps.map((step, index) => (
-            <Card
-              key={index}
-              icon={
-                <div className={cn(typography.icon, "rounded-full bg-white/10")}>
-                  {index + 1}
-                </div>
-              }
-              title={step.title}
-              description={step.description}
-              cta={
-                <>
-                  <p className={cn(typography.heading.h4, "text-primary mb-4")}>{step.subtitle}</p>
-                  <ul className={cn(spacing.stack.sm, "list-disc pl-6")}>
-                    {step.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className={typography.paragraph}>{detail}</li>
-                    ))}
-                  </ul>
-                  <p className="mt-4">💬 Talk to Dana to learn more about this step.</p>
-                </>
-              }
-              showDanaButton={true}
-              className="min-h-[160px]"
-            />
+        <GridSection 
+          columns="two" 
+          gap="lg"
+          ariaLabel="How It Works Process Grid"
+        >
+          {howItWorksSteps.map((step) => (
+            <div key={step.id} className={cn(spacing.flex.col, spacing.gap.sm)}>
+              {step.icon}
+              <Card
+                title={step.title}
+                description={step.description}
+                expandedContent={step.modalContent}
+                ariaLabel={`${step.title} explanation card`}
+                className={cn(
+                  effects.hover.scale,
+                  effects.transition.base,
+                  "bg-white/5",
+                  effects.shadow.card,
+                  radius.lg
+                )}
+              />
+            </div>
           ))}
-        </div>
-      </div>
-    </SectionWrapper>
+        </GridSection>
+      </ContentStack>
+    </BaseSection>
   );
-}
-
-export const HowItWorksSection = withThemeValidation(HowItWorksSectionBase, "HowItWorksSection", ["sections", "typography", "spacing", "effects"] as ThemeSection[]); 
+} 
