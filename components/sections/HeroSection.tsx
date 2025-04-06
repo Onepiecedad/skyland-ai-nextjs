@@ -21,31 +21,80 @@ export function HeroSection() {
     expandedContent: (
       <ContentStack spacing="md">
         <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
-          Let Dana Show You What's Possible
+          Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Dana isn't just a demo—she's a preview of what your own AI assistant could do for your business.
+            Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
           </p>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            In just a 5-minute conversation, she can help you:
-          </p>
-          <ul className={cn(spacing.stack.sm, "mt-4 ml-2 border-l-2 border-blue-500/40 pl-4")}>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Identify your biggest time-wasters
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Discover automation opportunities unique to your business
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              See how an AI assistant could transform your workflow
-            </li>
-          </ul>
+          
           <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
-            No sales pitch. No pressure. Just a glimpse of what's possible.
+            Here's what Dana can help you with:
           </p>
-          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
-            <span className="inline-block mr-2">👉</span> Talk to Dana and see what AI could do for you.
+          
+          <div className={cn(spacing.stack.md, "mt-2")}>
+            <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal")}>
+              🧠 <span className="font-medium">Understand & Explore</span>
+            </h5>
+            <ul className={cn(spacing.stack.sm, "ml-6 list-disc")}>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Answer your questions about Skyland AI
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Explain how our services, trial model, and pricing work
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Suggest automation ideas tailored to your business and goals
+              </li>
+            </ul>
+          </div>
+          
+          <div className={cn(spacing.stack.md, "mt-4")}>
+            <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal")}>
+              ⚙️ <span className="font-medium">Take Action</span>
+            </h5>
+            <ul className={cn(spacing.stack.sm, "ml-6 list-disc")}>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Collect and save lead info directly into our CRM
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Send custom emails and take messages
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Book meetings or appointments through calendar integrations
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary)}>
+                Follow up with visitors via email or summaries
+              </li>
+            </ul>
+          </div>
+          
+          <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
+            She's not here to sell. She's here to help you explore if—and how—automation can work for your business.
+          </p>
+          
+          <div className={cn(spacing.stack.md, "mt-4")}>
+            <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal")}>
+              💬 <span className="font-medium">You can ask her things like:</span>
+            </h5>
+            <ul className={cn(spacing.stack.sm, "ml-6")}>
+              <li className={cn(typography.text.base, colors.text.secondary, "italic")}>
+                "What would you automate first in a business like mine?"
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary, "italic")}>
+                "Can AI help me respond faster to new leads?"
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary, "italic")}>
+                "How does the two-week trial work?"
+              </li>
+              <li className={cn(typography.text.base, colors.text.secondary, "italic")}>
+                "What's a voice agent, and do I need one?"
+              </li>
+            </ul>
+          </div>
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-6 flex items-center font-medium")}>
+            <span className="inline-block mr-2">👉</span> Ask Dana now and see what AI can actually do—for your business
           </p>
         </div>
       </ContentStack>
