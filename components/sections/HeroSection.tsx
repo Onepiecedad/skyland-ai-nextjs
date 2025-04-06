@@ -15,6 +15,43 @@ import { MessageCircle } from 'lucide-react';
 import { Logo } from "@/components/common/Logo";
 
 export function HeroSection() {
+  const danaCard = {
+    title: "Meet Dana—Our AI Assistant",
+    description: "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
+    expandedContent: (
+      <ContentStack spacing="md">
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Let Dana Show You What's Possible
+        </h4>
+        <div className={cn(spacing.stack.md)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Dana isn't just a demo—she's a preview of what your own AI assistant could do for your business.
+          </p>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            In just a 5-minute conversation, she can help you:
+          </p>
+          <ul className={cn(spacing.stack.sm, "mt-4 ml-2 border-l-2 border-blue-500/40 pl-4")}>
+            <li className={cn(typography.text.base, colors.text.secondary)}>
+              Identify your biggest time-wasters
+            </li>
+            <li className={cn(typography.text.base, colors.text.secondary)}>
+              Discover automation opportunities unique to your business
+            </li>
+            <li className={cn(typography.text.base, colors.text.secondary)}>
+              See how an AI assistant could transform your workflow
+            </li>
+          </ul>
+          <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
+            No sales pitch. No pressure. Just a glimpse of what's possible.
+          </p>
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">👉</span> Talk to Dana and see what AI could do for you.
+          </p>
+        </div>
+      </ContentStack>
+    )
+  };
+
   return (
     <BaseSection
       id="hero"
@@ -53,9 +90,10 @@ export function HeroSection() {
           {/* Right column */}
           <div className="flex flex-col items-center w-full max-w-md lg:max-w-none mx-auto lg:mx-0 relative">
             <Card
-              title="Want to save 10+ hours a week—without changing how you work?"
-              description="What's the one task you'd automate today if you could? Talk to Dana to find out how."
-              ariaLabel="AI Automation Card"
+              title={danaCard.title}
+              description={danaCard.description}
+              expandedContent={danaCard.expandedContent}
+              ariaLabel="Meet Dana AI Assistant"
               className={cn(
                 effects.hover.scale,
                 effects.transition.base,
