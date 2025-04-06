@@ -18,32 +18,36 @@ const pricingCards = [
     id: "value",
     icon: <Wallet className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "No Fixed Pricing—Just Real Results",
-    description: "Our pricing is based on the value we create for your business.",
+    description: "Every business is different. So is every price.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Value-Based Pricing Model
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          A Simple Model That Puts Results First
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our flexible pricing structure ensures you only pay for the value we deliver:
+            We don't do fixed prices. You pay based on the value we create.
+            Here's how it works:
           </p>
           <div className={cn(spacing.stack.sm)}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Pay based on measurable results and ROI
+              • You pay a <strong>10–15% deposit</strong> to get started.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • No upfront costs or fixed monthly fees
+              • We build and deliver a working system.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Transparent pricing tied to your success
+              • You test it for <strong>two full weeks—risk-free.</strong>
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Scale up or down based on your needs
+              • If you're happy, you pay the rest and start your monthly plan.
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              • If not, you walk away. The deposit is non-refundable, but there's no further cost.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            We believe in aligning our success with yours. Our pricing model ensures you only pay for the value we deliver, making it a risk-free investment in your business's future.
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">👉</span> Book a free call to see what your custom solution could look like.
           </p>
         </div>
       </ContentStack>
@@ -53,32 +57,37 @@ const pricingCards = [
     id: "roi",
     icon: <TrendingUp className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "It's Not About Cost—It's About Value",
-    description: "We tailor our approach around your ROI goals.",
+    description: "What matters isn't what it costs. It's what it earns.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          ROI-Focused Implementation
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Every Project Is Tailored Around ROI
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our ROI-driven approach ensures maximum value from your investment:
+            Skyland AI isn't a standard product—it's a custom solution built to generate measurable results.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          <div className={cn(spacing.stack.sm, "mt-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Custom ROI analysis for your business
+              Some clients save <strong>10+ hours a week</strong>.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Clear metrics and success indicators
+              Others double their conversion rates.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Regular performance reviews
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Continuous optimization for better results
+              A few do both—and more.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            We work closely with you to identify, track, and maximize the return on your AI investment, ensuring every dollar spent contributes to your growth.
+          <div className={cn(spacing.stack.sm, "mt-4")}>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              That's why we don't publish prices.
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              We design solutions around <strong>what your business stands to gain</strong>—not just what they cost.
+            </p>
+          </div>
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">👉</span> Curious what's possible for your business? Let's talk.
           </p>
         </div>
       </ContentStack>
@@ -88,32 +97,34 @@ const pricingCards = [
     id: "trial",
     icon: <CheckCircle className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Try It First. Decide Later",
-    description: "Test your custom-built system risk-free.",
+    description: "No pressure. No risk. Just results.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Risk-Free Trial Period
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          You Only Commit When You See the Value
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Experience the full potential of our AI solutions without risk:
+            You shouldn't have to guess if AI will work for your business.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          <div className={cn(spacing.stack.sm, "mt-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • 2-week trial of your custom system
+              That's why we let you test your custom-built system for <strong>two weeks</strong>, in real conditions.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Full access to all features
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Dedicated support and training
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • No commitment required
+              You'll see what it can do—before committing to anything beyond the deposit.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Start your journey with a risk-free trial and see firsthand how our AI solutions can transform your business operations.
+          <div className={cn(spacing.stack.sm, "mt-4")}>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              Not impressed? You walk away.
+            </p>
+            <p className={cn(typography.text.base, colors.text.secondary)}>
+              Happy? We move forward and scale what's working.
+            </p>
+          </div>
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">👉</span> Schedule a free strategy call and see what's possible.
           </p>
         </div>
       </ContentStack>
@@ -178,3 +189,4 @@ export function PricingSection() {
     </BaseSection>
   );
 }
+
