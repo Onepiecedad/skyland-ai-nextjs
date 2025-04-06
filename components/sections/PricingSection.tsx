@@ -137,7 +137,8 @@ export function PricingSection() {
           <h2 
             className={cn(
               typography.heading.h2,
-              colors.text.primary
+              colors.text.primary,
+              "font-normal"
             )}
           >
             AI That Pays for Itself—And Drives Real Growth

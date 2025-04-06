@@ -172,7 +172,8 @@ export function HowItWorksSection() {
           <h2 
             className={cn(
               typography.heading.h2,
-              colors.text.primary
+              colors.text.primary,
+              "font-normal"
             )}
           >
             How We Transform Your Business

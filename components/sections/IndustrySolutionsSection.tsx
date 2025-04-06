@@ -54,8 +54,8 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
     >
       <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding, "w-full max-w-7xl")}>
         <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
-          <h2 className={cn(typography.heading.h2, colors.text.primary)}>
-            Industry Solutions
+          <h2 className={cn(typography.heading.h2, colors.text.primary, "font-normal")}>
+            Solutions for Every Industry
           </h2>
           <p className={cn(typography.text.lg, colors.text.secondary, spacing.stack.md)}>
             Discover how our AI solutions can transform your industry

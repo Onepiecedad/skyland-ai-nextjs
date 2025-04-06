@@ -3,7 +3,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { colors, effects } from '@/lib/theme';
-import { typography } from '@/lib/theme/typography';
 import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
 import type { ThemeSection } from '@/lib/utils/theme-validator';
 import { Brain } from 'lucide-react';

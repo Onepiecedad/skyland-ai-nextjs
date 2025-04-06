@@ -154,7 +154,7 @@ export function FAQSection({ className }: FAQSectionProps) {
     >
       <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding)}>
         <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
-          <h2 className={cn(typography.heading.h2, colors.text.primary)}>
+          <h2 className={cn(typography.heading.h2, colors.text.primary, "font-normal")}>
             Frequently Asked Questions
           </h2>
           <p className={cn(typography.text.lg, colors.text.secondary, spacing.stack.md)}>

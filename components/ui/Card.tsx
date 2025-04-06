@@ -48,34 +48,73 @@ function CardBase({
 
   // Anpassa rubriken beroende på variant och textlängd
   const getTitleElement = () => {
+    // Dynamic font size based on title length
+    let fontSizeClass = 'text-xl sm:text-2xl'; // Reduced default size
+    
+    if (title.length > 50) {
+      fontSizeClass = 'text-lg sm:text-xl';
+    } else if (title.length > 30) {
+      fontSizeClass = 'text-lg sm:text-xl';
+    }
+
     // Specialhantering för kortare titlar eller speciella varianter
     if (variant === 'four' && title.length <= 15) {
       return (
         <h3 className={cn(
-          typography.heading.h3,
           colors.text.primary,
-          'mb-3 tracking-tight break-words hyphens-auto'
+          'mb-2 tracking-tight break-words hyphens-auto', // Reduced margin
+          'font-normal',
+          fontSizeClass
         )}>
           {title}
         </h3>
       );
     }
 
-    // Anpassa rubrikstorleken baserat på variant
+    // Anpassa rubrikstorleken baserat på variant och title length
     const headingSize = 
       variant === 'four' ? typography.heading.h4 : 
       variant === 'six' ? typography.heading.h5 : 
-      typography.heading.h3;
+      'text-xl sm:text-2xl'; // Using custom size instead of typography.heading.h3
 
     return (
       <h3 className={cn(
-        headingSize,
         colors.text.primary,
-        'mb-3 tracking-tight break-words hyphens-auto whitespace-normal'
+        'mb-2 tracking-tight break-words hyphens-auto whitespace-normal', // Reduced margin
+        'font-normal',
+        headingSize,
+        fontSizeClass // Dynamic font size class
       )}>
         {title}
       </h3>
     );
+  };
+
+  // Also adjust description text size based on length
+  const getDescriptionClass = () => {
+    const baseClass = variant === 'four' ? 'text-xs sm:text-sm' : 'text-sm';
+    
+    // If the description has two sentences (likely two "what if" questions)
+    const sentences = description.split(/\?\s+/);
+    if (sentences.length > 1) {
+      return cn(baseClass, 'leading-relaxed');
+    }
+    
+    if (description.length > 80) {
+      return cn(baseClass, 'leading-relaxed');
+    }
+    
+    return baseClass;
+  };
+
+  // Format the description to add line breaks between questions
+  const formattedDescription = () => {
+    // Check if the description contains multiple questions
+    if (description.includes("? What if")) {
+      // Split at '? What if' and join with line break
+      return description.replace(/\? What if/, "?\n\nWhat if");
+    }
+    return description;
   };
 
   const cardContent = (
@@ -91,13 +130,13 @@ function CardBase({
       <p
         id={descriptionId}
         className={cn(
-          variant === 'four' ? typography.text.sm : typography.text.base,
+          getDescriptionClass(),
           colors.text.secondary,
-          'max-w-prose break-words hyphens-auto whitespace-normal',
+          'max-w-prose break-words hyphens-auto whitespace-pre-line', // Changed to pre-line for line breaks
           centerText ? 'mx-auto' : ''
         )}
       >
-        {description}
+        {formattedDescription()}
       </p>
     </div>
   );

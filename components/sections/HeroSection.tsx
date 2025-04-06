@@ -37,7 +37,8 @@ export function HeroSection() {
           <ContentStack spacing="sm" className={cn("space-y-3")}>
             <h1 className={cn(
               typography.heading.h1,
-              colors.text.primary
+              colors.text.primary,
+              "font-normal"
             )}>
               What if growing your business didn't mean more work?
             </h1>

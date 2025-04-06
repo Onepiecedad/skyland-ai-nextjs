@@ -106,8 +106,8 @@ export function AboutSection({ className }: AboutSectionProps) {
     >
       <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding)}>
         <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
-          <h2 className={cn(typography.heading.h2, colors.text.primary)}>
-            Transform Your Business with AI
+          <h2 className={cn(typography.heading.h2, colors.text.primary, "font-normal")}>
+            About Skyland AI
           </h2>
           <p className={cn(typography.text.lg, colors.text.secondary, spacing.stack.md)}>
             Discover how our AI solutions can revolutionize your operations and drive growth

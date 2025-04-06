@@ -27,7 +27,8 @@ export function ContactSection() {
           <h2 
             className={cn(
               typography.heading.h2,
-              colors.text.primary
+              colors.text.primary,
+              "font-normal"
             )}
           >
             Let's Talk

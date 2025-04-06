@@ -17,8 +17,8 @@ const painPoints = [
   {
     id: "manual-tasks",
     icon: <Clock className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
-    title: "Drowning in Manual Tasks?",
-    description: "Spending too much time on repetitive work instead of growing your business?",
+    title: "Every missed call could be a lost client. How many did you miss today?",
+    description: "What if your business could respond instantly—even when you can't? What if you could have fewer lost leads—and more clients saying yes?",
     modalContent: (
       <ContentStack spacing="md">
         <h4 className={cn(typography.heading.h4, colors.text.primary)}>
@@ -51,9 +51,9 @@ const painPoints = [
   },
   {
     id: "scaling",
-    icon: <BrainCircuit />,
-    title: "Struggling to Scale?",
-    description: "Can't grow because you're maxed out on what you can handle?",
+    icon: <BrainCircuit className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Still buried in admin that doesn't grow your business?",
+    description: "What if your daily busywork ran itself—without extra staff? What if you could free up hours and finally focus on real growth?",
     modalContent: (
       <ContentStack spacing="md">
         <h4 className={cn(typography.heading.h4, colors.text.primary)}>
@@ -86,9 +86,9 @@ const painPoints = [
   },
   {
     id: "costs",
-    icon: <DollarSign />,
-    title: "High Operational Costs?",
-    description: "Spending too much on routine tasks that could be automated?",
+    icon: <DollarSign className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Losing leads because you didn't respond fast enough?",
+    description: "What if your leads got a reply in seconds—not hours? What if your leads never went cold again?",
     modalContent: (
       <ContentStack spacing="md">
         <h4 className={cn(typography.heading.h4, colors.text.primary)}>
@@ -121,9 +121,9 @@ const painPoints = [
   },
   {
     id: "staff",
-    icon: <Users />,
-    title: "Staff Overwhelmed?",
-    description: "Team stressed by repetitive tasks and constant interruptions?",
+    icon: <Users className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
+    title: "Scaling feels impossible without hiring more staff?",
+    description: "What if your operations scaled automatically as your business grew? What if you could serve more clients—without growing your team?",
     modalContent: (
       <ContentStack spacing="md">
         <h4 className={cn(typography.heading.h4, colors.text.primary)}>
@@ -172,10 +172,11 @@ export function PainPointSection() {
           <h2 
             className={cn(
               typography.heading.h2,
-              colors.text.primary
+              colors.text.primary,
+              "font-normal"
             )}
           >
-            Running a Business Shouldn't Be This Hard
+            Which of These Problems Is Costing You the Most Right Now?
           </h2>
           <p 
             className={cn(
@@ -184,7 +185,7 @@ export function PainPointSection() {
               spacing.stack.md
             )}
           >
-            Discover how AI can eliminate your biggest operational headaches
+            These issues don't just slow you down—they quietly drain your time, energy, and profit. AI can start fixing them in days—not months.
           </p>
         </ContentStack>
 
@@ -201,13 +202,6 @@ export function PainPointSection() {
                 description={point.description}
                 expandedContent={point.modalContent}
                 ariaLabel={`${point.title} challenge card`}
-                className={cn(
-                  effects.hover.scale,
-                  effects.transition.base,
-                  "bg-white/5",
-                  effects.shadow.card,
-                  radius.lg
-                )}
               />
             </div>
           ))}

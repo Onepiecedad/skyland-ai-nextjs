@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { BaseSection } from '@/components/ui/BaseSection';
 import { ContentStack } from '@/components/ui/ContentStack';
 import { Card } from '@/components/ui/Card';
-import { GridSection } from '@/components/ui/GridSection';
 import { spacing, typography, colors, effects, radius } from '@/lib/theme';
 import { MessageSquare, Brain, Eye } from 'lucide-react';
 
@@ -96,7 +95,7 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
     >
       <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding, "w-full max-w-7xl")}>
         <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
-          <h2 className={cn(typography.heading.h2, colors.text.primary)}>
+          <h2 className={cn(typography.heading.h2, colors.text.primary, "font-normal")}>
             Our AI Solutions
           </h2>
           <p className={cn(typography.text.lg, colors.text.secondary, spacing.stack.md)}>
