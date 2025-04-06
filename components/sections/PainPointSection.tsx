@@ -21,29 +21,40 @@ const painPoints = [
     description: "What if your business could respond instantly—even when you can't? What if you could have fewer lost leads—and more clients saying yes?",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Time-Consuming Manual Work
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Too Many Customer Calls & Repetitive Inquiries?
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Common time-draining tasks we can automate:
+            You're deep in work—then the phone rings. Again. And again. Same questions. Same interruptions. Same stress.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            And every missed call? That's a cold lead. A lost sale. How much is one client worth to you? Now multiply that by ten.
+          </p>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            Now imagine this:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Data entry and document processing
+              An AI voice assistant that answers instantly—24/7.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Email responses and follow-ups
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Calendar management and scheduling
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Report generation and analysis
+              It books appointments. Handles FAQs. Qualifies leads—without you lifting a finger.
             </p>
           </div>
+          
+          <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
+            This isn't about replacing you. It's about reclaiming your time and sealing the cracks in your growth.
+          </p>
+          
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our AI solutions can handle these tasks 24/7, freeing up your time for strategic work.
+            Now your customers get answers. You stay in control. And growth stops leaking through the cracks.
+          </p>
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to see what that could look like in your business.
           </p>
         </div>
       </ContentStack>
@@ -56,29 +67,39 @@ const painPoints = [
     description: "What if your daily busywork ran itself—without extra staff? What if you could free up hours and finally focus on real growth?",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Scaling Challenges
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Let AI Turn Admin Chaos Into Growth Hours
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            How AI helps you scale efficiently:
+            You didn't start your business to spend your days filling out forms, updating spreadsheets, or chasing paperwork.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            But somehow, all that "small stuff" eats up your time—and pulls your focus away from the work that actually moves the needle.
+          </p>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            It's not just exhausting. It's expensive. Because every hour spent on admin is an hour not spent on growth.
+          </p>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            Now imagine this:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Automated customer onboarding
+              AI systems that quietly run your backend operations—automating reports, scheduling, client intake, follow-ups, and more.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • 24/7 customer support coverage
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Streamlined operations
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Intelligent task prioritization
+              No new hires. No complicated tech. Just your workflows—streamlined and self-managing.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Scale your business without proportionally increasing overhead or staff.
+          
+          <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
+            This isn't about doing more. It's about finally doing what matters most.
+          </p>
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to find out what your business could automate first.
           </p>
         </div>
       </ContentStack>
@@ -91,29 +112,39 @@ const painPoints = [
     description: "What if your leads got a reply in seconds—not hours? What if your leads never went cold again?",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Cost Reduction Through AI
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Turn Cold Leads Into Instant Conversations
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Areas where AI can reduce costs:
+            You had their attention—but you didn't reply fast enough.
+            They moved on. Or worse—your competitor beat you to it.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            In today's world, leads expect instant answers.
+            If you're not responding within minutes, you're losing deals you never even knew you had.
+          </p>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            Now imagine this:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Customer service automation
+              AI-powered assistants that engage new leads the moment they reach out—via chat, voice, or form.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Administrative task reduction
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Error prevention and quality control
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Resource optimization
+              They qualify, respond, and even book meetings while you focus on the work that matters.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Most clients see 30-50% reduction in operational costs within months.
+          
+          <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
+            No missed messages. No cold leads.
+            Just warm conversations happening on autopilot.
+          </p>
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to see how fast you could start winning back lost leads.
           </p>
         </div>
       </ContentStack>
@@ -126,29 +157,38 @@ const painPoints = [
     description: "What if your operations scaled automatically as your business grew? What if you could serve more clients—without growing your team?",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Employee Satisfaction
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Scale Smarter—Without Hiring or Burning Out
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            How AI improves work life:
+            Growth should feel exciting—not exhausting.
+            But when every new client means more staff, more training, and more overhead… scaling starts to feel like a trap.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            What if your business could handle more leads, more clients, and more complexity—without growing your team?
+          </p>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            Now imagine this:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Eliminates repetitive tasks
+              That's what AI automation delivers.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Reduces work interruptions
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Enables focus on meaningful work
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Provides 24/7 support coverage
+              It replaces manual busywork with intelligent systems that work behind the scenes—handling onboarding, follow-ups, scheduling, reporting, and more.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Let your team focus on what matters while AI handles the routine work.
+          
+          <p className={cn(typography.text.base, colors.text.secondary, "mt-4")}>
+            No burnout. No bloated payroll.
+            Just a lean, scalable business that grows without friction.
+          </p>
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to see how your business could scale faster—with less stress.
           </p>
         </div>
       </ContentStack>
