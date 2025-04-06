@@ -11,12 +11,10 @@ import { effects } from "@/lib/theme/tokens/effects";
 import { radius } from "@/lib/theme/tokens/radius";
 import { spacing } from "@/lib/theme/tokens/spacing";
 import { typography } from "@/lib/theme/tokens/typography";
-import { Wallet, TrendingUp, CheckCircle } from 'lucide-react';
 
 const pricingCards = [
   {
     id: "value",
-    icon: <Wallet className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "No Fixed Pricing—Just Real Results",
     description: "Every business is different. So is every price.",
     modalContent: (
@@ -55,7 +53,6 @@ const pricingCards = [
   },
   {
     id: "roi",
-    icon: <TrendingUp className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "It's Not About Cost—It's About Value",
     description: "What matters isn't what it costs. It's what it earns.",
     modalContent: (
@@ -95,7 +92,6 @@ const pricingCards = [
   },
   {
     id: "trial",
-    icon: <CheckCircle className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Try It First. Decide Later",
     description: "No pressure. No risk. Just results.",
     modalContent: (
@@ -167,8 +163,7 @@ export function PricingSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
           {pricingCards.map((card) => (
-            <div key={card.id} className={cn(spacing.flex.col, spacing.gap.md)}>
-              {card.icon}
+            <div key={card.id} className={cn(spacing.flex.col)}>
               <Card
                 title={card.title}
                 description={card.description}

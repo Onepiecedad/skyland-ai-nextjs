@@ -11,7 +11,6 @@ import { typography } from "@/lib/theme/tokens/typography";
 import { colors } from "@/lib/theme/tokens/colors";
 import { effects } from "@/lib/theme/tokens/effects";
 import { radius } from "@/lib/theme/tokens/radius";
-import { Brain, Zap, Target, TrendingUp } from 'lucide-react';
 
 interface AboutSectionProps {
   className?: string;
@@ -20,9 +19,8 @@ interface AboutSectionProps {
 export function AboutSection({ className }: AboutSectionProps) {
   const features = [
     {
-      icon: <Brain className={cn(typography.icon.lg)} />,
       title: "Why Skyland AI Was Built – The Future of Work Starts Here",
-      description: "AI isn't just the future—it's the great equalizer. Discover the vision behind Skyland AI and how it helps businesses of any size do more with less.",
+      description: "AI isn't just the future—it's the great equalizer.",
       expandedContent: (
         <ContentStack spacing="md">
           <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
@@ -46,7 +44,6 @@ export function AboutSection({ className }: AboutSectionProps) {
       )
     },
     {
-      icon: <Zap className={cn(typography.icon.lg)} />,
       title: "Your Team Isn't the Problem—Your Systems Are",
       description: "It's not about working harder. It's about removing what's slowing you down.",
       expandedContent: (
@@ -88,7 +85,6 @@ export function AboutSection({ className }: AboutSectionProps) {
       )
     },
     {
-      icon: <Target className={cn(typography.icon.lg)} />,
       title: "From Chaos to Control—In Days, Not Months",
       description: "Get your time, team, and sanity back—without adding complexity.",
       expandedContent: (
@@ -123,9 +119,8 @@ export function AboutSection({ className }: AboutSectionProps) {
       )
     },
     {
-      icon: <TrendingUp className={cn(typography.icon.lg)} />,
       title: "There Was Before AI—And Then the World Changed",
-      description: "The only thing we know for sure is that change is the only constant. This is the revolution—and those who act will lead it. Skyland is here to guide you forward.",
+      description: "This is the revolution—and those who act will lead it",
       expandedContent: (
         <ContentStack spacing="md">
           <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
@@ -194,8 +189,7 @@ export function AboutSection({ className }: AboutSectionProps) {
           ariaLabel="Features Grid"
         >
           {features.map((feature, index) => (
-            <div key={index} className={cn(spacing.flex.col, spacing.gap.md)}>
-              {feature.icon}
+            <div key={index} className={cn(spacing.flex.col)}>
               <Card
                 title={feature.title}
                 description={feature.description}

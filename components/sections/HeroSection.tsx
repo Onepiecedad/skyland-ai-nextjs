@@ -11,7 +11,6 @@ import { layout } from "@/lib/theme/tokens/layout";
 import { typography } from "@/lib/theme/tokens/typography";
 import { radius } from "@/lib/theme/tokens/radius";
 import { spacing } from "@/lib/theme/tokens/spacing";
-import { MessageCircle } from 'lucide-react';
 import { Logo } from "@/components/common/Logo";
 
 export function HeroSection() {
@@ -152,9 +151,6 @@ export function HeroSection() {
                 "border border-white/10"
               )}
             />
-            <div className="absolute top-[-20px] right-[-20px] bg-gradient-to-br from-blue-500 to-purple-600 rounded-full p-2 shadow-lg">
-              <MessageCircle className={cn("w-8 h-8 text-white")} aria-hidden="true" />
-            </div>
           </div>
         </div>
       </ContentStack>
