@@ -19,122 +19,122 @@ interface FAQSectionProps {
 export function FAQSection({ className }: FAQSectionProps) {
   const faqs = [
     {
-      title: "What is Skyland AI?",
-      description: "Skyland AI is a cutting-edge artificial intelligence platform designed to help businesses automate processes, gain insights from data, and make better decisions.",
+      title: "What exactly is Skyland AI?",
+      description: "Skyland AI builds tailored automation systems using AI. From voice agents and chatbots to workflow automation and lead qualification—we design intelligent tools to save you time and grow your business, fast.",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
             Our platform offers:
           </p>
           <ul className={cn(spacing.stack.md)}>
-            <li>Advanced AI automation capabilities</li>
-            <li>Industry-specific solutions</li>
-            <li>Seamless integration with existing systems</li>
-            <li>Comprehensive support and training</li>
+            <li>Voice agents that handle inbound calls</li>
+            <li>Chatbots that answer customer questions</li>
+            <li>Booking systems and reminders</li>
+            <li>Lead capture and qualification</li>
+            <li>Internal process automation</li>
           </ul>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our solutions are tailored to meet the specific needs of various industries and organizations of all sizes.
+            We always start by identifying what's slowing you down—then we build a system that handles it.
           </p>
         </div>
       )
     },
     {
-      title: "How can AI benefit my business?",
-      description: "AI can benefit your business in multiple ways: automating tasks, analyzing data, improving customer service, and helping make data-driven decisions.",
+      title: "How much does it cost?",
+      description: "It depends on what we build for you. There's no fixed pricing—just value-driven pricing based on your needs.",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
-            Key benefits include:
+            Here's how it works:
           </p>
           <ul className={cn(spacing.stack.md)}>
-            <li>Automation of repetitive tasks</li>
-            <li>Advanced data analysis and insights</li>
-            <li>Improved customer service through AI chatbots</li>
-            <li>Optimized operations and resource allocation</li>
-            <li>Enhanced decision-making capabilities</li>
+            <li>You pay a <strong>10–15% deposit</strong> to get started</li>
+            <li>We build your solution and let you try it for <strong>two full weeks, risk-free</strong></li>
+            <li>If you're happy, you pay the rest and begin your monthly subscription</li>
+            <li>If not, you walk away. The deposit is non-refundable, but there's no ongoing cost</li>
           </ul>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our platform makes these benefits accessible and practical for your specific needs.
+            Our pricing model ensures you only pay for the value we deliver, making it a risk-free investment in your business's future.
           </p>
         </div>
       )
     },
     {
-      title: "Is AI implementation complicated?",
-      description: "While AI technology is complex, we've designed our platform to be user-friendly and accessible.",
+      title: "How does the trial actually work?",
+      description: "After the strategy call, we build a working version tailored to your business. You test it in real conditions for two weeks—no sandbox, no fake data.",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
-            Our implementation process includes:
+            At the end of the trial, you decide:
           </p>
           <ul className={cn(spacing.stack.md)}>
-            <li>Initial assessment and planning</li>
-            <li>Step-by-step guided setup</li>
-            <li>Comprehensive training and documentation</li>
-            <li>Ongoing support and optimization</li>
+            <li>✅ Move forward and scale</li>
+            <li>❌ Walk away (no additional cost)</li>
           </ul>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our team provides comprehensive support throughout the implementation process, ensuring a smooth transition and minimal disruption to your operations.
+            This risk-free approach lets you see exactly what our AI solutions can do for your specific business before making a full commitment.
           </p>
         </div>
       )
     },
     {
-      title: "How long does implementation take?",
-      description: "Implementation time varies, but our streamlined process typically allows for basic implementation within weeks.",
+      title: "What kinds of things can you automate?",
+      description: "Plenty. From customer interactions to internal workflows, we can automate virtually any repetitive process that's eating up your time.",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
-            Typical implementation timeline:
+            Common use cases include:
           </p>
           <ul className={cn(spacing.stack.md)}>
-            <li>Initial setup: 1-2 weeks</li>
-            <li>Basic integration: 2-4 weeks</li>
-            <li>Advanced features: 4-8 weeks</li>
-            <li>Full optimization: 8-12 weeks</li>
+            <li>Voice agents that handle inbound calls</li>
+            <li>Chatbots that answer customer questions</li>
+            <li>Booking systems and reminders</li>
+            <li>Lead capture and qualification</li>
+            <li>Internal process automation</li>
           </ul>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            We work closely with you to establish a timeline that meets your needs and ensures successful implementation.
+            We always start by identifying what's slowing you down—then we build a system that handles it.
           </p>
         </div>
       )
     },
     {
-      title: "What about data security?",
-      description: "Data security is our top priority. We employ industry-leading security measures and comply with major data protection regulations.",
+      title: "How fast can I get started?",
+      description: "Very. Once your strategy call is done and the plan is approved, we usually deliver a working system within a few days.",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
-            Our security measures include:
+            Our streamlined process includes:
           </p>
           <ul className={cn(spacing.stack.md)}>
-            <li>End-to-end encryption</li>
-            <li>Secure data centers</li>
-            <li>Regular security audits</li>
-            <li>Compliance with GDPR, HIPAA, and other regulations</li>
+            <li>Initial strategy call to understand your needs</li>
+            <li>Custom solution design (1-2 days)</li>
+            <li>Development and implementation (a few days)</li>
+            <li>Your two-week trial period</li>
           </ul>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            We provide transparent information about our security practices and maintain strict data protection protocols.
+            Then you test it for two weeks and decide what's next. The entire process is designed to get you results fast.
           </p>
         </div>
       )
     },
     {
-      title: "What are the costs involved?",
-      description: "Our pricing is flexible and based on your specific needs and usage.",
+      title: "Will this replace my team?",
+      description: "No—it makes them faster. Skyland AI doesn't replace people. It eliminates repetitive, low-value tasks so your team can focus on what matters.",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
-            Our pricing model includes:
+            Our AI solutions help your team by:
           </p>
           <ul className={cn(spacing.stack.md)}>
-            <li>Flexible subscription plans</li>
-            <li>Pay-as-you-grow options</li>
-            <li>Custom enterprise pricing</li>
-            <li>No hidden fees or long-term commitments</li>
+            <li>Handling repetitive tasks automatically</li>
+            <li>Reducing manual data entry and processing</li>
+            <li>Freeing up time for high-value work</li>
+            <li>Supporting decision-making with better data</li>
+            <li>Scaling their efforts without increasing workload</li>
           </ul>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Contact us for a detailed quote tailored to your organization's specific needs and requirements.
+            Think of Skyland AI as giving your team superpowers—not replacing them. The goal is to make them more effective, not obsolete.
           </p>
         </div>
       )
@@ -158,7 +158,7 @@ export function FAQSection({ className }: FAQSectionProps) {
             Frequently Asked Questions
           </h2>
           <p className={cn(typography.text.lg, colors.text.secondary, spacing.stack.md)}>
-            Find answers to common questions about Skyland AI and our services
+            Straight answers about how Skyland AI works for your business
           </p>
         </ContentStack>
         <GridSection 
