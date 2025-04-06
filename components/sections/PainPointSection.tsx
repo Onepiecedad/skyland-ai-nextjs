@@ -11,12 +11,10 @@ import { effects } from "@/lib/theme/tokens/effects";
 import { radius } from "@/lib/theme/tokens/radius";
 import { spacing } from "@/lib/theme/tokens/spacing";
 import { typography } from "@/lib/theme/tokens/typography";
-import { Clock, BrainCircuit, DollarSign, Users } from 'lucide-react';
 
 const painPoints = [
   {
     id: "manual-tasks",
-    icon: <Clock className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Every missed call could be a lost client. How many did you miss today?",
     description: "What if your business could respond instantly—even when you can't? What if you could have fewer lost leads—and more clients saying yes?",
     modalContent: (
@@ -62,7 +60,6 @@ const painPoints = [
   },
   {
     id: "scaling",
-    icon: <BrainCircuit className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Still buried in admin that doesn't grow your business?",
     description: "What if your daily busywork ran itself—without extra staff? What if you could free up hours and finally focus on real growth?",
     modalContent: (
@@ -107,7 +104,6 @@ const painPoints = [
   },
   {
     id: "costs",
-    icon: <DollarSign className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Losing leads because you didn't respond fast enough?",
     description: "What if your leads got a reply in seconds—not hours? What if your leads never went cold again?",
     modalContent: (
@@ -152,7 +148,6 @@ const painPoints = [
   },
   {
     id: "staff",
-    icon: <Users className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Scaling feels impossible without hiring more staff?",
     description: "What if your operations scaled automatically as your business grew? What if you could serve more clients—without growing your team?",
     modalContent: (
@@ -235,8 +230,7 @@ export function PainPointSection() {
           ariaLabel="Common Business Challenges Grid"
         >
           {painPoints.map((point) => (
-            <div key={point.id} className={cn(spacing.flex.col, spacing.gap.sm)}>
-              {point.icon}
+            <div key={point.id} className={cn(spacing.flex.col)}>
               <Card
                 title={point.title}
                 description={point.description}
