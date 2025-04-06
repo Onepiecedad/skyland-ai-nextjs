@@ -1,13 +1,12 @@
-# Hemsida 3.0 - Skyland AI Solutions Website
+# SkyLand AI - Next.js Website
 
-A modern web application for Skyland AI Solutions, built with React, TypeScript, and Vite, featuring a beautiful aurora background effect, AI voice integration, and dark mode support. This website showcases AI automation solutions for service-based businesses.
+A modern web application for SkyLand AI Solutions, built with Next.js, TypeScript, and Tailwind CSS, featuring a beautiful aurora background effect, AI voice integration, and dark mode support. This website showcases AI automation solutions for service-based businesses.
 
 ## 📋 Table of Contents
 - [Project Overview](#-project-purpose)
 - [Business Context](#-about-skyland-ai-solutions)
 - [Website Structure](#-website-structure)
 - [Core Features](#-core-features)
-- [Implementation Progress](#-implementation-progress)
 - [Technical Implementation](#-tech-stack)
 - [Development Guide](#-running-the-project)
 - [Theme Validation](#-theme-validation)
@@ -459,16 +458,13 @@ The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework:** React 18.3
-- **Build Tool:** Vite 5.4
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS + ShadCN UI
-- **Animations:** Framer Motion
-- **Voice AI:** ElevenLabs Convai Widget
-- **Development Tools:**
-  - ESLint for code quality
-  - PostCSS for CSS processing
-  - Tailwind for utility-first CSS
+- **Framework**: Next.js
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **UI Components**: Headless UI
+- **Icons**: Heroicons, Lucide React
+- **Tooling**: ESLint, Prettier, Husky
 
 ## 📁 Project Structure
 
@@ -497,60 +493,61 @@ The project is in active development with the following components implemented:
 - Development environment setup
 - Voice AI integration (Dana)
 
-## 🏃‍♂️ Development Guide
+## 🚀 Running the Project
 
-### Getting Started
-1. Install dependencies:
-```bash
-npm install
-```
+### Prerequisites
+- Node.js (v18 or higher)
+- npm (v9 or higher)
 
-2. Start the development server:
-```bash
-npm run dev
-```
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Onepiecedad/skyland-ai-nextjs.git
+   cd skyland-ai-nextjs
+   ```
 
-The application will be available at `http://localhost:8080`
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### Development Commands
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
+3. Create a `.env.local` file in the root directory with the necessary environment variables:
+   ```
+   # Copy from .env.example
+   ```
 
-### Theme Validation
-For detailed information about our theme validation system and component development guidelines, see [Theme Validation Guide](docs/THEME_VALIDATION.md).
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-### Dependencies
+5. Open [http://localhost:8080](http://localhost:8080) in your browser.
 
-#### Main Dependencies
-- react
-- react-dom
-- clsx
-- lucide-react
-- tailwind-merge
+## 🔄 Development Workflow
 
-#### Development Dependencies
-- TypeScript
-- Vite
-- ESLint
-- Tailwind CSS
-- PostCSS
-- Autoprefixer
+We use a standard GitHub Flow for development:
 
-### Next Steps
+1. Create a new branch from `development` for your feature:
+   ```bash
+   git checkout development
+   git pull origin development
+   git checkout -b feature/your-feature-name
+   ```
 
-- [ ] Add more interactive components
-- [ ] Implement main content sections
-  - [ ] Industry-specific case studies
-  - [ ] ROI calculator
-  - [ ] Success stories
-- [ ] Add routing
-- [ ] Enhance responsive design
-- [ ] Add more animations and transitions
-- [ ] Style and integrate Dana (Voice Agent)
-- [ ] Implement lead generation forms
-- [ ] Add dynamic CTAs
+2. Make your changes and commit them:
+   ```bash
+   git add .
+   git commit -m "Add your clear commit message"
+   ```
+
+3. Push your branch to GitHub:
+   ```bash
+   git push -u origin feature/your-feature-name
+   ```
+
+4. Create a Pull Request to merge your changes into the `development` branch.
+5. After review, your changes will be merged into `development`.
+6. Periodically, `development` is merged into `main` for production releases.
 
 ## 📊 Market Analysis & Insights
 
