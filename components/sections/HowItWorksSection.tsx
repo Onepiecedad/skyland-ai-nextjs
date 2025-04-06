@@ -17,33 +17,25 @@ const howItWorksSteps = [
   {
     id: "discovery",
     icon: <Search className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
-    title: "Discovery",
-    description: "We analyze your business to identify the highest-impact opportunities for AI.",
+    title: "Step 1: Book Your Free AI Strategy Call",
+    description: "Let's break down your workflow to uncover time-wasters, bottlenecks, and untapped opportunities—then map out how AI can fix them fast.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          In-Depth Business Analysis
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Let's Talk About What's Not Working—And How to Fix It Fast
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            What we assess:
+            This 15-minute call is where your transformation starts.
+            We'll walk through your daily workflows and identify what's costing you time, money, and momentum. 
           </p>
-          <div className={cn(spacing.stack.sm)}>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Current workflows and bottlenecks
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Time-consuming manual tasks
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Growth opportunities
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Cost reduction potential
-            </p>
-          </div>
+          
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            We identify exactly where AI can create the most value for your business.
+            You'll get expert insight into what's possible with AI—without the jargon or sales pitch. Just clarity, strategy, and next steps you can act on.
+          </p>
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to schedule your free AI strategy call.
           </p>
         </div>
       </ContentStack>
@@ -52,33 +44,33 @@ const howItWorksSteps = [
   {
     id: "solution-design",
     icon: <Lightbulb className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
-    title: "Solution Design",
-    description: "We create a custom AI solution tailored to your specific needs and goals.",
+    title: "Step 2: Get Your Custom AI Plan",
+    description: "You'll receive a personalized automation roadmap—tailored to your workflows, goals, and growth potential.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Custom Solution Development
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Your Custom AI Plan—Built for Growth and Efficiency
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Our design process:
+            After the strategy call, you'll receive a tailored automation plan based on your workflows, goals, and biggest opportunities. No generic advice—just clear, actionable next steps.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            What your plan includes:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Tailored AI architecture
+              We'll show you what to automate, how it works, and the results you can expect.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Integration planning
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Workflow optimization
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • ROI projections
+              You'll know exactly what it costs, what it delivers, and how quickly it can go live—so you can move forward with total confidence.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Every solution is built specifically for your business needs and goals.
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to learn more about our custom AI planning process.
           </p>
         </div>
       </ContentStack>
@@ -87,33 +79,37 @@ const howItWorksSteps = [
   {
     id: "implementation",
     icon: <Rocket className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
-    title: "Implementation",
-    description: "We deploy your AI solution with minimal disruption to your operations.",
+    title: "Step 3: We Build & Test Your AI Solution",
+    description: "We build, train, and test your custom AI system—so it's ready to perform from day one.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Seamless Deployment
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Your AI Solution—Fully Built, Tested, and Ready to Launch
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Implementation steps:
+            Once you approve the plan, we get to work.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Your custom AI system is built, trained, and configured to match your workflows, rules, and preferences. We handle the complexity—so you don't have to lift a finger.
+          </p>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            The final stages:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • System integration
+              You'll preview the system, test it live, and make any final tweaks—so it works exactly how you want it.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Team training
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Process transition
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Performance testing
+              Launch in days, not months.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Get up and running quickly with minimal disruption to your business.
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to find out how quickly we could build your custom AI solution.
           </p>
         </div>
       </ContentStack>
@@ -122,33 +118,37 @@ const howItWorksSteps = [
   {
     id: "optimization",
     icon: <Target className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
-    title: "Optimization",
-    description: "We continuously improve your AI solution to maximize ROI and performance.",
+    title: "Step 4: Launch & Start Seeing Results",
+    description: "Your AI system goes live—and keeps getting smarter with every interaction.",
     modalContent: (
       <ContentStack spacing="md">
-        <h4 className={cn(typography.heading.h4, colors.text.primary)}>
-          Continuous Improvement
+        <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
+          Your AI Gets Smarter—So You Keep Getting Better Results
         </h4>
         <div className={cn(spacing.stack.md)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
-            Optimization focus:
+            Once your system goes live, it doesn't just run—it learns.
           </p>
-          <div className={cn(spacing.stack.sm)}>
+          
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Every call, click, and conversation helps your AI improve accuracy, speed, and impact automatically.
+          </p>
+          
+          <h5 className={cn(typography.heading.h5, colors.text.primary, "font-normal", "mt-4")}>
+            Continuous improvement:
+          </h5>
+          
+          <div className={cn(spacing.stack.sm, "ml-2 border-l-2 border-blue-500/40 pl-4")}>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Performance monitoring
+              We monitor performance, refine workflows, and make smart updates—so your results keep compounding.
             </p>
             <p className={cn(typography.text.base, colors.text.secondary)}>
-              • ROI tracking
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • System refinement
-            </p>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              • Capability expansion
+              No extra work on your part. Just better outcomes, week after week.
             </p>
           </div>
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            We ensure your AI solution keeps getting better and delivering more value.
+          
+          <p className={cn(typography.text.base, colors.text.accent, "mt-4 flex items-center")}>
+            <span className="inline-block mr-2">💬</span> Talk to Dana to see how our AI solutions continuously improve over time.
           </p>
         </div>
       </ContentStack>
@@ -176,7 +176,7 @@ export function HowItWorksSection() {
               "font-normal"
             )}
           >
-            How We Transform Your Business
+            Your AI Employee—Fully Trained in Days, No Effort Required
           </h2>
           <p 
             className={cn(
@@ -185,7 +185,7 @@ export function HowItWorksSection() {
               spacing.stack.md
             )}
           >
-            A proven process that delivers results in weeks, not months
+            You focus on the results—we'll handle the setup. Just follow 4 simple steps.
           </p>
         </ContentStack>
 
