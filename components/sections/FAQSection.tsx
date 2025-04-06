@@ -20,10 +20,13 @@ export function FAQSection({ className }: FAQSectionProps) {
   const faqs = [
     {
       title: "What exactly is Skyland AI?",
-      description: "Skyland AI builds tailored automation systems using AI. From voice agents and chatbots to workflow automation and lead qualification—we design intelligent tools to save you time and grow your business, fast.",
+      description: "",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
+            Skyland AI builds tailored automation systems using AI. From voice agents and chatbots to workflow automation and lead qualification—we design intelligent tools to save you time and grow your business, fast.
+          </p>
+          <p className={cn(typography.text.lg, colors.text.secondary, "mt-4")}>
             Our platform offers:
           </p>
           <ul className={cn(spacing.stack.md)}>
@@ -41,10 +44,13 @@ export function FAQSection({ className }: FAQSectionProps) {
     },
     {
       title: "How much does it cost?",
-      description: "It depends on what we build for you. There's no fixed pricing—just value-driven pricing based on your needs.",
+      description: "",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
+            It depends on what we build for you. There's no fixed pricing—just value-driven pricing based on your needs.
+          </p>
+          <p className={cn(typography.text.lg, colors.text.secondary, "mt-4")}>
             Here's how it works:
           </p>
           <ul className={cn(spacing.stack.md)}>
@@ -61,10 +67,13 @@ export function FAQSection({ className }: FAQSectionProps) {
     },
     {
       title: "How does the trial actually work?",
-      description: "After the strategy call, we build a working version tailored to your business. You test it in real conditions for two weeks—no sandbox, no fake data.",
+      description: "",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
+            After the strategy call, we build a working version tailored to your business. You test it in real conditions for two weeks—no sandbox, no fake data.
+          </p>
+          <p className={cn(typography.text.lg, colors.text.secondary, "mt-4")}>
             At the end of the trial, you decide:
           </p>
           <ul className={cn(spacing.stack.md)}>
@@ -79,10 +88,13 @@ export function FAQSection({ className }: FAQSectionProps) {
     },
     {
       title: "What kinds of things can you automate?",
-      description: "Plenty. From customer interactions to internal workflows, we can automate virtually any repetitive process that's eating up your time.",
+      description: "",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
+            Plenty. From customer interactions to internal workflows, we can automate virtually any repetitive process that's eating up your time.
+          </p>
+          <p className={cn(typography.text.lg, colors.text.secondary, "mt-4")}>
             Common use cases include:
           </p>
           <ul className={cn(spacing.stack.md)}>
@@ -100,10 +112,13 @@ export function FAQSection({ className }: FAQSectionProps) {
     },
     {
       title: "How fast can I get started?",
-      description: "Very. Once your strategy call is done and the plan is approved, we usually deliver a working system within a few days.",
+      description: "",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
+            Very. Once your strategy call is done and the plan is approved, we usually deliver a working system within a few days.
+          </p>
+          <p className={cn(typography.text.lg, colors.text.secondary, "mt-4")}>
             Our streamlined process includes:
           </p>
           <ul className={cn(spacing.stack.md)}>
@@ -120,10 +135,13 @@ export function FAQSection({ className }: FAQSectionProps) {
     },
     {
       title: "Will this replace my team?",
-      description: "No—it makes them faster. Skyland AI doesn't replace people. It eliminates repetitive, low-value tasks so your team can focus on what matters.",
+      description: "",
       expandedContent: (
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
+            No—it makes them faster. Skyland AI doesn't replace people. It eliminates repetitive, low-value tasks so your team can focus on what matters.
+          </p>
+          <p className={cn(typography.text.lg, colors.text.secondary, "mt-4")}>
             Our AI solutions help your team by:
           </p>
           <ul className={cn(spacing.stack.md)}>
