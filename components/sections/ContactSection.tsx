@@ -11,18 +11,22 @@ import { radius } from "@/lib/theme/tokens/radius";
 import { spacing } from "@/lib/theme/tokens/spacing";
 import { typography } from "@/lib/theme/tokens/typography";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  className?: string;
+}
+
+export function ContactSection({ className }: ContactSectionProps) {
   return (
     <BaseSection
       id="contact"
       className={cn(
         spacing.section.base,
         spacing.padding.section,
-        effects.glass
+        className
       )}
-      ariaLabel="Contact Us"
+      ariaLabel="Contact"
     >
-      <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding)}>
+      <ContentStack spacing="lg" maxWidth="2xl" className={cn(spacing.section.padding, "w-full max-w-4xl")}>
         <ContentStack spacing="md" className={cn(spacing.alignment.center)}>
           <h2 
             className={cn(
@@ -31,7 +35,7 @@ export function ContactSection() {
               "font-normal"
             )}
           >
-            Let's Talk
+            Let&apos;s Talk
           </h2>
           <p 
             className={cn(
@@ -40,18 +44,11 @@ export function ContactSection() {
               spacing.stack.md
             )}
           >
-            Send us a message and we'll get back to you within 24 hours
+            We&apos;ll get back to you within 24 hours
           </p>
         </ContentStack>
 
-        <div className={cn(
-          spacing.stack.lg,
-          effects.glass,
-          radius.lg,
-          spacing.padding.card
-        )}>
-          <ContactForm />
-        </div>
+        <ContactForm />
       </ContentStack>
     </BaseSection>
   );

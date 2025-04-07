@@ -11,12 +11,10 @@ import { effects } from "@/lib/theme/tokens/effects";
 import { radius } from "@/lib/theme/tokens/radius";
 import { spacing } from "@/lib/theme/tokens/spacing";
 import { typography } from "@/lib/theme/tokens/typography";
-import { Search, Lightbulb, Rocket, Target } from 'lucide-react';
 
 const howItWorksSteps = [
   {
     id: "discovery",
-    icon: <Search className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Step 1: Book Your Free AI Strategy Call",
     description: "Let's break down your workflow to uncover time-wasters, bottlenecks, and untapped opportunities—then map out how AI can fix them fast.",
     modalContent: (
@@ -43,7 +41,6 @@ const howItWorksSteps = [
   },
   {
     id: "solution-design",
-    icon: <Lightbulb className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Step 2: Get Your Custom AI Plan",
     description: "You'll receive a personalized automation roadmap—tailored to your workflows, goals, and growth potential.",
     modalContent: (
@@ -78,7 +75,6 @@ const howItWorksSteps = [
   },
   {
     id: "implementation",
-    icon: <Rocket className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Step 3: We Build & Test Your AI Solution",
     description: "We build, train, and test your custom AI system—so it's ready to perform from day one.",
     modalContent: (
@@ -117,7 +113,6 @@ const howItWorksSteps = [
   },
   {
     id: "optimization",
-    icon: <Target className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
     title: "Step 4: Launch & Start Seeing Results",
     description: "Your AI system goes live—and keeps getting smarter with every interaction.",
     modalContent: (
@@ -195,20 +190,12 @@ export function HowItWorksSection() {
           ariaLabel="How It Works Process Grid"
         >
           {howItWorksSteps.map((step) => (
-            <div key={step.id} className={cn(spacing.flex.col, spacing.gap.sm)}>
-              {step.icon}
+            <div key={step.id} className={cn(spacing.flex.col)}>
               <Card
                 title={step.title}
                 description={step.description}
                 expandedContent={step.modalContent}
-                ariaLabel={`${step.title} explanation card`}
-                className={cn(
-                  effects.hover.scale,
-                  effects.transition.base,
-                  "bg-white/5",
-                  effects.shadow.card,
-                  radius.lg
-                )}
+                ariaLabel={`${step.title} process step`}
               />
             </div>
           ))}

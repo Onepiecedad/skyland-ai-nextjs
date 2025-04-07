@@ -6,7 +6,6 @@ import { BaseSection } from '@/components/ui/BaseSection';
 import { ContentStack } from '@/components/ui/ContentStack';
 import { Card } from '@/components/ui/Card';
 import { spacing, typography, colors, effects, radius } from '@/lib/theme';
-import { MessageSquare, Cog, Phone } from 'lucide-react';
 
 interface AiSolutionsSectionProps {
   className?: string;
@@ -16,7 +15,6 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
   const solutions = [
     {
       id: "voice-agents",
-      icon: <Phone className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "AI Voice Agents",
       description: "Want to answer every call instantly—even when you're busy? What if your phone system could follow up with leads automatically while you focus on delivering results?",
       expandedContent: (
@@ -59,7 +57,6 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
     },
     {
       id: "custom-assistants",
-      icon: <MessageSquare className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "Custom AI Assistants",
       description: "Want to engage with every website visitor and qualify leads 24/7? What if you had a personal AI assistant that could handle questions, meetings, and support without you being there?",
       expandedContent: (
@@ -104,7 +101,6 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
     },
     {
       id: "business-automation",
-      icon: <Cog className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "Business Automation",
       description: "Tired of wasting time on repetitive tasks that don't grow your business? What if your workflows could run themselves in the background—saving you hours, mistakes, and mental load?",
       expandedContent: (
@@ -171,8 +167,7 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
           {solutions.map((solution) => (
-            <div key={solution.id} className={cn(spacing.flex.col, spacing.gap.md)}>
-              {solution.icon}
+            <div key={solution.id} className={cn(spacing.flex.col)}>
               <Card
                 title={solution.title}
                 description={solution.description}

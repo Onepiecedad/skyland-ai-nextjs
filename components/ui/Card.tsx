@@ -16,6 +16,7 @@ interface CardProps {
   ariaLabel?: string;
   variant?: 'three' | 'four' | 'six';
   centerText?: boolean;
+  debugMode?: boolean;
 }
 
 function CardBase({
@@ -25,13 +26,18 @@ function CardBase({
   className,
   ariaLabel,
   variant = 'three',
-  centerText = false
+  centerText = false,
+  debugMode = false
 }: CardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const generatedId = useId();
   const descriptionId = `${generatedId}-description`;
 
   const handleOpenModal = () => {
+    if (debugMode) {
+      console.log('Card clicked, expandedContent exists:', !!expandedContent);
+    }
+    
     if (expandedContent) {
       setIsModalOpen(true);
     }
@@ -165,8 +171,9 @@ function CardBase({
   if (expandedContent) {
     return (
       <>
-        <button
-          type="button"
+        <div
+          role="button"
+          tabIndex={0}
           onClick={handleOpenModal}
           onKeyDown={handleKeyDown}
           aria-label={ariaLabel || title}
@@ -180,7 +187,7 @@ function CardBase({
           )}
         >
           {cardContent}
-        </button>
+        </div>
         
         <Modal
           isOpen={isModalOpen}

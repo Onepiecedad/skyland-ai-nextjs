@@ -1,0 +1,26 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+  NEXT_PUBLIC_SITE_URL = "https://skylandai.se"
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
+  NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL = "https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin" 

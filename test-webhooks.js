@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import * as dotenv from 'dotenv';
+import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -8,16 +8,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Load environment variables
-dotenv.config({ path: join(__dirname, '.env') });
+config({ path: join(__dirname, '.env') });
 
 // Validate environment variables
-const requiredEnvVars = ['VITE_N8N_WEBHOOK_URL', 'DANA_WEBHOOK_URL'];
+const requiredEnvVars = ['NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL', 'DANA_WEBHOOK_URL'];
 const missingEnvVars = requiredEnvVars.filter(v => !process.env[v]);
 if (missingEnvVars.length > 0) {
   console.error('❌ Missing required environment variables:', missingEnvVars.join(', '));
   console.error('Please create a .env file with the following variables:');
   console.error(`
-VITE_N8N_WEBHOOK_URL=your_contact_webhook_url
+NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL=your_contact_webhook_url
 DANA_WEBHOOK_URL=your_dana_webhook_url
   `);
   process.exit(1);
@@ -25,7 +25,7 @@ DANA_WEBHOOK_URL=your_dana_webhook_url
 
 // Validate webhook URLs
 const WEBHOOKS = {
-  CONTACT: process.env.VITE_N8N_WEBHOOK_URL,
+  CONTACT: process.env.NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL,
   DANA: process.env.DANA_WEBHOOK_URL
 };
 

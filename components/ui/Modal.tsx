@@ -129,8 +129,9 @@ function ModalBase({
         className={cn(
           'fixed inset-0',
           colors.surface.default,
-          'bg-opacity-75',
-          effects.transition.base
+          'bg-opacity-90',
+          effects.transition.base,
+          'cursor-pointer'
         )}
         aria-hidden="true"
         onClick={onClose}
@@ -143,36 +144,52 @@ function ModalBase({
           'fixed inset-0',
           spacing.flex.center,
           spacing.padding.section,
-          effects.overflow.auto
+          effects.overflow.auto,
+          'pt-16 md:pt-20'
         )}
+        onClick={(e) => {
+          // Endast stäng om klicket var på bakgrunden (inte på modalen själv)
+          if (e.target === e.currentTarget) {
+            onClose();
+          }
+        }}
       >
         <div
           className={cn(
             spacing.width.full,
             spacing.maxWidth.lg,
-            spacing.padding.modal,
+            'py-10 px-5 md:px-8',
             spacing.flex.col,
             spacing.gap.md,
-            colors.surface.card,
+            'bg-zinc-900/95',
+            'backdrop-blur-md',
+            'border border-white/15',
+            'shadow-xl',
             radius.lg,
             effects.transition.base,
+            'max-h-[80vh]',
+            'overflow-y-auto',
+            'scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent',
             className
           )}
+          onClick={(e) => e.stopPropagation()} // Stoppa klickhändelsen från att bubbla upp
         >
-          {/* Close button */}
+          {/* Mindre, diskretare stängningsknapp */}
           {showCloseButton && (
             <button
               type="button"
               className={cn(
-                'absolute top-4 right-4',
-                spacing.padding.sm,
-                effects.hover.opacity,
+                'absolute top-3 right-3',
+                'p-1.5',
+                'rounded-full',
+                'bg-white/5 hover:bg-white/10',
+                'border border-white/10',
                 effects.transition.base
               )}
               onClick={onClose}
               aria-label={closeButtonLabel}
             >
-              <X className={cn(typography.icon.lg)} />
+              <X className="w-3.5 h-3.5 text-white/70" />
             </button>
           )}
 
@@ -240,3 +257,19 @@ export const Modal = withThemeValidation<ModalProps>(
   'Modal',
   ['spacing', 'typography', 'colors', 'effects', 'radius']
 ); 
+
+/*
+Example content for testing modal scrolling:
+
+Turn Cold Leads Into Instant Conversations
+You had their attention—but you didn't reply fast enough.
+They moved on. Or worse—your competitor beat you to it.
+In today's world, leads expect instant answers.
+If you're not responding within minutes, you're losing deals you never even knew you had.
+Now imagine this:
+AI-powered assistants that engage new leads the moment they reach out—via chat, voice, or form.
+They qualify, respond, and even book meetings while you focus on the work that matters.
+No missed messages. No cold leads.
+Just warm conversations happening on autopilot.
+💬 Talk to Dana to see how fast you could start winning back lost leads.
+*/ 

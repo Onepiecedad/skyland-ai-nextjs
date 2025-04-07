@@ -103,7 +103,7 @@ async function sendWebhook<T>(url: string, data: WebhookPayload<T>): Promise<Res
 
 export const webhookService = {
   async sendContactForm(data: ContactFormData): Promise<Response> {
-    const url = getRequiredEnvVar('NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL');
+    const url = process.env.NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL || 'https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b';
     const payload: WebhookPayload<ContactFormData> = {
       data,
       conversationId: `contact-${Date.now()}`,

@@ -40,7 +40,7 @@ const config: Config = {
         50: '0.5',
       },
       animation: {
-        aurora: "aurora 120s linear infinite",
+        aurora: "aurora 60s linear infinite",
       },
       keyframes: {
         aurora: {
@@ -48,7 +48,7 @@ const config: Config = {
             backgroundPosition: "50% 50%, 50% 50%",
           },
           to: {
-            backgroundPosition: "150% 50%, 150% 50%",
+            backgroundPosition: "350% 50%, 350% 50%",
           },
         },
       },

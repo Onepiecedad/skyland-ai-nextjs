@@ -7,7 +7,6 @@ import { ContentStack } from '@/components/ui/ContentStack';
 import { Card } from '@/components/ui/Card';
 import { GridSection } from '@/components/ui/GridSection';
 import { spacing, typography, colors, effects, radius } from '@/lib/theme';
-import { Building2, MessageCircle, Hotel, ClipboardCheck } from 'lucide-react';
 
 interface IndustrySolutionsSectionProps {
   className?: string;
@@ -17,7 +16,6 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
   const industries = [
     {
       id: "real-estate",
-      icon: <Building2 className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "AI for Real Estate",
       description: "Capture leads, book viewings, and follow up—automatically, 24/7. Never miss a buyer again.",
       expandedContent: (
@@ -54,7 +52,6 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
     },
     {
       id: "customer-support",
-      icon: <MessageCircle className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "AI for Customer Support",
       description: "Answer instantly, resolve faster, and scale support—without adding headcount.",
       expandedContent: (
@@ -93,7 +90,6 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
     },
     {
       id: "hospitality",
-      icon: <Hotel className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "AI for Hospitality",
       description: "Answer guest questions, handle bookings, and increase upsells—day or night, no staff needed.",
       expandedContent: (
@@ -132,7 +128,6 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
     },
     {
       id: "admin",
-      icon: <ClipboardCheck className={cn(typography.icon.lg, colors.text.primary)} aria-hidden="true" />,
       title: "AI for Admin & Workflow Automation",
       description: "Free up your time by automating repetitive tasks, reminders, and follow-ups—without hiring or micromanaging.",
       expandedContent: (
@@ -194,13 +189,12 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
           {industries.map((industry) => (
-            <div key={industry.id} className={cn(spacing.flex.col, spacing.gap.md)}>
-              {industry.icon}
+            <div key={industry.id} className={cn(spacing.flex.col)}>
               <Card
                 title={industry.title}
                 description={industry.description}
                 expandedContent={industry.expandedContent}
-                ariaLabel={`${industry.title} solutions card`}
+                ariaLabel={`${industry.title} solution`}
                 className={cn(
                   effects.hover.scale,
                   effects.transition.base,

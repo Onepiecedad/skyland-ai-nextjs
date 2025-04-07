@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { colors } from "@/lib/theme/tokens/colors";
 import { typography } from "@/lib/theme/tokens/typography";
@@ -16,6 +16,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Skyland AI - Transforming Business with AI",
   description: "Discover how Skyland AI can help your business leverage artificial intelligence for automation, insights, and growth.",
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#000000',
 };
 
 export default function RootLayout({
