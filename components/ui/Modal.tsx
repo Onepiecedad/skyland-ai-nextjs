@@ -142,10 +142,10 @@ function ModalBase({
         ref={modalRef}
         className={cn(
           'fixed inset-0',
-          spacing.flex.center,
-          spacing.padding.section,
-          effects.overflow.auto,
-          'pt-16 md:pt-20'
+          'flex items-start justify-center',
+          'p-4 md:p-6',
+          'overflow-auto',
+          'bg-transparent'
         )}
         onClick={(e) => {
           // Endast stäng om klicket var på bakgrunden (inte på modalen själv)
@@ -156,20 +156,16 @@ function ModalBase({
       >
         <div
           className={cn(
-            spacing.width.full,
-            spacing.maxWidth.lg,
-            'py-10 px-5 md:px-8',
-            spacing.flex.col,
-            spacing.gap.md,
-            'bg-zinc-900/95',
-            'backdrop-blur-md',
-            'border border-white/15',
-            'shadow-xl',
-            radius.lg,
-            effects.transition.base,
-            'max-h-[80vh]',
-            'overflow-y-auto',
-            'scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent',
+            'w-full',
+            'max-w-3xl',
+            'p-6 md:p-8',
+            'flex flex-col gap-4',
+            'bg-transparent',
+            'border border-white/10',
+            'shadow-lg',
+            'rounded-lg',
+            'transition-all duration-200 ease-out',
+            'mt-20 md:mt-24',
             className
           )}
           onClick={(e) => e.stopPropagation()} // Stoppa klickhändelsen från att bubbla upp
