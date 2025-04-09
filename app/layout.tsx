@@ -3,9 +3,7 @@
   type="text/javascript"
   data-agent-id="4mN4rizdi79gwLhFxlOu"
   async
-  defer
-  crossOrigin="anonymous"
-  onLoad="window.elevenLabsWidgetLoaded = true">
+  defer>
 </script>
 
 import type { Metadata, Viewport } from 'next';
