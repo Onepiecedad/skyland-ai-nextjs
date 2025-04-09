@@ -1,0 +1,64 @@
+Widgeten <elevenlabs-convai> är korrekt inlagd, men samtalet startar inte när den anropas via en separat React-knapp. Det verkar som att visible/active attributen inte påverkar funktionen — eller att widgeten inte är redo att ta emot dessa.
+
+🔍 Trolig orsak:
+display: none blockerar Web Componentens interna JS
+ElevenLabs-widgeten verkar kräva att DOM-elementet är aktivt renderat i trädet — även om det är osynligt — för att kunna initieras korrekt.
+
+Widgeten är inte färdiginitierad vid anropet
+Den är troligen asynkront laddad via extern script, och din knapp försöker aktivera innan den är klar.
+
+Ingen väldokumenterad "start"-metod finns
+Det finns ingen dokumenterad toggle eller start-funktion via event dispatching — vilket innebär att man inte kan starta röstagenten direkt utan att förstå exakt API:et bakom widgeten.
+
+✅ Rekommenderade åtgärder:
+1. Byt display: none till osynlig DOM-närvaro:
+html
+Copy
+Edit
+<elevenlabs-convai 
+  agent-id="4mN4rizdi79gwLhFxlOu"
+  style="opacity: 0; pointer-events: none; width: 0; height: 0; position: absolute;"
+></elevenlabs-convai>
+🧠 Viktigt: display: none gör att Web Components ofta inte körs eller initialiseras.
+
+2. Lägg till polling tills widget finns + initieras:
+tsx
+Copy
+Edit
+useEffect(() => {
+  const waitForWidget = () => {
+    const widget = document.querySelector('elevenlabs-convai');
+    if (widget) {
+      console.log('✅ Widget loaded');
+    } else {
+      console.warn('⏳ Waiting for widget...');
+      setTimeout(waitForWidget, 300);
+    }
+  };
+
+  waitForWidget();
+}, []);
+3. Starta widget via synlighetsattribut – undvik dispatchEvent
+tsx
+Copy
+Edit
+const widget = document.querySelector('elevenlabs-convai');
+if (widget) {
+  widget.setAttribute('visible', 'true');
+  widget.setAttribute('active', 'true');
+  widget.style.opacity = '1'; // Kan hållas på 0 om man inte vill visa
+  console.log('🎙️ Widget aktiv');
+}
+4. Logga fel och aktivering
+Bekräfta att inga errors dyker upp i konsolen
+
+Använd MutationObserver eller logga internt i widget om möjligt
+
+📌 Slutsats:
+För att kunna styra widgeten via extern knapp måste:
+
+Widgeten finnas i DOM (utan display: none)
+
+Widgeten vara färdiginitierad innan den aktiveras
+
+Aktivering ske med korrekta attribut (och inte ospecificerade event)

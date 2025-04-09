@@ -1,0 +1,83 @@
+### 🧙‍♂️ Grimoire’s Bedömning & Rekommendation till Cursor Agent
+
+---
+
+**Problem:**  
+Widgeten `<elevenlabs-convai>` är korrekt inlagd, men samtalet startar inte när den anropas via en separat React-knapp. Det verkar som att `visible`/`active` attributen inte påverkar funktionen — eller att widgeten inte är redo att ta emot dessa.
+
+---
+
+### 🔍 Trolig orsak:
+
+1. `display: none` blockerar Web Componentens interna JS  
+   ElevenLabs-widgeten verkar kräva att DOM-elementet är aktivt renderat i trädet — även om det är osynligt — för att kunna initieras korrekt.
+
+2. Widgeten är inte färdiginitierad vid anropet  
+   Den laddas asynkront via externt `<script>` och är troligen inte redo när knappen trycks.
+
+3. Ingen väldokumenterad "start"-metod finns  
+   Det finns ingen dokumenterad `toggle` eller `start`-funktion via `dispatchEvent`. Man bör därför använda `setAttribute`.
+
+---
+
+### ✅ Rekommenderade åtgärder:
+
+#### 1. Ändra widgetens stil så att den är osynlig men existerar i DOM:
+
+```html
+<elevenlabs-convai 
+  agent-id="4mN4rizdi79gwLhFxlOu"
+  style="opacity: 0; pointer-events: none; width: 0; height: 0; position: absolute;"
+></elevenlabs-convai>
+```
+
+❗️ Undvik `display: none` – det förhindrar ofta att Web Components körs korrekt.
+
+---
+
+#### 2. Lägg till polling tills widget är tillgänglig:
+
+```tsx
+useEffect(() => {
+  const waitForWidget = () => {
+    const widget = document.querySelector('elevenlabs-convai');
+    if (widget) {
+      console.log('✅ Widget loaded');
+    } else {
+      console.warn('⏳ Waiting for widget...');
+      setTimeout(waitForWidget, 300);
+    }
+  };
+
+  waitForWidget();
+}, []);
+```
+
+---
+
+#### 3. Starta widget via attribut, inte event:
+
+```tsx
+const widget = document.querySelector('elevenlabs-convai');
+if (widget) {
+  widget.setAttribute('visible', 'true');
+  widget.setAttribute('active', 'true');
+  widget.style.opacity = '1'; // eller behåll 0 om det ska förbli osynligt
+  console.log('🎤 Widget activated');
+} else {
+  console.error('🛑 Widget not found');
+}
+```
+
+---
+
+### 📌 Slutsats:
+
+För att widgeten ska kunna styras via en extern knapp krävs att:
+- Den finns i DOM (utan `display: none`)
+- Den har hunnit laddas
+- Aktivering sker via `setAttribute`, inte `dispatchEvent`
+
+---
+
+Tack!
