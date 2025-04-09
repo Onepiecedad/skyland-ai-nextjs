@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -27,18 +26,19 @@ export function HeroSection() {
             Meet Dana—Our Always-On AI Strategy Assistant
           </h4>
 
-          <div className="w-full relative z-50 bg-transparent">
+          <div className="w-full relative z-50 bg-transparent mx-auto" style={{ maxWidth: '800px' }}>
             <elevenlabs-convai 
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
                 position: 'relative',
                 zIndex: 100,
                 width: '100%',
-                minHeight: '400px',
-                maxHeight: '600px',
+                height: '500px',
                 display: 'block',
                 background: 'transparent',
-                margin: '0 auto'
+                margin: '0 auto',
+                borderRadius: '12px',
+                overflow: 'hidden'
               }}
             />
           </div>
