@@ -101,13 +101,10 @@ export function HeroSection() {
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{ 
-                opacity: 0, 
-                pointerEvents: 'none', 
-                position: 'fixed', 
-                bottom: '20px', 
+                position: 'fixed',
+                bottom: '20px',
                 right: '20px',
-                width: 0,
-                height: 0
+                visibility: 'hidden'
               }}
             />
 
@@ -116,9 +113,9 @@ export function HeroSection() {
               onClick={() => {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
-                  widget.setAttribute('visible', 'true');
-                  widget.setAttribute('active', 'true');
-                  widget.style.opacity = '1';
+                  widget.setAttribute('visible', '');
+                  widget.setAttribute('active', '');
+                  widget.style.visibility = 'visible';
                 }
               }}
               className={cn(
