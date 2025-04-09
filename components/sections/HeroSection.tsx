@@ -75,13 +75,16 @@ export function HeroSection() {
             for your business.
           </p>
 
-          {/* ElevenLabs Widget */}
-          <div className="mt-8">
+          <div className={cn('mt-8 w-full flex justify-center')}>
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
               visible="true"
-              active="true"
+              style={{
+                width: '100%',
+                maxWidth: '600px',
+                height: '600px'
+              }}
             />
           </div>
 
