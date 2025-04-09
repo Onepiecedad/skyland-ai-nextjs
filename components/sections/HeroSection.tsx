@@ -100,18 +100,18 @@ export function HeroSection() {
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{ opacity: 0, position: 'absolute' }}
+              style={{ position: 'fixed', bottom: '20px', right: '20px', opacity: 0 }}
             />
 
             {/* Custom Button */}
             <button
               onClick={() => {
-                const widget = document.querySelector('#dana-widget');
+                const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
                   // @ts-ignore - ElevenLabs widget API
-                  widget.setAttribute('active', '');
+                  widget.setAttribute('visible', 'true');
                   // @ts-ignore - ElevenLabs widget API
-                  widget.start();
+                  widget.dispatchEvent(new CustomEvent('start-conversation'));
                 }
               }}
               className={cn(
