@@ -80,12 +80,14 @@ export function HeroSection() {
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
-              visible="true"
+              visible
+              active
               style={{
                 position: 'relative',
                 zIndex: 100,
                 width: '100%',
-                height: '600px'
+                height: '600px',
+                display: 'block'
               }}
             />
           </div>
