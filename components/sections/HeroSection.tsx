@@ -109,11 +109,9 @@ export function HeroSection() {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
                   // @ts-ignore - ElevenLabs widget API
-                  widget.setAttribute('visible', 'true');
-                  widget.dispatchEvent(new CustomEvent('elevenlabs-show-widget', {
-                    bubbles: true,
-                    composed: true
-                  }));
+                  widget.setAttribute('visible', '');
+                  // @ts-ignore - ElevenLabs widget API
+                  widget.setAttribute('active', '');
                 }
               }}
               className={cn(
