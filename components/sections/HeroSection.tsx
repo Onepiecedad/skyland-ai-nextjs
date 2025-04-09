@@ -109,10 +109,10 @@ export function HeroSection() {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
                   // @ts-ignore - ElevenLabs widget API
-                  widget.dispatchEvent(new CustomEvent('start-call', {
+                  widget.setAttribute('active', '');
+                  widget.dispatchEvent(new CustomEvent('initiate-call', {
                     bubbles: true,
-                    composed: true,
-                    detail: { trigger: 'button' }
+                    composed: true
                   }));
                 }
               }}
