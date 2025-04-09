@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect } from 'react';
@@ -41,7 +40,7 @@ function PageSectionBase({
     <BaseSection
       id={id}
       className={cn(
-        'relative min-h-screen py-20 md:py-24 lg:py-32',
+        'relative min-h-screen py-20 md:py-24 lg:py-32 lg:px-12',
         effects.glass.light,
         className
       )}
