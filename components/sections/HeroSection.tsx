@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -26,7 +27,7 @@ export function HeroSection() {
             Meet Dana—Our Always-On AI Strategy Assistant
           </h4>
 
-          <div className="w-full relative z-50">
+          <div className="w-full relative z-50 bg-transparent">
             <elevenlabs-convai 
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
@@ -34,6 +35,7 @@ export function HeroSection() {
                 zIndex: 100,
                 width: '100%',
                 minHeight: '400px',
+                maxHeight: '600px',
                 display: 'block',
                 background: 'transparent',
                 margin: '0 auto'
@@ -151,7 +153,6 @@ export function HeroSection() {
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
-
           </ContentStack>
 
           {/* Right column */}
