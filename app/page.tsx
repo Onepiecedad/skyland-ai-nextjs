@@ -5,7 +5,7 @@ import { SectionProvider } from '@/lib/context/SectionContext';
 export default function Home() {
   return (
     <SectionProvider>
-      <AuroraBackground enabled={true} />
+      <AuroraBackground enabled />
       <PageSections />
     </SectionProvider>
   );
