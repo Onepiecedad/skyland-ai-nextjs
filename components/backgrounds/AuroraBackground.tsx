@@ -26,7 +26,7 @@ export const AuroraBackground = ({
   }
 
   return (
-    <main className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-900', className)}>
+    <main className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-900', className)} data-enabled={enabled}>
       <div className="absolute inset-0 overflow-hidden">
         <div
           className={cn(
