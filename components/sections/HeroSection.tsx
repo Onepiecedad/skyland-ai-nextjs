@@ -115,7 +115,8 @@ export function HeroSection() {
                 if (widget) {
                   widget.setAttribute('visible', '');
                   widget.setAttribute('active', '');
-                  widget.style.visibility = 'visible';
+                  widget.style.opacity = '1';
+                  widget.style.pointerEvents = 'auto';
                 }
               }}
               className={cn(
