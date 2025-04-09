@@ -21,7 +21,7 @@ export function HeroSection() {
     hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg">
-        <div className="flex flex-col items-center space-y-8 w-full max-w-3xl mx-auto">
+        <div className="flex flex-col items-center space-y-4 w-full max-w-3xl mx-auto">
           <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}>
             Meet Dana—Our Always-On AI Strategy Assistant
           </h4>
