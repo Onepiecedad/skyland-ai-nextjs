@@ -80,18 +80,18 @@ export function HeroSection() {
             <elevenlabs-convai 
               ref={(el) => {
                 if (el && isOpen) {
-                  // Wait for widget to be fully loaded
-                  const checkReady = setInterval(() => {
-                    const widget = document.querySelector('elevenlabs-convai');
-                    if (widget && typeof widget.setAttribute === 'function') {
-                      widget.setAttribute('visible', '');
-                      widget.setAttribute('active', '');
-                      clearInterval(checkReady);
+                  // Wait for widget to be ready
+                  setTimeout(() => {
+                    try {
+                      // Force widget refresh
+                      el.remove();
+                      document.querySelector('.modal-content')?.appendChild(el);
+                      el.setAttribute('visible', '');
+                      el.setAttribute('active', '');
+                    } catch (err) {
+                      console.error('Failed to initialize widget:', err);
                     }
-                  }, 100);
-
-                  // Cleanup
-                  return () => clearInterval(checkReady);
+                  }, 500);
                 }
               }}
               id="dana-widget"
