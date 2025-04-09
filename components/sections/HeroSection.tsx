@@ -26,20 +26,19 @@ export function HeroSection() {
             Meet Dana—Our Always-On AI Strategy Assistant
           </h4>
 
-          <div className="w-full relative z-50 bg-transparent mx-auto" style={{ maxWidth: '800px', minHeight: '400px' }}>
+          <div className="w-full relative z-50 bg-transparent mx-auto" style={{ maxWidth: '800px' }}>
             <elevenlabs-convai 
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
                 position: 'relative',
                 zIndex: 100,
                 width: '100%',
-                minHeight: '400px',
-                height: 'auto',
+                height: '600px',
                 display: 'block',
-                background: 'transparent',
+                background: 'transparent !important',
                 margin: '0 auto',
                 borderRadius: '12px',
-                overflow: 'hidden'
+                overflow: 'visible'
               }}
             />
           </div>
