@@ -114,7 +114,7 @@ export function HeroSection() {
               )}
             >
               <span className="mr-2">🎙️</span>
-              Prata med Dana
+              Talk to Dana
             </button>
           </div>
         </div>
