@@ -1,25 +1,41 @@
-
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "tailwindcss", "prettier"],
+  "plugins": ["@typescript-eslint", "react", "tailwindcss", "prettier"],
   "extends": [
-    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "next",
+    "next/core-web-vitals"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off",
-    "tailwindcss/no-custom-classname": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "react/no-unescaped-entities": "off",
-    "prettier/prettier": ["error", {
-      "singleQuote": true,
-      "semi": true,
-      "tabWidth": 2,
-      "printWidth": 100,
-      "trailingComma": "es5"
-    }],
-    "tailwindcss/classnames-order": "warn"
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "warn",
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "tabWidth": 2,
+        "printWidth": 100,
+        "trailingComma": "es5"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

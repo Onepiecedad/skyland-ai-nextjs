@@ -57,7 +57,7 @@ const painPoints = [
           </p>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to see what that could look
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to see what that could look
             like in your business.
           </p>
         </div>
@@ -107,7 +107,7 @@ const painPoints = [
           </p>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to find out what your
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to find out what your
             business could automate first.
           </p>
         </div>
@@ -154,7 +154,7 @@ const painPoints = [
           </p>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to see how fast you could
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to see how fast you could
             start winning back lost leads.
           </p>
         </div>
@@ -201,7 +201,7 @@ const painPoints = [
           </p>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to see how your business
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to see how your business
             could scale faster—with less stress.
           </p>
         </div>
@@ -229,7 +229,7 @@ export function PainPointSection() {
         </ContentStack>
 
         <GridSection columns="two" gap="lg" ariaLabel="Common Business Challenges Grid">
-          {painPoints.map(point => (
+          {painPoints.map((point) => (
             <div key={point.id} className={cn(spacing.flex.col)}>
               <Card
                 title={point.title}

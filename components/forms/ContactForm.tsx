@@ -33,12 +33,12 @@ export function ContactForm() {
 
   const handleValidationError = (error: ValidationError) => {
     const fieldErrors: Record<string, string> = {};
-    error.errors.errors.forEach(err => {
+    error.errors.errors.forEach((err) => {
       if (err.path) {
         fieldErrors[err.path[0]] = err.message;
       }
     });
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
       status: 'error',
       errors: fieldErrors,
@@ -46,7 +46,7 @@ export function ContactForm() {
   };
 
   const handleWebhookError = (error: WebhookError) => {
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
       status: 'error',
       generalError: 'Failed to send message. Please try again or contact us directly.',
@@ -73,7 +73,7 @@ export function ContactForm() {
       } else if ((error as Error).name === 'WebhookError') {
         handleWebhookError(error as WebhookError);
       } else {
-        setFormState(prev => ({
+        setFormState((prev) => ({
           ...prev,
           status: 'error',
           generalError: 'An unexpected error occurred. Please try again.',
@@ -85,10 +85,10 @@ export function ContactForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     // Clear field-specific error when user starts typing
     if (formState.errors[name]) {
-      setFormState(prev => ({
+      setFormState((prev) => ({
         ...prev,
         errors: {
           ...prev.errors,

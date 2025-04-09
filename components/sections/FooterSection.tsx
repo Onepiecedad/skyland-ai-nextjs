@@ -17,8 +17,8 @@ export function FooterSection({ className }: FooterSectionProps) {
 
   return (
     <footer className={cn('w-full border-t border-white/10', 'bg-zinc-900/50', 'py-10')}>
-      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
           {/* Company Info */}
           <div className={cn(spacing.flex.col, spacing.gap.md)}>
             <Link
@@ -80,7 +80,7 @@ export function FooterSection({ className }: FooterSectionProps) {
                 { href: '#about', label: 'About' },
                 { href: '#pricing', label: 'Pricing' },
                 { href: '#contact', label: 'Contact' },
-              ].map(link => (
+              ].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

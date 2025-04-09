@@ -81,7 +81,7 @@ export function AboutSection({ className }: AboutSectionProps) {
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Talk to Dana to see what you could stop
+              <span className="mr-2 inline-block">👉</span> Talk to Dana to see what you could stop
               doing—starting today.
             </p>
           </div>
@@ -117,7 +117,7 @@ export function AboutSection({ className }: AboutSectionProps) {
             </div>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Talk to Dana to see how fast clarity can
+              <span className="mr-2 inline-block">👉</span> Talk to Dana to see how fast clarity can
               replace chaos.
             </p>
           </div>
@@ -161,7 +161,7 @@ export function AboutSection({ className }: AboutSectionProps) {
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Talk to Dana and take your first step
+              <span className="mr-2 inline-block">👉</span> Talk to Dana and take your first step
               into the after-AI era.
             </p>
           </div>

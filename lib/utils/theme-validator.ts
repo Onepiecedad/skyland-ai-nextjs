@@ -68,9 +68,9 @@ function getClassParts(className: string): ClassPart[] {
   // Split compound classes and normalize each part
   return className
     .split(' ')
-    .map(part => part.trim())
+    .map((part) => part.trim())
     .filter(Boolean)
-    .map(part => ({
+    .map((part) => ({
       original: part,
       normalized: normalizeClassName(part),
     }));
@@ -96,7 +96,7 @@ function getAllThemeValues(obj: RecursiveRecord, section: ThemeSection): ThemeVa
       const fullPath = [section, ...path].join('.');
       const classes = current
         .split(' ')
-        .map(cls => cls.trim())
+        .map((cls) => cls.trim())
         .filter(Boolean);
 
       values.push({
@@ -145,12 +145,12 @@ function classesMatch(usedClass: string, themeValue: ThemeValue): boolean {
     }
 
     // Check for normalized matches (without responsive/state prefixes)
-    if (themeValue.parts.some(part => normalizeClassName(part) === normalized)) {
+    if (themeValue.parts.some((part) => normalizeClassName(part) === normalized)) {
       return true;
     }
 
     // Check for partial matches (e.g., "text-lg" in "hover:text-lg")
-    return themeValue.parts.some(part => {
+    return themeValue.parts.some((part) => {
       const normalizedPart = normalizeClassName(part);
       return normalizedPart.includes(normalized) || normalized.includes(normalizedPart);
     });
@@ -178,22 +178,22 @@ export function validateThemeUsage(
   const unmatchedClasses: Set<string> = new Set(uniqueClasses);
 
   // Get theme values for each required section
-  requiredThemeSections.forEach(section => {
+  requiredThemeSections.forEach((section) => {
     foundMatches[section] = new Set();
     const themeValues = getAllThemeValues(themeTokens[section], section);
 
     if (debug) {
       debugLog(
         `[Theme Validation] ${section} theme values:`,
-        themeValues.map(v => `${v.path} = ${v.value}`)
+        themeValues.map((v) => `${v.path} = ${v.value}`)
       );
     }
 
-    uniqueClasses.forEach(usedClass => {
-      const matches = themeValues.filter(token => classesMatch(usedClass, token));
+    uniqueClasses.forEach((usedClass) => {
+      const matches = themeValues.filter((token) => classesMatch(usedClass, token));
 
       if (matches.length > 0) {
-        matches.forEach(match => {
+        matches.forEach((match) => {
           foundMatches[section]!.add(match.path);
           unmatchedClasses.delete(usedClass);
         });
@@ -211,13 +211,13 @@ export function validateThemeUsage(
 
   // Check which sections are missing tokens
   const missingSections = requiredThemeSections.filter(
-    section => !foundMatches[section] || foundMatches[section]!.size === 0
+    (section) => !foundMatches[section] || foundMatches[section]!.size === 0
   );
 
   if (missingSections.length > 0 && debug) {
     const foundTokens = requiredThemeSections
-      .filter(section => foundMatches[section] && foundMatches[section]!.size > 0)
-      .map(section => ({
+      .filter((section) => foundMatches[section] && foundMatches[section]!.size > 0)
+      .map((section) => ({
         section,
         tokens: Array.from(foundMatches[section]!),
       }));
@@ -281,7 +281,7 @@ export function validateThemeProperty<T extends keyof ThemeTokens>(
   }
 
   const propertyValue = theme[property] as Record<string, unknown>;
-  const missingKeys = requiredKeys.filter(key => !propertyValue[key]);
+  const missingKeys = requiredKeys.filter((key) => !propertyValue[key]);
 
   if (missingKeys.length > 0) {
     errors.push(`Missing required ${String(property)} keys: ${missingKeys.join(', ')}`);

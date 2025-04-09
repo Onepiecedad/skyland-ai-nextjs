@@ -195,7 +195,7 @@ export function FAQSection({ className }: FAQSectionProps) {
           </p>
         </ContentStack>
         <GridSection columns="two" gap="lg" ariaLabel="FAQ Grid">
-          {faqs.map(faq => (
+          {faqs.map((faq) => (
             <Card
               key={faq.title}
               title={faq.title}

@@ -50,7 +50,7 @@ function PageSectionBase({
         maxWidth={maxWidth}
         className="mx-auto px-6 md:px-8 lg:px-12 lg:px-16"
       >
-        <ContentStack spacing="md" className="text-center animate-fade-in-up">
+        <ContentStack spacing="md" className="animate-fade-in-up text-center">
           <h2 className={cn(typography.heading.h2, colors.text.primary)}>{title}</h2>
           <p className={cn(typography.text.base, colors.text.secondary, 'max-w-3xl mx-auto')}>
             {description}

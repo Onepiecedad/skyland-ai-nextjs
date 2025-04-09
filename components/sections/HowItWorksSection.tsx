@@ -35,7 +35,7 @@ const howItWorksSteps = [
           </p>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to schedule your free AI
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to schedule your free AI
             strategy call.
           </p>
         </div>
@@ -74,7 +74,7 @@ const howItWorksSteps = [
           </div>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to learn more about our
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to learn more about our
             custom AI planning process.
           </p>
         </div>
@@ -116,7 +116,7 @@ const howItWorksSteps = [
           </div>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to find out how quickly we
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to find out how quickly we
             could build your custom AI solution.
           </p>
         </div>
@@ -157,7 +157,7 @@ const howItWorksSteps = [
           </div>
 
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">💬</span> Talk to Dana to see how our AI solutions
+            <span className="mr-2 inline-block">💬</span> Talk to Dana to see how our AI solutions
             continuously improve over time.
           </p>
         </div>
@@ -184,7 +184,7 @@ export function HowItWorksSection() {
         </ContentStack>
 
         <GridSection columns="two" gap="lg" ariaLabel="How It Works Process Grid">
-          {howItWorksSteps.map(step => (
+          {howItWorksSteps.map((step) => (
             <div key={step.id} className={cn(spacing.flex.col)}>
               <Card
                 title={step.title}

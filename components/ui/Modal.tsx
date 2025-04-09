@@ -147,7 +147,7 @@ function ModalBase({
           effects.overflow.auto,
           'pt-16 md:pt-20'
         )}
-        onClick={e => {
+        onClick={(e) => {
           // Endast stäng om klicket var på bakgrunden (inte på modalen själv)
           if (e.target === e.currentTarget) {
             onClose();
@@ -172,7 +172,7 @@ function ModalBase({
             'scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent',
             className
           )}
-          onClick={e => e.stopPropagation()} // Stoppa klickhändelsen från att bubbla upp
+          onClick={(e) => e.stopPropagation()} // Stoppa klickhändelsen från att bubbla upp
         >
           {/* Mindre, diskretare stängningsknapp */}
           {showCloseButton && (
@@ -189,7 +189,7 @@ function ModalBase({
               onClick={onClose}
               aria-label={closeButtonLabel}
             >
-              <X className="w-3.5 h-3.5 text-white/70" />
+              <X className="size-3.5 text-white/70" />
             </button>
           )}
 

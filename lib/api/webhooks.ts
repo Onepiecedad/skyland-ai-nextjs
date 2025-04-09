@@ -44,7 +44,7 @@ const defaultRetryOptions: Required<RetryOptions> = {
 };
 
 async function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function retryWithBackoff<T>(

@@ -37,11 +37,11 @@ export function SectionProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const addSection = useCallback((id: string) => {
-    setVisibleSections(prev => (prev.includes(id) ? prev : [...prev, id]));
+    setVisibleSections((prev) => (prev.includes(id) ? prev : [...prev, id]));
   }, []);
 
   const removeSection = useCallback((id: string) => {
-    setVisibleSections(prev => prev.filter(sectionId => sectionId !== id));
+    setVisibleSections((prev) => prev.filter((sectionId) => sectionId !== id));
   }, []);
 
   return (

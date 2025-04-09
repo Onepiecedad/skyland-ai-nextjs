@@ -32,7 +32,7 @@ export const scrollTo = async (
     });
 
     // Wait for scroll to complete
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const checkScrollEnd = setInterval(() => {
         if (window.scrollY === targetPosition) {
           clearInterval(checkScrollEnd);

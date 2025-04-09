@@ -51,7 +51,7 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
             </div>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">💬</span> Talk to Dana to see how AI voice agents
+              <span className="mr-2 inline-block">💬</span> Talk to Dana to see how AI voice agents
               could work like 10 reps—on autopilot.
             </p>
           </div>
@@ -99,7 +99,7 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">💬</span> Talk to Dana to see how a Custom AI
+              <span className="mr-2 inline-block">💬</span> Talk to Dana to see how a Custom AI
               Assistant could turn your traffic—and time—into revenue.
             </p>
           </div>
@@ -147,7 +147,7 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">💬</span> Talk to Dana to find out how much time
+              <span className="mr-2 inline-block">💬</span> Talk to Dana to find out how much time
               (and sanity) you could save this week.
             </p>
           </div>
@@ -177,8 +177,8 @@ export function AiSolutionsSection({ className }: AiSolutionsSectionProps) {
           </p>
         </ContentStack>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
-          {solutions.map(solution => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:gap-12">
+          {solutions.map((solution) => (
             <div key={solution.id} className={cn(spacing.flex.col)}>
               <Card
                 title={solution.title}

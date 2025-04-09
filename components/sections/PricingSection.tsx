@@ -44,7 +44,7 @@ const pricingCards = [
             </p>
           </div>
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">👉</span> Book a free call to see what your custom
+            <span className="mr-2 inline-block">👉</span> Book a free call to see what your custom
             solution could look like.
           </p>
         </div>
@@ -86,7 +86,7 @@ const pricingCards = [
             </p>
           </div>
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">👉</span> Curious what's possible for your business?
+            <span className="mr-2 inline-block">👉</span> Curious what's possible for your business?
             Let's talk.
           </p>
         </div>
@@ -124,7 +124,7 @@ const pricingCards = [
             </p>
           </div>
           <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-            <span className="inline-block mr-2">👉</span> Schedule a free strategy call and see
+            <span className="mr-2 inline-block">👉</span> Schedule a free strategy call and see
             what's possible.
           </p>
         </div>
@@ -154,8 +154,8 @@ export function PricingSection() {
           </p>
         </ContentStack>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
-          {pricingCards.map(card => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:gap-12">
+          {pricingCards.map((card) => (
             <div key={card.id} className={cn(spacing.flex.col)}>
               <Card
                 title={card.title}

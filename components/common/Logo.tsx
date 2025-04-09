@@ -16,10 +16,10 @@ function LogoBase({ className }: LogoProps) {
 
   return (
     <div className={cn('flex items-center space-x-3', defaultTokens, className)}>
-      <Brain className="h-6 w-6 text-blue-500" strokeWidth={2} />
-      <div className="flex items-center tracking-tight font-medium">
+      <Brain className="size-6 text-blue-500" strokeWidth={2} />
+      <div className="flex items-center font-medium tracking-tight">
         <span className="text-white">Skyland</span>
-        <span className="text-white font-bold">AI</span>
+        <span className="font-bold text-white">AI</span>
       </div>
     </div>
   );

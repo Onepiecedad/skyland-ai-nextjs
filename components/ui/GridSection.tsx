@@ -43,7 +43,7 @@ function GridSectionBase({
   const optimizedColumns = getOptimizedColumns();
 
   // Clone and modify Card components with the correct variant
-  const childrenWithVariant = React.Children.map(children, child => {
+  const childrenWithVariant = React.Children.map(children, (child) => {
     if (React.isValidElement(child) && typeof child.type === 'function') {
       const childType = child.type as any;
       if (childType.displayName === 'Card') {

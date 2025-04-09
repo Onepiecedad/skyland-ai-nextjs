@@ -46,7 +46,7 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Curious what this could look like in
+              <span className="mr-2 inline-block">👉</span> Curious what this could look like in
               your agency? Talk to Dana to find out.
             </p>
           </div>
@@ -88,7 +88,7 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Want to see what this looks like for
+              <span className="mr-2 inline-block">👉</span> Want to see what this looks like for
               your business? Talk to Dana now.
             </p>
           </div>
@@ -130,7 +130,7 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Wondering how this could work at your
+              <span className="mr-2 inline-block">👉</span> Wondering how this could work at your
               front desk? Talk to Dana to find out.
             </p>
           </div>
@@ -172,7 +172,7 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
             </p>
 
             <p className={cn(typography.text.base, colors.text.accent, 'mt-4 flex items-center')}>
-              <span className="inline-block mr-2">👉</span> Wondering how much of your admin could
+              <span className="mr-2 inline-block">👉</span> Wondering how much of your admin could
               disappear? Talk to Dana to find out.
             </p>
           </div>
@@ -202,8 +202,8 @@ export function IndustrySolutionsSection({ className }: IndustrySolutionsSection
           </p>
         </ContentStack>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
-          {industries.map(industry => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+          {industries.map((industry) => (
             <div key={industry.id} className={cn(spacing.flex.col)}>
               <Card
                 title={industry.title}

@@ -102,7 +102,7 @@ export function HeroSection() {
               'mt-8 flex items-center font-medium'
             )}
           >
-            <span className="inline-block mr-2">👉</span> Ask Dana now and see what AI can actually
+            <span className="mr-2 inline-block">👉</span> Ask Dana now and see what AI can actually
             do—for your business
           </p>
         </div>
@@ -123,12 +123,12 @@ export function HeroSection() {
       containerGlass={false}
     >
       {/* Logo in top left corner */}
-      <div className="absolute top-6 left-6 md:top-8 md:left-8 lg:top-10 lg:left-10 z-20">
+      <div className="absolute left-6 top-6 z-20 md:left-8 md:top-8 lg:left-10 lg:top-10">
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <ContentStack spacing="lg" className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+      <ContentStack spacing="lg" className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
+        <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left column */}
           <ContentStack spacing="md" className={cn('space-y-6')}>
             <h1
