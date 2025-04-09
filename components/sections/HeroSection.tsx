@@ -15,7 +15,6 @@ import { Logo } from '@/components/common/Logo';
 import Script from 'next/script';
 
 export function HeroSection() {
-  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     // Load ElevenLabs widget script
