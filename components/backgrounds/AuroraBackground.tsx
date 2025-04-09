@@ -16,18 +16,16 @@ export const AuroraBackground = ({
   enabled = true,
   ...props
 }: AuroraBackgroundProps) => {
-  const { enabled: _, ...divProps } = props; // Remove enabled from props
-
   if (!enabled) {
     return (
-      <div className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-900', className)} {...divProps}>
+      <main className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-900', className)}>
         {children}
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-50 dark:bg-zinc-900', className)} {...divProps}>
+    <main className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-50 dark:bg-zinc-900', className)}>
       <div className="absolute inset-0 overflow-hidden">
         <div
           className={cn(
@@ -51,6 +49,6 @@ export const AuroraBackground = ({
         />
       </div>
       {children}
-    </div>
+    </main>
   );
 };
