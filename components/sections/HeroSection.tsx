@@ -109,13 +109,16 @@ export function HeroSection() {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
                   try {
-                    // Wait for widget to be ready
-                    setTimeout(() => {
+                    // Wait for widget to be fully loaded
+                    if (document.readyState === 'complete') {
                       widget.setAttribute('visible', 'true');
                       widget.setAttribute('active', 'true');
                       widget.style.opacity = '1';
-                      widget.dispatchEvent(new CustomEvent('elevenlabs-show-widget'));
-                    }, 100);
+                      // Custom event to ensure widget is ready
+                      window.dispatchEvent(new CustomEvent('elevenlabs-widget-ready'));
+                    } else {
+                      console.log('Waiting for widget to load...');
+                    }
                   } catch (error) {
                     console.error('Error activating widget:', error);
                   }
