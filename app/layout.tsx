@@ -1,8 +1,6 @@
 <script 
   src="https://elevenlabs.io/convai-widget/index.js" 
   type="text/javascript"
-  data-agent-id="4mN4rizdi79gwLhFxlOu"
-  data-initialization="manual"
   async>
 </script>
 
