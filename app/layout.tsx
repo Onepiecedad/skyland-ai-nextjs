@@ -32,8 +32,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn('dark', inter.variable)} suppressHydrationWarning>
-      <body className={cn(colors.surface.default, typography.text.base, 'font-sans antialiased')}>
+    <html lang="en" className={cn('dark [color-scheme:dark]', inter.variable)} suppressHydrationWarning>
+      <body className={cn(colors.surface.default, typography.text.base, 'font-sans antialiased bg-slate-900')}>
         <ThemeEffect />
         <ClientProviders>{children}</ClientProviders>
       </body>
