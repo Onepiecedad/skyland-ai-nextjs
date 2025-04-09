@@ -21,20 +21,20 @@ export function HeroSection() {
     hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg">
-        <div className="flex flex-col items-center w-full max-w-3xl mx-auto">
-          <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-8')}>
-            Meet Dana—Our Always-On AI Strategy Assistant
-          </h4>
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}>
+          Meet Dana—Our Always-On AI Strategy Assistant
+        </h4>
 
-          <div className="flex justify-center w-full bg-transparent">
-            <elevenlabs-convai 
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{
-                width: '100%',
-                maxWidth: '500px',
-                height: 'auto',
-                minHeight: '0',
-                display: 'block',
+        <div className="w-full relative z-50 bg-transparent mx-auto" style={{ maxWidth: '800px' }}>
+          <elevenlabs-convai 
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            style={{
+              position: 'relative',
+              zIndex: 100,
+              width: '100%',
+              height: 'auto',
+              minHeight: '0',
+              display: 'block',
                 background: 'transparent',
                 margin: '0 auto',
                 borderRadius: '12px',
