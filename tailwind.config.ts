@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
@@ -69,4 +70,4 @@ function addVariablesForColors({ addBase, theme }: any) {
   });
 }
 
-export default config; 
+export default config;
