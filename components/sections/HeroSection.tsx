@@ -100,7 +100,7 @@ export function HeroSection() {
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{ display: 'none' }}
+              style={{ opacity: 0, position: 'fixed', bottom: '20px', right: '20px' }}
             />
 
             {/* Custom Button */}
@@ -109,8 +109,8 @@ export function HeroSection() {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
                   // @ts-ignore - ElevenLabs widget API
-                  widget.setAttribute('active', '');
-                  widget.dispatchEvent(new CustomEvent('initiate-call', {
+                  widget.setAttribute('visible', 'true');
+                  widget.dispatchEvent(new CustomEvent('elevenlabs-show-widget', {
                     bubbles: true,
                     composed: true
                   }));
