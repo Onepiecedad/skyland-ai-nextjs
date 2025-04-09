@@ -17,6 +17,7 @@ interface CardProps {
   variant?: 'three' | 'four' | 'six';
   centerText?: boolean;
   debugMode?: boolean;
+  hasWidget?: boolean;
 }
 
 function CardBase({

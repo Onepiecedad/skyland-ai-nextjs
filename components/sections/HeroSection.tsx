@@ -19,6 +19,7 @@ export function HeroSection() {
     title: 'Meet Dana—Our AI Assistant',
     description:
       "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
+    hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg">
         <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal')}>
@@ -147,18 +148,7 @@ export function HeroSection() {
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
-            <div className="relative z-50 min-h-[600px] mt-8">
-              <elevenlabs-convai 
-                agent-id="4mN4rizdi79gwLhFxlOu"
-                style={{
-                  position: 'relative',
-                  zIndex: 100,
-                  width: '100%',
-                  height: '600px',
-                  display: 'block'
-                }}
-              />
-            </div>
+            
           </ContentStack>
 
           {/* Right column */}
