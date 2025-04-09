@@ -20,18 +20,14 @@ const SectionContext = createContext<SectionContextType>({
   visibleSections: [],
   addSection: () => {},
   removeSection: () => {},
-  isHydrated: true, // Default to true
+  isHydrated: true,
 });
-
-// Använd useLayoutEffect på klienten, useEffect på servern
-const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 export function SectionProvider({ children }: { children: React.ReactNode }) {
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
-  const [isHydrated, setIsHydrated] = useState(true); // Start with true
+  const [isHydrated, setIsHydrated] = useState(true);
 
-  // Kör en gång när komponenten mountas på klienten - behåll för backward compatibility
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     setIsHydrated(true);
     return () => setIsHydrated(false);
   }, []);
