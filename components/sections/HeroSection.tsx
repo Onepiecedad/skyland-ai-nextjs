@@ -22,23 +22,25 @@ export function HeroSection() {
     hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal', 'text-center')}>
-          Meet Dana—Our Always-On AI Strategy Assistant
-        </h4>
-        
-        {/* ElevenLabs Widget Container - Moved to top */}
-        <div className="relative z-50 min-h-[600px] mt-4">
-          <elevenlabs-convai 
-            agent-id="4mN4rizdi79gwLhFxlOu"
-            style={{
-              position: 'relative',
-              zIndex: 100,
-              width: '100%',
-              height: '600px',
-              display: 'block'
-            }}
-          />
-        </div>
+        <div className="flex flex-col items-center space-y-8 w-full max-w-3xl mx-auto">
+          <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}>
+            Meet Dana—Our Always-On AI Strategy Assistant
+          </h4>
+          
+          <div className="w-full relative z-50 min-h-[600px]">
+            <elevenlabs-convai 
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              style={{
+                position: 'relative',
+                zIndex: 100,
+                width: '100%',
+                height: '600px',
+                display: 'block',
+                background: 'transparent'
+              }}
+            />
+          </div>
+</div>
 
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
