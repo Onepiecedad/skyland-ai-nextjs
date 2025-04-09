@@ -14,6 +14,7 @@ import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
 
 export function HeroSection() {
+  const [isOpen, setIsOpen] = React.useState(true);
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
     description:
