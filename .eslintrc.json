@@ -1,3 +1,4 @@
+
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
@@ -10,6 +11,15 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "tailwindcss/no-custom-classname": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "react/no-unescaped-entities": "off",
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "semi": true,
+      "tabWidth": 2,
+      "printWidth": 100,
+      "trailingComma": "es5"
+    }],
+    "tailwindcss/classnames-order": "warn"
   }
 }
