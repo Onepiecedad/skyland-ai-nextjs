@@ -100,25 +100,9 @@ export function HeroSection() {
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
+              visible="true"
+              active="true"
             />
-
-            {/* Custom Button */}
-            <button
-              onClick={() => {
-                const widget = document.querySelector('elevenlabs-convai');
-                if (widget) {
-                  widget.setAttribute('visible', 'true');
-                }
-              }}
-              className={cn(
-                'flex items-center justify-center gap-2 rounded-lg bg-blue-500/20 px-8 py-4 text-blue-400 transition-all hover:bg-blue-500/30',
-                typography.text.lg,
-                'w-full max-w-md mx-auto mt-8 font-medium'
-              )}
-            >
-              <span className="mr-2">🎙️</span>
-              Talk to Dana
-            </button>
           </div>
         </div>
       </ContentStack>
