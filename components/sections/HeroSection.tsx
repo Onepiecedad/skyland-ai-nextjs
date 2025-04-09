@@ -15,22 +15,6 @@ import { Logo } from '@/components/common/Logo';
 import Script from 'next/script';
 
 export function HeroSection() {
-
-  React.useEffect(() => {
-    // Load ElevenLabs widget script
-    const script = document.createElement('script');
-    script.src = 'https://widget.elevenlabs.io/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Open widget by default after script loads
-    script.onload = () => setIsOpen(true);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
     description:
