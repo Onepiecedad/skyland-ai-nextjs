@@ -1,10 +1,14 @@
+
+'use client';
+
+import { Inter } from 'next/font/google';
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { colors } from "@/lib/theme/tokens/colors";
 import { typography } from "@/lib/theme/tokens/typography";
 import { cn } from "@/lib/utils";
-import { Inter } from 'next/font/google';
 import { SectionProvider } from "@/lib/context/SectionContext";
+import { useEffect } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,13 +37,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  React.useEffect(() => {
+  useEffect(() => {
     // Initialize dark mode
     document.documentElement.classList.add('dark');
   }, []);
 
   return (
-    <html lang="en" className={cn("dark", inter.variable)}>
+    <html lang="en" className={cn("dark", inter.variable)} suppressHydrationWarning>
       <body
         className={cn(
           colors.surface.default,
