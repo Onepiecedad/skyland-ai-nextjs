@@ -22,9 +22,24 @@ export function HeroSection() {
     hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal')}>
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal', 'text-center')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
+        
+        {/* ElevenLabs Widget Container - Moved to top */}
+        <div className="relative z-50 min-h-[600px] mt-4">
+          <elevenlabs-convai 
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            style={{
+              position: 'relative',
+              zIndex: 100,
+              width: '100%',
+              height: '600px',
+              display: 'block'
+            }}
+          />
+        </div>
+
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
             Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
