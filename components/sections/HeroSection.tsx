@@ -78,31 +78,8 @@ export function HeroSection() {
           {/* ElevenLabs Widget Container */}
           <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
             <elevenlabs-convai 
-              ref={(el) => {
-                if (el && isOpen) {
-                  const checkReady = () => {
-                    // Ensure the widget element exists and elevenlabs script is loaded
-                    if (window.ElevenLabs && el) {
-                      el.setAttribute('visible', '');
-                      el.setAttribute('active', '');
-                      // Let the widget settle before trying to start
-                      setTimeout(() => {
-                        try {
-                          const widget = document.querySelector('elevenlabs-convai');
-                          if (widget && typeof widget.start === 'function') {
-                            widget.start();
-                          }
-                        } catch (err) {
-                          console.error('Could not start widget:', err);
-                        }
-                      }, 1000);
-                    } else {
-                      setTimeout(checkReady, 100);
-                    }
-                  };
-                  checkReady();
-                }
-              }}
+              visible={isOpen}
+              active={isOpen}
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
