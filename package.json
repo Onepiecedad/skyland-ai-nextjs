@@ -7,7 +7,7 @@
     "clear-port": "powershell -ExecutionPolicy Bypass -File ./scripts/clear-port.ps1",
     "dev": "next dev -p 8080",
     "dev:clean": "npm run clear-port && npm run dev",
-    "build": "next build && next export",
+    "build": "next build",
     "build:prod": "powershell -ExecutionPolicy Bypass -File ./scripts/build-prod.ps1",
     "start": "npx serve@latest out",
     "lint": "next lint",
