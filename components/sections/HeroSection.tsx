@@ -104,7 +104,7 @@ export function HeroSection() {
                 position: 'fixed',
                 bottom: '20px',
                 right: '20px',
-                visibility: 'hidden'
+                opacity: 0
               }}
             />
 
