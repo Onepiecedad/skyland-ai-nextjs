@@ -20,24 +20,20 @@ export function HeroSection() {
       "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     hasWidget: true,
     expandedContent: (
-      <ContentStack spacing="lg">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}>
+      <ContentStack spacing="lg" className="items-center">
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        <div className="w-full relative z-50 bg-transparent mx-auto" style={{ maxWidth: '800px' }}>
+        <div className="flex justify-center w-full max-w-2xl mx-auto">
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
             style={{
-              position: 'relative',
-              zIndex: 100,
               width: '100%',
               height: 'auto',
               minHeight: '0',
-              display: 'block',
-                background: 'transparent',
-                margin: '0 auto',
-                borderRadius: '12px',
+              background: 'transparent',
+              borderRadius: '12px',
                 overflow: 'visible'
               }}
             />
