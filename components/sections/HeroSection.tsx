@@ -100,24 +100,40 @@ export function HeroSection() {
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{ opacity: 0, position: 'fixed', bottom: '20px', right: '20px' }}
+              style={{ 
+                opacity: 0, 
+                pointerEvents: 'none', 
+                position: 'fixed', 
+                bottom: '20px', 
+                right: '20px',
+                width: 0,
+                height: 0
+              }}
             />
 
             {/* Custom Button */}
             <button
               onClick={() => {
-                const widget = document.querySelector('elevenlabs-convai');
-                if (widget) {
-                  try {
-                    widget.setAttribute('visible', 'true');
-                    widget.setAttribute('active', 'true');
-                    widget.style.opacity = '1';
-                    widget.style.display = 'block';
-                    widget.style.visibility = 'visible';
-                  } catch (error) {
-                    console.error('Error activating widget:', error);
+                const waitForWidget = () => {
+                  const widget = document.querySelector('elevenlabs-convai');
+                  if (widget) {
+                    try {
+                      widget.setAttribute('visible', 'true');
+                      widget.setAttribute('active', 'true');
+                      widget.style.opacity = '1';
+                      widget.style.pointerEvents = 'auto';
+                      widget.style.width = 'auto';
+                      widget.style.height = 'auto';
+                      console.log('Widget activated');
+                    } catch (error) {
+                      console.error('Error activating widget:', error);
+                    }
+                  } else {
+                    console.log('Waiting for widget...');
+                    setTimeout(waitForWidget, 300);
                   }
-                }
+                };
+                waitForWidget();
               }}
               className={cn(
                 'flex items-center justify-center gap-2 rounded-lg bg-blue-500/20 px-8 py-4 text-blue-400 transition-all hover:bg-blue-500/30',
