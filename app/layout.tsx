@@ -30,17 +30,18 @@ export const viewport: Viewport = {
 };
 
 // Client component for dark mode initialization
-'use client';
-import { useEffect } from 'react';
-
-function DarkModeInitializer() {
+function ClientLayout({ children }: { children: React.ReactNode }) {
+  'use client';
+  
+  const { useEffect } = require('react');
+  
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
-  return null;
+  
+  return children;
 }
 
-// Server component
 export default function RootLayout({
   children,
 }: {
@@ -55,10 +56,11 @@ export default function RootLayout({
           "font-sans antialiased"
         )}
       >
-        <DarkModeInitializer />
-        <SectionProvider>
-          {children}
-        </SectionProvider>
+        <ClientLayout>
+          <SectionProvider>
+            {children}
+          </SectionProvider>
+        </ClientLayout>
       </body>
     </html>
   );
