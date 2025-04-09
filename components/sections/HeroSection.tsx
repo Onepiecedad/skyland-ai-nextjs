@@ -75,13 +75,18 @@ export function HeroSection() {
             for your business.
           </p>
 
-          {/* ElevenLabs Widget */}
-          <div className="mt-8">
+          {/* ElevenLabs Widget Container */}
+          <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
               visible="true"
-              active="true"
+              style={{
+                position: 'relative',
+                zIndex: 100,
+                width: '100%',
+                height: '600px'
+              }}
             />
           </div>
 
