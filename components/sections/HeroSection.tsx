@@ -166,6 +166,18 @@ export function HeroSection() {
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
+            <div className="relative z-50 min-h-[600px] mt-8">
+              <elevenlabs-convai 
+                agent-id="4mN4rizdi79gwLhFxlOu"
+                style={{
+                  position: 'relative',
+                  zIndex: 100,
+                  width: '100%',
+                  height: '600px',
+                  display: 'block'
+                }}
+              />
+            </div>
           </ContentStack>
 
           {/* Right column */}
