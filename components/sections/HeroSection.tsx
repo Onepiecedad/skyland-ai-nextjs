@@ -93,7 +93,7 @@ export function HeroSection() {
           </p>
 
           {/* ElevenLabs Widget Container */}
-          <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
+          <div className={cn('mt-8 relative z-50 min-h-[600px] bg-gradient-to-b from-white/5 to-white/10 rounded-lg p-4 backdrop-blur-sm border border-white/20')}>
             <elevenlabs-convai 
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
@@ -101,7 +101,9 @@ export function HeroSection() {
                 zIndex: 100,
                 width: '100%',
                 height: '600px',
-                display: 'block'
+                display: 'block',
+                borderRadius: '0.5rem',
+                background: 'transparent'
               }}
             />
           </div>
