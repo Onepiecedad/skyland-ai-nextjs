@@ -94,19 +94,17 @@ export function HeroSection() {
 
           {/* ElevenLabs Widget Container */}
           <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
-            {isOpen && (
-              <elevenlabs-convai 
-                id="dana-widget"
-                agent-id="4mN4rizdi79gwLhFxlOu"
-                style={{
-                  position: 'relative',
-                  zIndex: 100,
-                  width: '100%',
-                  height: '600px',
-                  display: 'block'
-                }}
-              />
-            )}
+            <elevenlabs-convai 
+              id="dana-widget"
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              style={{
+                position: 'relative',
+                zIndex: 100,
+                width: '100%',
+                height: '600px',
+                display: 'block'
+              }}
+            />
           </div>
 
           <div className={cn(spacing.stack.md, 'mt-8')}>
