@@ -1,5 +1,10 @@
 
-<script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+<script 
+  src="https://elevenlabs.io/convai-widget/index.js" 
+  data-agent-id="4mN4rizdi79gwLhFxlOu"
+  async 
+  type="text/javascript">
+</script>
 
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';

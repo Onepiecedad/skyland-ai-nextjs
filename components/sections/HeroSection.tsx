@@ -102,10 +102,12 @@ export function HeroSection() {
             {/* Custom Button */}
             <button
               onClick={() => {
+                // Find the widget and trigger conversation
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
-                  // @ts-ignore - ElevenLabs widget method
-                  widget.setAttribute('active', 'true');
+                  // @ts-ignore - ElevenLabs widget API
+                  widget.setAttribute('active', true);
+                  widget.dispatchEvent(new CustomEvent('start-call'));
                 }
               }}
               className={cn(
