@@ -75,6 +75,16 @@ export function HeroSection() {
             for your business.
           </p>
 
+          {/* ElevenLabs Widget */}
+          <div className="mt-8">
+            <elevenlabs-convai 
+              id="dana-widget"
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              visible="true"
+              active="true"
+            />
+          </div>
+
           <div className={cn(spacing.stack.md, 'mt-8')}>
             <h5 className={cn(typography.heading.h5, colors.text.primary, 'font-normal')}>
               💬 <span className="font-medium">You can ask her things like:</span>
