@@ -24,7 +24,10 @@ export const AuroraBackground = ({
   }
 
   return (
-    <div className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-50 dark:bg-zinc-900', className)} {...props}>
+    <div
+      className={cn('fixed inset-0 -z-10 overflow-hidden bg-zinc-50 dark:bg-zinc-900', className)}
+      {...props}
+    >
       <div className="absolute inset-0 overflow-hidden">
         <div
           className={cn(
