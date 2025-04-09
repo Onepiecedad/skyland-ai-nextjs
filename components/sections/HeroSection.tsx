@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -26,7 +25,7 @@ export function HeroSection() {
           <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}>
             Meet Dana—Our Always-On AI Strategy Assistant
           </h4>
-          
+
           <div className="w-full relative z-50 min-h-[600px]">
             <elevenlabs-convai 
               agent-id="4mN4rizdi79gwLhFxlOu"
@@ -40,7 +39,7 @@ export function HeroSection() {
               }}
             />
           </div>
-</div>
+        </div>
 
         <div className={cn(spacing.stack.lg)}>
           <p className={cn(typography.text.base, colors.text.secondary)}>
@@ -93,22 +92,6 @@ export function HeroSection() {
             She's not here to sell. She's here to help you explore if—and how—automation can work
             for your business.
           </p>
-
-          {/* ElevenLabs Widget Container */}
-          <div className={cn('mt-8 relative z-50 min-h-[600px] bg-gradient-to-b from-white/5 to-white/10 rounded-lg p-4 backdrop-blur-sm border border-white/20')}>
-            <elevenlabs-convai 
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{
-                position: 'relative',
-                zIndex: 100,
-                width: '100%',
-                height: '600px',
-                display: 'block',
-                borderRadius: '0.5rem',
-                background: 'transparent'
-              }}
-            />
-          </div>
 
           <div className={cn(spacing.stack.md, 'mt-8')}>
             <h5 className={cn(typography.heading.h5, colors.text.primary, 'font-normal')}>
@@ -167,7 +150,7 @@ export function HeroSection() {
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
-            
+
           </ContentStack>
 
           {/* Right column */}
