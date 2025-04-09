@@ -78,10 +78,17 @@ export function HeroSection() {
           {/* ElevenLabs Widget Container */}
           <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
             <elevenlabs-convai 
+              ref={(el) => {
+                if (el && isOpen) {
+                  // Ensure widget is properly initialized when modal opens
+                  requestAnimationFrame(() => {
+                    el.setAttribute('visible', '');
+                    el.setAttribute('active', '');
+                  });
+                }
+              }}
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
-              visible
-              active
               style={{
                 position: 'relative',
                 zIndex: 100,
