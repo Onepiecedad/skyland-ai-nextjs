@@ -16,7 +16,7 @@
       var a = s(7437),
         n = s(4508);
       s(2265);
-      let r = e => {
+      let r = (e) => {
         let { className: t, children: s, showRadialGradient: r = !0, enabled: i = !0, ...l } = e;
         return i
           ? (0, a.jsxs)(a.Fragment, {
@@ -486,7 +486,7 @@
               (0, n.useEffect)(() => {
                 if (!t) return;
                 a.current = document.activeElement;
-                let s = t => {
+                let s = (t) => {
                   if ('Tab' !== t.key || !e.current) return;
                   let s = e.current.querySelectorAll(
                     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -582,7 +582,7 @@
                         l.overflow.auto,
                         'pt-16 md:pt-20'
                       ),
-                      onClick: e => {
+                      onClick: (e) => {
                         e.target === e.currentTarget && s();
                       },
                       children: (0, a.jsxs)('div', {
@@ -603,7 +603,7 @@
                           'scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent',
                           C
                         ),
-                        onClick: e => e.stopPropagation(),
+                        onClick: (e) => e.stopPropagation(),
                         children: [
                           x &&
                             (0, a.jsx)('button', {
@@ -771,7 +771,7 @@
                       onClick: () => {
                         g && console.log('Card clicked, expandedContent exists:', !!i), i && b(!0);
                       },
-                      onKeyDown: e => {
+                      onKeyDown: (e) => {
                         i &&
                           ('Enter' === e.key || ' ' === e.key || 'Space' === e.key) &&
                           (e.preventDefault(), b(!0));
@@ -1262,7 +1262,7 @@
               (0, a.jsx)('div', {
                 className:
                   'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12',
-                children: s.map(e =>
+                children: s.map((e) =>
                   (0, a.jsx)(
                     'div',
                     {
@@ -1545,7 +1545,7 @@
               }),
               (0, a.jsx)('div', {
                 className: 'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12',
-                children: s.map(e =>
+                children: s.map((e) =>
                   (0, a.jsx)(
                     'div',
                     {
@@ -1595,7 +1595,7 @@
                         : 5 === d
                           ? 'three'
                           : s,
-              h = n.Children.map(t, e =>
+              h = n.Children.map(t, (e) =>
                 n.isValidElement(e) && 'function' == typeof e.type && 'Card' === e.type.displayName
                   ? n.cloneElement(e, { variant: m, ...e.props })
                   : e
@@ -1905,7 +1905,7 @@
                 columns: 'two',
                 gap: 'lg',
                 ariaLabel: 'Common Business Challenges Grid',
-                children: L.map(e =>
+                children: L.map((e) =>
                   (0, a.jsx)(
                     'div',
                     {
@@ -2164,7 +2164,7 @@
                 columns: 'two',
                 gap: 'lg',
                 ariaLabel: 'How It Works Process Grid',
-                children: Y.map(e =>
+                children: Y.map((e) =>
                   (0, a.jsx)(
                     'div',
                     {
@@ -2681,7 +2681,7 @@
               (0, a.jsx)('div', {
                 className:
                   'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12',
-                children: P.map(e =>
+                children: P.map((e) =>
                   (0, a.jsx)(
                     'div',
                     {
@@ -2953,7 +2953,7 @@
                 columns: 'two',
                 gap: 'lg',
                 ariaLabel: 'FAQ Grid',
-                children: s.map(e =>
+                children: s.map((e) =>
                   (0, a.jsx)(
                     A,
                     {
@@ -2995,7 +2995,7 @@
         });
       });
       H.displayName = 'Label';
-      let R = e => {
+      let R = (e) => {
           let { children: t, id: s, className: n } = e;
           return (0, a.jsx)('div', {
             id: s,
@@ -3083,7 +3083,7 @@
       }
       let J = { maxAttempts: 3, initialDelay: 1e3, maxDelay: 1e4, backoffFactor: 2 };
       async function U(e) {
-        return new Promise(t => setTimeout(t, e));
+        return new Promise((t) => setTimeout(t, e));
       }
       async function Q(e) {
         let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
@@ -3173,22 +3173,22 @@
       function es() {
         let [e, t] = (0, n.useState)(et),
           [s, m] = (0, n.useState)({ status: 'idle', errors: {} }),
-          h = e => {
+          h = (e) => {
             let t = {};
-            e.errors.errors.forEach(e => {
+            e.errors.errors.forEach((e) => {
               e.path && (t[e.path[0]] = e.message);
             }),
-              m(e => ({ ...e, status: 'error', errors: t }));
+              m((e) => ({ ...e, status: 'error', errors: t }));
           },
-          u = e => {
-            m(e => ({
+          u = (e) => {
+            m((e) => ({
               ...e,
               status: 'error',
               generalError: 'Failed to send message. Please try again or contact us directly.',
             })),
               console.error('Webhook error:', e);
           },
-          x = async s => {
+          x = async (s) => {
             s.preventDefault(), m({ status: 'submitting', errors: {} });
             try {
               let s = (function (e) {
@@ -3205,7 +3205,7 @@
                 ? h(e)
                 : 'WebhookError' === e.name
                   ? u(e)
-                  : (m(e => ({
+                  : (m((e) => ({
                       ...e,
                       status: 'error',
                       generalError: 'An unexpected error occurred. Please try again.',
@@ -3213,10 +3213,10 @@
                     console.error('Unexpected error:', e));
             }
           },
-          p = e => {
+          p = (e) => {
             let { name: a, value: n } = e.target;
-            t(e => ({ ...e, [a]: n })),
-              s.errors[a] && m(e => ({ ...e, errors: { ...e.errors, [a]: '' } }));
+            t((e) => ({ ...e, [a]: n })),
+              s.errors[a] && m((e) => ({ ...e, errors: { ...e.errors, [a]: '' } }));
           };
         return (0, a.jsxs)('form', {
           onSubmit: x,
@@ -3483,7 +3483,7 @@
                           { href: '#about', label: 'About' },
                           { href: '#pricing', label: 'Pricing' },
                           { href: '#contact', label: 'Contact' },
-                        ].map(e =>
+                        ].map((e) =>
                           (0, a.jsx)(
                             en.default,
                             {
@@ -3624,11 +3624,11 @@
           [s, l] = (0, n.useState)([]),
           [o, c] = (0, n.useState)(!0);
         i(() => (c(!0), () => c(!1)), []);
-        let d = (0, n.useCallback)(e => {
-            l(t => (t.includes(e) ? t : [...t, e]));
+        let d = (0, n.useCallback)((e) => {
+            l((t) => (t.includes(e) ? t : [...t, e]));
           }, []),
-          m = (0, n.useCallback)(e => {
-            l(t => t.filter(t => t !== e));
+          m = (0, n.useCallback)((e) => {
+            l((t) => t.filter((t) => t !== e));
           }, []);
         return (0, a.jsx)(r.Provider, {
           value: { visibleSections: s, addSection: d, removeSection: m, isHydrated: o },

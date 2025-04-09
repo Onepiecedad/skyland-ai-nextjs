@@ -120,7 +120,7 @@
                       })
                   );
                 }, Promise.resolve())
-                .catch(e => {
+                .catch((e) => {
                   console.error(e);
                 })
                 .then(() => {
@@ -193,7 +193,7 @@
         for (var e = arguments.length, t = Array(e), n = 0; n < e; n++) t[n] = arguments[n];
         (0, h.isNextRouterError)(t[0]) || _.apply(window.console, t);
       }),
-        window.addEventListener('error', e => {
+        window.addEventListener('error', (e) => {
           if ((0, h.isNextRouterError)(e.error)) {
             e.preventDefault();
             return;
@@ -222,7 +222,7 @@
       let S = new ReadableStream({
           start(e) {
             r &&
-              (r.forEach(t => {
+              (r.forEach((t) => {
                 e.enqueue(b.encode(t));
               }),
               g && !m && (e.close(), (m = !0), (r = void 0))),
@@ -569,7 +569,7 @@
             };
           }, [F]),
           $ = (0, u.useCallback)(
-            e => {
+            (e) => {
               let { previousTree: t, serverResponse: n } = e;
               (0, u.startTransition)(() => {
                 U({ type: a.ACTION_SERVER_PATCH, previousTree: t, serverResponse: n });
@@ -592,7 +592,7 @@
             [U]
           );
         S = (0, u.useCallback)(
-          e => {
+          (e) => {
             (0, u.startTransition)(() => {
               U({ ...e, type: a.ACTION_SERVER_ACTION });
             });
@@ -684,7 +684,7 @@
         (0, u.useEffect)(() => {
           let e = window.history.pushState.bind(window.history),
             t = window.history.replaceState.bind(window.history),
-            n = e => {
+            n = (e) => {
               var t;
               let n = window.location.href,
                 r = null == (t = window.history.state) ? void 0 : t.__PRIVATE_NEXTJS_INTERNALS_TREE;
@@ -708,7 +708,7 @@
                 t(e, r, o)
               );
             });
-          let r = e => {
+          let r = (e) => {
             let { state: t } = e;
             if (t) {
               if (!t.__NA) {
@@ -1087,7 +1087,7 @@
                 var n;
                 if (
                   0 !== e.segmentPaths.length &&
-                  !e.segmentPaths.some(e => t.every((t, n) => (0, d.matchSegment)(t, e[n])))
+                  !e.segmentPaths.some((e) => t.every((t, n) => (0, d.matchSegment)(t, e[n])))
                 )
                   return;
                 let r = null,
@@ -1110,7 +1110,7 @@
                   (function (e) {
                     if (['sticky', 'fixed'].includes(getComputedStyle(e).position)) return !0;
                     let t = e.getBoundingClientRect();
-                    return g.every(e => 0 === t[e]);
+                    return g.every((e) => 0 === t[e]);
                   })(r);
 
                 ) {
@@ -1245,7 +1245,7 @@
           M = (0, _.getSegmentValue)(T),
           x = [T];
         return (0, u.jsx)(u.Fragment, {
-          children: x.map(e => {
+          children: x.map((e) => {
             let l = (0, _.getSegmentValue)(e),
               g = (0, v.createRouterCacheKey)(e);
             return (0, u.jsxs)(
@@ -1608,7 +1608,7 @@
           return r._(this, a)[a].push({ promiseFn: o, task: u }), r._(this, i)[i](), o;
         }
         bump(e) {
-          let t = r._(this, a)[a].findIndex(t => t.promiseFn === e);
+          let t = r._(this, a)[a].findIndex((t) => t.promiseFn === e);
           if (t > -1) {
             let e = r._(this, a)[a].splice(t, 1)[0];
             r._(this, a)[a].unshift(e), r._(this, i)[i](!0);
@@ -2034,8 +2034,8 @@
       let r = n(1182),
         o = n(4541),
         u = n(6015),
-        l = e => ('/' === e[0] ? e.slice(1) : e),
-        a = e => ('string' == typeof e ? ('children' === e ? '' : e) : e[1]);
+        l = (e) => ('/' === e[0] ? e.slice(1) : e),
+        a = (e) => ('string' == typeof e ? ('children' === e ? '' : e) : e[1]);
       function i(e) {
         return (
           e.reduce(
@@ -2047,7 +2047,10 @@
       function c(e) {
         var t;
         let n = Array.isArray(e[0]) ? e[0][1] : e[0];
-        if (n === o.DEFAULT_SEGMENT_KEY || r.INTERCEPTION_ROUTE_MARKERS.some(e => n.startsWith(e)))
+        if (
+          n === o.DEFAULT_SEGMENT_KEY ||
+          r.INTERCEPTION_ROUTE_MARKERS.some((e) => n.startsWith(e))
+        )
           return;
         if (n.startsWith(o.PAGE_SEGMENT_KEY)) return '';
         let u = [a(n)],
@@ -2068,7 +2071,8 @@
             [i, s] = n,
             f = a(o),
             d = a(i);
-          if (r.INTERCEPTION_ROUTE_MARKERS.some(e => f.startsWith(e) || d.startsWith(e))) return '';
+          if (r.INTERCEPTION_ROUTE_MARKERS.some((e) => f.startsWith(e) || d.startsWith(e)))
+            return '';
           if (!(0, u.matchSegment)(o, i)) {
             var p;
             return null != (p = c(n)) ? p : '';
@@ -2746,7 +2750,7 @@
       }
       function a(e, t) {
         t.then(
-          t => {
+          (t) => {
             for (let n of t[0]) {
               let t = n.slice(0, -3),
                 r = n[n.length - 3],
@@ -2819,7 +2823,7 @@
             }
             c(e, null);
           },
-          t => {
+          (t) => {
             c(e, t);
           }
         );
@@ -2887,10 +2891,10 @@
         });
         return (
           (n.status = 'pending'),
-          (n.resolve = t => {
+          (n.resolve = (t) => {
             'pending' === n.status && ((n.status = 'fulfilled'), (n.value = t), e(t));
           }),
-          (n.reject = e => {
+          (n.reject = (e) => {
             'pending' === n.status && ((n.status = 'rejected'), (n.reason = e), t(e));
           }),
           (n.tag = f),
@@ -2977,7 +2981,7 @@
         let { url: t, kind: n, tree: r, nextUrl: i, buildId: c, prefetchCache: s } = e,
           f = a(t),
           d = l.prefetchQueue.enqueue(() =>
-            (0, o.fetchServerResponse)(t, r, i, c, n).then(e => {
+            (0, o.fetchServerResponse)(t, r, i, c, n).then((e) => {
               let [, , , n] = e;
               return (
                 n &&
@@ -3196,7 +3200,7 @@
         return (
           f.prefetchQueue.bump(w),
           w.then(
-            t => {
+            (t) => {
               let [n, f] = t,
                 h = !1;
               if (
@@ -3226,7 +3230,7 @@
                         (e.prefetchRsc = t.prefetchRsc),
                         (e.loading = t.loading),
                         (e.parallelRoutes = new Map(t.parallelRoutes)),
-                        v(r).map(e => [...n, ...e])))
+                        v(r).map((e) => [...n, ...e])))
                           (0, y.clearCacheNodeDataForSegmentPath)(e, t, u), (o = !0);
                         return o;
                       })(u, g, n, r)),
@@ -3339,7 +3343,7 @@
             e.buildId
           )),
           v.lazyData.then(
-            async n => {
+            async (n) => {
               let [r, s] = n;
               if ('string' == typeof r)
                 return (0, a.handleExternalUrl)(e, h, r, e.pushRef.pendingPush);
@@ -3487,7 +3491,7 @@
         return (
           (o.inFlightServerAction = b(e, v, t)),
           o.inFlightServerAction.then(
-            async r => {
+            async (r) => {
               let { actionResult: p, actionFlightData: b, redirectLocation: g } = r;
               if ((g && ((e.pushRef.pendingPush = !0), (o.pendingPush = !0)), !b))
                 return (n(p), g)
@@ -3532,7 +3536,7 @@
               }
               return n(p), (0, s.handleMutable)(e, o);
             },
-            t => (r(t), e)
+            (t) => (r(t), e)
           )
         );
       }
@@ -3633,7 +3637,7 @@
             [c[0], c[1], c[2], 'refetch'],
             l ? t.nextUrl : null,
             t.buildId
-          ).then(e => {
+          ).then((e) => {
             let t = e[0];
             if ('string' != typeof t) for (let e of t) (0, r.applyFlightData)(u, u, e);
           });
@@ -3829,7 +3833,7 @@
                         (0, o.trackDynamicDataAccessed)(t, 'searchParams.' + n),
                       Reflect.has(e, n)
                     ),
-                    ownKeys: e => (
+                    ownKeys: (e) => (
                       (0, o.trackDynamicDataAccessed)(t, 'searchParams'), Reflect.ownKeys(e)
                     ),
                   }
@@ -3998,12 +4002,12 @@
                 [
                   t,
                   (0, r.useCallback)(
-                    t => {
+                    (t) => {
                       o.state || (o.state = e), o.dispatch(t, n);
                     },
                     [o, e]
                   ),
-                  (0, r.useCallback)(e => {
+                  (0, r.useCallback)((e) => {
                     a.current && a.current.send({ type: 'RENDER_SYNC' }, l(e));
                   }, []),
                 ]
@@ -4048,7 +4052,7 @@
         });
       let r = n(6674),
         o = n(3381),
-        u = e => {
+        u = (e) => {
           if (!e.startsWith('/')) return e;
           let { pathname: t, query: n, hash: u } = (0, o.parsePath)(e);
           return /\.[^/]+\/?$/.test(t)
@@ -4077,7 +4081,7 @@
         let t =
           'function' == typeof reportError
             ? reportError
-            : e => {
+            : (e) => {
                 window.console.error(e);
               };
         (0, r.isBailoutToCSRError)(e) || t(e);
@@ -4514,14 +4518,14 @@
       }
       function _(e) {
         return e.dynamicAccesses
-          .filter(e => 'string' == typeof e.stack && e.stack.length > 0)
+          .filter((e) => 'string' == typeof e.stack && e.stack.length > 0)
           .map(
             ({ expression: e, stack: t }) => (
               (t = t
                 .split('\n')
                 .slice(4)
                 .filter(
-                  e =>
+                  (e) =>
                     !(
                       e.includes('node_modules/next/') ||
                       e.includes(' (<anonymous>)') ||
@@ -4562,7 +4566,7 @@ ${t}`
         });
       let r = n(1182);
       function o(e) {
-        let t = r.INTERCEPTION_ROUTE_MARKERS.find(t => e.startsWith(t));
+        let t = r.INTERCEPTION_ROUTE_MARKERS.find((t) => e.startsWith(t));
         return (t && (e = e.slice(t.length)), e.startsWith('[[...') && e.endsWith(']]'))
           ? { type: 'optional-catchall', param: e.slice(5, -2) }
           : e.startsWith('[...') && e.endsWith(']')
@@ -4616,12 +4620,12 @@ ${t}`
       let r = n(926),
         o = ['(..)(..)', '(.)', '(..)', '(...)'];
       function u(e) {
-        return void 0 !== e.split('/').find(e => o.find(t => e.startsWith(t)));
+        return void 0 !== e.split('/').find((e) => o.find((t) => e.startsWith(t)));
       }
       function l(e) {
         let t, n, u;
         for (let r of e.split('/'))
-          if ((n = o.find(e => r.startsWith(e)))) {
+          if ((n = o.find((e) => r.startsWith(e)))) {
             [t, u] = e.split(n, 2);
             break;
           }
@@ -4843,7 +4847,7 @@ ${t}`
             n.resolve(e));
         }
         (0, o.isThenable)(a)
-          ? a.then(c, e => {
+          ? a.then(c, (e) => {
               i(t, r), n.reject(e);
             })
           : c(a);
@@ -5072,7 +5076,7 @@ ${t}`
             return n;
           },
         });
-      let n = e => {};
+      let n = (e) => {};
     },
     7149: function (e, t, n) {
       'use strict';

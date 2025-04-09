@@ -30,11 +30,11 @@
           [n, c] = (0, r.useState)([]),
           [u, l] = (0, r.useState)(!0);
         s(() => (l(!0), () => l(!1)), []);
-        let a = (0, r.useCallback)(e => {
-            c(t => (t.includes(e) ? t : [...t, e]));
+        let a = (0, r.useCallback)((e) => {
+            c((t) => (t.includes(e) ? t : [...t, e]));
           }, []),
-          _ = (0, r.useCallback)(e => {
-            c(t => t.filter(t => t !== e));
+          _ = (0, r.useCallback)((e) => {
+            c((t) => t.filter((t) => t !== e));
           }, []);
         return (0, i.jsx)(o.Provider, {
           value: { visibleSections: n, addSection: a, removeSection: _, isHydrated: u },

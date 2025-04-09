@@ -12,7 +12,7 @@ config({ path: join(__dirname, '.env') });
 
 // Validate environment variables
 const requiredEnvVars = ['NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL', 'DANA_WEBHOOK_URL'];
-const missingEnvVars = requiredEnvVars.filter(v => !process.env[v]);
+const missingEnvVars = requiredEnvVars.filter((v) => !process.env[v]);
 if (missingEnvVars.length > 0) {
   console.error('❌ Missing required environment variables:', missingEnvVars.join(', '));
   console.error('Please create a .env file with the following variables:');
@@ -165,7 +165,7 @@ async function runTests() {
 
     const summary = results.map(formatTestResult).join('\n');
 
-    const succeeded = results.filter(r => r.success).length;
+    const succeeded = results.filter((r) => r.success).length;
     const failed = results.length - succeeded;
 
     console.log(separator);

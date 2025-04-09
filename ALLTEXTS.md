@@ -31,6 +31,7 @@ openOverlay({ title, content: expandedContent, icon, cta });
 };
 
 return (
+
 <div
 className={clsx(
 "group rounded-xl border border-white/10 bg-white/5 p-6 transition hover:shadow-xl hover:backdrop-blur-md",
