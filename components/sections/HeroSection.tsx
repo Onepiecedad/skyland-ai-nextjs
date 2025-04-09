@@ -95,16 +95,28 @@ export function HeroSection() {
             </ul>
           </div>
 
-          <p
-            className={cn(
-              typography.text.base,
-              colors.text.accent,
-              'mt-8 flex items-center font-medium'
-            )}
-          >
-            <span className="mr-2 inline-block">👉</span> Ask Dana now and see what AI can actually
-            do—for your business
-          </p>
+          <div className="mt-8">
+            {/* Hidden ElevenLabs Widget */}
+            <elevenlabs-convai agent-id="4mN4rizdi79gwLhFxlOu" style={{ display: 'none' }}></elevenlabs-convai>
+
+            {/* Custom Button */}
+            <button
+              onClick={() => {
+                const widget = document.querySelector('elevenlabs-convai');
+                if (widget) {
+                  widget.dispatchEvent(new Event('start-call'));
+                }
+              }}
+              className={cn(
+                'flex items-center justify-center gap-2 rounded-lg bg-blue-500/10 px-6 py-3 text-blue-400 transition-all hover:bg-blue-500/20',
+                typography.text.base,
+                'w-full sm:w-auto'
+              )}
+            >
+              <span className="mr-2">🎙️</span>
+              Prata med Dana
+            </button>
+          </div>
         </div>
       </ContentStack>
     ),

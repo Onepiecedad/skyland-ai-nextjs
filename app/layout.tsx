@@ -1,3 +1,6 @@
+
+<script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
