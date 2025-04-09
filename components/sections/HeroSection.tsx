@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -12,7 +13,6 @@ import { typography } from '@/lib/theme/tokens/typography';
 import { radius } from '@/lib/theme/tokens/radius';
 import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
-import Script from 'next/script';
 
 export function HeroSection() {
   const danaCard = {
@@ -79,7 +79,6 @@ export function HeroSection() {
           {/* ElevenLabs Widget Container */}
           <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
             <elevenlabs-convai 
-              id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
                 position: 'relative',
