@@ -80,11 +80,18 @@ export function HeroSection() {
             <elevenlabs-convai 
               ref={(el) => {
                 if (el && isOpen) {
-                  // Ensure widget is properly initialized when modal opens
-                  requestAnimationFrame(() => {
-                    el.setAttribute('visible', '');
-                    el.setAttribute('active', '');
-                  });
+                  // Wait for widget to be fully loaded
+                  const checkReady = setInterval(() => {
+                    const widget = document.querySelector('elevenlabs-convai');
+                    if (widget && typeof widget.setAttribute === 'function') {
+                      widget.setAttribute('visible', '');
+                      widget.setAttribute('active', '');
+                      clearInterval(checkReady);
+                    }
+                  }, 100);
+
+                  // Cleanup
+                  return () => clearInterval(checkReady);
                 }
               }}
               id="dana-widget"
