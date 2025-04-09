@@ -104,7 +104,12 @@ export function HeroSection() {
               onClick={() => {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
-                  widget.dispatchEvent(new Event('start-call'));
+                  // Create a custom event that matches the widget's expected format
+                  const startEvent = new CustomEvent('start-call', {
+                    detail: { trigger: 'button' },
+                    bubbles: true
+                  });
+                  widget.dispatchEvent(startEvent);
                 }
               }}
               className={cn(
