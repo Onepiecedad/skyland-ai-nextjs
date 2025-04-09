@@ -167,6 +167,14 @@ export function HeroSection() {
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
             <div className="relative z-50 min-h-[600px] mt-8">
+              <Script
+                src="https://widget.elevenlabs.io/widget.js"
+                strategy="afterInteractive"
+                onLoad={() => {
+                  // The widget script is loaded and ready
+                  console.log('ElevenLabs widget script loaded');
+                }}
+              />
               <elevenlabs-convai 
                 agent-id="4mN4rizdi79gwLhFxlOu"
                 style={{

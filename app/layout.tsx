@@ -1,12 +1,5 @@
-<script 
-  src="https://elevenlabs.io/convai-widget/index.js" 
-  type="text/javascript"
-  data-agent-id="4mN4rizdi79gwLhFxlOu"
-  async
-  defer>
-</script>
-
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { colors } from '@/lib/theme/tokens/colors';
