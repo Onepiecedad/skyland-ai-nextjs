@@ -12,6 +12,7 @@ import { typography } from '@/lib/theme/tokens/typography';
 import { radius } from '@/lib/theme/tokens/radius';
 import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
+import Script from 'next/script';
 
 export function HeroSection() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -168,12 +169,9 @@ export function HeroSection() {
             </p>
             <div className="relative z-50 min-h-[600px] mt-8">
               <Script
-                src="https://widget.elevenlabs.io/widget.js"
+                src="https://elevenlabs.io/convai-widget/index.js"
                 strategy="afterInteractive"
-                onLoad={() => {
-                  // The widget script is loaded and ready
-                  console.log('ElevenLabs widget script loaded');
-                }}
+                type="text/javascript"
               />
               <elevenlabs-convai 
                 agent-id="4mN4rizdi79gwLhFxlOu"
