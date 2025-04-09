@@ -14,7 +14,23 @@ import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
 
 export function HeroSection() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    // Load ElevenLabs widget script
+    const script = document.createElement('script');
+    script.src = 'https://widget.elevenlabs.io/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Open widget by default after script loads
+    script.onload = () => setIsOpen(true);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
     description:
@@ -78,19 +94,19 @@ export function HeroSection() {
 
           {/* ElevenLabs Widget Container */}
           <div className={cn('mt-8 relative z-50 min-h-[600px]')}>
-            <elevenlabs-convai 
-              visible={isOpen}
-              active={isOpen}
-              id="dana-widget"
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{
-                position: 'relative',
-                zIndex: 100,
-                width: '100%',
-                height: '600px',
-                display: 'block'
-              }}
-            />
+            {isOpen && (
+              <elevenlabs-convai 
+                id="dana-widget"
+                agent-id="4mN4rizdi79gwLhFxlOu"
+                style={{
+                  position: 'relative',
+                  zIndex: 100,
+                  width: '100%',
+                  height: '600px',
+                  display: 'block'
+                }}
+              />
+            )}
           </div>
 
           <div className={cn(spacing.stack.md, 'mt-8')}>
