@@ -1,14 +1,11 @@
 
-'use client';
-
-import { Inter } from 'next/font/google';
 import type { Metadata, Viewport } from "next";
+import { Inter } from 'next/font/google';
 import "./globals.css";
 import { colors } from "@/lib/theme/tokens/colors";
 import { typography } from "@/lib/theme/tokens/typography";
 import { cn } from "@/lib/utils";
 import { SectionProvider } from "@/lib/context/SectionContext";
-import { useEffect } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,16 +29,23 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
+// Client component for dark mode initialization
+'use client';
+import { useEffect } from 'react';
+
+function DarkModeInitializer() {
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
+  return null;
+}
+
+// Server component
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  useEffect(() => {
-    // Initialize dark mode
-    document.documentElement.classList.add('dark');
-  }, []);
-
   return (
     <html lang="en" className={cn("dark", inter.variable)} suppressHydrationWarning>
       <body
@@ -51,6 +55,7 @@ export default function RootLayout({
           "font-sans antialiased"
         )}
       >
+        <DarkModeInitializer />
         <SectionProvider>
           {children}
         </SectionProvider>
