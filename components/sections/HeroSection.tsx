@@ -40,7 +40,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className={cn(spacing.stack.lg)}>
+        <div>
           <p className={cn(typography.text.base, colors.text.secondary)}>
             Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
             leads, and help you automate key parts of your business.
