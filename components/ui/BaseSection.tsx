@@ -1,24 +1,24 @@
+
 'use client';
 
-import { type ReactNode } from 'react';
-import { SectionWrapper } from './SectionWrapper';
-import { Container } from './Container';
-import { ContentStack } from './ContentStack';
+import React, { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
-import { useSectionContext } from '@/lib/context/SectionContext';
-import type { ThemeSection } from '@/lib/utils/theme-validator';
 import { typography } from '@/lib/theme/tokens/typography';
 import { colors } from '@/lib/theme/tokens/colors';
 import { effects } from '@/lib/theme/tokens/effects';
 import { radius } from '@/lib/theme/tokens/radius';
-import { spacing } from '@/lib/theme/tokens/spacing';
 import { layout } from '@/lib/theme/tokens/layout';
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
+import { SectionWrapper } from './SectionWrapper';
+import { Container } from './Container';
+import { ContentStack } from './ContentStack';
+import type { ThemeSection } from '@/lib/utils/theme-validator';
+import { useSectionContext } from '@/lib/context/SectionContext';
 
-type SectionRole = 'region' | 'main' | 'complementary' | 'contentinfo' | 'banner' | 'navigation';
-type ContainerPadding = 'section' | 'sm' | 'none' | 'card' | 'modal';
-type StackSpacing = 'xs' | 'sm' | 'md' | 'lg';
-type GlassIntensity = 'light' | 'medium' | 'heavy' | 'lighter';
+type SectionRole = 'region' | 'main' | 'navigation' | 'contentinfo';
+type GlassIntensity = 'light' | 'medium' | 'heavy';
+type ContainerPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'section';
+type StackSpacing = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface BaseSectionProps {
   id: string;
@@ -50,7 +50,6 @@ function BaseSectionBase({
       id={id}
       className={cn(
         className,
-        // Förhindra layout-skifte under hydration
         !isHydrated && 'opacity-0',
         isHydrated && 'opacity-100 transition-opacity duration-300',
         typography.text.base,
@@ -78,6 +77,7 @@ const themeSections: ThemeSection[] = [
   'radius',
   'layout',
 ];
+
 export const BaseSection = withThemeValidation<BaseSectionProps>(
   BaseSectionBase,
   'BaseSection',

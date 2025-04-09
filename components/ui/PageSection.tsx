@@ -1,3 +1,6 @@
+
+'use client';
+
 import React, { useEffect } from 'react';
 import { colors } from '@/lib/theme/tokens/colors';
 import { effects } from '@/lib/theme/tokens/effects';
