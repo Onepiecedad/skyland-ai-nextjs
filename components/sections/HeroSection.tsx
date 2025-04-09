@@ -108,10 +108,17 @@ export function HeroSection() {
               onClick={() => {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
-                  // @ts-ignore - ElevenLabs widget API
-                  widget.setAttribute('visible', '');
-                  // @ts-ignore - ElevenLabs widget API
-                  widget.setAttribute('active', '');
+                  try {
+                    // Wait for widget to be ready
+                    setTimeout(() => {
+                      widget.setAttribute('visible', 'true');
+                      widget.setAttribute('active', 'true');
+                      widget.style.opacity = '1';
+                      widget.dispatchEvent(new CustomEvent('elevenlabs-show-widget'));
+                    }, 100);
+                  } catch (error) {
+                    console.error('Error activating widget:', error);
+                  }
                 }
               }}
               className={cn(
