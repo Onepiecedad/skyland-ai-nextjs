@@ -1,9 +1,7 @@
-
 <script 
   src="https://elevenlabs.io/convai-widget/index.js" 
-  data-agent-id="4mN4rizdi79gwLhFxlOu"
-  async 
-  type="text/javascript">
+  type="text/javascript"
+  data-initialization="manual">
 </script>
 
 import type { Metadata, Viewport } from 'next';

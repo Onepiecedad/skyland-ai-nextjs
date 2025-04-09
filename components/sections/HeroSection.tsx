@@ -96,20 +96,22 @@ export function HeroSection() {
           </div>
 
           <div className="mt-8">
-            {/* Hidden ElevenLabs Widget */}
-            <elevenlabs-convai agent-id="4mN4rizdi79gwLhFxlOu" style={{ display: 'none' }}></elevenlabs-convai>
+            {/* ElevenLabs Widget */}
+            <elevenlabs-convai 
+              id="dana-widget"
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              style={{ opacity: 0, position: 'absolute' }}
+            />
 
             {/* Custom Button */}
             <button
               onClick={() => {
-                const widget = document.querySelector('elevenlabs-convai');
+                const widget = document.querySelector('#dana-widget');
                 if (widget) {
-                  // @ts-ignore - ElevenLabs widget event
-                  widget.dispatchEvent(new CustomEvent('start-call', {
-                    bubbles: true,
-                    composed: true,
-                    detail: { trigger: 'button' }
-                  }));
+                  // @ts-ignore - ElevenLabs widget API
+                  widget.setAttribute('active', '');
+                  // @ts-ignore - ElevenLabs widget API
+                  widget.start();
                 }
               }}
               className={cn(
