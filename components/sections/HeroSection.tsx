@@ -75,16 +75,13 @@ export function HeroSection() {
             for your business.
           </p>
 
-          <div className={cn('mt-8 w-full flex justify-center')}>
+          {/* ElevenLabs Widget */}
+          <div className="mt-8">
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
               visible="true"
-              style={{
-                width: '100%',
-                maxWidth: '600px',
-                height: '600px'
-              }}
+              active="true"
             />
           </div>
 
@@ -106,16 +103,6 @@ export function HeroSection() {
                 "What's a voice agent, and do I need one?"
               </li>
             </ul>
-          </div>
-
-          <div className="mt-8">
-            {/* ElevenLabs Widget */}
-            <elevenlabs-convai 
-              id="dana-widget"
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              visible="true"
-              active="true"
-            />
           </div>
         </div>
       </ContentStack>
