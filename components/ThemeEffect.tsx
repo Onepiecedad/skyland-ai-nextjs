@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export function ThemeEffect() {
+export function ThemeEffect(): null {
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
