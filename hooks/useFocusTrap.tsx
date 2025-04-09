@@ -34,7 +34,7 @@ export function useFocusTrap(
       const focusableElements = containerRef.current.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
-      
+
       if (focusableElements.length === 0) return;
 
       const firstElement = focusableElements[0];
@@ -68,4 +68,4 @@ export function useFocusTrap(
       }
     };
   }, [isActive, containerRef, initialFocusRef]);
-} 
+}

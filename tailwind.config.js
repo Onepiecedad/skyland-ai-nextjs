@@ -31,14 +31,13 @@ module.exports = {
         aurora: 'aurora 60s linear infinite',
       },
       backgroundImage: {
-        'aurora': 'radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%), radial-gradient(circle at 50% 50%, rgba(102, 0, 255, 0.1), transparent 70%)',
+        aurora:
+          'radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%), radial-gradient(circle at 50% 50%, rgba(102, 0, 255, 0.1), transparent 70%)',
       },
       backgroundSize: {
-        'aurora': '200% 200%, 200% 200%',
+        aurora: '200% 200%, 200% 200%',
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-  ],
-} 
+  plugins: [require('tailwind-scrollbar')],
+};

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { cn } from '@/lib/utils';
@@ -48,7 +48,7 @@ function ModalBase({
   retryLabel = 'Retry',
   onErrorAnnounce,
   onStatusAnnounce,
-  className
+  className,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousIsOpen = useRef(isOpen);
@@ -147,7 +147,7 @@ function ModalBase({
           effects.overflow.auto,
           'pt-16 md:pt-20'
         )}
-        onClick={(e) => {
+        onClick={e => {
           // Endast stäng om klicket var på bakgrunden (inte på modalen själv)
           if (e.target === e.currentTarget) {
             onClose();
@@ -172,7 +172,7 @@ function ModalBase({
             'scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent',
             className
           )}
-          onClick={(e) => e.stopPropagation()} // Stoppa klickhändelsen från att bubbla upp
+          onClick={e => e.stopPropagation()} // Stoppa klickhändelsen från att bubbla upp
         >
           {/* Mindre, diskretare stängningsknapp */}
           {showCloseButton && (
@@ -195,35 +195,24 @@ function ModalBase({
 
           {/* Title */}
           {title && (
-            <h2
-              id="dialog-title"
-              className={cn(typography.heading.h2, colors.text.primary)}
-            >
+            <h2 id="dialog-title" className={cn(typography.heading.h2, colors.text.primary)}>
               {title}
             </h2>
           )}
 
           {/* Description */}
           {description && (
-            <p
-              id="dialog-description"
-              className={cn(typography.text.lg, colors.text.secondary)}
-            >
+            <p id="dialog-description" className={cn(typography.text.lg, colors.text.secondary)}>
               {description}
             </p>
           )}
 
           {/* Content */}
           {status === 'loading' ? (
-            <LoadingSpinner
-              hideLabel={false}
-              className={spacing.flex.center}
-            />
+            <LoadingSpinner hideLabel={false} className={spacing.flex.center} />
           ) : status === 'error' ? (
             <div className={cn(spacing.stack.md, spacing.flex.col)}>
-              <p className={cn(typography.text.base, colors.text.error)}>
-                {error || errorMessage}
-              </p>
+              <p className={cn(typography.text.base, colors.text.error)}>{error || errorMessage}</p>
               {onRetry && (
                 <button
                   type="button"
@@ -252,11 +241,13 @@ function ModalBase({
   );
 }
 
-export const Modal = withThemeValidation<ModalProps>(
-  ModalBase,
-  'Modal',
-  ['spacing', 'typography', 'colors', 'effects', 'radius']
-); 
+export const Modal = withThemeValidation<ModalProps>(ModalBase, 'Modal', [
+  'spacing',
+  'typography',
+  'colors',
+  'effects',
+  'radius',
+]);
 
 /*
 Example content for testing modal scrolling:
@@ -272,4 +263,4 @@ They qualify, respond, and even book meetings while you focus on the work that m
 No missed messages. No cold leads.
 Just warm conversations happening on autopilot.
 💬 Talk to Dana to see how fast you could start winning back lost leads.
-*/ 
+*/

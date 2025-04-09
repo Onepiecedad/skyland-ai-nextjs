@@ -8,28 +8,28 @@ const envVars: EnvVar[] = [
   {
     name: 'NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL',
     required: true,
-    validator: (value) => value.startsWith('https://') && value.includes('n8n.cloud/webhook/')
+    validator: value => value.startsWith('https://') && value.includes('n8n.cloud/webhook/'),
   },
   {
     name: 'DANA_WEBHOOK_URL',
     required: true,
-    validator: (value) => value.startsWith('https://') && value.includes('n8n.cloud/webhook/')
+    validator: value => value.startsWith('https://') && value.includes('n8n.cloud/webhook/'),
   },
   {
     name: 'NEXT_PUBLIC_CONVAI_SCRIPT_URL',
     required: true,
-    validator: (value) => value.startsWith('https://')
+    validator: value => value.startsWith('https://'),
   },
   {
     name: 'RATE_LIMIT_MAX_REQUESTS',
     required: false,
-    validator: (value) => !isNaN(Number(value)) && Number(value) > 0
+    validator: value => !isNaN(Number(value)) && Number(value) > 0,
   },
   {
     name: 'RATE_LIMIT_WINDOW_MS',
     required: false,
-    validator: (value) => !isNaN(Number(value)) && Number(value) > 0
-  }
+    validator: value => !isNaN(Number(value)) && Number(value) > 0,
+  },
 ];
 
 export function validateEnv(): void {
@@ -61,4 +61,4 @@ export function getRequiredEnvVar(name: string): string {
     throw new Error(`Missing required environment variable: ${name}`);
   }
   return value;
-} 
+}

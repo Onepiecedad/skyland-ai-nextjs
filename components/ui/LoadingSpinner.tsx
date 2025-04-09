@@ -26,10 +26,7 @@ function LoadingSpinnerBase({ className, hideLabel = false }: LoadingSpinnerProp
         aria-hidden="true"
       />
       {!hideLabel && (
-        <p
-          id={labelId}
-          className={cn(typography.text.sm, colors.text.secondary)}
-        >
+        <p id={labelId} className={cn(typography.text.sm, colors.text.secondary)}>
           Loading...
         </p>
       )}
@@ -41,4 +38,4 @@ export const LoadingSpinner = withThemeValidation<LoadingSpinnerProps>(
   LoadingSpinnerBase,
   'LoadingSpinner',
   ['spacing', 'typography', 'colors']
-); 
+);

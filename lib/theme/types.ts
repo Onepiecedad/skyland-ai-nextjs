@@ -22,4 +22,4 @@ export type Typography = {
     decimal: string;
     none: string;
   };
-}; 
+};

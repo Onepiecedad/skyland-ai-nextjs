@@ -60,7 +60,7 @@ async function retryWithBackoff<T>(
       return await operation();
     } catch (error) {
       lastError = error as Error;
-      
+
       if (attempt === config.maxAttempts) {
         break;
       }
@@ -91,11 +91,7 @@ async function sendWebhook<T>(url: string, data: WebhookPayload<T>): Promise<Res
       errorData = await response.text();
     }
 
-    throw new WebhookError(
-      'Webhook request failed',
-      response.status,
-      errorData
-    );
+    throw new WebhookError('Webhook request failed', response.status, errorData);
   }
 
   return response;
@@ -103,12 +99,14 @@ async function sendWebhook<T>(url: string, data: WebhookPayload<T>): Promise<Res
 
 export const webhookService = {
   async sendContactForm(data: ContactFormData): Promise<Response> {
-    const url = process.env.NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL || 'https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b';
+    const url =
+      process.env.NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL ||
+      'https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b';
     const payload: WebhookPayload<ContactFormData> = {
       data,
       conversationId: `contact-${Date.now()}`,
       timestamp: new Date().toISOString(),
-      source: 'website_contact_form'
+      source: 'website_contact_form',
     };
 
     return await retryWithBackoff(() => sendWebhook(url, payload));
@@ -120,9 +118,9 @@ export const webhookService = {
       data,
       conversationId: `dana-${Date.now()}`,
       timestamp: new Date().toISOString(),
-      source: 'dana_voice_agent'
+      source: 'dana_voice_agent',
     };
 
     return await retryWithBackoff(() => sendWebhook(url, payload));
-  }
-}; 
+  },
+};

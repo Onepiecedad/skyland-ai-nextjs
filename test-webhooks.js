@@ -26,7 +26,7 @@ DANA_WEBHOOK_URL=your_dana_webhook_url
 // Validate webhook URLs
 const WEBHOOKS = {
   CONTACT: process.env.NEXT_PUBLIC_VITE_N8N_WEBHOOK_URL,
-  DANA: process.env.DANA_WEBHOOK_URL
+  DANA: process.env.DANA_WEBHOOK_URL,
 };
 
 // Validate URL format
@@ -51,12 +51,12 @@ async function sendToWebhook(url, data) {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'Webhook-Test-Script/1.0'
+        'User-Agent': 'Webhook-Test-Script/1.0',
       },
       body: JSON.stringify(data),
-      signal: controller.signal
+      signal: controller.signal,
     });
 
     let responseData;
@@ -67,25 +67,25 @@ async function sendToWebhook(url, data) {
       responseData = await response.text();
     }
 
-    return { 
-      success: response.ok, 
+    return {
+      success: response.ok,
       status: response.status,
       statusText: response.statusText,
       data: responseData,
-      headers: Object.fromEntries(response.headers)
+      headers: Object.fromEntries(response.headers),
     };
   } catch (error) {
     if (error.name === 'AbortError') {
       return {
         success: false,
-        error: `Request timed out after ${TIMEOUT_MS/1000} seconds`,
-        details: 'The webhook did not respond in time'
+        error: `Request timed out after ${TIMEOUT_MS / 1000} seconds`,
+        details: 'The webhook did not respond in time',
       };
     }
-    return { 
-      success: false, 
+    return {
+      success: false,
       error: error.message,
-      details: error.stack 
+      details: error.stack,
     };
   } finally {
     clearTimeout(timeout);
@@ -97,13 +97,13 @@ async function sendToWebhook(url, data) {
  */
 async function testContactWebhook() {
   const payload = {
-    name: "Erik Svensson",
-    email: "erik.svensson@techcompany.se",
-    phone: "+46 70 123 4567",
-    website: "https://techcompany.se",
-    message: "Hej! Vi behöver hjälp med att modernisera vår e-handelsplattform.",
+    name: 'Erik Svensson',
+    email: 'erik.svensson@techcompany.se',
+    phone: '+46 70 123 4567',
+    website: 'https://techcompany.se',
+    message: 'Hej! Vi behöver hjälp med att modernisera vår e-handelsplattform.',
     timestamp: new Date().toISOString(),
-    source: 'website_contact_form'
+    source: 'website_contact_form',
   };
 
   const result = await sendToWebhook(WEBHOOKS.CONTACT, payload);
@@ -115,18 +115,18 @@ async function testContactWebhook() {
  */
 async function testDanaWebhook() {
   const payload = {
-    "Full Name": "Maria Lindström",
-    "Conversation Id": "dana-" + Date.now(),
-    "Date Submitted": new Date().toISOString().split('.')[0]+"Z",
-    "Email": "maria.lindstrom@digitalstrategi.se",
-    "Phone Number": "+46 73 987 6543",
-    "Companies": "Digital Strategi Stockholm AB",
-    "User Intent": "Exploring AI automation for marketing",
-    "Message": "Inquiry about AI solutions for digital marketing automation",
-    "Transcript": "Sample conversation transcript...",
-    "Summary": "Discussion about AI-powered marketing automation",
-    "Sentiment": "positive",
-    "Source": "dana_voice_agent"
+    'Full Name': 'Maria Lindström',
+    'Conversation Id': 'dana-' + Date.now(),
+    'Date Submitted': new Date().toISOString().split('.')[0] + 'Z',
+    Email: 'maria.lindstrom@digitalstrategi.se',
+    'Phone Number': '+46 73 987 6543',
+    Companies: 'Digital Strategi Stockholm AB',
+    'User Intent': 'Exploring AI automation for marketing',
+    Message: 'Inquiry about AI solutions for digital marketing automation',
+    Transcript: 'Sample conversation transcript...',
+    Summary: 'Discussion about AI-powered marketing automation',
+    Sentiment: 'positive',
+    Source: 'dana_voice_agent',
   };
 
   const result = await sendToWebhook(WEBHOOKS.DANA, payload);
@@ -138,17 +138,17 @@ async function testDanaWebhook() {
  */
 function formatTestResult(result) {
   const status = result.success ? '✅' : '❌';
-  const details = result.success 
+  const details = result.success
     ? `Status: ${result.status}\nResponse: ${JSON.stringify(result.data, null, 2)}`
     : `Error: ${result.error}\nDetails: ${result.details}`;
-  
+
   return [
     `\n${status} ${result.type}`,
     'Payload:',
     JSON.stringify(result.payload, null, 2),
     '\nResult:',
     details,
-    '-------------------'
+    '-------------------',
   ].join('\n');
 }
 
@@ -157,27 +157,22 @@ function formatTestResult(result) {
  */
 async function runTests() {
   const separator = '\n===================\n';
-  
-  process.stdout.write('Testing webhooks...\n');
-  
-  try {
-    const results = await Promise.all([
-      testContactWebhook(),
-      testDanaWebhook()
-    ]);
 
-    const summary = results
-      .map(formatTestResult)
-      .join('\n');
+  process.stdout.write('Testing webhooks...\n');
+
+  try {
+    const results = await Promise.all([testContactWebhook(), testDanaWebhook()]);
+
+    const summary = results.map(formatTestResult).join('\n');
 
     const succeeded = results.filter(r => r.success).length;
     const failed = results.length - succeeded;
-    
+
     console.log(separator);
     console.log(summary);
     console.log(separator);
     console.log(`Results: ${succeeded} passed, ${failed} failed`);
-    
+
     // Exit with error code if any test failed
     process.exit(failed ? 1 : 0);
   } catch (error) {
@@ -188,4 +183,4 @@ async function runTests() {
 }
 
 // Run all tests
-runTests(); 
+runTests();

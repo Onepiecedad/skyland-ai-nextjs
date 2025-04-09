@@ -1,11 +1,13 @@
 # Aurora Background Component
 
 ## Översikt
+
 Aurora-bakgrundseffekten är en dynamisk gradient-animation som skapar en levande, rörlig bakgrund i dark mode.
 
 ## Implementation
 
 ### 1. Tailwind Konfiguration
+
 ```typescript
 // tailwind.config.ts
 {
@@ -40,6 +42,7 @@ Aurora-bakgrundseffekten är en dynamisk gradient-animation som skapar en levand
 ```
 
 ### 2. Komponentstruktur
+
 ```tsx
 // components/backgrounds/AuroraBackground.tsx
 export const AuroraBackground = ({
@@ -59,8 +62,11 @@ export const AuroraBackground = ({
 ```
 
 ### 3. Gradient-konfiguration
+
 Aurora-effekten består av två lager:
+
 1. **Dark gradient:**
+
 ```css
 [--dark-gradient:repeating-linear-gradient(
   100deg,
@@ -73,6 +79,7 @@ Aurora-effekten består av två lager:
 ```
 
 2. **Aurora gradient:**
+
 ```css
 [--aurora:repeating-linear-gradient(
   100deg,
@@ -85,6 +92,7 @@ Aurora-effekten består av två lager:
 ```
 
 ### 4. Viktiga CSS-egenskaper
+
 - **Bakgrundsstorlek:** 300%, 200% för huvudlagret, 200%, 100% för after-lagret
 - **Opacity:** 50%
 - **Blur:** 10px
@@ -93,8 +101,9 @@ Aurora-effekten består av två lager:
 - **Mask-image:** Radial gradient för mjuk övergång (valfri)
 
 ## Användning
+
 ```tsx
-import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { AuroraBackground } from '@/components/backgrounds/AuroraBackground';
 
 export default function Page() {
   return (
@@ -110,14 +119,17 @@ export default function Page() {
 ### Vanliga problem och lösningar
 
 1. **Färger saknas eller är felaktiga**
+
    - Kontrollera att alla färgvariabler är definierade i tailwind.config.ts
    - Verifiera att addVariablesForColors plugin är aktiverad
 
 2. **Animation fungerar inte**
+
    - Kontrollera att aurora-animationen är definierad i Tailwind-konfigurationen
    - Verifiera att backgroundPosition-värdena är korrekta
 
 3. **Gradient syns inte**
+
    - Säkerställ att opacity är satt till 50%
    - Kontrollera z-index och overflow-inställningar
 
@@ -126,7 +138,8 @@ export default function Page() {
    - Kontrollera att blur-effekten inte är för intensiv
 
 ## Prestanda-optimeringar
+
 - Använder `will-change-transform`
 - Optimerad animation med GPU-acceleration
 - Effektiv hantering av blur och opacity
-- Begränsad användning av filter och blandningslägen 
+- Begränsad användning av filter och blandningslägen

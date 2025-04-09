@@ -3,6 +3,7 @@
 A modern web application for SkyLand AI Solutions, built with Next.js, TypeScript, and Tailwind CSS, featuring a beautiful aurora background effect, AI voice integration, and dark mode support. This website showcases AI automation solutions for service-based businesses.
 
 ## 📋 Table of Contents
+
 - [Project Overview](#-project-purpose)
 - [Business Context](#-about-skyland-ai-solutions)
 - [Website Structure](#-website-structure)
@@ -29,6 +30,7 @@ The website actively demonstrates our capabilities by using the same AI technolo
 ## 💫 About Skyland AI Solutions
 
 ### Our Vision & Philosophy
+
 At Skyland AI Solutions, we believe that AI is not just a tool but a fundamental shift in how businesses operate. Our mission is to help service-based businesses automate, scale, and grow profitably by implementing intelligent, high-impact AI solutions. We focus on real-world applications that drive revenue, reduce costs, and streamline operations without adding complexity.
 
 Unlike generic automation providers, we deliver tailored AI solutions that seamlessly integrate with business operations, ensuring measurable impact from day one. We envision a world where businesses can operate at peak efficiency without being bogged down by manual, repetitive tasks. Skyland AI is pioneering the next era of business automation, where companies don't just automate tasks—they completely rethink how they operate, compete, and scale in an AI-driven world.
@@ -36,6 +38,7 @@ Unlike generic automation providers, we deliver tailored AI solutions that seaml
 Our goal is to be the go-to AI automation partner for businesses that need custom, high-value AI implementations that make a measurable impact on their bottom line. We empower businesses to increase efficiency, scale faster, and drive sustainable growth by leveraging AI as a strategic advantage.
 
 ### Core Values
+
 - **Innovation with Purpose**: We don't just implement AI; we solve real business problems
 - **Client-Centric Approach**: Every solution is tailored to specific industry needs
 - **Transparency**: Clear ROI metrics and realistic implementation timelines
@@ -43,10 +46,12 @@ Our goal is to be the go-to AI automation partner for businesses that need custo
 
 ### Who We Serve
 
-We work with business owners and decision-makers in high-margin, service-based industries that have reached a point where manual processes are slowing their growth. 
+We work with business owners and decision-makers in high-margin, service-based industries that have reached a point where manual processes are slowing their growth.
 
 #### 🎯 Business Profile
+
 1. **Company Characteristics**
+
    - Generate $100K-$5M+ in annual revenue
    - Small to mid-sized businesses (SMB)
    - 5-50 employees
@@ -54,6 +59,7 @@ We work with business owners and decision-makers in high-margin, service-based i
    - Ready to invest $1,000-$50,000 per month in high-value AI solutions
 
 2. **Technology Readiness**
+
    - Open to AI & automation
    - Lacks time, strategy, or technical know-how
    - Has tried digital tools but no structured AI strategy
@@ -67,6 +73,7 @@ We work with business owners and decision-makers in high-margin, service-based i
    - Lost revenue opportunities
 
 #### 💡 Psychological Profile
+
 - **ROI-Focused**: Expect clear return on investment before committing
 - **Efficiency-Driven**: Want turnkey solutions that just work
 - **Growth-Minded**: Will invest in AI that solves critical problems
@@ -76,24 +83,28 @@ We work with business owners and decision-makers in high-margin, service-based i
 ### Industries We Specialize In
 
 1. **Real Estate & Property Management**
+
    - Automating lead handling
    - Property inquiries automation
    - Customer support optimization
    - High-value transaction focus
 
 2. **Call Centers & Customer Service-Intensive Businesses**
+
    - AI-driven workflow optimization
    - Response time improvement
    - Service quality enhancement
    - Cost reduction strategies
 
 3. **Boutique Hotels & Guest Services**
+
    - AI-powered booking assistants
    - Personalized customer interactions
    - Guest experience automation
    - High customer touchpoint optimization
 
 4. **Travel Agencies & Tour Operators**
+
    - AI-driven itinerary management
    - Lead conversion automation
    - Customer engagement optimization
@@ -110,6 +121,7 @@ These industries share a common challenge: they deal with high customer engageme
 ### Service Offerings
 
 1. **Custom AI Agents**
+
    - AI-powered virtual assistants tailored to specific business needs
    - Customer support automation
    - Workflow management
@@ -117,6 +129,7 @@ These industries share a common challenge: they deal with high customer engageme
    - Data retrieval and processing
 
 2. **Voice AI Systems**
+
    - Advanced AI-driven voice assistants
    - Inbound/outbound call management
    - Lead qualification
@@ -124,6 +137,7 @@ These industries share a common challenge: they deal with high customer engageme
    - Customer inquiry handling
 
 3. **AI-Driven Process Automation**
+
    - Workflow optimization
    - Lead processing automation
    - Efficiency improvement systems
@@ -142,18 +156,21 @@ These industries share a common challenge: they deal with high customer engageme
 ### Our Approach
 
 1. **Strategy Session**
+
    - Deep-dive business analysis
    - AI opportunity identification
    - ROI potential assessment
    - Solution roadmap creation
 
 2. **Custom AI Development**
+
    - Tailored automation system design
    - Efficiency maximization focus
    - Integration planning
    - Performance metrics setup
 
 3. **Implementation & Optimization**
+
    - Phased rollout strategy
    - System integration
    - Workflow testing
@@ -170,18 +187,21 @@ These industries share a common challenge: they deal with high customer engageme
 The business landscape is rapidly evolving, and companies that fail to adopt AI-driven efficiencies risk falling behind. Our solutions address critical challenges:
 
 1. **Rising Customer Expectations**
+
    - Faster response times required
    - Higher service quality demands
    - 24/7 availability expectations
    - Personalized interaction needs
 
 2. **Operational Challenges**
+
    - Rising labor costs
    - Scaling difficulties
    - Manual process inefficiencies
    - Resource allocation issues
 
 3. **Competitive Advantage**
+
    - AI-driven market evolution
    - First-mover benefits
    - Operational efficiency gains
@@ -194,6 +214,7 @@ The business landscape is rapidly evolving, and companies that fail to adopt AI-
    - Industry-specific AI integrations
 
 Unlike many AI providers, we don't just sell technology—we deliver business transformation through automation. Our solutions provide:
+
 - Measurable growth and efficiency gains
 - Custom-fit solutions for your specific needs
 - Proven ROI and performance metrics
@@ -211,6 +232,7 @@ Companies that invest in AI-driven automation today will have a significant comp
 ## 📋 Website Structure
 
 ### 1️⃣ Hero Section — Instant Engagement
+
 - **Headline**: "Automate Your Business, Multiply Your Revenue — Let AI Do the Work"
 - **Subheadline**: "Skyland AI helps service businesses save 30+ hours/month and grow profitably"
 - **Visual Elements**:
@@ -222,12 +244,14 @@ Companies that invest in AI-driven automation today will have a significant comp
 - **Trust Indicators**: Client logos and success metrics
 
 ### 2️⃣ Problem Showcase
+
 - Interactive timeline showing common business pain points
 - Statistics about manual task costs
 - Industry-specific challenges
 - Animated visualizations of workflow bottlenecks
 
 ### 3️⃣ Solution Showcase
+
 - **AI Voice & Chat Demo**
   - Live Dana integration
   - Real-time conversation examples
@@ -239,12 +263,14 @@ Companies that invest in AI-driven automation today will have a significant comp
   - Time-saving metrics
 
 ### 4️⃣ Case Studies Section
+
 - Industry-specific success stories
 - Video testimonials
 - ROI metrics and statistics
 - Interactive result showcases
 
 ### 5️⃣ Implementation Process
+
 - 4-step visualization:
   1. AI Audit
   2. Custom Development
@@ -254,18 +280,21 @@ Companies that invest in AI-driven automation today will have a significant comp
 - Milestone indicators
 
 ### 6️⃣ Pricing Section
+
 - Transparent pricing tiers
 - ROI comparisons
 - Feature breakdowns
 - Custom solution calculator
 
 ### 7️⃣ AI-Powered FAQ
+
 - Live chat with Dana
 - Common question database
 - Dynamic response system
 - Security certifications
 
 ### 8️⃣ Call-to-Action
+
 - Free consultation offer
 - AI strategy session booking
 - Lead capture system
@@ -274,19 +303,23 @@ Companies that invest in AI-driven automation today will have a significant comp
 ## 🚀 Core Features
 
 ### Visual Design
+
 - **Aurora Background**: Dynamic, animated background effect creating an immersive AI-themed experience
 - **Dark Mode**: Sleek, modern dark theme optimized for readability and visual appeal
 - **Responsive Design**: Fully responsive layout adapting to all screen sizes
 - **Interactive Elements**: Hover effects, transitions, and animations enhancing user engagement
 
 ### Components
+
 - **Header & Navigation**:
+
   - Responsive navigation menu
   - Mobile-friendly design
   - Smooth transitions
   - Brand consistency
 
 - **Button System**:
+
   - Multiple variants (primary, secondary, outline)
   - Size options (sm, md, lg)
   - Icon support with animations
@@ -299,6 +332,7 @@ Companies that invest in AI-driven automation today will have a significant comp
   - Footer with company information
 
 ### Upcoming Features
+
 - Dana AI Voice Agent integration
 - Case studies showcase
 - Interactive pricing calculator
@@ -310,6 +344,7 @@ Companies that invest in AI-driven automation today will have a significant comp
 ### Current Implementation Status
 
 1. **✅ Hero Section**
+
    - ✅ Aurora background animation
    - ✅ Main headline and subheadline
    - ✅ Primary CTA button with hover effects
@@ -318,6 +353,7 @@ Companies that invest in AI-driven automation today will have a significant comp
    - ✅ Responsive layout
 
 2. **⏳ Pain Points Section**
+
    - 🔄 Structure planned:
      - Four interactive challenge cards
      - Slide-in menus for each card
@@ -328,6 +364,7 @@ Companies that invest in AI-driven automation today will have a significant comp
      - Interactive state management
 
 3. **✅ Features/Solutions Section**
+
    - ✅ Three-column grid layout
    - ✅ Feature cards with hover effects
    - ✅ Icons and animations
@@ -335,6 +372,7 @@ Companies that invest in AI-driven automation today will have a significant comp
    - ⏳ Slide-in menus planned
 
 4. **⏳ How It Works Section**
+
    - 🔄 Planned Components:
      - 4-step process visualization
      - Progress indicators
@@ -342,6 +380,7 @@ Companies that invest in AI-driven automation today will have a significant comp
      - CTA integration
 
 5. **⏳ Case Studies Section**
+
    - 🔄 Planned Features:
      - Before/After comparisons
      - Data visualizations
@@ -349,6 +388,7 @@ Companies that invest in AI-driven automation today will have a significant comp
      - Interactive results showcase
 
 6. **⏳ AI-Powered FAQ**
+
    - 🔄 Planned Integration:
      - Dana AI voice assistant
      - Dynamic response system
@@ -365,6 +405,7 @@ Companies that invest in AI-driven automation today will have a significant comp
 ### Next Sprint Priorities
 
 1. **Pain Points Section Development**
+
    ```typescript
    - Create interactive card component
    - Implement slide-in menu system
@@ -373,6 +414,7 @@ Companies that invest in AI-driven automation today will have a significant comp
    ```
 
 2. **Dana AI Voice Integration**
+
    ```typescript
    - Set up ElevenLabs Convai widget
    - Configure voice interaction
@@ -389,6 +431,7 @@ Companies that invest in AI-driven automation today will have a significant comp
    ```
 
 ### Technical Foundations (Completed)
+
 - ✅ Project structure and routing
 - ✅ Dark mode implementation
 - ✅ Responsive layout system
@@ -397,6 +440,7 @@ Companies that invest in AI-driven automation today will have a significant comp
 - ✅ State management
 
 ### Current Focus
+
 - 🎯 Pain Points section implementation
 - 🎯 Dana AI voice integration
 - 🎯 Interactive card components
@@ -436,6 +480,7 @@ The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's
 ```
 
 ### Voice Agent Features
+
 - Natural language conversation
 - Business needs analysis
 - Custom solution recommendations
@@ -443,6 +488,7 @@ The project uses ElevenLabs' Convai widget for the AI Voice Agent (Dana). Here's
 - No backend setup required
 
 ### Implementation Notes
+
 - Widget can be embedded in any section
 - Handles voice processing on ElevenLabs servers
 - Pre-configured with Skyland AI knowledge base
@@ -487,6 +533,7 @@ src/
 ## 📋 Current State
 
 The project is in active development with the following components implemented:
+
 - Basic application structure
 - Aurora background effect
 - Theme switching functionality
@@ -496,27 +543,33 @@ The project is in active development with the following components implemented:
 ## 🚀 Running the Project
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm (v9 or higher)
 
 ### Installation
+
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Onepiecedad/skyland-ai-nextjs.git
    cd skyland-ai-nextjs
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Create a `.env.local` file in the root directory with the necessary environment variables:
+
    ```
    # Copy from .env.example
    ```
 
 4. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -528,6 +581,7 @@ The project is in active development with the following components implemented:
 We use a standard GitHub Flow for development:
 
 1. Create a new branch from `development` for your feature:
+
    ```bash
    git checkout development
    git pull origin development
@@ -535,12 +589,14 @@ We use a standard GitHub Flow for development:
    ```
 
 2. Make your changes and commit them:
+
    ```bash
    git add .
    git commit -m "Add your clear commit message"
    ```
 
 3. Push your branch to GitHub:
+
    ```bash
    git push -u origin feature/your-feature-name
    ```
@@ -554,6 +610,7 @@ We use a standard GitHub Flow for development:
 ### Top AI Automation Agencies Case Studies
 
 #### 1. Olive AI
+
 - **Case Study**: Hospital Network Automation
   - **Problem**: Manual prior authorization delays in patient care
   - **Solution**: AI-driven workflow automation
@@ -561,6 +618,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Highlight industry-specific pain points and use hard dollar figures for ROI validation
 
 #### 2. WorkFusion
+
 - **Case Study**: Bank KYC Process
   - **Problem**: Manual compliance checks (30+ hours per client)
   - **Solution**: AI+RPA automation
@@ -568,6 +626,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Emphasize accuracy gains and tie outcomes to risk reduction
 
 #### 3. NICE
+
 - **Case Study**: Telecom Call Center
   - **Problem**: 40% repetitive FAQ calls
   - **Solution**: AI chatbots
@@ -575,6 +634,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Use percentage of tasks automated as key metric
 
 #### 4. AntWorks
+
 - **Case Study**: Hotel Chain Invoice Processing
   - **Problem**: Manual data entry causing payment delays
   - **Solution**: AI document processing
@@ -582,6 +642,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Focus on time savings and operational improvements
 
 #### 5. Automation Anywhere
+
 - **Case Study**: Insurance Claims Processing
   - **Problem**: 10-day manual processing time
   - **Solution**: AI automation bots
@@ -589,6 +650,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Link automation speed to customer experience improvements
 
 #### 6. UiPath
+
 - **Case Study**: Retail HR Onboarding
   - **Problem**: Manual onboarding bottlenecks
   - **Solution**: RPA+AI automation
@@ -596,6 +658,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Use volume metrics to showcase scalability
 
 #### 7. Celonis
+
 - **Case Study**: Manufacturing Supply Chain
   - **Problem**: 15% revenue leakage from inefficient logistics
   - **Solution**: Process mining and AI automation
@@ -603,6 +666,7 @@ We use a standard GitHub Flow for development:
   - **Skyland Takeaway**: Position AI as diagnostic tool before automation
 
 #### 8. Veritone
+
 - **Case Study**: Travel Agency Voice AI
   - **Problem**: Overwhelming call volume during peak seasons
   - **Solution**: AI voice agents
@@ -612,6 +676,7 @@ We use a standard GitHub Flow for development:
 ### Implementation Insights for Skyland AI
 
 #### 1. Case Study Structure
+
 - Use Problem → Solution → Result framework
 - Lead with specific pain points
 - Include quantifiable metrics
@@ -619,12 +684,14 @@ We use a standard GitHub Flow for development:
 - Add client quotes and testimonials
 
 #### 2. Industry Focus
+
 - Create dedicated case studies for each target sector
 - Showcase tailored solutions
 - Highlight industry-specific challenges and wins
 - Demonstrate niche expertise
 
 #### 3. Visual Storytelling
+
 - Implement before/after timelines
 - Use process flow diagrams
 - Add interactive demos
@@ -632,6 +699,7 @@ We use a standard GitHub Flow for development:
 - Feature real-time solution simulations
 
 #### 4. ROI Transparency
+
 - Break down cost savings per task
 - Add ROI calculator tool
 - Show comparison with traditional solutions
@@ -641,18 +709,21 @@ We use a standard GitHub Flow for development:
 ### Competitive Advantages to Leverage
 
 #### 1. Real-Time Demonstrations
+
 - Let prospects test Dana live
 - Show immediate automation possibilities
 - Provide interactive workflow simulations
 - Enable hands-on experience with AI tools
 
 #### 2. Follow-Up Strategy
+
 - Offer free post-demo workflow analysis
 - Create industry-specific action plans
 - Provide immediate value in consultations
 - Maintain engagement through automation journey
 
 #### 3. Content Strategy
+
 - Produce short client success videos
 - Create interactive case studies
 - Develop industry-specific ROI calculators
@@ -660,6 +731,7 @@ We use a standard GitHub Flow for development:
 - Feature emotional client testimonials
 
 ### Market Positioning
+
 - Focus on immediate ROI demonstration
 - Emphasize ease of implementation
 - Showcase industry-specific expertise
@@ -667,6 +739,7 @@ We use a standard GitHub Flow for development:
 - Demonstrate real-world impact through case studies
 
 ### Gaps to Exploit
+
 1. **Real-Time Demonstrations**: Leverage Dana for live AI interactions
 2. **Industry Specialization**: Deep focus on service-based businesses
 3. **Interactive ROI Tools**: Customized calculators by industry
@@ -682,6 +755,7 @@ Feel free to contribute to this project by creating issues or submitting pull re
 The aurora background effect is a key visual element of the website, creating a dynamic and engaging atmosphere. Here are the current settings and implementation details:
 
 ### CSS Variables
+
 ```css
 /* Aurora Colors */
 --black: rgb(0 0 0);
@@ -694,6 +768,7 @@ The aurora background effect is a key visual element of the website, creating a 
 ```
 
 ### Gradient Configuration
+
 ```css
 /* Dark Base Gradient */
 --dark-gradient: repeating-linear-gradient(
@@ -717,21 +792,27 @@ The aurora background effect is a key visual element of the website, creating a 
 ```
 
 ### Animation Settings
+
 ```css
 /* Animation Properties */
 --aurora-animation: aurora 60s linear infinite;
 
 @keyframes aurora {
   from {
-    background-position: 50% 50%, 50% 50%;
+    background-position:
+      50% 50%,
+      50% 50%;
   }
   to {
-    background-position: 350% 50%, 350% 50%;
+    background-position:
+      350% 50%,
+      350% 50%;
   }
 }
 ```
 
 ### Visual Effects
+
 ```css
 /* Blur and Opacity */
 backdrop-filter: blur(10px);
@@ -739,14 +820,11 @@ opacity: 0.5;
 mix-blend-mode: difference;
 
 /* Radial Mask */
-mask-image: radial-gradient(
-  ellipse at 100% 0%,
-  black 10%,
-  var(--transparent) 70%
-);
+mask-image: radial-gradient(ellipse at 100% 0%, black 10%, var(--transparent) 70%);
 ```
 
 ### Performance Optimizations
+
 ```css
 /* Performance Settings */
 will-change: background-position;
@@ -754,6 +832,7 @@ transform: translateZ(0);
 ```
 
 ### Implementation Notes
+
 - The effect uses multiple layered gradients for depth
 - Animation is optimized for performance with GPU acceleration
 - Responsive design adapts to different screen sizes
@@ -761,10 +840,11 @@ transform: translateZ(0);
 - Mobile-optimized with adjusted opacity and blur
 
 ### Usage
+
 The aurora background is implemented in the `AuroraBackground` component and can be used as follows:
 
 ```tsx
-import { AuroraBackground } from "@/components/ui/AuroraBackground";
+import { AuroraBackground } from '@/components/ui/AuroraBackground';
 
 function YourComponent() {
   return (
@@ -777,7 +857,9 @@ function YourComponent() {
 ```
 
 ### Customization
+
 To modify the aurora effect:
+
 1. Adjust color variables in `index.css`
 2. Modify gradient angles and positions
 3. Change animation duration in keyframes
@@ -785,21 +867,24 @@ To modify the aurora effect:
 5. Update mask gradient for different fade effects
 
 ### Browser Support
+
 - Works in all modern browsers
 - Fallback styles for older browsers
-- Optimized for Chrome, Firefox, Safari, and Edge 
+- Optimized for Chrome, Firefox, Safari, and Edge
 
 # Styling Organization
 
 The project's styling is organized into three main parts:
 
 1. Theme System (`src/lib/theme.ts`)
+
    - Design tokens (colors, spacing, typography)
    - Component variants
    - Animation settings
    - Shared effects (glass, hover)
 
 2. Global Styles (`src/index.css`)
+
    - Tailwind imports
    - CSS variables
    - Global reset
@@ -813,7 +898,7 @@ The project's styling is organized into three main parts:
 
 # Aurora Background Documentation
 
-[Previous aurora documentation remains unchanged...] 
+[Previous aurora documentation remains unchanged...]
 
 ## Webhooks & Integration
 
@@ -822,6 +907,7 @@ The project's styling is organized into three main parts:
 The site uses two different N8N webhooks for data handling:
 
 #### 1. Contact Form Webhook
+
 - **URL**: `https://skylandai.app.n8n.cloud/webhook/395ed9c4-a6dd-4428-91da-73e50b089783`
 - **Environment Variable**: `VITE_N8N_WEBHOOK_URL`
 - **Purpose**: Handles standard contact form submissions
@@ -839,6 +925,7 @@ The site uses two different N8N webhooks for data handling:
   ```
 
 #### 2. Dana Conversation Webhook
+
 - **URL**: `https://skylandai.app.n8n.cloud/webhook/914fbbce-c3d8-4760-bbce-fe5f6376700b`
 - **Purpose**: Handles AI conversation data from Dana
 - **Data Structure**:
@@ -864,11 +951,13 @@ The site uses two different N8N webhooks for data handling:
 To test the webhooks, use the provided test scripts:
 
 1. **Contact Form Test**:
+
 ```bash
 node test-webhook.js
 ```
 
 2. **Dana Conversation Test**:
+
 ```bash
 node test-dana-conversation.js
 ```
@@ -888,4 +977,4 @@ The webhooks send data to Airtable with the following field mappings:
 - Summary → Summary/Notes column
 - Sentiment → Sentiment column
 - Source → Lead Source column
-- Date Submitted → Date column 
+- Date Submitted → Date column

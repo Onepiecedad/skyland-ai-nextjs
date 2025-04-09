@@ -2,26 +2,30 @@
 const nextConfig = {
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost:8080', '0.0.0.0:8080', '127.0.0.1:8080', 'skylandai.se', '*.netlify.app']
-    }
+      allowedOrigins: [
+        'localhost:8080',
+        '0.0.0.0:8080',
+        '127.0.0.1:8080',
+        'skylandai.se',
+        '*.netlify.app',
+      ],
+    },
   },
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true,
   },
   eslint: {
-    ignoreDuringBuilds: true
+    ignoreDuringBuilds: true,
   },
-  webpack: (config) => {
-    config.externals = [...(config.externals || []), { canvas: "canvas" }];
+  webpack: config => {
+    config.externals = [...(config.externals || []), { canvas: 'canvas' }];
     return config;
   },
   output: 'export',
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
-  trailingSlash: true
+  trailingSlash: true,
 };
 
 export default nextConfig;
-
- 

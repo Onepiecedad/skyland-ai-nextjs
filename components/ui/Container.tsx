@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { spacing } from "@/lib/theme/tokens/spacing";
-import { GlassLayer } from "./GlassLayer";
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
-import { useSectionContext } from "@/lib/context/SectionContext";
+import { cn } from '@/lib/utils';
+import { spacing } from '@/lib/theme/tokens/spacing';
+import { GlassLayer } from './GlassLayer';
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
+import { useSectionContext } from '@/lib/context/SectionContext';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -14,15 +14,15 @@ interface ContainerProps {
   padding?: keyof typeof spacing.padding;
 }
 
-function ContainerBase({ 
-  children, 
-  className, 
+function ContainerBase({
+  children,
+  className,
   glass: useGlass = true,
   glassIntensity = 'light',
-  padding = "none"
+  padding = 'none',
 }: ContainerProps) {
   const { isHydrated } = useSectionContext();
-  
+
   const containerClasses = cn(
     spacing.container,
     spacing.padding[padding],
@@ -47,8 +47,6 @@ function ContainerBase({
   );
 }
 
-export const Container = withThemeValidation<ContainerProps>(
-  ContainerBase,
-  'Container',
-  ['spacing']
-); 
+export const Container = withThemeValidation<ContainerProps>(ContainerBase, 'Container', [
+  'spacing',
+]);

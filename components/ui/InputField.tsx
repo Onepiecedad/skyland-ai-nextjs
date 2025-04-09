@@ -47,12 +47,7 @@ const ErrorMessage = ({ children, id, className }: ErrorMessageProps) => (
     id={id}
     role="alert"
     aria-live="assertive"
-    className={cn(
-      typography.text.sm,
-      colors.text.error,
-      spacing.stack.xs,
-      className
-    )}
+    className={cn(typography.text.sm, colors.text.error, spacing.stack.xs, className)}
   >
     {children}
   </div>
@@ -112,11 +107,7 @@ const InputFieldBase = forwardRef<HTMLInputElement, InputFieldProps>(
           ref={ref}
           id={inputId}
           aria-label={hideLabel ? label : ariaLabel}
-          aria-describedby={cn(
-            description && descriptionId,
-            error && errorId,
-            ariaDescribedBy
-          )}
+          aria-describedby={cn(description && descriptionId, error && errorId, ariaDescribedBy)}
           aria-invalid={!!error}
           required={required}
           className={cn(
@@ -136,20 +127,13 @@ const InputFieldBase = forwardRef<HTMLInputElement, InputFieldProps>(
         {description && !error && (
           <p
             id={descriptionId}
-            className={cn(
-              typography.text.sm,
-              colors.text.secondary,
-              descriptionClassName
-            )}
+            className={cn(typography.text.sm, colors.text.secondary, descriptionClassName)}
           >
             {description}
           </p>
         )}
         {error && (
-          <ErrorMessage
-            id={errorId}
-            className={cn(typography.text.sm, errorClassName)}
-          >
+          <ErrorMessage id={errorId} className={cn(typography.text.sm, errorClassName)}>
             {error}
           </ErrorMessage>
         )}
@@ -160,8 +144,10 @@ const InputFieldBase = forwardRef<HTMLInputElement, InputFieldProps>(
 
 InputFieldBase.displayName = 'InputField';
 
-export const InputField = withThemeValidation<InputFieldProps>(
-  InputFieldBase,
-  'InputField',
-  ['spacing', 'typography', 'colors', 'effects', 'radius']
-); 
+export const InputField = withThemeValidation<InputFieldProps>(InputFieldBase, 'InputField', [
+  'spacing',
+  'typography',
+  'colors',
+  'effects',
+  'radius',
+]);

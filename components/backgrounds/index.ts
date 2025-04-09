@@ -1,1 +1,1 @@
-export { AuroraBackground } from './AuroraBackground'; 
+export { AuroraBackground } from './AuroraBackground';

@@ -14,8 +14,8 @@ interface ContentStackProps {
   'aria-describedby'?: string;
 }
 
-function ContentStackBase({ 
-  children, 
+function ContentStackBase({
+  children,
   align = 'left',
   spacing: stackSpacing = 'md',
   maxWidth,
@@ -23,16 +23,16 @@ function ContentStackBase({
   role,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
-  'aria-describedby': ariaDescribedBy
+  'aria-describedby': ariaDescribedBy,
 }: ContentStackProps) {
   const alignmentClasses = {
     left: spacing.alignment.left,
     center: spacing.alignment.center,
-    right: spacing.alignment.right
+    right: spacing.alignment.right,
   };
 
   return (
-    <div 
+    <div
       className={cn(
         spacing.stack[stackSpacing],
         alignmentClasses[align],
@@ -53,4 +53,4 @@ export const ContentStack = withThemeValidation<ContentStackProps>(
   ContentStackBase,
   'ContentStack',
   ['spacing']
-); 
+);

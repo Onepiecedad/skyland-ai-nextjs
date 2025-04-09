@@ -14,13 +14,12 @@ export function clearWarnings(): void {
   warnedMessages.clear();
 }
 
-export const isThemeDebugEnabled = 
-  process.env.NEXT_PUBLIC_THEME_DEBUG === 'true' || 
-  process.env.NEXT_PUBLIC_THEME_DEBUG === '1';
+export const isThemeDebugEnabled =
+  process.env.NEXT_PUBLIC_THEME_DEBUG === 'true' || process.env.NEXT_PUBLIC_THEME_DEBUG === '1';
 
 export function debugLog(componentName: string, type: string, data: any): void {
   if (!isThemeDebugEnabled) return;
-  
+
   console.debug(
     `[Theme Debug][${componentName}][${type}]`,
     typeof data === 'string' ? data : '\n',
@@ -45,4 +44,4 @@ export function logThemeDebugInfo(info: ThemeDebugInfo): void {
   console.debug('Matched Sections:', info.matchedSections);
   console.debug('Unmatched Classes:', info.unmatchedClasses);
   console.groupEnd();
-} 
+}

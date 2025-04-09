@@ -19,7 +19,13 @@ export function withThemeValidation<P extends { className?: string }>(
   options: { skip?: boolean } = { skip: true }
 ): React.ComponentType<ComponentWithRef<P>> {
   function ValidatedComponent(props: ComponentWithRef<P>) {
-    const { themeTokens = [], debug = false, skip = options.skip, className = '', ...componentProps } = props;
+    const {
+      themeTokens = [],
+      debug = false,
+      skip = options.skip,
+      className = '',
+      ...componentProps
+    } = props;
 
     React.useEffect(() => {
       if (!skip && className) {
@@ -37,4 +43,4 @@ export function withThemeValidation<P extends { className?: string }>(
 
   ValidatedComponent.displayName = `withThemeValidation(${componentName})`;
   return ValidatedComponent;
-} 
+}

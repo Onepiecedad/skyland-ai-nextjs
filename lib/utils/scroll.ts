@@ -14,15 +14,9 @@ export const scrollTo = async (
   target: string | HTMLElement,
   options: ScrollOptions = {}
 ): Promise<void> => {
-  const {
-    behavior = 'smooth',
-    offset = 0,
-    onComplete
-  } = options;
+  const { behavior = 'smooth', offset = 0, onComplete } = options;
 
-  const element = typeof target === 'string' 
-    ? document.getElementById(target)
-    : target;
+  const element = typeof target === 'string' ? document.getElementById(target) : target;
 
   if (!element) {
     console.warn(`Scroll target not found: ${target}`);
@@ -34,11 +28,11 @@ export const scrollTo = async (
   try {
     await window.scrollTo({
       top: targetPosition,
-      behavior
+      behavior,
     });
 
     // Wait for scroll to complete
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const checkScrollEnd = setInterval(() => {
         if (window.scrollY === targetPosition) {
           clearInterval(checkScrollEnd);
@@ -66,9 +60,6 @@ export const scrollTo = async (
  * @param sectionId - ID of the target section
  * @param options - Scroll configuration options
  */
-export const useScrollToSection = (
-  sectionId: string,
-  options?: ScrollOptions
-) => {
+export const useScrollToSection = (sectionId: string, options?: ScrollOptions) => {
   return () => scrollTo(sectionId, options);
-}; 
+};

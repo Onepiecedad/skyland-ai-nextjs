@@ -1,16 +1,16 @@
-import { typography } from "../theme/tokens/typography";
-import { spacing } from "../theme/tokens/spacing";
-import { radius } from "../theme/tokens/radius";
-import { colors } from "../theme/tokens/colors";
-import { effects } from "../theme/tokens/effects";
-import { layout } from "../theme/tokens/layout";
-import { border } from "../theme/tokens/border";
+import { typography } from '../theme/tokens/typography';
+import { spacing } from '../theme/tokens/spacing';
+import { radius } from '../theme/tokens/radius';
+import { colors } from '../theme/tokens/colors';
+import { effects } from '../theme/tokens/effects';
+import { layout } from '../theme/tokens/layout';
+import { border } from '../theme/tokens/border';
 import { warnOnce, logThemeDebugInfo } from './theme-debug';
 
-export type ThemeSection = 
-  | 'typography' 
-  | 'colors' 
-  | 'spacing' 
+export type ThemeSection =
+  | 'typography'
+  | 'colors'
+  | 'spacing'
   | 'radius'
   | 'effects'
   | 'layout'
@@ -37,7 +37,7 @@ const themeTokens: ThemeTokens = {
   colors,
   effects,
   layout,
-  border
+  border,
 };
 
 type ThemeValue = {
@@ -66,12 +66,13 @@ function normalizeClassName(className: string): string {
 
 function getClassParts(className: string): ClassPart[] {
   // Split compound classes and normalize each part
-  return className.split(' ')
+  return className
+    .split(' ')
     .map(part => part.trim())
     .filter(Boolean)
     .map(part => ({
       original: part,
-      normalized: normalizeClassName(part)
+      normalized: normalizeClassName(part),
     }));
 }
 
@@ -89,16 +90,19 @@ function getAllThemeValues(obj: RecursiveRecord, section: ThemeSection): ThemeVa
 
   function traverse(current: RecursiveRecord | string | number, path: string[] = []): void {
     if (!current) return;
-    
+
     if (typeof current === 'string') {
       // Add both the object path and individual classes
       const fullPath = [section, ...path].join('.');
-      const classes = current.split(' ').map(cls => cls.trim()).filter(Boolean);
-      
+      const classes = current
+        .split(' ')
+        .map(cls => cls.trim())
+        .filter(Boolean);
+
       values.push({
         path: fullPath,
         value: current,
-        parts: classes
+        parts: classes,
       });
     } else if (typeof current === 'object') {
       Object.entries(current).forEach(([key, value]) => {
@@ -132,7 +136,7 @@ function classesMatch(usedClass: string, themeValue: ThemeValue): boolean {
 
   // Get all parts of the used class, including original and normalized versions
   const usedParts = getClassParts(usedClass);
-  
+
   // For each part of the used class, check if it matches any theme value
   return usedParts.some(({ original, normalized }) => {
     // Check for exact matches (including responsive variants)
@@ -167,10 +171,7 @@ export function validateThemeUsage(
   const uniqueClasses = Array.from(new Set(usedClasses));
 
   if (debug) {
-    debugLog(
-      `[Theme Validation] Component: ${componentName}`,
-      '\nUsed classes:', uniqueClasses
-    );
+    debugLog(`[Theme Validation] Component: ${componentName}`, '\nUsed classes:', uniqueClasses);
   }
 
   const foundMatches: Partial<Record<ThemeSection, Set<string>>> = {};
@@ -189,10 +190,8 @@ export function validateThemeUsage(
     }
 
     uniqueClasses.forEach(usedClass => {
-      const matches = themeValues.filter(token => 
-        classesMatch(usedClass, token)
-      );
-      
+      const matches = themeValues.filter(token => classesMatch(usedClass, token));
+
       if (matches.length > 0) {
         matches.forEach(match => {
           foundMatches[section]!.add(match.path);
@@ -206,10 +205,7 @@ export function validateThemeUsage(
     });
 
     if (debug) {
-      debugLog(
-        `[Theme Validation] ${section} matches:`,
-        Array.from(foundMatches[section] || [])
-      );
+      debugLog(`[Theme Validation] ${section} matches:`, Array.from(foundMatches[section] || []));
     }
   });
 
@@ -223,13 +219,15 @@ export function validateThemeUsage(
       .filter(section => foundMatches[section] && foundMatches[section]!.size > 0)
       .map(section => ({
         section,
-        tokens: Array.from(foundMatches[section]!)
+        tokens: Array.from(foundMatches[section]!),
       }));
 
     warnOnce(
       `[Theme Validation Warning] Component "${componentName}" is not using any values from theme sections: ${missingSections.join(', ')}`,
-      '\nFound tokens:', foundTokens.map(({ section, tokens }) => `\n  ${section}: ${tokens.join(', ')}`),
-      '\nUnmatched classes:', Array.from(unmatchedClasses)
+      '\nFound tokens:',
+      foundTokens.map(({ section, tokens }) => `\n  ${section}: ${tokens.join(', ')}`),
+      '\nUnmatched classes:',
+      Array.from(unmatchedClasses)
     );
 
     if (debug) {
@@ -239,10 +237,10 @@ export function validateThemeUsage(
         matchedSections: Object.fromEntries(
           Object.entries(foundMatches).map(([section, tokens]) => [
             section,
-            Array.from(tokens || [])
+            Array.from(tokens || []),
           ])
         ) as Record<ThemeSection, string[]>,
-        unmatchedClasses: Array.from(unmatchedClasses)
+        unmatchedClasses: Array.from(unmatchedClasses),
       });
     }
   }
@@ -255,18 +253,18 @@ export interface ThemeValidationResult {
 
 export function validateTheme(theme: Partial<ThemeTokens>): ThemeValidationResult {
   const errors: string[] = [];
-  
+
   if (!theme.colors) {
     errors.push('Theme must include colors');
   }
-  
+
   if (!theme.spacing) {
     errors.push('Theme must include spacing');
   }
-  
+
   return {
     isValid: errors.length === 0,
-    errors
+    errors,
   };
 }
 
@@ -276,21 +274,21 @@ export function validateThemeProperty<T extends keyof ThemeTokens>(
   requiredKeys: string[]
 ): ThemeValidationResult {
   const errors: string[] = [];
-  
+
   if (!theme[property]) {
     errors.push(`Theme must include ${String(property)}`);
     return { isValid: false, errors };
   }
-  
+
   const propertyValue = theme[property] as Record<string, unknown>;
   const missingKeys = requiredKeys.filter(key => !propertyValue[key]);
-  
+
   if (missingKeys.length > 0) {
     errors.push(`Missing required ${String(property)} keys: ${missingKeys.join(', ')}`);
   }
-  
+
   return {
     isValid: errors.length === 0,
-    errors
+    errors,
   };
-} 
+}

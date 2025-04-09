@@ -21,23 +21,23 @@
   /* Override for third-party text with insufficient contrast */
   .text-token-text-tertiary,
   .text-token-text-tertiary *,
-  [class*="text-token-text-tertiary"],
-  div[class*="text-token-text-tertiary"],
-  div[class*="text-token-text-tertiary"] > *,
-  div[class*="text-token-text-tertiary"] div,
-  div[class*="text-token-text-tertiary"] span {
+  [class*='text-token-text-tertiary'],
+  div[class*='text-token-text-tertiary'],
+  div[class*='text-token-text-tertiary'] > *,
+  div[class*='text-token-text-tertiary'] div,
+  div[class*='text-token-text-tertiary'] span {
     @apply text-white/95 font-medium;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
   }
 
   /* Fix for unnamed home link */
-  a[href="/"][data-discover="true"] {
+  a[href='/'][data-discover='true'] {
     @apply sr-only;
   }
 
   /* Add visible home link */
   body > div.flex > div.flex::before {
-    content: "Skyland AI";
+    content: 'Skyland AI';
     @apply fixed top-6 left-6 z-50 text-lg font-bold text-white;
     @apply hover:opacity-80;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500/50;
@@ -57,19 +57,25 @@
   }
 
   .bg-aurora {
-    background-image: 
+    background-image:
       radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%),
       radial-gradient(circle at 50% 50%, rgba(102, 0, 255, 0.1), transparent 70%);
-    background-size: 200% 200%, 200% 200%;
-    background-position: 0 0, 0 0;
+    background-size:
+      200% 200%,
+      200% 200%;
+    background-position:
+      0 0,
+      0 0;
     background-repeat: no-repeat;
   }
 
-  @supports not (background: radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%)) {
+  @supports not (
+    background: radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.1), transparent 60%)
+  ) {
     .bg-aurora {
       background: linear-gradient(135deg, rgba(76, 0, 255, 0.1), transparent);
     }
-    
+
     .animate-aurora {
       animation: none;
     }
@@ -93,4 +99,4 @@
   to {
     background-position: 350% 50%;
   }
-} 
+}

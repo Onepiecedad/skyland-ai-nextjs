@@ -8,4 +8,4 @@ export const border = {
 
 export const radius = {
   xl: 'rounded-xl',
-}; 
+};

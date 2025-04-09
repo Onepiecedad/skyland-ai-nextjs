@@ -12,42 +12,48 @@ This document serves as the definitive guide for our design token system. All vi
 ## Available Tokens
 
 ### Colors
+
 ```typescript
-colors.primary          // Primary brand color
-colors.textPrimary     // Primary text color
-colors.backgroundGlass // Glass effect background
+colors.primary; // Primary brand color
+colors.textPrimary; // Primary text color
+colors.backgroundGlass; // Glass effect background
 // See theme.ts for full color palette
 ```
 
 ### Typography
+
 ```typescript
-typography.text.base    // Base text style
-typography.heading.h1   // H1 heading style
-typography.buttonText   // Button text style
+typography.text.base; // Base text style
+typography.heading.h1; // H1 heading style
+typography.buttonText; // Button text style
 ```
 
 ### Spacing
+
 ```typescript
-spacing.container      // Container width & padding
-spacing.padding.card   // Card padding
-spacing.flex.center    // Centered flex layout
+spacing.container; // Container width & padding
+spacing.padding.card; // Card padding
+spacing.flex.center; // Centered flex layout
 ```
 
 ### Effects
+
 ```typescript
-glass.light           // Light glass effect
-glass.medium          // Medium glass effect
-effects.hover.scale   // Hover scale effect
+glass.light; // Light glass effect
+glass.medium; // Medium glass effect
+effects.hover.scale; // Hover scale effect
 ```
 
 ### Interaction
+
 ```typescript
-effects.interaction.cursor.pointer        // cursor-pointer
-effects.interaction.cursor.wait           // cursor-wait
-effects.interaction.cursor.notAllowed     // cursor-not-allowed
+effects.interaction.cursor.pointer; // cursor-pointer
+effects.interaction.cursor.wait; // cursor-wait
+effects.interaction.cursor.notAllowed; // cursor-not-allowed
 ```
 
 ### Layout
+
 ```typescript
 grid.cols.2           // 2-column responsive grid
 stack.md             // Medium vertical stack spacing
@@ -55,10 +61,11 @@ gap.lg              // Large gap between elements
 ```
 
 ### Components
+
 ```typescript
-button.variant.primary // Primary button style
-button.size.md        // Medium button size
-button.base.layout    // Base button layout
+button.variant.primary; // Primary button style
+button.size.md; // Medium button size
+button.base.layout; // Base button layout
 ```
 
 ## Usage Example
@@ -98,6 +105,7 @@ Every component must include a debug attribute:
 ## Token Categories
 
 1. **Layout & Spacing**
+
    - container
    - spacing
    - gap
@@ -105,11 +113,13 @@ Every component must include a debug attribute:
    - stack
 
 2. **Typography**
+
    - text styles
    - headings
    - labels
 
 3. **Colors & Effects**
+
    - colors
    - glass
    - effects
@@ -126,4 +136,4 @@ Every component must include a debug attribute:
 2. Combine tokens with cn() utility
 3. Validate className props
 4. Include debug attributes
-5. Document custom tokens 
+5. Document custom tokens

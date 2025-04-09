@@ -1,15 +1,19 @@
 # Theme Validation Guide
 
 ## Overview
+
 This document outlines the theme validation system used in our application to ensure consistent usage of design tokens and prevent hardcoded values.
 
 ## Enabling Debug Mode
+
 1. Create or update `.env.local`:
+
 ```env
 NEXT_PUBLIC_THEME_DEBUG=true
 ```
 
 2. Restart the development server:
+
 ```bash
 npm run dev
 ```
@@ -18,14 +22,14 @@ npm run dev
 
 ### Core Components
 
-| Component | Token Usage | Status |
-|-----------|-------------|---------|
-| Modal | ✅ Uses tokens for overlay, close-button & content | Validated |
-| Card | ✅ Uses tokens for spacing, radius | Validated |
-| GridSection | ✅ Uses tokens for grid gap and col-styling | Validated |
-| InputField | ✅ Uses tokens for padding, colors, radius and typography | Validated |
-| PageWrapper | ✅ Uses effects.z, effects.overflow | Validated |
-| AiSolutionsSection | ✅ Uses tokens for card styling | Validated |
+| Component          | Token Usage                                               | Status    |
+| ------------------ | --------------------------------------------------------- | --------- |
+| Modal              | ✅ Uses tokens for overlay, close-button & content        | Validated |
+| Card               | ✅ Uses tokens for spacing, radius                        | Validated |
+| GridSection        | ✅ Uses tokens for grid gap and col-styling               | Validated |
+| InputField         | ✅ Uses tokens for padding, colors, radius and typography | Validated |
+| PageWrapper        | ✅ Uses effects.z, effects.overflow                       | Validated |
+| AiSolutionsSection | ✅ Uses tokens for card styling                           | Validated |
 
 ### Token Categories Used
 
@@ -39,15 +43,17 @@ npm run dev
 ## Usage in New Components
 
 ### Basic Implementation
+
 ```tsx
-export const FancyCard = withThemeValidation(
-  FancyCardBase,
-  'FancyCard',
-  ['spacing', 'colors', 'radius']
-);
+export const FancyCard = withThemeValidation(FancyCardBase, 'FancyCard', [
+  'spacing',
+  'colors',
+  'radius',
+]);
 ```
 
 ### Debug Props
+
 - `debug`: Enable debug mode for specific component
 - `skip`: Skip validation for development/testing
 
@@ -59,20 +65,25 @@ export const FancyCard = withThemeValidation(
 ## Common Issues
 
 ### Unmatched Classes
+
 If you see warnings about unmatched classes:
+
 1. Check console for `unmatchedClasses` warnings
 2. Replace hardcoded Tailwind classes with theme tokens
 3. Example fixes:
+
    ```tsx
    // ❌ Bad
    className="p-4"
-   
+
    // ✅ Good
    className={spacing.padding.md}
    ```
 
 ### Validation Sections
+
 Components can be validated against specific theme sections:
+
 - spacing
 - colors
 - typography
@@ -92,6 +103,7 @@ Components can be validated against specific theme sections:
 ## Testing
 
 ### Unit Tests
+
 ```tsx
 describe('withThemeValidation', () => {
   it('should validate theme tokens correctly', () => {
@@ -109,6 +121,7 @@ describe('collectClassNames', () => {
 ## Troubleshooting
 
 1. If validation warnings persist:
+
    - Check component's theme sections
    - Verify token imports
    - Ensure cn() utility is used
@@ -123,4 +136,4 @@ describe('collectClassNames', () => {
 
 - Theme configuration: `/lib/theme`
 - Validation HOC: `/lib/hoc/withThemeValidation`
-- Token types: `/lib/utils/theme-validator` 
+- Token types: `/lib/utils/theme-validator`

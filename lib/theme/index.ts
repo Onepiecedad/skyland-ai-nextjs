@@ -8,4 +8,4 @@ export * from './tokens/typography';
 export * from './tokens/border';
 
 // Re-export types
-export type { ThemeSection } from '../utils/theme-validator'; 
+export type { ThemeSection } from '../utils/theme-validator';

@@ -19,12 +19,7 @@ export function PageSections() {
 
   return (
     <>
-      <main
-        id={mainId}
-        role="main"
-        aria-label="Page Content"
-        tabIndex={-1}
-      >
+      <main id={mainId} role="main" aria-label="Page Content" tabIndex={-1}>
         <HeroSection />
         <PainPointSection />
         <AiSolutionsSection />
@@ -38,4 +33,4 @@ export function PageSections() {
       </main>
     </>
   );
-} 
+}

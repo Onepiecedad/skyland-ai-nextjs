@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
 import { useId } from 'react';
-import { cn } from "@/lib/utils";
-import { spacing } from "@/lib/theme/tokens/spacing";
-import { effects } from "@/lib/theme/tokens/effects";
+import { cn } from '@/lib/utils';
+import { spacing } from '@/lib/theme/tokens/spacing';
+import { effects } from '@/lib/theme/tokens/effects';
 import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
-import type { ThemeSection } from "@/lib/utils/theme-validator";
+import type { ThemeSection } from '@/lib/utils/theme-validator';
 
 interface SectionWrapperProps {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  "data-theme-debug"?: string;
+  'data-theme-debug'?: string;
   role?: 'region' | 'main' | 'complementary' | 'contentinfo' | 'banner' | 'navigation';
   ariaLabel?: string;
   ariaLabelledBy?: string;
@@ -27,8 +27,8 @@ function SectionWrapperBase({
   children,
   className,
   id: providedId,
-  "data-theme-debug": dataThemeDebug,
-  role = "region",
+  'data-theme-debug': dataThemeDebug,
+  role = 'region',
   ariaLabel,
   ariaLabelledBy,
   ariaDescribedBy,
@@ -36,7 +36,7 @@ function SectionWrapperBase({
   focusable = false,
   onFocus,
   onBlur,
-  suppressHydrationWarning
+  suppressHydrationWarning,
 }: SectionWrapperProps) {
   const generatedId = useId();
   const id = providedId || generatedId;
@@ -45,10 +45,19 @@ function SectionWrapperBase({
     <section
       id={id}
       role={role}
-      aria-label={ariaLabel || (role === "main" ? "Main content" : role === "navigation" ? "Primary navigation" : role === "contentinfo" ? "Footer content" : undefined)}
+      aria-label={
+        ariaLabel ||
+        (role === 'main'
+          ? 'Main content'
+          : role === 'navigation'
+            ? 'Primary navigation'
+            : role === 'contentinfo'
+              ? 'Footer content'
+              : undefined)
+      }
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
-      tabIndex={focusable ? tabIndex ?? 0 : undefined}
+      tabIndex={focusable ? (tabIndex ?? 0) : undefined}
       onFocus={onFocus}
       onBlur={onBlur}
       className={cn(
@@ -60,10 +69,10 @@ function SectionWrapperBase({
         effects.transition.base,
         className
       )}
-      data-theme-debug={dataThemeDebug || "section-wrapper"}
+      data-theme-debug={dataThemeDebug || 'section-wrapper'}
       suppressHydrationWarning={suppressHydrationWarning}
     >
-      <div 
+      <div
         className={cn(
           spacing.container,
           spacing.elementSpacing,
@@ -80,5 +89,9 @@ function SectionWrapperBase({
   );
 }
 
-const themeSections: ThemeSection[] = ["spacing", "effects"];
-export const SectionWrapper = withThemeValidation(SectionWrapperBase, "SectionWrapper", themeSections); 
+const themeSections: ThemeSection[] = ['spacing', 'effects'];
+export const SectionWrapper = withThemeValidation(
+  SectionWrapperBase,
+  'SectionWrapper',
+  themeSections
+);

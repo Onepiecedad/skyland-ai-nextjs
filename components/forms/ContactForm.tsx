@@ -21,14 +21,14 @@ const initialFormData: ContactFormData = {
   email: '',
   phone: '',
   website: '',
-  message: ''
+  message: '',
 };
 
 export function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [formState, setFormState] = useState<FormState>({
     status: 'idle',
-    errors: {}
+    errors: {},
   });
 
   const handleValidationError = (error: ValidationError) => {
@@ -41,7 +41,7 @@ export function ContactForm() {
     setFormState(prev => ({
       ...prev,
       status: 'error',
-      errors: fieldErrors
+      errors: fieldErrors,
     }));
   };
 
@@ -49,7 +49,7 @@ export function ContactForm() {
     setFormState(prev => ({
       ...prev,
       status: 'error',
-      generalError: 'Failed to send message. Please try again or contact us directly.'
+      generalError: 'Failed to send message. Please try again or contact us directly.',
     }));
     console.error('Webhook error:', error);
   };
@@ -61,10 +61,10 @@ export function ContactForm() {
     try {
       const validatedData = validateContactForm(formData);
       await webhookService.sendContactForm(validatedData);
-      
+
       setFormState({
         status: 'success',
-        errors: {}
+        errors: {},
       });
       setFormData(initialFormData);
     } catch (error) {
@@ -76,7 +76,7 @@ export function ContactForm() {
         setFormState(prev => ({
           ...prev,
           status: 'error',
-          generalError: 'An unexpected error occurred. Please try again.'
+          generalError: 'An unexpected error occurred. Please try again.',
         }));
         console.error('Unexpected error:', error);
       }
@@ -92,15 +92,15 @@ export function ContactForm() {
         ...prev,
         errors: {
           ...prev.errors,
-          [name]: ''
-        }
+          [name]: '',
+        },
       }));
     }
   };
 
   return (
-    <form 
-      onSubmit={handleSubmit} 
+    <form
+      onSubmit={handleSubmit}
       className={cn(spacing.stack.md)}
       aria-busy={formState.status === 'submitting'}
     >
@@ -115,7 +115,7 @@ export function ContactForm() {
         aria-invalid={!!formState.errors.name}
         aria-describedby={formState.errors.name ? 'name-error' : undefined}
       />
-      
+
       <InputField
         label="Email"
         name="email"
@@ -128,7 +128,7 @@ export function ContactForm() {
         aria-invalid={!!formState.errors.email}
         aria-describedby={formState.errors.email ? 'email-error' : undefined}
       />
-      
+
       <InputField
         label="Phone"
         name="phone"
@@ -141,7 +141,7 @@ export function ContactForm() {
         aria-invalid={!!formState.errors.phone}
         aria-describedby={formState.errors.phone ? 'phone-error' : undefined}
       />
-      
+
       <InputField
         label="Website (optional)"
         name="website"
@@ -153,12 +153,9 @@ export function ContactForm() {
         aria-invalid={!!formState.errors.website}
         aria-describedby={formState.errors.website ? 'website-error' : undefined}
       />
-      
+
       <div className={spacing.stack.sm}>
-        <label 
-          htmlFor="message" 
-          className={cn(typography.text.base, colors.text.primary)}
-        >
+        <label htmlFor="message" className={cn(typography.text.base, colors.text.primary)}>
           Message
         </label>
         <textarea
@@ -174,32 +171,29 @@ export function ContactForm() {
             colors.text.primary,
             effects.glass.light,
             radius.md,
-            "w-full p-3 resize-none",
-            "focus:outline-none focus:ring-2 focus:ring-primary/50",
-            "disabled:opacity-50 disabled:cursor-not-allowed",
-            formState.errors.message && "border-red-500"
+            'w-full p-3 resize-none',
+            'focus:outline-none focus:ring-2 focus:ring-primary/50',
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            formState.errors.message && 'border-red-500'
           )}
           aria-invalid={!!formState.errors.message}
           aria-describedby={formState.errors.message ? 'message-error' : undefined}
         />
         {formState.errors.message && (
-          <p 
-            id="message-error"
-            className={cn(typography.text.sm, colors.text.error)}
-          >
+          <p id="message-error" className={cn(typography.text.sm, colors.text.error)}>
             {formState.errors.message}
           </p>
         )}
       </div>
 
       {formState.generalError && (
-        <div 
+        <div
           role="alert"
           className={cn(
-            typography.text.base, 
-            colors.text.error, 
-            "text-center p-4", 
-            effects.glass.light, 
+            typography.text.base,
+            colors.text.error,
+            'text-center p-4',
+            effects.glass.light,
             radius.md
           )}
         >
@@ -208,16 +202,11 @@ export function ContactForm() {
       )}
 
       {formState.status === 'success' && (
-        <div 
+        <div
           role="alert"
-          className={cn(
-            "text-center p-4", 
-            effects.glass.light, 
-            radius.md, 
-            spacing.stack.sm
-          )}
+          className={cn('text-center p-4', effects.glass.light, radius.md, spacing.stack.sm)}
         >
-          <p className={cn(typography.text.base, colors.text.success, "font-semibold")}>
+          <p className={cn(typography.text.base, colors.text.success, 'font-semibold')}>
             Thank you for your message!
           </p>
           <p className={cn(typography.text.base, colors.text.secondary)}>
@@ -235,10 +224,10 @@ export function ContactForm() {
           effects.glass.lighter,
           effects.hover.scale,
           radius.lg,
-          "w-full px-6 py-3",
-          "focus:outline-none focus:ring-2 focus:ring-primary/50",
-          "disabled:opacity-50 disabled:cursor-not-allowed",
-          formState.status === 'submitting' && "animate-pulse"
+          'w-full px-6 py-3',
+          'focus:outline-none focus:ring-2 focus:ring-primary/50',
+          'disabled:opacity-50 disabled:cursor-not-allowed',
+          formState.status === 'submitting' && 'animate-pulse'
         )}
         aria-disabled={formState.status === 'submitting'}
       >
@@ -246,4 +235,4 @@ export function ContactForm() {
       </button>
     </form>
   );
-} 
+}

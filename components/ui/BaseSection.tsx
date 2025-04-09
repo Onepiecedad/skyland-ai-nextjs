@@ -7,7 +7,7 @@ import { ContentStack } from './ContentStack';
 import { cn } from '@/lib/utils';
 import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
 import { useSectionContext } from '@/lib/context/SectionContext';
-import type { ThemeSection } from "@/lib/utils/theme-validator";
+import type { ThemeSection } from '@/lib/utils/theme-validator';
 import { typography } from '@/lib/theme/tokens/typography';
 import { colors } from '@/lib/theme/tokens/colors';
 import { effects } from '@/lib/theme/tokens/effects';
@@ -41,7 +41,7 @@ function BaseSectionBase({
   containerGlass = false,
   glassIntensity = 'light',
   containerPadding = 'section',
-  spacing = 'lg'
+  spacing = 'lg',
 }: BaseSectionProps) {
   const { isHydrated } = useSectionContext();
 
@@ -63,22 +63,23 @@ function BaseSectionBase({
       role={role}
       suppressHydrationWarning
     >
-      <Container
-        glass={containerGlass}
-        glassIntensity={glassIntensity}
-        padding={containerPadding}
-      >
-        <ContentStack spacing={spacing}>
-          {children}
-        </ContentStack>
+      <Container glass={containerGlass} glassIntensity={glassIntensity} padding={containerPadding}>
+        <ContentStack spacing={spacing}>{children}</ContentStack>
       </Container>
     </SectionWrapper>
   );
 }
 
-const themeSections: ThemeSection[] = ["spacing", "typography", "colors", "effects", "radius", "layout"];
+const themeSections: ThemeSection[] = [
+  'spacing',
+  'typography',
+  'colors',
+  'effects',
+  'radius',
+  'layout',
+];
 export const BaseSection = withThemeValidation<BaseSectionProps>(
   BaseSectionBase,
   'BaseSection',
   themeSections
-); 
+);

@@ -3,10 +3,11 @@ import { motion, HTMLMotionProps, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { effects, radius, colors } from '@/lib/theme';
 import { typography } from '@/lib/theme/typography';
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
-import type { ThemeSection } from "@/lib/utils/theme-validator";
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
+import type { ThemeSection } from '@/lib/utils/theme-validator';
 
-interface AnimatedButtonProps extends Omit<HTMLMotionProps<"button">, "className" | "children" | "variant" | "size"> {
+interface AnimatedButtonProps
+  extends Omit<HTMLMotionProps<'button'>, 'className' | 'children' | 'variant' | 'size'> {
   children: React.ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary';
@@ -18,9 +19,9 @@ interface AnimatedButtonProps extends Omit<HTMLMotionProps<"button">, "className
   loadingIcon?: React.ReactNode;
 }
 
-function AnimatedButtonBase({ 
-  children, 
-  className, 
+function AnimatedButtonBase({
+  children,
+  className,
   variant = 'primary',
   size = 'md',
   ariaLabel,
@@ -29,7 +30,7 @@ function AnimatedButtonBase({
   loadingText = 'Loading...',
   loadingIcon,
   onClick,
-  ...props 
+  ...props
 }: AnimatedButtonProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -41,40 +42,45 @@ function AnimatedButtonBase({
 
   const variantStyles = {
     primary: cn(colors.text.primary, effects.glass.medium),
-    secondary: cn(colors.text.secondary, effects.glass.light)
+    secondary: cn(colors.text.secondary, effects.glass.light),
   };
 
   const sizeStyles = {
     sm: 'px-3 py-1.5 text-sm min-w-[5rem]',
     md: 'px-4 py-2 text-base min-w-[6rem]',
-    lg: 'px-6 py-3 text-lg min-w-[7rem]'
+    lg: 'px-6 py-3 text-lg min-w-[7rem]',
   };
 
   const disabledStyles = disabled ? effects.interaction.cursor.notAllowed : '';
   const loadingStyles = loading ? effects.interaction.cursor.wait : '';
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      if (!disabled && !loading) {
-        onClick?.(event as any);
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        if (!disabled && !loading) {
+          onClick?.(event as any);
+        }
       }
-    }
-  }, [onClick, disabled, loading]);
+    },
+    [onClick, disabled, loading]
+  );
 
-  const motionProps = prefersReducedMotion ? {
-    whileHover: undefined,
-    whileTap: undefined,
-    transition: { duration: 0.2 }
-  } : {
-    whileHover: !disabled && !loading ? { scale: 1.02 } : undefined,
-    whileTap: !disabled && !loading ? { scale: 0.98 } : undefined,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 17
-    }
-  };
+  const motionProps = prefersReducedMotion
+    ? {
+        whileHover: undefined,
+        whileTap: undefined,
+        transition: { duration: 0.2 },
+      }
+    : {
+        whileHover: !disabled && !loading ? { scale: 1.02 } : undefined,
+        whileTap: !disabled && !loading ? { scale: 0.98 } : undefined,
+        transition: {
+          type: 'spring',
+          stiffness: 400,
+          damping: 17,
+        },
+      };
 
   return (
     <motion.button
@@ -101,20 +107,23 @@ function AnimatedButtonBase({
       {loading ? (
         <>
           {loadingIcon || (
-            <span 
-              className="animate-spin" 
-              aria-hidden="true"
-            >
+            <span className="animate-spin" aria-hidden="true">
               ⟳
             </span>
           )}
           <span>{loadingText}</span>
           <span className="sr-only">Loading</span>
         </>
-      ) : children}
+      ) : (
+        children
+      )}
     </motion.button>
   );
 }
 
-const themeSections: ThemeSection[] = ["typography", "effects", "radius", "colors"];
-export const AnimatedButton = withThemeValidation(AnimatedButtonBase, "AnimatedButton", themeSections); 
+const themeSections: ThemeSection[] = ['typography', 'effects', 'radius', 'colors'];
+export const AnimatedButton = withThemeValidation(
+  AnimatedButtonBase,
+  'AnimatedButton',
+  themeSections
+);

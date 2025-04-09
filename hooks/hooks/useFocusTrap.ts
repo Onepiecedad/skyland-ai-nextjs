@@ -12,7 +12,7 @@ export function useFocusTrap(containerRef: RefObject<HTMLElement>, isActive: boo
     // Hitta alla fokuserbara element i containern
     const getFocusableElements = () => {
       if (!containerRef.current) return [];
-      
+
       return Array.from(
         containerRef.current.querySelectorAll<HTMLElement>(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -62,4 +62,4 @@ export function useFocusTrap(containerRef: RefObject<HTMLElement>, isActive: boo
       }
     };
   }, [isActive, containerRef]);
-} 
+}

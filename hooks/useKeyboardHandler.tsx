@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 
-export function useKeyboardHandler(
-  key: string,
-  handler: () => void,
-  enabled: boolean = true
-) {
+export function useKeyboardHandler(key: string, handler: () => void, enabled: boolean = true) {
   useEffect(() => {
     if (!enabled) return;
 
@@ -18,4 +14,4 @@ export function useKeyboardHandler(
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [key, handler, enabled]);
-} 
+}

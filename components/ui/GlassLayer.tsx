@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { effects } from "@/lib/theme/tokens/effects";
-import { withThemeValidation } from "@/lib/hoc/withThemeValidation";
+import { cn } from '@/lib/utils';
+import { effects } from '@/lib/theme/tokens/effects';
+import { withThemeValidation } from '@/lib/hoc/withThemeValidation';
 
 interface GlassLayerProps {
   children: React.ReactNode;
@@ -15,14 +15,11 @@ function GlassLayerBase({
   children,
   className,
   intensity = 'medium',
-  suppressHydrationWarning
+  suppressHydrationWarning,
 }: GlassLayerProps) {
   return (
     <div
-      className={cn(
-        effects.glass[intensity],
-        className
-      )}
+      className={cn(effects.glass[intensity], className)}
       suppressHydrationWarning={suppressHydrationWarning}
     >
       {children}
@@ -30,8 +27,6 @@ function GlassLayerBase({
   );
 }
 
-export const GlassLayer = withThemeValidation<GlassLayerProps>(
-  GlassLayerBase,
-  'GlassLayer',
-  ['effects']
-); 
+export const GlassLayer = withThemeValidation<GlassLayerProps>(GlassLayerBase, 'GlassLayer', [
+  'effects',
+]);

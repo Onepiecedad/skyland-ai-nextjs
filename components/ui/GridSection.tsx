@@ -18,28 +18,28 @@ function GridSectionBase({
   gap = 'lg',
   className,
   ariaLabel,
-  adaptiveHeight = true
+  adaptiveHeight = true,
 }: GridSectionProps) {
   // Räkna antalet barn för eventuell anpassning
   const childCount = React.Children.count(children);
-  
+
   // Justera kolumnlayout baserat på antal
   const getOptimizedColumns = () => {
     // Behåll användarens val om det är specifikt angivet
     if (columns !== 'three') {
       return columns;
     }
-    
+
     // Optimera för olika antal kort
     if (childCount === 1) return 'two';
     if (childCount === 2) return 'two';
     if (childCount === 3 || childCount === 6) return 'three';
     if (childCount === 4) return 'four';
     if (childCount === 5) return 'three';
-    
+
     return columns;
   };
-  
+
   const optimizedColumns = getOptimizedColumns();
 
   // Clone and modify Card components with the correct variant
@@ -49,7 +49,7 @@ function GridSectionBase({
       if (childType.displayName === 'Card') {
         return React.cloneElement(child, {
           variant: optimizedColumns,
-          ...child.props
+          ...child.props,
         });
       }
     }
@@ -73,8 +73,6 @@ function GridSectionBase({
   );
 }
 
-export const GridSection = withThemeValidation<GridSectionProps>(
-  GridSectionBase,
-  'GridSection',
-  ['layout']
-); 
+export const GridSection = withThemeValidation<GridSectionProps>(GridSectionBase, 'GridSection', [
+  'layout',
+]);

@@ -1,6 +1,13 @@
 'use client';
 
-import React, { createContext, useState, useCallback, useContext, useEffect, useLayoutEffect } from 'react';
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+} from 'react';
 
 interface SectionContextType {
   visibleSections: string[];
@@ -13,7 +20,7 @@ const SectionContext = createContext<SectionContextType>({
   visibleSections: [],
   addSection: () => {},
   removeSection: () => {},
-  isHydrated: true // Default to true
+  isHydrated: true, // Default to true
 });
 
 // Använd useLayoutEffect på klienten, useEffect på servern
@@ -30,7 +37,7 @@ export function SectionProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const addSection = useCallback((id: string) => {
-    setVisibleSections(prev => prev.includes(id) ? prev : [...prev, id]);
+    setVisibleSections(prev => (prev.includes(id) ? prev : [...prev, id]));
   }, []);
 
   const removeSection = useCallback((id: string) => {
@@ -52,4 +59,4 @@ export function useSectionContext() {
   return context;
 }
 
-export { SectionContext }; 
+export { SectionContext };
