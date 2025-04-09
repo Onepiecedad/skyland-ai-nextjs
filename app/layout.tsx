@@ -33,6 +33,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  React.useEffect(() => {
+    // Initialize dark mode
+    document.documentElement.classList.add('dark');
+  }, []);
+
   return (
     <html lang="en" className={cn("dark", inter.variable)}>
       <body
