@@ -100,12 +100,6 @@ export function HeroSection() {
             <elevenlabs-convai 
               id="dana-widget"
               agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{ 
-                position: 'fixed',
-                bottom: '20px',
-                right: '20px',
-                opacity: 0
-              }}
             />
 
             {/* Custom Button */}
@@ -113,10 +107,7 @@ export function HeroSection() {
               onClick={() => {
                 const widget = document.querySelector('elevenlabs-convai');
                 if (widget) {
-                  widget.setAttribute('visible', '');
-                  widget.setAttribute('active', '');
-                  widget.style.opacity = '1';
-                  widget.style.pointerEvents = 'auto';
+                  widget.setAttribute('visible', 'true');
                 }
               }}
               className={cn(
