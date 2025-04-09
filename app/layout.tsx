@@ -4,7 +4,7 @@ import './globals.css';
 import { colors } from '@/lib/theme/tokens/colors';
 import { typography } from '@/lib/theme/tokens/typography';
 import { cn } from '@/lib/utils';
-import { SectionProvider } from '@/lib/context/SectionContext';
+import ClientProviders from '@/components/providers/ClientProviders';
 import { ThemeEffect } from '@/components/ThemeEffect';
 
 const inter = Inter({
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={cn('dark', inter.variable)} suppressHydrationWarning>
       <body className={cn(colors.surface.default, typography.text.base, 'font-sans antialiased')}>
         <ThemeEffect />
-        <SectionProvider>{children}</SectionProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
