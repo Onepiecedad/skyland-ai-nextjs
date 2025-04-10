@@ -1,6 +1,7 @@
+
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BaseSection } from '@/components/ui/BaseSection';
 import { Card } from '@/components/ui/Card';
 import { Logo } from '@/components/common/Logo';
@@ -11,12 +12,9 @@ import { spacing } from '@/lib/theme/tokens/spacing';
 import { colors } from '@/lib/theme/tokens/colors';
 
 export function HeroSection() {
-  // Widget script is already loaded in layout.tsx
-
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
-    description:
-      "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
+    description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
       <div className="flex flex-col items-center gap-6">
         <h4 className={cn(typography.heading.h4, colors.text.primary, 'text-center')}>
