@@ -13,42 +13,38 @@ import { typography } from '@/lib/theme/tokens/typography';
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
-  const maxAttempts = 10;
-  const retryInterval = 300;
 
   useEffect(() => {
-    console.log('Trying to load ElevenLabs convai script');
-    
+    // Guard against multiple script injections
     if (window.customElements?.get('elevenlabs-convai')) {
       console.log('Widget already registered');
       setIsWidgetReady(true);
       return;
     }
 
+    // Guard against duplicate script tags
+    const existingScript = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
+    if (existingScript) {
+      console.log('Script already exists, waiting for load');
+      return;
+    }
+
+    console.log('Loading ElevenLabs widget script');
     const script = document.createElement('script');
     script.src = 'https://elevenlabs.io/convai-widget/index.js';
     script.async = true;
     script.crossOrigin = 'anonymous';
-    
-    let attempts = 0;
-    let checkInterval: NodeJS.Timer;
 
-    const checkRegistration = () => {
+    script.onload = () => {
+      console.log('Script loaded, checking widget registration');
+      // Verify widget registration after script loads
       if (window.customElements?.get('elevenlabs-convai')) {
         console.log('Widget registration confirmed');
         setIsWidgetReady(true);
-        clearInterval(checkInterval);
-      } else if (attempts >= maxAttempts) {
-        console.error('Widget registration failed after maximum attempts');
+      } else {
+        console.error('Widget failed to register after script load');
         setLoadError(true);
-        clearInterval(checkInterval);
       }
-      attempts++;
-    };
-
-    script.onload = () => {
-      console.log('ElevenLabs widget script loaded');
-      checkInterval = setInterval(checkRegistration, retryInterval);
     };
 
     script.onerror = (e) => {
@@ -60,8 +56,9 @@ export function HeroSection() {
 
     return () => {
       console.log('Cleaning up ElevenLabs widget script');
-      clearInterval(checkInterval);
-      document.head.removeChild(script);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 
