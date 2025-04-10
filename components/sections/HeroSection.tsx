@@ -102,8 +102,11 @@ export function HeroSection() {
               display: 'block',
               width: '100%',
               height: '600px',
-              background: 'transparent',
-              borderRadius: '12px'
+              background: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              margin: '0 auto',
+              padding: '1rem'
             }}
           />
         </div>
