@@ -46,7 +46,7 @@ export function HeroSection() {
         layout.section.base,
         layout.hero.container,
         'h-[100vh] py-8 md:py-10 lg:py-12',
-        'flex items-center justify-center overflow-hidden'
+        'flex items-center justify-center'
       )}
       ariaLabel="Hero Section"
     >
