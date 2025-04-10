@@ -15,48 +15,53 @@ export function HeroSection() {
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    // Guard against multiple script injections
-    if (window.customElements?.get('elevenlabs-convai')) {
-      console.log('Widget already registered');
-      setIsWidgetReady(true);
-      return;
-    }
-
-    // Guard against duplicate script tags
-    const existingScript = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
-    if (existingScript) {
-      console.log('Script already exists, waiting for load');
-      return;
-    }
-
-    console.log('Loading ElevenLabs widget script');
-    const script = document.createElement('script');
-    script.src = 'https://elevenlabs.io/convai-widget/index.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-
-    script.onload = () => {
-      console.log('Script loaded, checking widget registration');
-      // Verify widget registration after script loads
+    const loadWidget = () => {
       if (window.customElements?.get('elevenlabs-convai')) {
-        console.log('Widget registration confirmed');
+        console.log('Widget already registered');
         setIsWidgetReady(true);
-      } else {
-        console.error('Widget failed to register after script load');
-        setLoadError(true);
+        return;
       }
+
+      const existingScript = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
+      if (existingScript) {
+        console.log('Script already exists');
+        return;
+      }
+
+      console.log('Loading ElevenLabs widget script');
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+
+      script.onload = () => {
+        const checkRegistration = () => {
+          if (window.customElements?.get('elevenlabs-convai')) {
+            console.log('Widget registration confirmed');
+            setIsWidgetReady(true);
+          } else {
+            console.error('Widget failed to register');
+            setLoadError(true);
+          }
+        };
+
+        // Check registration after a short delay to ensure the custom element is defined
+        setTimeout(checkRegistration, 100);
+      };
+
+      script.onerror = (e) => {
+        console.error('Failed to load ElevenLabs widget:', e);
+        setLoadError(true);
+      };
+
+      document.head.appendChild(script);
     };
 
-    script.onerror = (e) => {
-      console.error('Failed to load ElevenLabs widget:', e);
-      setLoadError(true);
-    };
-
-    document.head.appendChild(script);
+    loadWidget();
 
     return () => {
-      console.log('Cleaning up ElevenLabs widget script');
-      if (script.parentNode) {
+      const script = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
+      if (script?.parentNode) {
         script.parentNode.removeChild(script);
       }
     };
@@ -74,7 +79,7 @@ export function HeroSection() {
         ) : !isWidgetReady ? (
           <div className="text-gray-400">Loading Dana...</div>
         ) : (
-          <div className="w-full max-w-sm">
+          <div className="w-full max-w-sm mx-auto flex justify-center">
             <elevenlabs-convai
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
