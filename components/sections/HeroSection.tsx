@@ -18,33 +18,46 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    console.log("Trying to load ElevenLabs convai script");
+    let scriptElement: HTMLScriptElement | null = null;
 
-    if (!window.customElements.get('elevenlabs-convai')) {
-      const script = document.createElement('script');
-      script.src = 'https://elevenlabs.io/convai-widget/index.js';
-      script.async = true;
-      script.crossOrigin = 'anonymous';
-      script.type = 'text/javascript';
+    const loadWidget = async () => {
+      try {
+        if (!window.customElements.get('elevenlabs-convai')) {
+          scriptElement = document.createElement('script');
+          scriptElement.src = 'https://elevenlabs.io/convai-widget/index.js';
+          scriptElement.async = true;
+          scriptElement.crossOrigin = 'anonymous';
+          scriptElement.type = 'text/javascript';
 
-      script.onload = () => {
-        console.log('ElevenLabs script loaded');
-        setTimeout(() => setIsWidgetReady(true), 500); // Delay to avoid init crash
-      };
+          const loadPromise = new Promise((resolve, reject) => {
+            scriptElement!.onload = resolve;
+            scriptElement!.onerror = reject;
+          });
 
-      script.onerror = (e) => {
-        console.error("Failed to load ElevenLabs widget:", e);
-      };
+          document.head.appendChild(scriptElement);
+          await loadPromise;
 
-      document.head.appendChild(script);
-      return () => {
-        console.log("Cleanup ElevenLabs widget script");
-        document.head.removeChild(script);
-      };
-    } else {
-      console.log('Widget already loaded');
-      setIsWidgetReady(true);
-    }
+          // Vänta på att web component registreras
+          await customElements.whenDefined('elevenlabs-convai');
+          console.log('ElevenLabs widget fully initialized');
+          setIsWidgetReady(true);
+        } else {
+          console.log('Widget already registered');
+          setIsWidgetReady(true);
+        }
+      } catch (error) {
+        console.error('Failed to load ElevenLabs widget:', error);
+        setIsWidgetReady(false);
+      }
+    };
+
+    loadWidget();
+
+    return () => {
+      if (scriptElement && document.head.contains(scriptElement)) {
+        document.head.removeChild(scriptElement);
+      }
+    };
   }, []);
 
   const danaCard = {
