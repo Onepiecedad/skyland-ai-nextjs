@@ -14,34 +14,6 @@ import { colors } from "@/lib/theme/tokens/colors";
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
-  useEffect(() => {
-    console.log("🔄 Loading ElevenLabs widget script");
-    
-    if (!window.customElements.get("elevenlabs-convai")) {
-      const script = document.createElement("script");
-      script.src = "https://elevenlabs.io/convai-widget/index.js";
-      script.async = true;
-      script.crossOrigin = "anonymous";
-
-      script.onload = () => {
-        console.log("✅ ElevenLabs widget script loaded");
-        setIsWidgetReady(true);
-      };
-
-      script.onerror = () => {
-        console.error("❌ Failed to load ElevenLabs widget script");
-      };
-
-      document.head.appendChild(script);
-
-      return () => {
-        script.remove();
-      };
-    } else {
-      setIsWidgetReady(true);
-    }
-  }, []);
-
   const expandedContent = (
     <ContentStack spacing="lg">
       <h4 className={cn(typography.heading.h4, colors.text.primary, "font-normal")}>
@@ -70,6 +42,32 @@ export function HeroSection() {
       </div>
     </ContentStack>
   );
+
+  useEffect(() => {
+    if (!window.customElements.get("elevenlabs-convai")) {
+      const script = document.createElement("script");
+      script.src = "https://elevenlabs.io/convai-widget/index.js";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+
+      script.onload = () => {
+        console.log("✅ ElevenLabs widget script loaded");
+        setIsWidgetReady(true);
+      };
+
+      script.onerror = () => {
+        console.error("❌ Failed to load ElevenLabs widget script");
+      };
+
+      document.head.appendChild(script);
+
+      return () => {
+        script.remove();
+      };
+    } else {
+      setIsWidgetReady(true);
+    }
+  }, []);
 
   return (
     <BaseSection
@@ -104,6 +102,7 @@ export function HeroSection() {
           title="Meet Dana—Our AI Assistant"
           description="She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?"
           expandedContent={expandedContent}
+          hasWidget={true}
           ariaLabel="Meet Dana AI Assistant"
         />
       </div>
