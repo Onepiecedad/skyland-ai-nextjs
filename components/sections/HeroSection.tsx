@@ -46,7 +46,7 @@ export function HeroSection() {
             leads, and help you automate key parts of your business.
           </p>
 
-          <p className={cn(typography.text.base, colors.text.secondary, 'mt-6')}>
+          <p>
             Here's what Dana can help you with:
           </p>
 
