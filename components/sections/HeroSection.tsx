@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -17,57 +16,31 @@ export function HeroSection() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    console.log('Loading ElevenLabs widget script');
-    
     const script = document.createElement('script');
     script.src = 'https://elevenlabs.io/convai-widget/index.js';
     script.async = true;
     script.crossOrigin = 'anonymous';
 
-    const checkRegistration = () => {
-      if (window.customElements?.get('elevenlabs-convai')) {
-        console.log('Widget registered successfully');
-        setIsWidgetReady(true);
-        return true;
-      }
-      return false;
-    };
-
-    const maxAttempts = 10;
-    let attempts = 0;
-    let checkInterval: NodeJS.Timeout;
-
-    const startChecking = () => {
-      if (checkRegistration()) return;
-
-      checkInterval = setInterval(() => {
-        attempts++;
-        
-        if (checkRegistration()) {
+    script.onload = () => {
+      const checkInterval = setInterval(() => {
+        if (window.customElements?.get('elevenlabs-convai')) {
+          setIsWidgetReady(true);
           clearInterval(checkInterval);
-          return;
         }
+      }, 500);
 
-        if (attempts >= maxAttempts) {
-          console.error('Widget failed to register after maximum attempts');
-          clearInterval(checkInterval);
+      setTimeout(() => {
+        clearInterval(checkInterval);
+        if (!isWidgetReady) {
           setLoadError(true);
         }
-      }, 1000);
+      }, 10000);
     };
 
-    script.onload = startChecking;
-    script.onerror = () => {
-      console.error('Failed to load widget script');
-      setLoadError(true);
-    };
-
+    script.onerror = () => setLoadError(true);
     document.head.appendChild(script);
 
     return () => {
-      if (checkInterval) {
-        clearInterval(checkInterval);
-      }
       if (script.parentNode) {
         script.parentNode.removeChild(script);
       }
