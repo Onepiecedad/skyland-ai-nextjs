@@ -17,53 +17,40 @@ export function HeroSection() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    try {
-      if (window.customElements?.get('elevenlabs-convai')) {
-        setIsWidgetReady(true);
-        return;
+    let timeoutId: NodeJS.Timeout;
+    
+    const script = document.createElement('script');
+    script.src = 'https://elevenlabs.io/convai-widget/index.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+
+    const cleanup = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
       }
+    };
 
-      const script = document.createElement('script');
-      script.src = 'https://elevenlabs.io/convai-widget/index.js';
-      script.async = true;
-      script.crossOrigin = 'anonymous';
-
-      const checkRegistration = () => {
-        let attempts = 0;
-        const maxAttempts = 10;
-
-        const check = () => {
-          if (window.customElements?.get('elevenlabs-convai')) {
-            setIsWidgetReady(true);
-            return;
-          }
-
-          if (attempts >= maxAttempts) {
-            setLoadError(true);
-            return;
-          }
-
-          attempts++;
-          setTimeout(check, 100);
-        };
-
-        check();
-      };
-
-      script.onload = checkRegistration;
-      script.onerror = () => setLoadError(true);
-
-      document.head.appendChild(script);
-
-      return () => {
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-      };
-    } catch (error) {
-      console.error('Widget loading error:', error);
-      setLoadError(true);
+    if (window.customElements?.get('elevenlabs-convai')) {
+      setIsWidgetReady(true);
+      return cleanup;
     }
+
+    script.onload = () => {
+      timeoutId = setTimeout(() => {
+        if (window.customElements?.get('elevenlabs-convai')) {
+          setIsWidgetReady(true);
+        } else {
+          setLoadError(true);
+        }
+      }, 2000);
+    };
+
+    script.onerror = () => setLoadError(true);
+    
+    document.head.appendChild(script);
+    
+    return cleanup;
   }, []);
 
   const expandedContent = (
