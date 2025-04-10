@@ -1,16 +1,6 @@
 
-'use client';
-
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import { useEffect } from 'react';
-import './globals.css';
-
-import { colors } from '@/lib/theme/tokens/colors';
-import { typography } from '@/lib/theme/tokens/typography';
-import { cn } from '@/lib/utils';
-import ClientProviders from '@/components/providers/ClientProviders';
-import { ThemeEffect } from '@/components/ThemeEffect';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,6 +24,16 @@ export const viewport: Viewport = {
   maximumScale: 1,
   themeColor: '#000000',
 };
+
+'use client';
+
+import { useEffect } from 'react';
+import './globals.css';
+import { colors } from '@/lib/theme/tokens/colors';
+import { typography } from '@/lib/theme/tokens/typography';
+import { cn } from '@/lib/utils';
+import ClientProviders from '@/components/providers/ClientProviders';
+import { ThemeEffect } from '@/components/ThemeEffect';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
