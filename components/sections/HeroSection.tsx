@@ -16,7 +16,7 @@ export function HeroSection() {
     title: 'Meet Dana—Our AI Assistant',
     description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
-      <div className={cn("flex flex-col gap-4")}>
+      <div className={cn("flex flex-col gap-4 max-h-[90vh] overflow-auto")}>
         <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
           Your 24/7 Digital Employee
         </h4>
@@ -29,6 +29,18 @@ export function HeroSection() {
           <li>Getting started with automation</li>
           <li>Measuring the impact on your workflow</li>
         </ul>
+        <div className="w-full max-w-sm mx-auto" hidden={!customElements.get('elevenlabs-convai')}>
+          <elevenlabs-convai
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            mode="embedded"
+            style={{
+              display: 'block',
+              width: '100%',
+              background: 'transparent',
+              borderRadius: '12px',
+            }}
+          />
+        </div>
       </div>
     ),
   };
