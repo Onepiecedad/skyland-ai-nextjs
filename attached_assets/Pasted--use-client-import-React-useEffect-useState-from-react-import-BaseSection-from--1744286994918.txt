@@ -1,0 +1,85 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { BaseSection } from "@/components/ui/BaseSection";
+import { Logo } from "@/components/common/Logo";
+import { cn } from "@/lib/utils";
+import { layout } from "@/lib/theme/tokens/layout";
+import { typography } from "@/lib/theme/tokens/typography";
+
+export function HeroSection() {
+  const [isWidgetReady, setIsWidgetReady] = useState(false);
+
+  useEffect(() => {
+    console.log("🔄 Loading ElevenLabs widget script");
+
+    const alreadyRegistered = window.customElements.get("elevenlabs-convai");
+    if (alreadyRegistered) {
+      console.log("⚠️ Widget already registered");
+      setIsWidgetReady(true);
+      return;
+    }
+
+    const existingScript = document.querySelector(
+      'script[src="https://elevenlabs.io/convai-widget/index.js"]'
+    );
+    if (existingScript) {
+      console.log("⚠️ Script tag already exists, skipping append.");
+      setIsWidgetReady(true);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://elevenlabs.io/convai-widget/index.js";
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = "anonymous";
+
+    script.onload = () => {
+      console.log("✅ ElevenLabs widget script loaded");
+      setIsWidgetReady(true);
+    };
+
+    script.onerror = (e) => {
+      console.error("❌ Failed to load ElevenLabs widget script", e);
+    };
+
+    document.body.appendChild(script);
+
+    return () => {
+      console.log("🧹 Cleaning up ElevenLabs script");
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return (
+    <BaseSection
+      id="hero"
+      className={cn(
+        layout.section.base,
+        "min-h-screen py-20 flex items-center justify-center"
+      )}
+      ariaLabel="Hero Section"
+    >
+      <div className="flex flex-col items-center justify-center gap-6 text-white">
+        <Logo className="text-lg sm:text-xl" />
+        <h4 className={cn("text-center text-2xl font-semibold")}>Meet Dana—Our Always-On AI Strategy Assistant</h4>
+        {isWidgetReady ? (
+          <div className="w-full max-w-sm">
+            <elevenlabs-convai
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              style={{
+                display: "block",
+                width: "100%",
+                background: "transparent",
+                borderRadius: "12px",
+              }}
+            />
+          </div>
+        ) : (
+          <div className="text-sm text-gray-400">Loading Dana...</div>
+        )}
+      </div>
+    </BaseSection>
+  );
+}

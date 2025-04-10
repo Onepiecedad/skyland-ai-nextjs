@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { colors } from '@/lib/theme/tokens/colors';
@@ -33,9 +32,19 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn('dark [color-scheme:dark]', inter.variable)} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={cn('dark [color-scheme:dark]', inter.variable)}
+      suppressHydrationWarning
+    >
       <head />
-      <body className={cn(colors.surface.default, typography.text.base, 'font-sans antialiased bg-slate-900')}>
+      <body
+        className={cn(
+          colors.surface.default,
+          typography.text.base,
+          'font-sans antialiased bg-slate-900'
+        )}
+      >
         <ThemeEffect />
         <ClientProviders>{children}</ClientProviders>
       </body>
