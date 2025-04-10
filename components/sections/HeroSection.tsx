@@ -15,57 +15,65 @@ export function HeroSection() {
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    // Early return if widget is already registered
-    if (window.customElements?.get('elevenlabs-convai')) {
-      console.log('Widget already registered');
-      setIsWidgetReady(true);
-      return;
-    }
+    if (typeof window === 'undefined') return;
 
-    const script = document.createElement('script');
-    script.src = 'https://elevenlabs.io/convai-widget/index.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-
-    const checkWidget = () => {
-      const isRegistered = window.customElements?.get('elevenlabs-convai');
-      if (isRegistered) {
-        console.log('Widget registration confirmed');
+    const loadWidget = async () => {
+      // Check if widget is already registered
+      if (window.customElements?.get('elevenlabs-convai')) {
+        console.log('Widget already registered');
         setIsWidgetReady(true);
-      }
-      return isRegistered;
-    };
-
-    let attempts = 0;
-    const maxAttempts = 10;
-    
-    const retryCheck = () => {
-      if (attempts >= maxAttempts) {
-        console.error('Widget failed to register');
-        setLoadError(true);
         return;
       }
-      
-      if (!checkWidget()) {
-        attempts++;
-        setTimeout(retryCheck, 100);
+
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+
+      let attempts = 0;
+      const maxAttempts = 10;
+      const checkInterval = 100;
+
+      const checkRegistration = () => {
+        return new Promise<boolean>((resolve) => {
+          const check = () => {
+            if (window.customElements?.get('elevenlabs-convai')) {
+              console.log('Widget registered successfully');
+              setIsWidgetReady(true);
+              resolve(true);
+            } else if (attempts >= maxAttempts) {
+              console.error('Widget registration timeout');
+              setLoadError(true);
+              resolve(false);
+            } else {
+              attempts++;
+              setTimeout(check, checkInterval);
+            }
+          };
+          check();
+        });
+      };
+
+      try {
+        const loadPromise = new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = reject;
+        });
+
+        document.head.appendChild(script);
+        await loadPromise;
+        await checkRegistration();
+      } catch (error) {
+        console.error('Failed to load widget:', error);
+        setLoadError(true);
       }
     };
 
-    script.onload = () => {
-      console.log('Script loaded, checking registration');
-      retryCheck();
-    };
-
-    script.onerror = () => {
-      console.error('Failed to load widget script');
-      setLoadError(true);
-    };
-
-    document.head.appendChild(script);
+    loadWidget();
 
     return () => {
-      if (script.parentNode) {
+      const script = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
+      if (script?.parentNode) {
         script.parentNode.removeChild(script);
       }
     };
