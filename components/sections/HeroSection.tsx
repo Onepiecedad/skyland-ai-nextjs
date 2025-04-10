@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect } from 'react';
@@ -16,16 +15,13 @@ import { Logo } from '@/components/common/Logo';
 
 export function HeroSection() {
   useEffect(() => {
-    if (!document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]')) {
+    if (!window.customElements.get('elevenlabs-convai')) {
       const script = document.createElement('script');
-      script.src = "https://elevenlabs.io/convai-widget/index.js";
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
       script.async = true;
-      script.type = "text/javascript";
+      script.type = 'text/javascript';
       document.body.appendChild(script);
-
-      return () => {
-        document.body.removeChild(script);
-      };
+      return () => document.body.removeChild(script);
     }
   }, []);
 
@@ -35,13 +31,15 @@ export function HeroSection() {
       "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     hasWidget: true,
     expandedContent: (
-      <ContentStack spacing="lg" className="items-center text-center">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal')}>
+      <ContentStack spacing="lg" className="items-center">
+        <h4
+          className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}
+        >
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        <div className="w-full flex justify-center mt-4">
-          <div className="w-full max-w-[320px]">
+        <div className="w-full flex justify-center mb-6">
+          <div className="w-full max-w-sm">
             <elevenlabs-convai
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
@@ -49,14 +47,19 @@ export function HeroSection() {
                 width: '100%',
                 background: 'transparent',
                 margin: '0 auto',
-                borderRadius: '12px'
+                borderRadius: '12px',
               }}
             />
           </div>
         </div>
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
-          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
+          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
+          leads, and help you automate key parts of your business.
+        </p>
+
+        <p className={cn(typography.text.base, colors.text.secondary)}>
+          {`Here's what Dana can help you with:`}
         </p>
 
         <div className={cn(spacing.stack.lg, 'mt-4')}>
@@ -97,8 +100,8 @@ export function HeroSection() {
         </div>
 
         <p className={cn(typography.text.base, colors.text.secondary, 'mt-6')}>
-          She's not here to sell. She's here to help you explore if—and how—automation can work
-          for your business.
+          She's not here to sell. She's here to help you explore if—and how—automation can work for
+          your business.
         </p>
 
         <div className={cn(spacing.stack.md, 'mt-8')}>
@@ -136,14 +139,12 @@ export function HeroSection() {
       ariaLabel="Hero Section"
       containerGlass={false}
     >
-      {/* Logo in top left corner */}
       <div className="absolute left-6 top-6 z-20 md:left-8 md:top-8 lg:left-10 lg:top-10">
         <Logo className="text-lg sm:text-xl" />
       </div>
 
       <ContentStack spacing="lg" className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left column */}
           <ContentStack spacing="md" className={cn('space-y-6')}>
             <h1
               className={cn(
@@ -159,7 +160,6 @@ export function HeroSection() {
             </p>
           </ContentStack>
 
-          {/* Right column */}
           <div>
             <Card
               title={danaCard.title}
