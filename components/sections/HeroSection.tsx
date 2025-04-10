@@ -89,15 +89,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className={cn(
-          'w-full max-w-md mx-auto p-8 md:p-10',
-          'bg-white/10 border border-white/20 backdrop-blur-lg shadow-2xl rounded-3xl',
-          effects.transition.base,
-          effects.glass.premium,
-          typography.text.base,
-          'flex items-center justify-center min-h-[600px]',
-          'hover:bg-white/15 hover:border-white/30'
-        )}>
+        <div className="w-full max-w-md mx-auto flex items-center justify-center">
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
             mode="embedded"
