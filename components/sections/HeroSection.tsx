@@ -23,7 +23,10 @@ export function HeroSection() {
       script.src = 'https://elevenlabs.io/convai-widget/index.js';
       script.async = true;
       script.type = 'text/javascript';
-      script.onload = () => setIsWidgetReady(true);
+      script.onload = () => {
+        console.log('ElevenLabs widget script loaded');
+        setIsWidgetReady(true);
+      };
       document.body.appendChild(script);
       return () => document.body.removeChild(script);
     } else {
