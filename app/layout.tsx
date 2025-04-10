@@ -1,4 +1,3 @@
-
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -31,26 +30,18 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-'use client';
+// Client component for script handling
+function ElevenLabsScript() {
+  'use client';
 
-const ClientScript = () => {
   const { useEffect } = require('react');
-  
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://elevenlabs.io/convai-widget/index.js';
     script.async = true;
     script.crossOrigin = 'anonymous';
     script.id = 'elevenlabs-widget-script';
-    
-    script.onload = () => {
-      console.log('ElevenLabs widget script loaded successfully');
-    };
-
-    script.onerror = (error) => {
-      console.error('Error loading ElevenLabs widget script:', error);
-    };
-
     document.head.appendChild(script);
 
     return () => {
@@ -60,11 +51,11 @@ const ClientScript = () => {
       }
     };
   }, []);
-  
+
   return null;
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
@@ -79,12 +70,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           'font-sans antialiased bg-slate-900'
         )}
       >
-        <ClientScript />
+        <ElevenLabsScript />
         <ThemeEffect />
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
 }
-
-export default RootLayout;
