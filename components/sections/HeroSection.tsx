@@ -18,6 +18,7 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
+    console.log("Trying to load ElevenLabs convai script");
     let scriptElement: HTMLScriptElement | null = null;
 
     const loadWidget = async () => {
@@ -28,19 +29,31 @@ export function HeroSection() {
           scriptElement.async = true;
           scriptElement.crossOrigin = 'anonymous';
           scriptElement.type = 'text/javascript';
-
+          scriptElement.integrity = '';  // Tillåt laddning utan integrity check
+          
           const loadPromise = new Promise((resolve, reject) => {
-            scriptElement!.onload = resolve;
-            scriptElement!.onerror = reject;
+            scriptElement!.onload = () => {
+              console.log('Script loaded, waiting for initialization...');
+              // Ge komponenten tid att registreras
+              setTimeout(() => {
+                if (window.customElements.get('elevenlabs-convai')) {
+                  console.log('Widget component registered successfully');
+                  setIsWidgetReady(true);
+                } else {
+                  console.warn('Widget component failed to register');
+                  setIsWidgetReady(false);
+                }
+                resolve(undefined);
+              }, 1000);
+            };
+            scriptElement!.onerror = (e) => {
+              console.error('Script load error:', e);
+              reject(e);
+            };
           });
 
           document.head.appendChild(scriptElement);
           await loadPromise;
-
-          // Vänta på att web component registreras
-          await customElements.whenDefined('elevenlabs-convai');
-          console.log('ElevenLabs widget fully initialized');
-          setIsWidgetReady(true);
         } else {
           console.log('Widget already registered');
           setIsWidgetReady(true);
@@ -54,8 +67,10 @@ export function HeroSection() {
     loadWidget();
 
     return () => {
+      console.log("Cleaning up ElevenLabs widget script");
       if (scriptElement && document.head.contains(scriptElement)) {
         document.head.removeChild(scriptElement);
+        setIsWidgetReady(false);
       }
     };
   }, []);
