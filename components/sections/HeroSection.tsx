@@ -48,10 +48,10 @@ export function HeroSection() {
 
       <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
-          <h1 className={cn(typography.heading.h1, colors.text.primary)}>
+          <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
             What if growing your business didn't mean more work?
           </h1>
-          <p className={cn(typography.text.lg, colors.text.secondary)}>
+          <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
             Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
           </p>
         </div>
