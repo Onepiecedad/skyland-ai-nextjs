@@ -18,39 +18,33 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    let script: HTMLScriptElement | null = null;
-    
-    const loadWidget = () => {
-      if (!window.customElements.get('elevenlabs-convai')) {
-        script = document.createElement('script');
-        script.src = 'https://elevenlabs.io/convai-widget/index.js';
-        script.async = true;
-        script.crossOrigin = "anonymous";
-        script.type = 'text/javascript';
+    console.log("Trying to load ElevenLabs convai script");
 
-        script.onload = () => {
-          console.log('ElevenLabs widget loaded successfully');
-          setTimeout(() => setIsWidgetReady(true), 100);
-        };
-        
-        script.onerror = (error) => {
-          console.error('Failed to load ElevenLabs widget:', error);
-          setIsWidgetReady(false);
-        };
+    if (!window.customElements.get('elevenlabs-convai')) {
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.type = 'text/javascript';
 
-        document.head.appendChild(script);
-      } else {
-        setIsWidgetReady(true);
-      }
-    };
+      script.onload = () => {
+        console.log('ElevenLabs script loaded');
+        setTimeout(() => setIsWidgetReady(true), 500); // Delay to avoid init crash
+      };
 
-    loadWidget();
+      script.onerror = (e) => {
+        console.error("Failed to load ElevenLabs widget:", e);
+      };
 
-    return () => {
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
+      document.head.appendChild(script);
+      return () => {
+        console.log("Cleanup ElevenLabs widget script");
+        document.head.removeChild(script);
+      };
+    } else {
+      console.log('Widget already loaded');
+      setIsWidgetReady(true);
+    }
   }, []);
 
   const danaCard = {
