@@ -18,42 +18,55 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    console.log("Trying to load ElevenLabs convai script");
     let scriptElement: HTMLScriptElement | null = null;
+    let isLoading = false;
 
     const loadWidget = async () => {
-      try {
-        if (!window.customElements.get('elevenlabs-convai')) {
-          scriptElement = document.createElement('script');
-          scriptElement.src = 'https://elevenlabs.io/convai-widget/index.js';
-          scriptElement.async = true;
-          scriptElement.crossOrigin = 'anonymous';
-          scriptElement.type = 'text/javascript';
-          scriptElement.integrity = '';  // Tillåt laddning utan integrity check
-          
-          const loadPromise = new Promise((resolve, reject) => {
-            scriptElement!.onload = () => {
-              console.log('Script loaded, waiting for initialization...');
-              // Ge komponenten tid att registreras
-              setTimeout(() => {
-                if (window.customElements.get('elevenlabs-convai')) {
-                  console.log('Widget component registered successfully');
-                  setIsWidgetReady(true);
-                } else {
-                  console.warn('Widget component failed to register');
-                  setIsWidgetReady(false);
-                }
-                resolve(undefined);
-              }, 1000);
-            };
-            scriptElement!.onerror = (e) => {
-              console.error('Script load error:', e);
-              reject(e);
-            };
-          });
+      if (isLoading || window.customElements.get('elevenlabs-convai')) {
+        return;
+      }
 
+      isLoading = true;
+      console.log("Loading ElevenLabs widget script...");
+
+      try {
+        scriptElement = document.createElement('script');
+        scriptElement.src = 'https://elevenlabs.io/convai-widget/index.js';
+        scriptElement.async = true;
+        scriptElement.defer = true;
+        scriptElement.type = 'text/javascript';
+        
+        await new Promise((resolve, reject) => {
+          scriptElement!.onload = () => {
+            console.log('Script loaded successfully');
+            resolve(undefined);
+          };
+          
+          scriptElement!.onerror = (error) => {
+            console.error('Script failed to load:', error);
+            reject(error);
+          };
+          
           document.head.appendChild(scriptElement);
-          await loadPromise;
+        });
+
+        // Vänta på att web component ska registreras
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        while (attempts < maxAttempts) {
+          if (window.customElements.get('elevenlabs-convai')) {
+            console.log('Widget component registered');
+            setIsWidgetReady(true);
+            break;
+          }
+          await new Promise(resolve => setTimeout(resolve, 500));
+          attempts++;
+        }
+
+        if (attempts >= maxAttempts) {
+          throw new Error('Widget component failed to register');
+        }
         } else {
           console.log('Widget already registered');
           setIsWidgetReady(true);
@@ -67,11 +80,11 @@ export function HeroSection() {
     loadWidget();
 
     return () => {
-      console.log("Cleaning up ElevenLabs widget script");
       if (scriptElement && document.head.contains(scriptElement)) {
         document.head.removeChild(scriptElement);
-        setIsWidgetReady(false);
       }
+      setIsWidgetReady(false);
+      isLoading = false;
     };
   }, []);
 
