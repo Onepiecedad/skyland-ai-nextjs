@@ -25,18 +25,16 @@ export function HeroSection() {
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        <div className="w-full flex justify-center items-center">
-          <div className="w-full max-w-[260px]">
-            <elevenlabs-convai 
+        <div className="w-full flex justify-center">
+          <div className="w-full max-w-[300px]">
+            <elevenlabs-convai
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
-                display: 'block',
                 width: '100%',
-                margin: '0 auto',
+                display: 'block',
                 background: 'transparent',
-                borderRadius: '12px',
-                overflow: 'visible',
-                padding: 0
+                margin: '0 auto',
+                borderRadius: '12px'
               }}
             />
           </div>
