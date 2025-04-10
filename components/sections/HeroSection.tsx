@@ -11,7 +11,7 @@ import { typography } from '@/lib/theme/tokens/typography';
 import { radius } from '@/lib/theme/tokens/radius';
 import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
-import { ContentStack } from '@/components/ui/ContentStack';
+//import { ContentStack } from '@/components/ui/ContentStack';
 
 
 export function HeroSection() {
@@ -47,7 +47,7 @@ export function HeroSection() {
     description: "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     hasWidget: true,
     expandedContent: (
-      <div className={cn(spacing.stack.lg, "items-center text-center")}>
+      <div className="flex flex-col space-y-6 items-center text-center">
         <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
