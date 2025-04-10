@@ -11,190 +11,82 @@ import { typography } from '@/lib/theme/tokens/typography';
 import { radius } from '@/lib/theme/tokens/radius';
 import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
-//import { ContentStack } from '@/components/ui/ContentStack';
-
 
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    let scriptElement: HTMLScriptElement | null = null;
-    let isLoading = false;
+    console.log('useEffect triggered to load ElevenLabs widget script');
 
-    const loadWidget = async () => {
-      if (isLoading || window.customElements.get('elevenlabs-convai')) {
-        return;
-      }
+    if (!window.customElements.get('elevenlabs-convai')) {
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.type = 'text/javascript';
+      script.crossOrigin = 'anonymous';
 
-      isLoading = true;
-      console.log("Loading ElevenLabs widget script...");
+      script.onload = () => {
+        console.log('ElevenLabs widget script loaded');
 
-      try {
-        scriptElement = document.createElement('script');
-        scriptElement.src = 'https://elevenlabs.io/convai-widget/index.js';
-        scriptElement.async = true;
-        scriptElement.defer = true;
-        scriptElement.type = 'text/javascript';
-        
-        await new Promise((resolve, reject) => {
-          scriptElement!.onload = () => {
-            console.log('Script loaded successfully');
-            resolve(undefined);
-          };
-          
-          scriptElement!.onerror = (error) => {
-            console.error('Script failed to load:', error);
-            reject(error);
-          };
-          
-          document.head.appendChild(scriptElement);
-        });
-
-        // Vänta på att web component ska registreras
         let attempts = 0;
         const maxAttempts = 10;
-        
-        while (attempts < maxAttempts) {
+        const interval = setInterval(() => {
           if (window.customElements.get('elevenlabs-convai')) {
-            console.log('Widget component registered');
+            console.log('Widget successfully registered');
             setIsWidgetReady(true);
-            break;
+            clearInterval(interval);
+          } else if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            throw new Error('Widget component failed to register');
           }
-          await new Promise(resolve => setTimeout(resolve, 500));
           attempts++;
-        }
+        }, 300);
+      };
 
-        if (attempts >= maxAttempts) {
-          throw new Error('Widget component failed to register');
-        }
-      } else {
-        console.log('Widget already registered');
-        setIsWidgetReady(true);
-      }
-      } catch (error) {
-        console.error('Failed to load ElevenLabs widget:', error);
-        setIsWidgetReady(false);
-      }
-    };
+      script.onerror = (err) => {
+        console.error('Failed to load ElevenLabs widget:', err);
+      };
 
-    loadWidget();
-
-    return () => {
-      if (scriptElement && document.head.contains(scriptElement)) {
-        document.head.removeChild(scriptElement);
-      }
-      setIsWidgetReady(false);
-      isLoading = false;
-    };
+      document.head.appendChild(script);
+      return () => document.head.removeChild(script);
+    } else {
+      console.log('Widget already registered');
+      setIsWidgetReady(true);
+    }
   }, []);
 
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
-    description: "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
-    hasWidget: true,
+    description:
+      "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     expandedContent: (
-      <div className="flex flex-col space-y-6 items-center text-center">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
+      <div className="flex flex-col items-center gap-6">
+        <h4
+          className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}
+        >
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        <div className="w-full">
-          <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
-            Meet Dana—Our Always-On AI Strategy Assistant
-          </h4>
-
-          {isWidgetReady && (
-            <div className="w-full flex justify-center mb-6">
-              <div className="w-full max-w-sm mx-auto">
-                <elevenlabs-convai
-                  agent-id="4mN4rizdi79gwLhFxlOu"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    background: 'transparent',
-                    margin: '0 auto',
-                    borderRadius: '12px',
-                  }}
-                />
-              </div>
+        {isWidgetReady && (
+          <div className="w-full flex justify-center">
+            <div className="w-full max-w-sm">
+              <elevenlabs-convai
+                agent-id="4mN4rizdi79gwLhFxlOu"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  background: 'transparent',
+                  margin: '0 auto',
+                  borderRadius: '12px'
+                }}
+              />
             </div>
-          )}
+          </div>
+        )}
 
-          <p className={cn(typography.text.base, colors.text.secondary)}>
-            Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
-          </p>
-        </div>
-
-        <p className={cn(typography.text.base, colors.text.secondary)}>
-          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
-        </p>
-
-        <p className={cn(typography.text.base, colors.text.secondary)}>
-          Here's what Dana can help you with:
-        </p>
-
-        <div className={cn(spacing.stack.lg, 'mt-4')}>
-          <h5 className={cn(typography.heading.h5, colors.text.primary, 'font-normal')}>
-            🧠 <span className="font-medium">Understand & Explore</span>
-          </h5>
-          <ul className={cn(spacing.stack.md, 'ml-6 list-disc')}>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Answer your questions about Skyland AI
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Explain how our services, trial model, and pricing work
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Suggest automation ideas tailored to your business and goals
-            </li>
-          </ul>
-        </div>
-
-        <div className={cn(spacing.stack.lg, 'mt-6')}>
-          <h5 className={cn(typography.heading.h5, colors.text.primary, 'font-normal')}>
-            ⚙️ <span className="font-medium">Take Action</span>
-          </h5>
-          <ul className={cn(spacing.stack.md, 'ml-6 list-disc')}>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Collect and save lead info directly into our CRM
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Send custom emails and take messages
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Book meetings or appointments through calendar integrations
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary)}>
-              Follow up with visitors via email or summaries
-            </li>
-          </ul>
-        </div>
-
-        <p className={cn(typography.text.base, colors.text.secondary, 'mt-6')}>
-          She's not here to sell. She's here to help you explore if—and how—automation can work for your business.
-        </p>
-
-        <div className={cn(spacing.stack.md, 'mt-8')}>
-          <h5 className={cn(typography.heading.h5, colors.text.primary, 'font-normal')}>
-            💬 <span className="font-medium">You can ask her things like:</span>
-          </h5>
-          <ul className={cn(spacing.stack.md, 'ml-6')}>
-            <li className={cn(typography.text.base, colors.text.secondary, 'italic')}>
-              "What would you automate first in a business like mine?"
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary, 'italic')}>
-              "Can AI help me respond faster to new leads?"
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary, 'italic')}>
-              "How does the two-week trial work?"
-            </li>
-            <li className={cn(typography.text.base, colors.text.secondary, 'italic')}>
-              "What's a voice agent, and do I need one?"
-            </li>
-          </ul>
-        </div>
+        <p className={cn(typography.text.base, colors.text.secondary, 'text-center max-w-xl')}>Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.</p>
       </div>
-    ),
+    )
   };
 
   return (
@@ -215,8 +107,14 @@ export function HeroSection() {
 
       <div className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className={cn('space-y-6')}>
-            <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
+          <div className="space-y-6">
+            <h1
+              className={cn(
+                typography.heading.h1,
+                colors.text.primary,
+                'font-normal leading-tight'
+              )}
+            >
               What if growing your business didn't mean more work?
             </h1>
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
