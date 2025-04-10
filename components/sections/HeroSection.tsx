@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -66,13 +65,13 @@ export function HeroSection() {
           expandedContent={danaCard.expandedContent}
           ariaLabel="Meet Dana AI Assistant"
           className={cn(
-            'backdrop-blur-sm bg-white/5 border border-white/10 hover:border-white/20',
+            'backdrop-blur-sm bg-white/5 border border-white/10',
             effects.shadow.premium,
             effects.hover.premium,
             effects.transition.base,
             radius.lg,
-            'w-full max-w-md mx-auto p-6',
-            typography.text.lg
+            'w-full max-w-lg p-8',
+            typography.text.base
           )}
         />
       </div>
