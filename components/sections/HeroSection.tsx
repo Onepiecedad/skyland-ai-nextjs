@@ -20,13 +20,9 @@ export function HeroSection() {
     title: 'Meet Dana—Your AI Strategy Assistant',
     description: "Chat with Dana to explore how AI can transform your business. She'll analyze your workflows and show you what's possible—no technical jargon, just practical solutions.",
     expandedContent: (
-      <div className="flex flex-col items-center gap-6 w-full max-w-lg mx-auto">
+      <div className="flex flex-col items-center gap-6">
         <h4 className="text-xl text-center">Meet Dana—Your AI Strategy Assistant</h4>
-
-        <div className="w-full max-w-md mx-auto">
-          <ElevenLabsWidget />
-        </div>
-
+        <ElevenLabsWidget />
         <p className="text-base text-gray-300 text-center">
           Dana isn't just a chatbot—she's your AI strategy consultant. Ask her about automating tasks, 
           improving workflows, or scaling your business. She'll give you practical, actionable insights.

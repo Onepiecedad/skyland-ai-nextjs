@@ -1,23 +1,29 @@
 
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function ElevenLabsWidget() {
-  const [isReady, setIsReady] = useState(false)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const scriptId = 'elevenlabs-widget-script'
     const widgetTag = 'elevenlabs-convai'
 
-    const loadWidget = () => {
-      if (!customElements.get(widgetTag)) {
-        customElements.whenDefined(widgetTag).then(() => {
-          setIsReady(true)
-        })
-      } else {
-        setIsReady(true)  
-      }
+    const injectWidget = () => {
+      if (!containerRef.current) return
+      containerRef.current.innerHTML = ''
+
+      const widget = document.createElement(widgetTag)
+      widget.setAttribute('agent-id', '4mN4rizdi79gwLhFxlOu')
+      widget.setAttribute('mode', 'embedded')
+      widget.style.display = 'block'
+      widget.style.width = '100%'
+      widget.style.background = 'transparent'
+      widget.style.borderRadius = '12px'
+      widget.style.maxHeight = '600px'
+
+      containerRef.current.appendChild(widget)
     }
 
     if (!document.getElementById(scriptId)) {
@@ -26,25 +32,15 @@ export default function ElevenLabsWidget() {
       script.async = true
       script.id = scriptId
       document.body.appendChild(script)
-      script.onload = loadWidget
+      script.onload = injectWidget
+    } else if (customElements.get(widgetTag)) {
+      injectWidget()
     } else {
-      loadWidget()
+      customElements.whenDefined(widgetTag).then(injectWidget)
     }
   }, [])
 
-  if (!isReady) return null
-
   return (
-    <elevenlabs-convai
-      agent-id="4mN4rizdi79gwLhFxlOu"
-      mode="embedded"
-      style={{
-        display: 'block',
-        width: '100%',
-        background: 'transparent',
-        borderRadius: '12px',
-        maxHeight: '600px',
-      }}
-    />
+    <div ref={containerRef} className="w-full max-w-md mx-auto" />
   )
 }
