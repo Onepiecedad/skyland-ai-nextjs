@@ -1,64 +1,44 @@
+// components/sections/HeroSection.tsx
+'use client';
 
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { BaseSection } from "@/components/ui/BaseSection";
-import { Card } from "@/components/ui/Card";
-import { Logo } from "@/components/common/Logo";
-import { cn } from "@/lib/utils";
-import { layout } from "@/lib/theme/tokens/layout";
-import { typography } from "@/lib/theme/tokens/typography";
-import { spacing } from "@/lib/theme/tokens/spacing";
-import { colors } from "@/lib/theme/tokens/colors";
+import React, { useEffect, useState } from 'react';
+import { BaseSection } from '@/components/ui/BaseSection';
+import { Card } from '@/components/ui/Card';
+import { Logo } from '@/components/common/Logo';
+import { cn } from '@/lib/utils';
+import { layout } from '@/lib/theme/tokens/layout';
+import { typography } from '@/lib/theme/tokens/typography';
+import { spacing } from '@/lib/theme/tokens/spacing';
+import { colors } from '@/lib/theme/tokens/colors';
 
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    console.log("Loading ElevenLabs widget script");
+    if (!window.customElements.get('elevenlabs-convai')) {
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.type = 'text/javascript';
+      script.crossOrigin = 'anonymous';
+      script.onload = () => {
+        setIsWidgetReady(true);
+      };
+      document.body.appendChild(script);
 
-    const loadWidget = () => {
-      if (!window.customElements?.get("elevenlabs-convai")) {
-        const script = document.createElement("script");
-        script.src = "https://elevenlabs.io/convai-widget/index.js";
-        script.async = true;
-        script.type = "text/javascript";
-        script.crossOrigin = "anonymous";
-        
-        script.onload = () => {
-          console.log("ElevenLabs widget loaded");
-          setIsWidgetReady(true);
-        };
-        
-        script.onerror = (error) => {
-          console.error("Failed to load ElevenLabs widget:", error);
-          setIsWidgetReady(false);
-        };
-
-        document.body.appendChild(script);
-        return script;
-      }
+      return () => document.body.removeChild(script);
+    } else {
       setIsWidgetReady(true);
-      return null;
-    };
-
-    const script = loadWidget();
-
-    return () => {
-      if (script) {
-        console.log("Cleaning up ElevenLabs widget script");
-        document.body.removeChild(script);
-      }
-    };
+    }
   }, []);
 
   const danaCard = {
-    title: "Meet Dana—Our AI Assistant",
+    title: 'Meet Dana—Our AI Assistant',
     description:
       "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
       <div className="flex flex-col items-center gap-6">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, "text-center")}>
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'text-center')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
@@ -67,10 +47,10 @@ export function HeroSection() {
             <elevenlabs-convai
               agent-id="4mN4rizdi79gwLhFxlOu"
               style={{
-                display: "block",
-                width: "100%",
-                background: "transparent",
-                borderRadius: "12px",
+                display: 'block',
+                width: '100%',
+                background: 'transparent',
+                borderRadius: '12px',
               }}
             />
           </div>
@@ -79,8 +59,8 @@ export function HeroSection() {
         )}
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
-          Dana isn't just a chatbot—she's an AI assistant trained to answer your
-          questions, handle leads, and help you automate key parts of your business.
+          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
+          leads, and help you automate key parts of your business.
         </p>
 
         <div className="mt-4">
@@ -114,8 +94,8 @@ export function HeroSection() {
       className={cn(
         layout.section.base,
         layout.hero.container,
-        "min-h-screen py-16 md:py-20 lg:py-24",
-        "flex items-center justify-center"
+        'min-h-screen py-16 md:py-20 lg:py-24',
+        'flex items-center justify-center'
       )}
       ariaLabel="Hero Section"
     >

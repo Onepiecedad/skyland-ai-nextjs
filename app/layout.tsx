@@ -1,6 +1,8 @@
+// app/layout.tsx
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+
 import { colors } from '@/lib/theme/tokens/colors';
 import { typography } from '@/lib/theme/tokens/typography';
 import { cn } from '@/lib/utils';
@@ -37,7 +39,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={cn('dark [color-scheme:dark]', inter.variable)}
       suppressHydrationWarning
     >
-      <head />
+      <head>
+        <script
+          src="https://elevenlabs.io/convai-widget/index.js"
+          async
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body
         className={cn(
           colors.surface.default,
