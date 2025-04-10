@@ -1,0 +1,81 @@
+Instruktion – Placera ElevenLabs-widgeten inline, centrerad i expansion
+🎯 Mål
+Just nu visas ElevenLabs-widgeten i nedre högra hörnet som en flytande knapp (position: fixed).
+Vi vill istället att den:
+
+Renderas inline, som en naturlig del av modalens innehåll
+
+Ligger centrerad under rubriken "Meet Dana—Your AI Strategy Assistant"
+
+Har korrekt bredd och styling så att den smälter in
+
+✅ Steg-för-steg åtgärder
+1. 🧩 Uppdatera ElevenLabsWidget.tsx
+Byt ut komponenten mot denna version där vi använder mode="embedded":
+
+tsx
+Copy
+Edit
+'use client'
+
+import { useEffect } from 'react'
+
+export default function ElevenLabsWidget() {
+  useEffect(() => {
+    const scriptId = 'elevenlabs-widget-script'
+    const exists = document.getElementById(scriptId)
+    const registered = customElements.get('elevenlabs-convai')
+
+    if (!exists && !registered) {
+      const script = document.createElement('script')
+      script.src = 'https://elevenlabs.io/convai-widget/index.js'
+      script.async = true
+      script.id = scriptId
+      document.body.appendChild(script)
+    }
+  }, [])
+
+  return (
+    <elevenlabs-convai
+      agent-id="4mN4rizdi79gwLhFxlOu"
+      mode="embedded"
+      style={{
+        display: 'block',
+        width: '100%',
+        background: 'transparent',
+        borderRadius: '12px',
+      }}
+    />
+  )
+}
+2. 🎨 Se till att widgeten renderas centrerad i expandedContent:
+Inne i HeroSection.tsx, där du sätter expandedContent, omge ElevenLabsWidget med en wrapper:
+
+tsx
+Copy
+Edit
+<div className="w-full max-w-md mx-auto">
+  <ElevenLabsWidget />
+</div>
+Eller direkt inline i din layout:
+
+tsx
+Copy
+Edit
+expandedContent: (
+  <div className="flex flex-col items-center gap-6 w-full max-w-lg mx-auto">
+    <h4 className="text-xl text-center">Meet Dana—Your AI Strategy Assistant</h4>
+
+    <ElevenLabsWidget />
+
+    <p className="text-base text-gray-300 text-center">
+      Dana isn't just a chatbot—she's your AI strategy consultant...
+    </p>
+
+    {/* resten av innehållet */}
+  </div>
+)
+🧠 Bakgrund
+ElevenLabs-widgeten använder Shadow DOM + position: fixed som standard.
+Det gör att den ignorerar DOM-positionen, om man inte sätter mode="embedded".
+
