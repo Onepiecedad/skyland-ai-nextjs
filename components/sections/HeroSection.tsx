@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -21,40 +20,16 @@ export function HeroSection() {
     title: 'Meet Dana—Your AI Strategy Assistant',
     description: "Chat with Dana to explore how AI can transform your business. She'll analyze your workflows and show you what's possible—no technical jargon, just practical solutions.",
     expandedContent: (
-      <div className="flex flex-col items-center gap-6">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'text-center')}>
-          Meet Dana—Your AI Strategy Assistant
-        </h4>
+      <div className="flex flex-col items-center gap-6 w-full max-w-lg mx-auto">
+        <h4 className="text-xl text-center">Meet Dana—Your AI Strategy Assistant</h4>
 
-        <div className="w-full max-w-sm">
+        <div className="w-full max-w-md mx-auto">
           <ElevenLabsWidget />
         </div>
 
-        <p className={cn(typography.text.base, colors.text.secondary)}>
+        <p className="text-base text-gray-300 text-center">
           Dana isn't just a chatbot—she's your AI strategy consultant. Ask her about automating tasks, 
           improving workflows, or scaling your business. She'll give you practical, actionable insights.
-        </p>
-
-        <div className="mt-4">
-          <h5 className={cn(typography.heading.h5)}>🧠 Expert Analysis</h5>
-          <ul className="list-disc ml-6 space-y-1">
-            <li>Analyze your business workflows</li>
-            <li>Identify automation opportunities</li>
-            <li>Calculate potential time savings</li>
-          </ul>
-        </div>
-
-        <div className="mt-6">
-          <h5 className={cn(typography.heading.h5)}>⚡ Instant Solutions</h5>
-          <ul className="list-disc ml-6 space-y-1">
-            <li>Get tailored AI recommendations</li>
-            <li>See practical implementation steps</li>
-            <li>Start automating within days</li>
-          </ul>
-        </div>
-
-        <p className="mt-6 italic text-gray-300">
-          "What would you like to automate first?"
         </p>
       </div>
     ),

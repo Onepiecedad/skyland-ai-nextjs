@@ -1,27 +1,27 @@
 
-'use client';
+'use client'
 
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 export default function ElevenLabsWidget() {
   useEffect(() => {
-    const scriptId = 'elevenlabs-widget-script';
-    const exists = document.getElementById(scriptId);
-    const registered = customElements.get('elevenlabs-convai');
+    const scriptId = 'elevenlabs-widget-script'
+    const exists = document.getElementById(scriptId)
+    const registered = customElements.get('elevenlabs-convai')
 
     if (!exists && !registered) {
-      const script = document.createElement('script');
-      script.src = 'https://elevenlabs.io/convai-widget/index.js';
-      script.async = true;
-      script.id = scriptId;
-      script.type = 'text/javascript';
-      document.body.appendChild(script);
+      const script = document.createElement('script')
+      script.src = 'https://elevenlabs.io/convai-widget/index.js'
+      script.async = true
+      script.id = scriptId
+      document.body.appendChild(script)
     }
-  }, []);
+  }, [])
 
   return (
     <elevenlabs-convai
       agent-id="4mN4rizdi79gwLhFxlOu"
+      mode="embedded"
       style={{
         display: 'block',
         width: '100%',
@@ -29,5 +29,5 @@ export default function ElevenLabsWidget() {
         borderRadius: '12px',
       }}
     />
-  );
+  )
 }
