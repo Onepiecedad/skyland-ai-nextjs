@@ -1,22 +1,38 @@
 
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ElevenLabsWidget() {
+  const [isReady, setIsReady] = useState(false)
+
   useEffect(() => {
     const scriptId = 'elevenlabs-widget-script'
-    const exists = document.getElementById(scriptId)
-    const registered = customElements.get('elevenlabs-convai')
+    const widgetTag = 'elevenlabs-convai'
 
-    if (!exists && !registered) {
+    const loadWidget = () => {
+      if (!customElements.get(widgetTag)) {
+        customElements.whenDefined(widgetTag).then(() => {
+          setIsReady(true)
+        })
+      } else {
+        setIsReady(true)  
+      }
+    }
+
+    if (!document.getElementById(scriptId)) {
       const script = document.createElement('script')
       script.src = 'https://elevenlabs.io/convai-widget/index.js'
       script.async = true
       script.id = scriptId
       document.body.appendChild(script)
+      script.onload = loadWidget
+    } else {
+      loadWidget()
     }
   }, [])
+
+  if (!isReady) return null
 
   return (
     <elevenlabs-convai
@@ -27,6 +43,7 @@ export default function ElevenLabsWidget() {
         width: '100%',
         background: 'transparent',
         borderRadius: '12px',
+        maxHeight: '600px',
       }}
     />
   )
