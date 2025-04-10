@@ -18,7 +18,7 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    if (!document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]')) {
+    if (!window.customElements.get('elevenlabs-convai')) {
       const script = document.createElement('script');
       script.src = 'https://elevenlabs.io/convai-widget/index.js';
       script.async = true;
@@ -38,13 +38,15 @@ export function HeroSection() {
     hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg" className="items-center">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
+        <h4
+          className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}
+        >
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        <div className="w-full flex justify-center mb-6">
-          <div className="w-full max-w-sm">
-            {isWidgetReady && (
+        {isWidgetReady && (
+          <div className="w-full flex justify-center mb-6">
+            <div className="w-full max-w-sm">
               <elevenlabs-convai
                 agent-id="4mN4rizdi79gwLhFxlOu"
                 style={{
@@ -55,9 +57,9 @@ export function HeroSection() {
                   borderRadius: '12px',
                 }}
               />
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
           Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
