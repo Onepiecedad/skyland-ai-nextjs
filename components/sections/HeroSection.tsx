@@ -18,28 +18,39 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect triggered to load ElevenLabs widget script");
-    console.log("isWidgetReady", isWidgetReady); // Added debugging log
+    let script: HTMLScriptElement | null = null;
+    
+    const loadWidget = () => {
+      if (!window.customElements.get('elevenlabs-convai')) {
+        script = document.createElement('script');
+        script.src = 'https://elevenlabs.io/convai-widget/index.js';
+        script.async = true;
+        script.crossOrigin = "anonymous";
+        script.type = 'text/javascript';
 
-    if (!window.customElements.get('elevenlabs-convai')) {
-      const script = document.createElement('script');
-      script.src = 'https://elevenlabs.io/convai-widget/index.js';
-      script.async = true;
-      script.type = 'text/javascript';
+        script.onload = () => {
+          console.log('ElevenLabs widget loaded successfully');
+          setTimeout(() => setIsWidgetReady(true), 100);
+        };
+        
+        script.onerror = (error) => {
+          console.error('Failed to load ElevenLabs widget:', error);
+          setIsWidgetReady(false);
+        };
 
-      script.onload = () => {
-        console.log('ElevenLabs widget script loaded');
+        document.head.appendChild(script);
+      } else {
         setIsWidgetReady(true);
-      };
-      script.onerror = (error) => {
-        console.error('Error loading ElevenLabs widget script:', error);
-      };
+      }
+    };
 
-      document.body.appendChild(script);
-      return () => document.body.removeChild(script);
-    } else {
-      setIsWidgetReady(true);
-    }
+    loadWidget();
+
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
   }, []);
 
   const danaCard = {
