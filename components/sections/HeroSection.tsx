@@ -65,7 +65,7 @@ export function HeroSection() {
         }
 
         if (attempts >= maxAttempts) {
-          throw new Error('Widget component failed to register');
+          throw new Error('Widget component failed to register');;
         }
         } else {
           console.log('Widget already registered');
