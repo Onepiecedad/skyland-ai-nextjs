@@ -1,12 +1,7 @@
 'use client';
 
 import React from 'react';
-import dynamic from 'next/dynamic';
 import { BaseSection } from '@/components/ui/BaseSection';
-
-const ElevenLabsWidget = dynamic(() => import('@/components/ElevenLabsWidget'), { 
-  ssr: false 
-});
 import { Card } from '@/components/ui/Card';
 import { Logo } from '@/components/common/Logo';
 import { cn } from '@/lib/utils';
