@@ -89,18 +89,23 @@ export function HeroSection() {
           </div>
         </div>
 
-        <Card
-          title={danaCard.title}
-          description={danaCard.description}
-          expandedContent={danaCard.expandedContent}
-          ariaLabel="Meet Dana AI Assistant"
-          className={cn(
-            'w-full max-w-md mx-auto shadow-xl rounded-2xl overflow-hidden',
-            'bg-white/5 border border-white/10 backdrop-blur-sm',
-            effects.transition.base,
-            typography.text.base
-          )}
-        />
+        <div className={cn(
+          'w-full max-w-md mx-auto p-6',
+          'bg-white/5 border border-white/10 backdrop-blur-sm shadow-xl rounded-2xl',
+          effects.transition.base,
+          typography.text.base
+        )}>
+          <elevenlabs-convai 
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            style={{
+              display: 'block',
+              width: '100%',
+              height: '600px',
+              background: 'transparent',
+              borderRadius: '12px'
+            }}
+          />
+        </div>
       </div>
     </BaseSection>
   );
