@@ -22,19 +22,6 @@ export function HeroSection() {
           and help you automate key parts of your business.
         </p>
 
-        <div className="w-full max-w-md mx-auto">
-          <elevenlabs-convai
-            agent-id="4mN4rizdi79gwLhFxlOu"
-            mode="embedded"
-            style={{
-              display: 'block',
-              width: '100%',
-              background: 'transparent',
-              borderRadius: '12px',
-            }}
-          />
-        </div>
-
         <h5 className="text-lg font-semibold text-white mt-4">🧠 Understand & Explore</h5>
         <ul className="list-disc text-sm text-gray-300 space-y-1 pl-5 text-left">
           <li>Answer your questions about Skyland AI</li>
@@ -72,6 +59,19 @@ export function HeroSection() {
           <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
             Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
           </p>
+          
+          <div className="w-full max-w-md mx-auto mt-6">
+            <elevenlabs-convai
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              mode="embedded"
+              style={{
+                display: 'block',
+                width: '100%',
+                background: 'transparent',
+                borderRadius: '12px',
+              }}
+            />
+          </div>
         </div>
 
         <Card
