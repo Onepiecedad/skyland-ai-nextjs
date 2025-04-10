@@ -3,14 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { BaseSection } from '@/components/ui/BaseSection';
 import { Card } from '@/components/ui/Card';
+import { Logo } from '@/components/common/Logo';
 import { cn } from '@/lib/utils';
 import { colors } from '@/lib/theme/tokens/colors';
-import { effects } from '@/lib/theme/tokens/effects';
 import { layout } from '@/lib/theme/tokens/layout';
 import { typography } from '@/lib/theme/tokens/typography';
 import { radius } from '@/lib/theme/tokens/radius';
-import { spacing } from '@/lib/theme/tokens/spacing';
-import { Logo } from '@/components/common/Logo';
+import { effects } from '@/lib/theme/tokens/effects';
 
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
@@ -18,76 +17,58 @@ export function HeroSection() {
   useEffect(() => {
     console.log('useEffect triggered to load ElevenLabs widget script');
 
-    if (!window.customElements.get('elevenlabs-convai')) {
-      const script = document.createElement('script');
-      script.src = 'https://elevenlabs.io/convai-widget/index.js';
-      script.async = true;
-      script.type = 'text/javascript';
-      script.crossOrigin = 'anonymous';
-
-      script.onload = () => {
-        console.log('ElevenLabs widget script loaded');
-
-        let attempts = 0;
-        const maxAttempts = 10;
-        const interval = setInterval(() => {
-          if (window.customElements.get('elevenlabs-convai')) {
-            console.log('Widget successfully registered');
-            setIsWidgetReady(true);
-            clearInterval(interval);
-          } else if (attempts >= maxAttempts) {
-            clearInterval(interval);
-            throw new Error('Widget component failed to register');
-          }
-          attempts++;
-        }, 300);
-      };
-
-      script.onerror = (err) => {
-        console.error('Failed to load ElevenLabs widget:', err);
-      };
-
-      document.head.appendChild(script);
-      return () => document.head.removeChild(script);
-    } else {
+    const scriptAlreadyLoaded = window.customElements?.get('elevenlabs-convai');
+    if (scriptAlreadyLoaded) {
       console.log('Widget already registered');
       setIsWidgetReady(true);
+      return;
     }
+
+    const script = document.createElement('script');
+    script.src = 'https://elevenlabs.io/convai-widget/index.js';
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = 'anonymous';
+    script.onload = () => {
+      console.log('ElevenLabs widget script loaded');
+      // Vänta en extra frame för säkerhet
+      requestAnimationFrame(() => setIsWidgetReady(true));
+    };
+    script.onerror = (e) => {
+      console.error('Failed to load ElevenLabs widget:', e);
+    };
+
+    document.head.appendChild(script);
+    return () => document.head.removeChild(script);
   }, []);
 
-  const danaCard = {
-    title: 'Meet Dana—Our AI Assistant',
-    description:
-      "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
-    expandedContent: (
-      <div className="flex flex-col items-center gap-6">
-        <h4
-          className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center')}
-        >
-          Meet Dana—Our Always-On AI Strategy Assistant
-        </h4>
+  const expandedContent = (
+    <div className="flex flex-col items-center space-y-6">
+      <h4 className="text-center text-xl font-semibold text-white">
+        Meet Dana—Our Always-On AI Strategy Assistant
+      </h4>
 
-        {isWidgetReady && (
-          <div className="w-full flex justify-center">
-            <div className="w-full max-w-sm">
-              <elevenlabs-convai
-                agent-id="4mN4rizdi79gwLhFxlOu"
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  background: 'transparent',
-                  margin: '0 auto',
-                  borderRadius: '12px'
-                }}
-              />
-            </div>
-          </div>
-        )}
+      {isWidgetReady ? (
+        <div className="w-full max-w-sm">
+          <elevenlabs-convai
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            style={{
+              display: 'block',
+              width: '100%',
+              background: 'transparent',
+              borderRadius: '12px',
+            }}
+          />
+        </div>
+      ) : (
+        <div className="text-sm text-gray-400">Loading Dana...</div>
+      )}
 
-        <p className={cn(typography.text.base, colors.text.secondary, 'text-center max-w-xl')}>Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.</p>
-      </div>
-    )
-  };
+      <p className="text-sm text-white text-center max-w-xl">
+        Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
+      </p>
+    </div>
+  );
 
   return (
     <BaseSection
@@ -95,50 +76,29 @@ export function HeroSection() {
       className={cn(
         layout.section.base,
         layout.hero.container,
-        'min-h-screen py-16 md:py-20 lg:py-24',
-        'flex items-center justify-center'
+        'min-h-screen py-20 flex items-center justify-center'
       )}
       ariaLabel="Hero Section"
-      containerGlass={false}
     >
-      <div className="absolute left-6 top-6 z-20 md:left-8 md:top-8 lg:left-10 lg:top-10">
+      <div className="absolute left-6 top-6 z-20">
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
-        <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="space-y-6">
-            <h1
-              className={cn(
-                typography.heading.h1,
-                colors.text.primary,
-                'font-normal leading-tight'
-              )}
-            >
+      <div className="max-w-7xl px-6 md:px-8 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
               What if growing your business didn't mean more work?
             </h1>
-            <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
+            <p className="text-lg text-white/80 mt-6">
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
           </div>
-
-          <div>
-            <Card
-              title={danaCard.title}
-              description={danaCard.description}
-              expandedContent={danaCard.expandedContent}
-              ariaLabel="Meet Dana AI Assistant"
-              className={cn(
-                effects.hover.scale,
-                effects.transition.base,
-                'bg-white/5 w-full p-6 md:p-8',
-                effects.shadow.card,
-                radius.lg,
-                'border border-white/10',
-                'backdrop-blur-sm'
-              )}
-            />
-          </div>
+          <Card
+            title="Meet Dana—Our AI Assistant"
+            description="She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?"
+            expandedContent={expandedContent}
+          />
         </div>
       </div>
     </BaseSection>
