@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 
 export default function ElevenLabsWidget() {
   const [isReady, setIsReady] = useState(false)
@@ -16,7 +17,7 @@ export default function ElevenLabsWidget() {
           setIsReady(true)
         })
       } else {
-        setIsReady(true)  
+        setIsReady(true)
       }
     }
 
@@ -30,21 +31,33 @@ export default function ElevenLabsWidget() {
     } else {
       loadWidget()
     }
+
+    return () => {
+      const script = document.getElementById(scriptId)
+      if (script) {
+        script.remove()
+      }
+    }
   }, [])
 
   if (!isReady) return null
 
   return (
-    <elevenlabs-convai
-      agent-id="4mN4rizdi79gwLhFxlOu"
-      mode="embedded"
-      style={{
-        display: 'block',
-        width: '100%',
-        background: 'transparent',
-        borderRadius: '12px',
-        maxHeight: '600px',
-      }}
-    />
+    <div className="flex justify-center items-center w-full h-full min-h-[400px]">
+      <elevenlabs-convai
+        agent-id="4mN4rizdi79gwLhFxlOu"
+        mode="embedded"
+        style={{
+          display: 'block',
+          width: '100%',
+          height: '100%',
+          minHeight: '400px',
+          background: 'transparent',
+          borderRadius: '12px',
+          maxHeight: '600px',
+          margin: '0 auto',
+        }}
+      />
+    </div>
   )
 }
