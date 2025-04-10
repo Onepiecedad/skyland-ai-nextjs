@@ -9,6 +9,8 @@ import { layout } from '@/lib/theme/tokens/layout';
 import { typography } from '@/lib/theme/tokens/typography';
 import { spacing } from '@/lib/theme/tokens/spacing';
 import { colors } from '@/lib/theme/tokens/colors';
+import { effects } from '@/lib/theme/tokens/effects';
+import { radius } from '@/lib/theme/tokens/radius';
 
 export function HeroSection() {
   const danaCard = {
@@ -81,7 +83,13 @@ export function HeroSection() {
           description={danaCard.description}
           expandedContent={danaCard.expandedContent}
           ariaLabel="Meet Dana AI Assistant"
-          className="bg-white/5 border border-white/10 backdrop-blur-sm"
+          className={cn(
+            effects.hover.scale,
+            effects.transition.base,
+            'bg-white/5 w-full',
+            effects.shadow.card,
+            radius.lg
+          )}
         />
       </div>
     </BaseSection>
