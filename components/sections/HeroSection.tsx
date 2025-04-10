@@ -36,7 +36,7 @@ export function HeroSection() {
       "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     hasWidget: true,
     expandedContent: (
-      <div className="flex flex-col items-center gap-6 text-center">
+      <ContentStack spacing="lg" className="items-center text-center">
         <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
