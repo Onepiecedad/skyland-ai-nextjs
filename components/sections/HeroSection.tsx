@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -18,7 +17,7 @@ export function HeroSection() {
     title: 'Meet Dana—Your AI Assistant',
     description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
-      <div className="flex flex-col gap-3">
+      <div className={cn("flex flex-col gap-4")}>
         <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
           Meet Dana—Your AI Strategy Assistant
         </h4>
@@ -28,7 +27,7 @@ export function HeroSection() {
 
         <div className="space-y-2">
           <h5 className={cn(typography.text.sm, colors.text.primary, 'font-medium')}>🧠 Understand & Explore</h5>
-          <ul className="list-disc text-sm text-gray-300 space-y-0.5 pl-4">
+          <ul className={cn("list-disc space-y-1 pl-4", typography.text.sm, colors.text.secondary)}>
             <li>Answer your questions about Skyland AI</li>
             <li>Explain how our services, trial model, and pricing work</li>
             <li>Suggest automation ideas tailored to your business</li>
