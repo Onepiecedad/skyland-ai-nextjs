@@ -56,11 +56,11 @@ export function HeroSection() {
           <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
             What if growing your business didn't mean more work?
           </h1>
-          <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
+          <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed mb-6')}>
             Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
           </p>
           
-          <div className="w-full max-w-md mx-auto mt-6">
+          <div className="w-full">
             <elevenlabs-convai
               agent-id="4mN4rizdi79gwLhFxlOu"
               mode="embedded"
@@ -69,6 +69,7 @@ export function HeroSection() {
                 width: '100%',
                 background: 'transparent',
                 borderRadius: '12px',
+                position: 'relative',
               }}
             />
           </div>
