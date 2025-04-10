@@ -71,7 +71,8 @@ export function HeroSection() {
             effects.hover.premium,
             effects.transition.base,
             radius.lg,
-            'w-full'
+            'w-full max-w-md mx-auto p-6',
+            typography.text.lg
           )}
         />
       </div>
