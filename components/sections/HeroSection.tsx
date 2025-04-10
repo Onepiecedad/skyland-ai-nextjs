@@ -49,8 +49,8 @@ export function HeroSection() {
         <Logo className="text-base sm:text-lg" />
       </div>
 
-      <div className="w-full max-w-6xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start py-12">
-        <div className="space-y-8 lg:sticky lg:top-24">
+      <div className="w-full max-w-6xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-6">
+        <div className="space-y-6">
           <h1 className={cn(typography.text['3xl'], 'md:text-5xl lg:text-6xl', colors.text.primary, 'font-normal leading-tight')}>
             What if growing your business didn't mean more work?
           </h1>
