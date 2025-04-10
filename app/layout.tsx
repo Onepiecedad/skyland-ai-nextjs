@@ -1,9 +1,6 @@
 
-'use client';
-
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import { useEffect } from 'react';
 import './globals.css';
 import { colors } from '@/lib/theme/tokens/colors';
 import { typography } from '@/lib/theme/tokens/typography';
@@ -34,7 +31,11 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+function ClientScript() {
+  'use client';
+  
+  const useEffect = require('react').useEffect;
+  
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://elevenlabs.io/convai-widget/index.js';
@@ -59,7 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       }
     };
   }, []);
+  
+  return null;
+}
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
@@ -74,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           'font-sans antialiased bg-slate-900'
         )}
       >
+        <ClientScript />
         <ThemeEffect />
         <ClientProviders>{children}</ClientProviders>
       </body>
