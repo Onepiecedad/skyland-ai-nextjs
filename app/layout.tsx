@@ -30,13 +30,13 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-// Client component for script handling
+'use client';
+
 function ElevenLabsScript() {
-  'use client';
-
   const { useEffect } = require('react');
-
+  
   useEffect(() => {
+    console.log('Loading ElevenLabs widget script');
     const script = document.createElement('script');
     script.src = 'https://elevenlabs.io/convai-widget/index.js';
     script.async = true;
@@ -45,6 +45,7 @@ function ElevenLabsScript() {
     document.head.appendChild(script);
 
     return () => {
+      console.log('Cleaning up ElevenLabs widget script');
       const existingScript = document.getElementById('elevenlabs-widget-script');
       if (existingScript) {
         document.head.removeChild(existingScript);
