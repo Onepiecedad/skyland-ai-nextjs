@@ -89,7 +89,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="w-full max-w-md mx-auto flex items-start fixed lg:right-10 xl:right-[15%] top-32 lg:top-40">
+        <div className="w-full max-w-md flex items-start lg:absolute lg:right-10 xl:right-[15%] lg:top-0">
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
             mode="embedded"
