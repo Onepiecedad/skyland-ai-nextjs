@@ -65,12 +65,9 @@ export function HeroSection() {
           expandedContent={danaCard.expandedContent}
           ariaLabel="Meet Dana AI Assistant"
           className={cn(
-            'backdrop-blur-sm bg-white/5 border border-white/10',
-            effects.shadow.premium,
-            effects.hover.premium,
+            'w-full max-w-md mx-auto shadow-xl rounded-2xl overflow-hidden',
+            'bg-white/5 border border-white/10 backdrop-blur-sm',
             effects.transition.base,
-            radius.lg,
-            'w-full max-w-lg p-8',
             typography.text.base
           )}
         />

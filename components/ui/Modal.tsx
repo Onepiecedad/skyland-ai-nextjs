@@ -156,14 +156,14 @@ function ModalBase({
       >
         <div
           className={cn(
-            'w-full',
-            'max-w-3xl',
-            'p-6 md:p-8',
+            'w-full max-w-xl',
+            'max-h-[90vh] overflow-auto',
+            'p-6',
             'flex flex-col gap-4',
-            'bg-transparent',
+            'bg-zinc-900',
             'border border-white/10',
             'shadow-lg',
-            'rounded-lg',
+            'rounded-xl',
             'transition-all duration-200 ease-out',
             'mt-20 md:mt-24',
             className
