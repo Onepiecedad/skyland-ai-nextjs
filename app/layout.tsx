@@ -32,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body className={cn(colors.surface.default, typography.text.base, 'font-sans antialiased bg-slate-900')}>
         <RootClientShell>{children}</RootClientShell>
+        <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript" />
       </body>
     </html>
   )

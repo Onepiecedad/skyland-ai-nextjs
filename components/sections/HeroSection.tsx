@@ -28,7 +28,16 @@ export function HeroSection() {
         </p>
 
         <div className="w-full max-w-md mx-auto">
-          <ElevenLabsWidget />
+          <elevenlabs-convai
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            mode="embedded"
+            style={{
+              display: 'block',
+              width: '100%',
+              background: 'transparent',
+              borderRadius: '12px',
+            }}
+          />
         </div>
 
         <h5 className="text-lg font-semibold text-white mt-4">🧠 Understand & Explore</h5>
