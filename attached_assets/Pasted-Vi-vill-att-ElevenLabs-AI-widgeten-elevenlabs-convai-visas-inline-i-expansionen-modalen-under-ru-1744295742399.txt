@@ -1,0 +1,104 @@
+Vi vill att ElevenLabs AI-widgeten (<elevenlabs-convai>) visas inline i expansionen/modalen under rubrik och text, inte som en flytande knapp i nedre högra hörnet.
+
+Just nu:
+
+Widgeten visas felaktigt som overlay
+
+Texten och widgeten är på olika platser
+
+Layouten är trasig
+
+❌ Problemet
+ElevenLabs-scriptet (index.js) initierar en flytande knapp automatiskt om widget-taggen inte redan finns korrekt i DOM när den laddas
+
+<elevenlabs-convai> måste finnas innan scriptet laddas
+
+Scriptet läser attribut (mode="embedded") vid första render, och kan inte ändras i efterhand
+
+✅ Lösning – injicera widgeten manuellt före scriptet
+🔧 Steg 1: Byt ut ElevenLabsWidget.tsx till detta:
+tsx
+Copy
+Edit
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+export default function ElevenLabsWidget() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [scriptInjected, setScriptInjected] = useState(false)
+
+  useEffect(() => {
+    const tag = 'elevenlabs-convai'
+    const scriptId = 'elevenlabs-widget-script'
+
+    if (!containerRef.current) return
+
+    // Rensa ENDAST widgetcontainern
+    containerRef.current.innerHTML = ''
+
+    // Skapa ElevenLabs-element manuellt
+    const el = document.createElement(tag)
+    el.setAttribute('agent-id', '4mN4rizdi79gwLhFxlOu')
+    el.setAttribute('mode', 'embedded')
+    Object.assign(el.style, {
+      display: 'block',
+      width: '100%',
+      background: 'transparent',
+      borderRadius: '12px',
+      maxHeight: '600px',
+    })
+
+    containerRef.current.appendChild(el)
+
+    // Ladda script sist – och bara en gång
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script')
+      script.src = 'https://elevenlabs.io/convai-widget/index.js'
+      script.async = true
+      script.id = scriptId
+      script.onload = () => {
+        // Rensa eventuell felaktig knapp
+        const rogueBtn = document.querySelector('[style*="bottom"] button')
+        if (rogueBtn) rogueBtn.closest('[style*="bottom"]')?.remove()
+      }
+      document.body.appendChild(script)
+      setScriptInjected(true)
+    } else if (!scriptInjected) {
+      // Script redan laddat – dubbelkolla rogue-widget
+      const rogue = document.querySelector('[style*="bottom"] button')
+      if (rogue) rogue.closest('[style*="bottom"]')?.remove()
+      setScriptInjected(true)
+    }
+  }, [scriptInjected])
+
+  return <div ref={containerRef} className="w-full min-h-[400px] mx-auto" />
+}
+🔧 Steg 2: Placera i modalen så här:
+tsx
+Copy
+Edit
+<div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto px-4 py-6">
+  <h4 className="text-2xl text-white text-center">
+    Meet Dana—Your Always-On AI Strategy Assistant
+  </h4>
+
+  <p className="text-base text-gray-300 text-center max-w-prose">
+    Dana isn't just a chatbot—she's an AI assistant trained to answer your questions...
+  </p>
+
+  <div className="w-full max-w-md mx-auto">
+    <ElevenLabsWidget />
+  </div>
+
+  <h5 className="text-lg font-semibold text-white mt-4">🧠 Understand & Explore</h5>
+  <ul className="list-disc text-sm text-gray-300 space-y-1 pl-5 text-left">
+    <li>Answer your questions about Skyland AI</li>
+    <li>Explain how our services, trial model, and pricing work</li>
+    <li>Suggest automation ideas tailored to your business</li>
+  </ul>
+
+  <p className="italic text-gray-400 text-center mt-6">
+    “What would you like to automate today?”
+  </p>
+</div>
