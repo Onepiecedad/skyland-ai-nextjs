@@ -31,10 +31,10 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-function ClientScript() {
-  'use client';
-  
-  const useEffect = require('react').useEffect;
+'use client';
+
+const ClientScript = () => {
+  const { useEffect } = require('react');
   
   useEffect(() => {
     const script = document.createElement('script');
@@ -64,7 +64,7 @@ function ClientScript() {
   return null;
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       lang="en"
@@ -86,3 +86,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+export default RootLayout;
