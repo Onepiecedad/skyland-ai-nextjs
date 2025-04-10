@@ -1,6 +1,7 @@
+
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BaseSection } from '@/components/ui/BaseSection';
 import { Card } from '@/components/ui/Card';
 import { Logo } from '@/components/common/Logo';
@@ -9,9 +10,27 @@ import { layout } from '@/lib/theme/tokens/layout';
 import { typography } from '@/lib/theme/tokens/typography';
 import { colors } from '@/lib/theme/tokens/colors';
 import { effects } from '@/lib/theme/tokens/effects';
-import { radius } from '@/lib/theme/tokens/radius';
 
 export function HeroSection() {
+  const [isWidgetReady, setIsWidgetReady] = useState(false);
+
+  useEffect(() => {
+    const checkWidget = () => {
+      if (typeof window !== 'undefined' && window.customElements?.get('elevenlabs-convai')) {
+        setIsWidgetReady(true);
+      }
+    };
+
+    // Check immediately
+    checkWidget();
+
+    // Set up observer for script load
+    const observer = new MutationObserver(checkWidget);
+    observer.observe(document.head, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
     description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
@@ -29,7 +48,7 @@ export function HeroSection() {
           <li>Getting started with automation</li>
           <li>Measuring the impact on your workflow</li>
         </ul>
-        <div className="w-full max-w-sm mx-auto" hidden={!customElements.get('elevenlabs-convai')}>
+        <div className="w-full max-w-sm mx-auto" hidden={!isWidgetReady}>
           <elevenlabs-convai
             agent-id="4mN4rizdi79gwLhFxlOu"
             mode="embedded"
