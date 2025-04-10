@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -15,7 +16,7 @@ export function HeroSection() {
 
   useEffect(() => {
     console.log('Loading ElevenLabs widget script');
-
+    
     const loadWidget = () => {
       if (!window.customElements?.get('elevenlabs-convai')) {
         const script = document.createElement('script');
@@ -23,27 +24,27 @@ export function HeroSection() {
         script.async = true;
         script.type = 'text/javascript';
         script.crossOrigin = 'anonymous';
-
+        
         script.onload = () => {
           console.log('ElevenLabs widget loaded');
           setIsWidgetReady(true);
         };
-
+        
         script.onerror = (error) => {
           console.error('Failed to load ElevenLabs widget:', error);
           setIsWidgetReady(false);
         };
-
+        
         document.body.appendChild(script);
         return script;
       }
-
+      
       setIsWidgetReady(true);
       return null;
     };
 
     const script = loadWidget();
-
+    
     return () => {
       if (script) {
         console.log('Cleaning up ElevenLabs widget script');
