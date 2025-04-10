@@ -70,8 +70,7 @@ export function HeroSection() {
       className={cn(
         layout.section.base,
         'min-h-[90vh] py-16 md:py-24 lg:py-32',
-        'flex items-center justify-center',
-        effects.glass.premium
+        'flex items-center justify-center'
       )}
       ariaLabel="Hero Section"
     >
