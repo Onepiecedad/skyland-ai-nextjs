@@ -39,22 +39,22 @@ export function HeroSection() {
       id="hero"
       className={cn(
         layout.section.base,
-        layout.hero.container,
-        'min-h-screen py-8 md:py-12',
-        'flex items-center justify-center'
+        'min-h-[90vh] py-16 md:py-24 lg:py-32',
+        'flex items-center justify-center',
+        effects.glass.premium
       )}
       ariaLabel="Hero Section"
     >
-      <div className="absolute left-4 top-4 z-20 md:left-6 md:top-6">
-        <Logo className="text-base sm:text-lg" />
+      <div className="absolute left-6 top-6 z-20 md:left-8 md:top-8 lg:left-10 lg:top-10">
+        <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <div className="w-full max-w-6xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-6">
-        <div className="space-y-6">
-          <h1 className={cn(typography.text['3xl'], 'md:text-5xl lg:text-6xl', colors.text.primary, 'font-normal leading-tight')}>
+      <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="space-y-8">
+          <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight tracking-tight')}>
             What if growing your business didn't mean more work?
           </h1>
-          <div className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed space-y-4')}>
+          <div className={cn(typography.text.xl, colors.text.secondary, 'leading-relaxed space-y-6')}>
             <p>Let AI Handle 80% of Your Work—Effortlessly</p>
             <p>Meet Your 24/7 Digital Employee—For Free</p>
           </div>
