@@ -45,18 +45,18 @@ export function HeroSection() {
       className={cn(
         layout.section.base,
         layout.hero.container,
-        'h-[100vh] py-8 md:py-10 lg:py-12',
+        'min-h-[80vh] py-16 md:py-20 lg:py-24',
         'flex items-center justify-center'
       )}
       ariaLabel="Hero Section"
     >
-      <div className="absolute left-6 top-4 z-20 md:left-8 md:top-6 lg:left-10 lg:top-8">
+      <div className="absolute left-6 top-6 z-20 md:left-8 md:top-8 lg:left-10 lg:top-10">
         <Logo className="text-lg sm:text-xl" />
       </div>
 
       <div className={cn(
         layout.hero.content,
-        'grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center w-full max-w-screen-xl px-6'
+        'grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center'
       )}>
         <div className="space-y-6">
           <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
