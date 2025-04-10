@@ -17,14 +17,14 @@ export function HeroSection() {
     title: 'What if your business had a 24/7 AI employee?',
     description: "Meet Dana, your AI assistant who can handle tasks, answer questions, and help automate your business—without getting tired or taking breaks.",
     expandedContent: (
-      <div className={cn("flex flex-col gap-4")}>
-        <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
+      <div className={cn("flex flex-col gap-3")}>
+        <h4 className={cn(typography.text.lg, colors.text.primary, 'font-medium')}>
           Your Always-Ready AI Assistant
         </h4>
-        <p className={cn(typography.text.sm, colors.text.secondary)}>
+        <p className={cn(typography.text.base, colors.text.secondary)}>
           Dana is more than just an AI—she's your dedicated digital employee who:
         </p>
-        <ul className={cn("list-disc pl-4", typography.text.sm, colors.text.secondary, "space-y-2")}>
+        <ul className={cn("list-disc pl-4", typography.text.base, colors.text.secondary, "space-y-1.5")}>
           <li>Handles customer inquiries 24/7</li>
           <li>Automates repetitive tasks</li>
           <li>Helps streamline your operations</li>
@@ -49,12 +49,12 @@ export function HeroSection() {
         <Logo className="text-base sm:text-lg" />
       </div>
 
-      <div className="w-full max-w-7xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start py-8">
-        <div className="space-y-4">
-          <h1 className={cn(typography.text['2xl'], 'md:text-4xl lg:text-6xl', colors.text.primary, 'font-normal leading-tight max-w-3xl')}>
+      <div className="w-full max-w-6xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-6">
+        <div className="space-y-6">
+          <h1 className={cn(typography.text['2xl'], 'md:text-4xl lg:text-5xl', colors.text.primary, 'font-normal leading-tight')}>
             What if growing your business didn't mean more work?
           </h1>
-          <div className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed space-y-3 max-w-2xl')}>
+          <div className={cn(typography.text.base, colors.text.secondary, 'leading-relaxed space-y-2')}>
             <p>Let AI Handle 80% of Your Work—Effortlessly</p>
             <p>Meet Your 24/7 Digital Employee—For Free</p>
           </div>
