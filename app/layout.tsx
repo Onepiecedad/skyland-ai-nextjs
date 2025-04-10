@@ -1,6 +1,9 @@
-// app/layout.tsx
+
+'use client';
+
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import { useEffect } from 'react';
 import './globals.css';
 
 import { colors } from '@/lib/theme/tokens/colors';
@@ -33,19 +36,38 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://elevenlabs.io/convai-widget/index.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.id = 'elevenlabs-widget-script';
+    
+    script.onload = () => {
+      console.log('ElevenLabs widget script loaded successfully');
+    };
+
+    script.onerror = (error) => {
+      console.error('Error loading ElevenLabs widget script:', error);
+    };
+
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.getElementById('elevenlabs-widget-script');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   return (
     <html
       lang="en"
       className={cn('dark [color-scheme:dark]', inter.variable)}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          src="https://elevenlabs.io/convai-widget/index.js"
-          async
-          crossOrigin="anonymous"
-        ></script>
-      </head>
+      <head />
       <body
         className={cn(
           colors.surface.default,
