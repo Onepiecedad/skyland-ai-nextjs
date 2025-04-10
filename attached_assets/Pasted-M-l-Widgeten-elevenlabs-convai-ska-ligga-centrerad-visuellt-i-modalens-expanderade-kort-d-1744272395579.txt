@@ -1,0 +1,64 @@
+Mål:
+Widgeten `<elevenlabs-convai>` ska ligga **centrerad visuellt i modalens expanderade kort**, direkt under rubriken. Den ska **inte flyta runt**, inte fastna längst till höger, och inte ha margin-buggar.
+
+---
+
+### ⚠️ Problem som observerats:
+- Widgeten centrerar inte korrekt med bara `mx-auto`
+- Elementet innehåller intern DOM som påverkar layout
+- Positionering via Tailwind `text-center` påverkar inte custom web components
+
+---
+
+### ✅ Lösning: Strukturellt centrerad container
+
+#### 1. **Placera widgeten i en flex-wrapper**
+Denna wrapper måste både centrera **horisontellt** och ge utrymme för komponentens naturliga bredd.
+
+```tsx
+<div className="w-full flex justify-center items-center">
+  <div className="w-full max-w-[260px]">
+    <elevenlabs-convai 
+      agent-id="4mN4rizdi79gwLhFxlOu"
+      style={{
+        display: 'block',
+        width: '100%',
+        margin: '0 auto',
+        background: 'transparent',
+        borderRadius: '12px',
+        overflow: 'visible',
+        padding: 0,
+      }}
+    />
+  </div>
+</div>
+2. Inkludera denna wrapper i expandedContent för kortet
+Inuti ContentStack som har items-center text-center.
+
+tsx
+Copy
+Edit
+<ContentStack spacing="lg" className="items-center text-center">
+  <h4 className="...">Meet Dana...</h4>
+  {/* Widget */}
+  <div className="w-full flex justify-center items-center">
+    <div className="w-full max-w-[260px]">
+      <elevenlabs-convai ... />
+    </div>
+  </div>
+</ContentStack>
+🧠 Varför detta fungerar:
+flex justify-center ser till att barnobjektet centreras horisontellt
+
+max-w-[260px] gör att widgetens egen bredd inte får dominera layouten
+
+margin: 0 auto + display: block på widgeten i sig hanterar web-component layout
+
+Ingen manuell positionering behövs – detta funkar även i responsiva lägen och modaler
+
+🚫 Viktigt:
+Ta INTE bort widgetens egen "Powered by" – det visas automatiskt av komponenten
+
+Samtalet ska INTE startas via active-attribut. Användaren måste klicka på knappen manuellt.
+
+Tillämpa detta i HeroSection.tsx eller modal-komponenten där expandedContent används.
