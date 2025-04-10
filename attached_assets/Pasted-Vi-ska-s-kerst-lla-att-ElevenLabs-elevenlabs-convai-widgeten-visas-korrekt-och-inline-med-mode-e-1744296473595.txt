@@ -1,0 +1,80 @@
+Vi ska säkerställa att ElevenLabs <elevenlabs-convai>-widgeten visas korrekt och inline, med mode="embedded", utan att flytande "Talk to Dana"-knappen dyker upp. Vi vill att detta sker i expansionen (modalen), men följer den metod som fungerade tidigare:
+
+🛠️ Steg-för-steg-plan
+1. Temporärt: Placera widgeten direkt i HeroSection.tsx
+✅ Detta säkerställer att <elevenlabs-convai> är i DOM innan ElevenLabs-scriptet laddas.
+
+tsx
+Copy
+Edit
+// Inuti JSX i HeroSection.tsx, direkt under en rubrik
+<div className="w-full max-w-md mx-auto">
+  <elevenlabs-convai
+    agent-id="4mN4rizdi79gwLhFxlOu"
+    mode="embedded"
+    style={{
+      display: 'block',
+      width: '100%',
+      background: 'transparent',
+      borderRadius: '12px',
+    }}
+  />
+</div>
+
+<script
+  src="https://elevenlabs.io/convai-widget/index.js"
+  async
+  type="text/javascript"
+/>
+📌 Scriptet ska ligga direkt i JSX (eller layout.tsx → <body>), inte via useEffect.
+
+2. Kör appen och verifiera
+✅ Widget visas inline
+✅ Flytande "Talk to Dana" finns inte
+✅ Mikrofonprompt visas när du klickar
+
+3. Flytta widgeten in i expandedContent i HeroSection.tsx
+När det fungerar i steg 2 – flytta samma JSX till danaCard.expandedContent, t.ex:
+
+tsx
+Copy
+Edit
+expandedContent: (
+  <div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto px-4 py-6">
+    <h4 className="text-2xl text-white text-center">
+      Meet Dana—Your Always-On AI Strategy Assistant
+    </h4>
+
+    <p className="text-base text-gray-300 text-center max-w-prose">
+      Dana isn't just a chatbot—she's an AI assistant...
+    </p>
+
+    <div className="w-full max-w-md mx-auto">
+      <elevenlabs-convai
+        agent-id="4mN4rizdi79gwLhFxlOu"
+        mode="embedded"
+        style={{
+          display: 'block',
+          width: '100%',
+          background: 'transparent',
+          borderRadius: '12px',
+        }}
+      />
+    </div>
+
+    <p className="italic text-gray-400 text-center mt-6">
+      “What would you like to automate today?”
+    </p>
+  </div>
+),
+📌 OBS: Lämna <script> i layout.tsx eller index.html så det laddas automatiskt.
+
+✅ Resultat du ska se
+Widgeten visas inline inne i modalen
+
+Ingen “Talk to Dana” flyter i hörnet
+
+All text visas korrekt
+
+Mikrofonprompt fungerar som förväntat
+
