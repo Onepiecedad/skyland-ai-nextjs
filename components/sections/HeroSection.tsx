@@ -97,6 +97,7 @@ export function HeroSection() {
         )}>
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
+            mode="embedded"
             style={{
               display: 'block',
               width: '100%',
