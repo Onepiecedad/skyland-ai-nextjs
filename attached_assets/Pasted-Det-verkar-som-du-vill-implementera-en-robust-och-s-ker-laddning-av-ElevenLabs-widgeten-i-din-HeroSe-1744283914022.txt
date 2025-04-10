@@ -1,0 +1,82 @@
+Det verkar som du vill implementera en robust och säker laddning av ElevenLabs-widgeten i din HeroSection. Här är en reviderad version av din komponent som uppfyller de krav du har nämnt:
+
+'use client';
+import React, { useEffect, useState } from 'react';
+import { BaseSection } from '@/components/ui/BaseSection';
+import { Logo } from '@/components/common/Logo';
+import { cn } from '@/lib/utils';
+import { layout } from '@/lib/theme/tokens/layout';
+export function HeroSection() {
+  const [isWidgetReady, setIsWidgetReady] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const maxAttempts = 10;
+  useEffect(() => {
+    const loadWidgetScript = () => {
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => {
+        console.log('ElevenLabs widget script loaded');
+        requestAnimationFrame(() => setIsWidgetReady(true));
+      };
+      script.onerror = (e) => {
+        console.error('Failed to load ElevenLabs widget:', e);
+      };
+      document.head.appendChild(script);
+    };
+    const checkWidgetRegistration = () => {
+      const scriptAlreadyLoaded = window.customElements?.get('elevenlabs-convai');
+      if (scriptAlreadyLoaded) {
+        console.log('Widget already registered');
+        setIsWidgetReady(true);
+      } else {
+        if (attempts < maxAttempts) {
+          setAttempts(attempts + 1);
+          setTimeout(checkWidgetRegistration, 300); // Retry after 300 ms
+        } else {
+          console.error('Widget registration failed after maximum attempts');
+        }
+      }
+    };
+    loadWidgetScript();
+    const registrationInterval = setInterval(checkWidgetRegistration, 300);
+    return () => {
+      clearInterval(registrationInterval);
+      // Remove the script when component unmounts
+      const scripts = document.querySelectorAll('script[src="https://elevenlabs.io/convai-widget/index.js"]');
+      scripts.forEach(script => script.remove());
+    };
+  }, [attempts]);
+  return (
+    <BaseSection
+      id="hero"
+      className={cn(layout.section.base, 'min-h-screen py-20 flex items-center justify-center')}
+      ariaLabel="Hero Section"
+    >
+      <div className="flex flex-col items-center justify-center">
+        <Logo className="text-lg sm:text-xl" />
+        <h4 className="text-center text-xl font-semibold text-white">
+          Meet Dana—Our Always-On AI Strategy Assistant
+        </h4>
+        {isWidgetReady ? (
+          <div className="w-full max-w-sm">
+            <elevenlabs-convai
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              style={{ display: 'block', width: '100%', background: 'transparent', borderRadius: '12px' }}
+            />
+          </div>
+        ) : (
+          <div className="text-sm text-gray-400">Loading Dana...</div>
+        )}
+      </div>
+    </BaseSection>
+  );
+}
+Förklaringar:
+Dynamisk laddning: Skriptet laddas i loadWidgetScript-funktionen. Den kommer att skapas och läggas till i dokumenthuvudet.
+Kontroll av registrering: Vi har en beteckning för att kontrollera om widgeten har registrerats ordentligt via window.customElements.get. Om registreringen misslyckas gör vi upp till 10 försök med 300 ms mellanrum.
+Fallback-UI: Meddelandet "Loading Dana..." visas medan widgeten laddas.
+Centrerad rendering: Widgeten placeras i en flexbox-layout centralt.
+Detta ger en stabil, responsiv och säker implementation för att ladda ElevenLabs-widgeten.
