@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -16,7 +17,6 @@ export function HeroSection() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Only load if not already registered
     if (!window.customElements?.get('elevenlabs-convai')) {
       const script = document.createElement('script');
       script.src = 'https://elevenlabs.io/convai-widget/index.js';
