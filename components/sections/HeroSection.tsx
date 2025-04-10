@@ -62,21 +62,17 @@ export function HeroSection() {
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        {isWidgetReady ? (
-          <div className="w-full max-w-sm">
-            <elevenlabs-convai
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{
-                display: 'block',
-                width: '100%',
-                background: 'transparent',
-                borderRadius: '12px',
-              }}
-            />
-          </div>
-        ) : (
-          <div className="text-sm text-gray-400">Loading Dana...</div>
-        )}
+        <div className="w-full max-w-sm">
+          <elevenlabs-convai
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            style={{
+              display: 'block',
+              width: '100%',
+              background: 'transparent',
+              borderRadius: '12px',
+            }}
+          />
+        </div>
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
           Dana isn&apos;t just a chatbot—she&apos;s an AI assistant trained to answer your
