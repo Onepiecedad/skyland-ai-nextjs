@@ -15,53 +15,53 @@ export function HeroSection() {
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    const loadWidget = () => {
-      if (window.customElements?.get('elevenlabs-convai')) {
-        console.log('Widget already registered');
-        setIsWidgetReady(true);
-        return;
-      }
+    if (window.customElements?.get('elevenlabs-convai')) {
+      console.log('Widget already registered');
+      setIsWidgetReady(true);
+      return;
+    }
 
-      const existingScript = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
-      if (existingScript) {
-        console.log('Script already exists');
-        return;
-      }
+    const existingScript = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
+    if (existingScript) {
+      console.log('Script already exists');
+      return;
+    }
 
-      console.log('Loading ElevenLabs widget script');
-      const script = document.createElement('script');
-      script.src = 'https://elevenlabs.io/convai-widget/index.js';
-      script.async = true;
-      script.crossOrigin = 'anonymous';
+    console.log('Loading ElevenLabs widget script');
+    const script = document.createElement('script');
+    script.src = 'https://elevenlabs.io/convai-widget/index.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
 
-      script.onload = () => {
-        const checkRegistration = () => {
-          if (window.customElements?.get('elevenlabs-convai')) {
-            console.log('Widget registration confirmed');
-            setIsWidgetReady(true);
-          } else {
-            console.error('Widget failed to register');
-            setLoadError(true);
-          }
-        };
-
-        // Check registration after a short delay to ensure the custom element is defined
-        setTimeout(checkRegistration, 100);
+    script.onload = () => {
+      const maxAttempts = 10;
+      let attempts = 0;
+      
+      const checkRegistration = () => {
+        if (window.customElements?.get('elevenlabs-convai')) {
+          console.log('Widget registration confirmed');
+          setIsWidgetReady(true);
+        } else if (attempts >= maxAttempts) {
+          console.error('Widget failed to register after maximum attempts');
+          setLoadError(true);
+        } else {
+          attempts++;
+          setTimeout(checkRegistration, 100);
+        }
       };
 
-      script.onerror = (e) => {
-        console.error('Failed to load ElevenLabs widget:', e);
-        setLoadError(true);
-      };
-
-      document.head.appendChild(script);
+      checkRegistration();
     };
 
-    loadWidget();
+    script.onerror = (e) => {
+      console.error('Failed to load ElevenLabs widget:', e);
+      setLoadError(true);
+    };
+
+    document.head.appendChild(script);
 
     return () => {
-      const script = document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]');
-      if (script?.parentNode) {
+      if (script.parentNode) {
         script.parentNode.removeChild(script);
       }
     };
