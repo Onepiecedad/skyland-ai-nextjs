@@ -1,3 +1,6 @@
+
+'use client';
+
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -29,8 +32,6 @@ export const viewport: Viewport = {
   maximumScale: 1,
   themeColor: '#000000',
 };
-
-'use client';
 
 function ElevenLabsScript() {
   const { useEffect } = require('react');
