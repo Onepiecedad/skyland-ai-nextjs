@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -36,7 +35,7 @@ export function HeroSection() {
     script.onload = () => {
       const maxAttempts = 10;
       let attempts = 0;
-      
+
       const checkRegistration = () => {
         if (window.customElements?.get('elevenlabs-convai')) {
           console.log('Widget registration confirmed');
