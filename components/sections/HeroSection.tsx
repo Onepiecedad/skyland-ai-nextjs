@@ -91,9 +91,10 @@ export function HeroSection() {
 
         <div className={cn(
           'w-full max-w-md mx-auto p-6',
-          'bg-white/5 border border-white/10 backdrop-blur-sm shadow-xl rounded-2xl',
+          'bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl rounded-2xl',
           effects.transition.base,
-          typography.text.base
+          typography.text.base,
+          'flex items-center justify-center min-h-[600px]'
         )}>
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
