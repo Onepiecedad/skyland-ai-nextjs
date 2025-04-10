@@ -18,22 +18,24 @@ export function HeroSection() {
     title: 'Meet Dana—Your AI Assistant',
     description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
-      <div className="flex flex-col items-center gap-4 w-full max-w-xl mx-auto px-4 py-4">
-        <h4 className={cn(typography.text.lg, colors.text.primary, 'text-center font-semibold')}>
+      <div className="flex flex-col gap-3">
+        <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
           Meet Dana—Your AI Strategy Assistant
         </h4>
-        <p className={cn(typography.text.sm, colors.text.secondary, 'text-center max-w-prose')}>
+        <p className={cn(typography.text.sm, colors.text.secondary)}>
           Dana helps you explore how AI can transform your business operations. She'll guide you through automation possibilities and show you what's possible.
         </p>
 
-        <h5 className="text-base font-semibold text-white mt-2">🧠 Understand & Explore</h5>
-        <ul className="list-disc text-sm text-gray-300 space-y-0.5 pl-4 text-left">
-          <li>Answer your questions about Skyland AI</li>
-          <li>Explain how our services, trial model, and pricing work</li>
-          <li>Suggest automation ideas tailored to your business</li>
-        </ul>
+        <div className="space-y-2">
+          <h5 className={cn(typography.text.sm, colors.text.primary, 'font-medium')}>🧠 Understand & Explore</h5>
+          <ul className="list-disc text-sm text-gray-300 space-y-0.5 pl-4">
+            <li>Answer your questions about Skyland AI</li>
+            <li>Explain how our services, trial model, and pricing work</li>
+            <li>Suggest automation ideas tailored to your business</li>
+          </ul>
+        </div>
 
-        <p className="italic text-gray-400 text-center mt-2 text-sm">
+        <p className={cn(typography.text.sm, colors.text.secondary, 'italic')}>
           "What would you like to automate today?"
         </p>
       </div>
