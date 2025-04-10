@@ -14,29 +14,22 @@ import { radius } from '@/lib/theme/tokens/radius';
 
 export function HeroSection() {
   const danaCard = {
-    title: 'Meet Dana—Your AI Assistant',
-    description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
+    title: 'What if your business had a 24/7 AI employee?',
+    description: "Meet Dana, your AI assistant who can handle tasks, answer questions, and help automate your business—without getting tired or taking breaks.",
     expandedContent: (
-      <div className={cn("flex flex-col gap-6")}>
-        <h4 className={cn(typography.text.lg, colors.text.primary, 'font-medium')}>
-          Meet Dana—Your AI Strategy Assistant
+      <div className={cn("flex flex-col gap-4")}>
+        <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
+          Your Always-Ready AI Assistant
         </h4>
-        <p className={cn(typography.text.base, colors.text.secondary, 'leading-relaxed')}>
-          Dana helps you explore how AI can transform your business operations. She'll guide you through automation possibilities and show you what's possible.
+        <p className={cn(typography.text.sm, colors.text.secondary)}>
+          Dana is more than just an AI—she's your dedicated digital employee who:
         </p>
-
-        <div className="space-y-2">
-          <h5 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>🧠 Understand & Explore</h5>
-          <ul className={cn("list-disc space-y-2 pl-4", typography.text.base, colors.text.secondary)}>
-            <li>Answer your questions about Skyland AI</li>
-            <li>Explain how our services, trial model, and pricing work</li>
-            <li>Suggest automation ideas tailored to your business</li>
-          </ul>
-        </div>
-
-        <p className={cn(typography.text.sm, colors.text.secondary, 'italic')}>
-          "What would you like to automate today?"
-        </p>
+        <ul className={cn("list-disc pl-4", typography.text.sm, colors.text.secondary, "space-y-2")}>
+          <li>Handles customer inquiries 24/7</li>
+          <li>Automates repetitive tasks</li>
+          <li>Helps streamline your operations</li>
+          <li>Learns and adapts to your business</li>
+        </ul>
       </div>
     ),
   };
