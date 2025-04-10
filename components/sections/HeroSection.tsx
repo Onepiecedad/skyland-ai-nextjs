@@ -89,7 +89,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="w-full max-w-md mx-auto flex items-center justify-center mt-8 lg:mt-0">
+        <div className="w-full max-w-md mx-auto flex items-start sticky top-8 lg:mt-0">
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
             mode="embedded"
