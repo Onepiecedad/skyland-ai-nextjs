@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -8,17 +9,17 @@ import { cn } from '@/lib/utils';
 import { colors } from '@/lib/theme/tokens/colors';
 import { layout } from '@/lib/theme/tokens/layout';
 import { typography } from '@/lib/theme/tokens/typography';
-import { radius } from '@/lib/theme/tokens/radius';
-import { effects } from '@/lib/theme/tokens/effects';
 
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const maxAttempts = 10;
+  const retryInterval = 300;
 
   useEffect(() => {
-    console.log('useEffect triggered to load ElevenLabs widget script');
-
-    const scriptAlreadyLoaded = window.customElements?.get('elevenlabs-convai');
-    if (scriptAlreadyLoaded) {
+    console.log('Trying to load ElevenLabs convai script');
+    
+    if (window.customElements?.get('elevenlabs-convai')) {
       console.log('Widget already registered');
       setIsWidgetReady(true);
       return;
@@ -27,19 +28,41 @@ export function HeroSection() {
     const script = document.createElement('script');
     script.src = 'https://elevenlabs.io/convai-widget/index.js';
     script.async = true;
-    script.defer = true;
     script.crossOrigin = 'anonymous';
+    
+    let attempts = 0;
+    let checkInterval: NodeJS.Timer;
+
+    const checkRegistration = () => {
+      if (window.customElements?.get('elevenlabs-convai')) {
+        console.log('Widget registration confirmed');
+        setIsWidgetReady(true);
+        clearInterval(checkInterval);
+      } else if (attempts >= maxAttempts) {
+        console.error('Widget registration failed after maximum attempts');
+        setLoadError(true);
+        clearInterval(checkInterval);
+      }
+      attempts++;
+    };
+
     script.onload = () => {
       console.log('ElevenLabs widget script loaded');
-      // Vänta en extra frame för säkerhet
-      requestAnimationFrame(() => setIsWidgetReady(true));
+      checkInterval = setInterval(checkRegistration, retryInterval);
     };
+
     script.onerror = (e) => {
       console.error('Failed to load ElevenLabs widget:', e);
+      setLoadError(true);
     };
 
     document.head.appendChild(script);
-    return () => document.head.removeChild(script);
+
+    return () => {
+      console.log('Cleaning up ElevenLabs widget script');
+      clearInterval(checkInterval);
+      document.head.removeChild(script);
+    };
   }, []);
 
   const expandedContent = (
@@ -48,21 +71,25 @@ export function HeroSection() {
         Meet Dana—Our Always-On AI Strategy Assistant
       </h4>
 
-      {isWidgetReady ? (
-        <div className="w-full max-w-sm">
-          <elevenlabs-convai
-            agent-id="4mN4rizdi79gwLhFxlOu"
-            style={{
-              display: 'block',
-              width: '100%',
-              background: 'transparent',
-              borderRadius: '12px',
-            }}
-          />
-        </div>
-      ) : (
-        <div className="text-sm text-gray-400">Loading Dana...</div>
-      )}
+      <div className="w-full flex justify-center">
+        {loadError ? (
+          <div className="text-red-400">Failed to load Dana. Please try refreshing the page.</div>
+        ) : !isWidgetReady ? (
+          <div className="text-gray-400">Loading Dana...</div>
+        ) : (
+          <div className="w-full max-w-sm">
+            <elevenlabs-convai
+              agent-id="4mN4rizdi79gwLhFxlOu"
+              style={{
+                display: 'block',
+                width: '100%',
+                background: 'transparent',
+                borderRadius: '12px',
+              }}
+            />
+          </div>
+        )}
+      </div>
 
       <p className="text-sm text-white text-center max-w-xl">
         Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
