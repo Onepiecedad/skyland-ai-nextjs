@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -16,35 +17,32 @@ export function HeroSection() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const script = document.createElement('script');
-    script.src = 'https://elevenlabs.io/convai-widget/index.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
+    // Only load if not already registered
+    if (!window.customElements?.get('elevenlabs-convai')) {
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
 
-    script.onload = () => {
-      const checkInterval = setInterval(() => {
-        if (window.customElements?.get('elevenlabs-convai')) {
-          setIsWidgetReady(true);
-          clearInterval(checkInterval);
+      script.onload = () => {
+        setIsWidgetReady(true);
+      };
+
+      script.onerror = () => {
+        console.error('Failed to load ElevenLabs widget');
+        setLoadError(true);
+      };
+
+      document.head.appendChild(script);
+
+      return () => {
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
         }
-      }, 500);
-
-      setTimeout(() => {
-        clearInterval(checkInterval);
-        if (!isWidgetReady) {
-          setLoadError(true);
-        }
-      }, 10000);
-    };
-
-    script.onerror = () => setLoadError(true);
-    document.head.appendChild(script);
-
-    return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
+      };
+    } else {
+      setIsWidgetReady(true);
+    }
   }, []);
 
   const expandedContent = (
