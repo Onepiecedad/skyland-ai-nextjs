@@ -1,8 +1,8 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import { BaseSection } from '@/components/ui/BaseSection';
-// import { ContentStack } from '@/components/ui/ContentStack'; //Removed unnecessary import
 import { Card } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
 import { colors } from '@/lib/theme/tokens/colors';
@@ -32,8 +32,7 @@ export function HeroSection() {
 
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
-    description:
-      "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
+    description: "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     hasWidget: true,
     expandedContent: (
       <div className="flex flex-col items-center gap-6 text-center">
@@ -59,8 +58,7 @@ export function HeroSection() {
         )}
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
-          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
-          leads, and help you automate key parts of your business.
+          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
         </p>
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
@@ -105,8 +103,7 @@ export function HeroSection() {
         </div>
 
         <p className={cn(typography.text.base, colors.text.secondary, 'mt-6')}>
-          She's not here to sell. She's here to help you explore if—and how—automation can work for
-          your business.
+          She's not here to sell. She's here to help you explore if—and how—automation can work for your business.
         </p>
 
         <div className={cn(spacing.stack.md, 'mt-8')}>
@@ -148,17 +145,10 @@ export function HeroSection() {
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      {/* Removed ContentStack here as well */}
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10"> {/* Replaced ContentStack with a div */}
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className={cn('space-y-6')}> {/* Replaced ContentStack with a div */}
-            <h1
-              className={cn(
-                typography.heading.h1,
-                colors.text.primary,
-                'font-normal leading-tight'
-              )}
-            >
+          <div className={cn('space-y-6')}>
+            <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
               What if growing your business didn't mean more work?
             </h1>
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
