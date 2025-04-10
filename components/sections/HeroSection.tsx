@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -12,13 +11,14 @@ import { typography } from '@/lib/theme/tokens/typography';
 import { radius } from '@/lib/theme/tokens/radius';
 import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
-import { ContentStack } from '@/components/ui/ContentStack';
+
 
 export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
     console.log("useEffect triggered to load ElevenLabs widget script");
+    console.log("isWidgetReady", isWidgetReady); // Added debugging log
 
     if (!window.customElements.get('elevenlabs-convai')) {
       const script = document.createElement('script');
@@ -29,6 +29,9 @@ export function HeroSection() {
       script.onload = () => {
         console.log('ElevenLabs widget script loaded');
         setIsWidgetReady(true);
+      };
+      script.onerror = (error) => {
+        console.error('Error loading ElevenLabs widget script:', error);
       };
 
       document.body.appendChild(script);
