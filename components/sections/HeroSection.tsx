@@ -90,11 +90,13 @@ export function HeroSection() {
         </div>
 
         <div className={cn(
-          'w-full max-w-md mx-auto p-6',
-          'bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl rounded-2xl',
+          'w-full max-w-md mx-auto p-8 md:p-10',
+          'bg-white/10 border border-white/20 backdrop-blur-lg shadow-2xl rounded-3xl',
           effects.transition.base,
+          effects.glass.premium,
           typography.text.base,
-          'flex items-center justify-center min-h-[600px]'
+          'flex items-center justify-center min-h-[600px]',
+          'hover:bg-white/15 hover:border-white/30'
         )}>
           <elevenlabs-convai 
             agent-id="4mN4rizdi79gwLhFxlOu"
@@ -103,11 +105,10 @@ export function HeroSection() {
               display: 'block',
               width: '100%',
               height: '600px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              margin: '0 auto',
-              padding: '1rem'
+              background: 'transparent',
+              borderRadius: '16px',
+              border: 'none',
+              margin: '0 auto'
             }}
           />
         </div>
