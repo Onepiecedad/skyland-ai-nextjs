@@ -23,7 +23,7 @@ export function HeroSection() {
       <div className="flex flex-col items-center gap-6">
         <h4 className="text-xl text-center">Meet Dana—Your AI Strategy Assistant</h4>
         <ElevenLabsWidget />
-        <p className="text-base text-gray-300 text-center">
+        <p className="text-gray-300 text-center mt-4">
           Dana isn't just a chatbot—she's your AI strategy consultant. Ask her about automating tasks, 
           improving workflows, or scaling your business. She'll give you practical, actionable insights.
         </p>
