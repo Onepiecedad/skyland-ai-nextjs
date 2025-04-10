@@ -17,17 +17,17 @@ export function HeroSection() {
     title: 'Meet Dana—Your AI Assistant',
     description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
-      <div className={cn("flex flex-col gap-4")}>
-        <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
+      <div className={cn("flex flex-col gap-6")}>
+        <h4 className={cn(typography.text.lg, colors.text.primary, 'font-medium')}>
           Meet Dana—Your AI Strategy Assistant
         </h4>
-        <p className={cn(typography.text.sm, colors.text.secondary)}>
+        <p className={cn(typography.text.base, colors.text.secondary, 'leading-relaxed')}>
           Dana helps you explore how AI can transform your business operations. She'll guide you through automation possibilities and show you what's possible.
         </p>
 
         <div className="space-y-2">
-          <h5 className={cn(typography.text.sm, colors.text.primary, 'font-medium')}>🧠 Understand & Explore</h5>
-          <ul className={cn("list-disc space-y-1 pl-4", typography.text.sm, colors.text.secondary)}>
+          <h5 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>🧠 Understand & Explore</h5>
+          <ul className={cn("list-disc space-y-2 pl-4", typography.text.base, colors.text.secondary)}>
             <li>Answer your questions about Skyland AI</li>
             <li>Explain how our services, trial model, and pricing work</li>
             <li>Suggest automation ideas tailored to your business</li>
@@ -56,12 +56,12 @@ export function HeroSection() {
         <Logo className="text-base sm:text-lg" />
       </div>
 
-      <div className="w-full max-w-6xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+      <div className="w-full max-w-7xl px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start py-8">
         <div className="space-y-4">
-          <h1 className={cn(typography.text['2xl'], 'md:text-4xl lg:text-5xl', colors.text.primary, 'font-normal leading-tight')}>
+          <h1 className={cn(typography.text['2xl'], 'md:text-4xl lg:text-6xl', colors.text.primary, 'font-normal leading-tight max-w-3xl')}>
             What if growing your business didn't mean more work?
           </h1>
-          <div className={cn(typography.text.base, colors.text.secondary, 'leading-snug space-y-1')}>
+          <div className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed space-y-3 max-w-2xl')}>
             <p>Let AI Handle 80% of Your Work—Effortlessly</p>
             <p>Meet Your 24/7 Digital Employee—For Free</p>
           </div>
