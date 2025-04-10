@@ -56,7 +56,7 @@ export function HeroSection() {
 
       <div className={cn(
         layout.hero.content,
-        'grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center max-w-[90vw]'
+        'grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center w-full max-w-screen-xl px-6'
       )}>
         <div className="space-y-6">
           <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
