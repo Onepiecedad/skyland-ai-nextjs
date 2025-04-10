@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { BaseSection } from '@/components/ui/BaseSection';
-import { ContentStack } from '@/components/ui/ContentStack';
+// import { ContentStack } from '@/components/ui/ContentStack'; //Removed unnecessary import
 import { Card } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
 import { colors } from '@/lib/theme/tokens/colors';
@@ -148,9 +148,10 @@ export function HeroSection() {
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <ContentStack spacing="lg" className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
+      {/* Removed ContentStack here as well */}
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10"> {/* Replaced ContentStack with a div */}
         <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
-          <ContentStack spacing="md" className={cn('space-y-6')}>
+          <div className={cn('space-y-6')}> {/* Replaced ContentStack with a div */}
             <h1
               className={cn(
                 typography.heading.h1,
@@ -163,7 +164,7 @@ export function HeroSection() {
             <p className={cn(typography.text.lg, colors.text.secondary, 'leading-relaxed')}>
               Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
             </p>
-          </ContentStack>
+          </div>
 
           <div>
             <Card
@@ -183,7 +184,7 @@ export function HeroSection() {
             />
           </div>
         </div>
-      </ContentStack>
+      </div>
     </BaseSection>
   );
 }
