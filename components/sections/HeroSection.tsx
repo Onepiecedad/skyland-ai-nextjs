@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -16,7 +15,7 @@ export function HeroSection() {
 
   useEffect(() => {
     console.log('Loading ElevenLabs widget script');
-    
+
     const loadWidget = () => {
       if (!window.customElements?.get('elevenlabs-convai')) {
         const script = document.createElement('script');
@@ -24,27 +23,27 @@ export function HeroSection() {
         script.async = true;
         script.type = 'text/javascript';
         script.crossOrigin = 'anonymous';
-        
+
         script.onload = () => {
           console.log('ElevenLabs widget loaded');
           setIsWidgetReady(true);
         };
-        
+
         script.onerror = (error) => {
           console.error('Failed to load ElevenLabs widget:', error);
           setIsWidgetReady(false);
         };
-        
+
         document.body.appendChild(script);
         return script;
       }
-      
+
       setIsWidgetReady(true);
       return null;
     };
 
     const script = loadWidget();
-    
+
     return () => {
       if (script) {
         console.log('Cleaning up ElevenLabs widget script');
@@ -80,12 +79,12 @@ export function HeroSection() {
         )}
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
-          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
-          leads, and help you automate key parts of your business.
+          Dana isn&apos;t just a chatbot—she&apos;s an AI assistant trained to answer your
+          questions, handle leads, and help you automate key parts of your business.
         </p>
 
         <div className="mt-4">
-          <h5 className={cn(typography.heading.h5)}>🧠 Understand & Explore</h5>
+          <h5 className={cn(typography.heading.h5)}>🧠 Understand &amp; Explore</h5>
           <ul className="list-disc ml-6 space-y-1">
             <li>Answer questions about Skyland AI</li>
             <li>Explain services, trial model, and pricing</li>
@@ -103,7 +102,7 @@ export function HeroSection() {
         </div>
 
         <p className="mt-6 italic text-gray-300">
-          "What would you automate first in a business like mine?"
+          &quot;What would you automate first in a business like mine?&quot;
         </p>
       </div>
     ),
@@ -127,7 +126,7 @@ export function HeroSection() {
       <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
           <h1 className={cn(typography.heading.h1, colors.text.primary)}>
-            What if growing your business didn't mean more work?
+            What if growing your business didn&apos;t mean more work?
           </h1>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
             Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
