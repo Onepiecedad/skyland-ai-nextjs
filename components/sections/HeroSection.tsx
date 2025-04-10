@@ -20,28 +20,29 @@ export function HeroSection() {
       "She's here to show you how automation can save time, reduce workload, and help your business grow.\nWhat's the one task you'd automate today if you could?",
     hasWidget: true,
     expandedContent: (
-      <ContentStack spacing="lg" className="items-center">
-        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
+      <ContentStack spacing="lg" className="items-center text-center">
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        <div className="w-full flex justify-center mt-6">
-          <div className="w-full max-w-xs">
-            <elevenlabs-convai 
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{
-                position: 'static',
-                width: '100%',
-                height: 'auto',
-                minHeight: '0',
-                background: 'transparent',
-                borderRadius: '12px',
-                overflow: 'visible',
-                margin: '0 auto',
-                display: 'block'
-              }}
-            />
-          </div>
+        <div className="flex justify-center w-full max-w-xs">
+          <elevenlabs-convai 
+            agent-id="4mN4rizdi79gwLhFxlOu"
+            style={{
+              position: 'static',
+              width: '100%',
+              height: 'auto',
+              background: 'transparent',
+              borderRadius: '12px',
+              overflow: 'visible',
+              margin: '0 auto',
+              display: 'block'
+            }}
+          />
+        </div>
+
+        <div className="text-xs text-muted-foreground">
+          Powered by ElevenLabs <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" className="underline">Conversational AI</a>
         </div>
 
         <div>
