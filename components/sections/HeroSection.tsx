@@ -42,6 +42,14 @@ export function HeroSection() {
           </div>
         </div>
 
+        <p className={cn(typography.text.base, colors.text.secondary)}>
+          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
+        </p>
+
+        <p className={cn(typography.text.base, colors.text.secondary)}>
+          Here's what Dana can help you with:
+        </p>
+
         <div>
           <p className={cn(typography.text.base, colors.text.secondary)}>
             Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
