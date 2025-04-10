@@ -14,14 +14,15 @@ import { radius } from '@/lib/theme/tokens/radius';
 
 export function HeroSection() {
   const danaCard = {
-    title: 'Meet Dana—Your AI Strategy Assistant',
-    description: "Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.",
+    title: 'Meet Dana—Your AI Assistant',
+    description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
     expandedContent: (
       <div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto px-4 py-6">
-        <h4 className="text-2xl text-white text-center">Meet Dana—Your Always-On AI Strategy Assistant</h4>
-        <p className="text-base text-gray-300 text-center max-w-prose">
-          Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads,
-          and help you automate key parts of your business.
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'text-center')}>
+          Meet Dana—Your AI Strategy Assistant
+        </h4>
+        <p className={cn(typography.text.base, colors.text.secondary, 'text-center max-w-prose')}>
+          Dana helps you explore how AI can transform your business operations. She'll guide you through automation possibilities and show you what's possible.
         </p>
 
         <h5 className="text-lg font-semibold text-white mt-4">🧠 Understand & Explore</h5>
