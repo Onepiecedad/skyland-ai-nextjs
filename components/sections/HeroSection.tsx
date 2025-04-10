@@ -2,7 +2,12 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { BaseSection } from '@/components/ui/BaseSection';
+
+const ElevenLabsWidget = dynamic(() => import('@/components/ElevenLabsWidget'), { 
+  ssr: false 
+});
 import { Card } from '@/components/ui/Card';
 import { Logo } from '@/components/common/Logo';
 import { cn } from '@/lib/utils';
@@ -22,15 +27,7 @@ export function HeroSection() {
         </h4>
 
         <div className="w-full max-w-sm">
-          <elevenlabs-convai
-            agent-id="4mN4rizdi79gwLhFxlOu"
-            style={{
-              display: 'block',
-              width: '100%',
-              background: 'transparent',
-              borderRadius: '12px',
-            }}
-          />
+          <ElevenLabsWidget />
         </div>
 
         <p className={cn(typography.text.base, colors.text.secondary)}>

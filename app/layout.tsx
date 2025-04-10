@@ -33,29 +33,7 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-function ElevenLabsScript() {
-  const { useEffect } = require('react');
-  
-  useEffect(() => {
-    console.log('Loading ElevenLabs widget script');
-    const script = document.createElement('script');
-    script.src = 'https://elevenlabs.io/convai-widget/index.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    script.id = 'elevenlabs-widget-script';
-    document.head.appendChild(script);
 
-    return () => {
-      console.log('Cleaning up ElevenLabs widget script');
-      const existingScript = document.getElementById('elevenlabs-widget-script');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
-  }, []);
-
-  return null;
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -72,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           'font-sans antialiased bg-slate-900'
         )}
       >
-        <ElevenLabsScript />
+        
         <ThemeEffect />
         <ClientProviders>{children}</ClientProviders>
       </body>
