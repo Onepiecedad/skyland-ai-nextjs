@@ -1,6 +1,7 @@
+
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BaseSection } from '@/components/ui/BaseSection';
 import { ContentStack } from '@/components/ui/ContentStack';
 import { Card } from '@/components/ui/Card';
@@ -14,14 +15,19 @@ import { spacing } from '@/lib/theme/tokens/spacing';
 import { Logo } from '@/components/common/Logo';
 
 export function HeroSection() {
+  const [isWidgetReady, setIsWidgetReady] = useState(false);
+
   useEffect(() => {
-    if (!window.customElements.get('elevenlabs-convai')) {
+    if (!document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]')) {
       const script = document.createElement('script');
       script.src = 'https://elevenlabs.io/convai-widget/index.js';
       script.async = true;
       script.type = 'text/javascript';
+      script.onload = () => setIsWidgetReady(true);
       document.body.appendChild(script);
       return () => document.body.removeChild(script);
+    } else {
+      setIsWidgetReady(true);
     }
   }, []);
 
@@ -32,24 +38,24 @@ export function HeroSection() {
     hasWidget: true,
     expandedContent: (
       <ContentStack spacing="lg" className="items-center">
-        <h4
-          className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}
-        >
+        <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
         <div className="w-full flex justify-center mb-6">
           <div className="w-full max-w-sm">
-            <elevenlabs-convai
-              agent-id="4mN4rizdi79gwLhFxlOu"
-              style={{
-                display: 'block',
-                width: '100%',
-                background: 'transparent',
-                margin: '0 auto',
-                borderRadius: '12px',
-              }}
-            />
+            {isWidgetReady && (
+              <elevenlabs-convai
+                agent-id="4mN4rizdi79gwLhFxlOu"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  background: 'transparent',
+                  margin: '0 auto',
+                  borderRadius: '12px',
+                }}
+              />
+            )}
           </div>
         </div>
 
