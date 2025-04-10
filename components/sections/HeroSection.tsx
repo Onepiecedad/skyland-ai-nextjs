@@ -13,7 +13,7 @@ import { colors } from '@/lib/theme/tokens/colors';
 export function HeroSection() {
   const danaCard = {
     title: 'Meet Dana—Your AI Strategy Assistant',
-    description: "Chat with Dana to explore how AI can transform your business. She'll analyze your workflows and show you what's possible—no technical jargon, just practical solutions.",
+    description: "Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.",
     expandedContent: (
       <div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto px-4 py-6">
         <h4 className="text-2xl text-white text-center">Meet Dana—Your Always-On AI Strategy Assistant</h4>
