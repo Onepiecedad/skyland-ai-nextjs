@@ -1,0 +1,83 @@
+Vi vill att ElevenLabs AI-widgeten (<elevenlabs-convai>) visas inline i modalen, under rubriken, centrerad – inte som en flytande knapp i nedre högra hörnet.
+
+❌ Problemet
+Just nu visas "Talk to Dana" som en flytande widget, vilket betyder att mode="embedded" ignoreras. Detta händer för att:
+
+Scriptet (index.js) laddas före eller samtidigt som <elevenlabs-convai> skapas
+
+Då sätts attribut som mode och agent-id för sent
+
+ElevenLabs kör default mode, vilket är "overlay" (fixed corner)
+
+✅ Lösningen
+Vi måste:
+
+Först skapa widget-elementet manuellt
+
+Sätta alla attribut (agent-id, mode)
+
+Lägga in den i DOM
+
+Sedan ladda ElevenLabs <script>
+
+🔨 Implementera detta i ElevenLabsWidget.tsx:
+tsx
+Copy
+Edit
+'use client'
+
+import { useEffect, useRef } from 'react'
+
+export default function ElevenLabsWidget() {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const scriptId = 'elevenlabs-widget-script'
+    const widgetTag = 'elevenlabs-convai'
+
+    if (!containerRef.current) return
+
+    // 1. Skapa ElevenLabs-elementet manuellt
+    const widget = document.createElement(widgetTag)
+    widget.setAttribute('agent-id', '4mN4rizdi79gwLhFxlOu')
+    widget.setAttribute('mode', 'embedded')
+    widget.style.display = 'block'
+    widget.style.width = '100%'
+    widget.style.background = 'transparent'
+    widget.style.borderRadius = '12px'
+    widget.style.maxHeight = '600px'
+
+    // 2. Lägg till i DOM först
+    containerRef.current.innerHTML = ''
+    containerRef.current.appendChild(widget)
+
+    // 3. Ladda ElevenLabs-scriptet sist
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script')
+      script.src = 'https://elevenlabs.io/convai-widget/index.js'
+      script.async = true
+      script.id = scriptId
+      document.body.appendChild(script)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full max-w-md mx-auto min-h-[500px]"
+    />
+  )
+}
+📌 Placera komponenten i modalen
+Använd den i expandedContent i HeroSection.tsx:
+
+tsx
+Copy
+Edit
+<div className="flex flex-col items-center gap-6">
+  <h4 className="text-xl text-center">Meet Dana—Your AI Strategy Assistant</h4>
+  <ElevenLabsWidget />
+  <p className="text-gray-300 text-center mt-4">
+    Dana isn't just a chatbot—she's your AI strategy consultant...
+  </p>
+</div>
