@@ -18,15 +18,19 @@ export function HeroSection() {
   const [isWidgetReady, setIsWidgetReady] = useState(false);
 
   useEffect(() => {
+    console.log("useEffect triggered to load ElevenLabs widget script");
+
     if (!window.customElements.get('elevenlabs-convai')) {
       const script = document.createElement('script');
       script.src = 'https://elevenlabs.io/convai-widget/index.js';
       script.async = true;
       script.type = 'text/javascript';
+
       script.onload = () => {
         console.log('ElevenLabs widget script loaded');
         setIsWidgetReady(true);
       };
+
       document.body.appendChild(script);
       return () => document.body.removeChild(script);
     } else {
