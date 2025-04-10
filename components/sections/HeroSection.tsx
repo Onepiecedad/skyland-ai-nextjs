@@ -52,22 +52,32 @@ export function HeroSection() {
           Meet Dana—Our Always-On AI Strategy Assistant
         </h4>
 
-        {isWidgetReady && (
-          <div className="w-full flex justify-center mb-6">
-            <div className="w-full max-w-sm">
-              <elevenlabs-convai
-                agent-id="4mN4rizdi79gwLhFxlOu"
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  background: 'transparent',
-                  margin: '0 auto',
-                  borderRadius: '12px',
-                }}
-              />
+        <div className="w-full">
+          <h4 className={cn(typography.heading.h4, colors.text.primary, 'font-normal text-center mb-6')}>
+            Meet Dana—Our Always-On AI Strategy Assistant
+          </h4>
+
+          {isWidgetReady && (
+            <div className="w-full flex justify-center mb-6">
+              <div className="w-full max-w-sm mx-auto">
+                <elevenlabs-convai
+                  agent-id="4mN4rizdi79gwLhFxlOu"
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    background: 'transparent',
+                    margin: '0 auto',
+                    borderRadius: '12px',
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
+          </p>
+        </div>
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
           Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle leads, and help you automate key parts of your business.
