@@ -34,22 +34,20 @@ export function HeroSection() {
               minHeight: '0',
               background: 'transparent',
               borderRadius: '12px',
-                overflow: 'visible'
-              }}
-            />
-          </div>
+              overflow: 'visible'
+            }}
+          />
         </div>
 
         <div>
-          <>
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
-              leads, and help you automate key parts of your business.
-            </p>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            Dana isn't just a chatbot—she's an AI assistant trained to answer your questions, handle
+            leads, and help you automate key parts of your business.
+          </p>
 
-            <p className={cn(typography.text.base, colors.text.secondary)}>
-              {`Here's what Dana can help you with:`}
-            </p>
+          <p className={cn(typography.text.base, colors.text.secondary)}>
+            {`Here's what Dana can help you with:`}
+          </p>
 
           <div className={cn(spacing.stack.lg, 'mt-4')}>
             <h5 className={cn(typography.heading.h5, colors.text.primary, 'font-normal')}>
