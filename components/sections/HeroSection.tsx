@@ -45,7 +45,7 @@ export function HeroSection() {
       className={cn(
         layout.section.base,
         layout.hero.container,
-        'min-h-[80vh] py-16 md:py-20 lg:py-24',
+        'min-h-screen py-16 md:py-20 lg:py-24',
         'flex items-center justify-center'
       )}
       ariaLabel="Hero Section"
@@ -54,10 +54,7 @@ export function HeroSection() {
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <div className={cn(
-        layout.hero.content,
-        'grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center'
-      )}>
+      <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
           <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight')}>
             What if growing your business didn't mean more work?
