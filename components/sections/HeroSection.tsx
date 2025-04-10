@@ -13,12 +13,12 @@ import { colors } from '@/lib/theme/tokens/colors';
 
 export function HeroSection() {
   const danaCard = {
-    title: 'Meet Dana—Our AI Assistant',
-    description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
+    title: 'Meet Dana—Your AI Strategy Assistant',
+    description: "Chat with Dana to explore how AI can transform your business. She'll analyze your workflows and show you what's possible—no technical jargon, just practical solutions.",
     expandedContent: (
       <div className="flex flex-col items-center gap-6">
         <h4 className={cn(typography.heading.h4, colors.text.primary, 'text-center')}>
-          Meet Dana—Our Always-On AI Strategy Assistant
+          Meet Dana—Your AI Strategy Assistant
         </h4>
 
         <div className="w-full max-w-sm">
@@ -34,30 +34,30 @@ export function HeroSection() {
         </div>
 
         <p className={cn(typography.text.base, colors.text.secondary)}>
-          Dana isn&apos;t just a chatbot—she&apos;s an AI assistant trained to answer your
-          questions, handle leads, and help you automate key parts of your business.
+          Dana isn't just a chatbot—she's your AI strategy consultant. Ask her about automating tasks, 
+          improving workflows, or scaling your business. She'll give you practical, actionable insights.
         </p>
 
         <div className="mt-4">
-          <h5 className={cn(typography.heading.h5)}>🧠 Understand &amp; Explore</h5>
+          <h5 className={cn(typography.heading.h5)}>🧠 Expert Analysis</h5>
           <ul className="list-disc ml-6 space-y-1">
-            <li>Answer questions about Skyland AI</li>
-            <li>Explain services, trial model, and pricing</li>
-            <li>Suggest automation tailored to your business</li>
+            <li>Analyze your business workflows</li>
+            <li>Identify automation opportunities</li>
+            <li>Calculate potential time savings</li>
           </ul>
         </div>
 
         <div className="mt-6">
-          <h5 className={cn(typography.heading.h5)}>⚙️ Take Action</h5>
+          <h5 className={cn(typography.heading.h5)}>⚡ Instant Solutions</h5>
           <ul className="list-disc ml-6 space-y-1">
-            <li>Collect and save leads to CRM</li>
-            <li>Send custom emails and follow up</li>
-            <li>Book meetings or appointments</li>
+            <li>Get tailored AI recommendations</li>
+            <li>See practical implementation steps</li>
+            <li>Start automating within days</li>
           </ul>
         </div>
 
         <p className="mt-6 italic text-gray-300">
-          &quot;What would you automate first in a business like mine?&quot;
+          "What would you like to automate first?"
         </p>
       </div>
     ),
@@ -81,7 +81,7 @@ export function HeroSection() {
       <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
           <h1 className={cn(typography.heading.h1, colors.text.primary)}>
-            What if growing your business didn&apos;t mean more work?
+            What if growing your business didn't mean more work?
           </h1>
           <p className={cn(typography.text.lg, colors.text.secondary)}>
             Let AI Handle 80% of Your Work—Effortlessly. Meet Your 24/7 Digital Employee—For Free
