@@ -45,23 +45,23 @@
   .widget-frame {
     position: relative;
     width: 100%;
-    max-width: 360px;
-    margin-inline: auto;
-    padding: 1rem;
+    max-width: 340px;
+    margin: 0 auto;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   .widget-frame > elevenlabs-convai {
-    transform: translateY(-6px);
     display: block;
     width: 100%;
+    margin-bottom: -4px;
   }
 
   .widget-frame::after {
     content: "";
-    height: 24px;
+    height: 16px;
     display: block;
   }
 
