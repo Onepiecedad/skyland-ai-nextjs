@@ -42,16 +42,17 @@
   }
 
   /* ElevenLabs widget credit text positioning */
-  div[class*="powered-by"],
-  div:has(> a[href*="elevenlabs.io"]) {
-    display: block !important;
-    width: 100% !important;
-    text-align: center !important;
-    padding: 0.5rem 0 !important;
-    margin: 0 auto !important;
-    position: relative !important;
-    color: #E4E4E7 !important;
-    font-size: 0.875rem !important;
+  elevenlabs-convai::after {
+    content: var(--powered-by-text, 'Powered by ElevenLabs');
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #E4E4E7;
+    font-size: 0.875rem;
+    position: absolute;
+    bottom: -2.5rem;
+    left: 0;
   }
 
   /* Add visible home link */
