@@ -50,8 +50,8 @@ export function HeroSection() {
         </div>
 
         {/* Widget */}
-        <div className="flex flex-col justify-center items-center w-full">
-          <div className="relative w-full max-w-[440px] h-[440px] sm:h-[480px]">
+        <div className="flex justify-center items-center w-full">
+          <div className="relative w-full max-w-[440px] max-h-[480px] sm:max-h-[520px] h-full">
             <elevenlabs-convai
               agent-id="TDgRNcUoUC1GHVKK0bHH"
               mode="embedded"
