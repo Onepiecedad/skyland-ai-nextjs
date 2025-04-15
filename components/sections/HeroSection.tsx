@@ -78,7 +78,7 @@ export function HeroSection() {
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         <div className="space-y-8">
           <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight tracking-tight')}>
             What if growing your business didn't mean more work?
@@ -89,14 +89,15 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex items-center justify-center">
+        <div className="w-full flex items-start justify-center pt-8">
           <elevenlabs-convai 
             agent-id="TDgRNcUoUC1GHVKK0bHH"
             mode="embedded"
             style={{
               display: 'block',
               width: '100%',
-              height: '520px',
+              maxWidth: '450px',
+              height: '600px',
               background: 'rgba(255, 255, 255, 0.02)',
               borderRadius: '16px',
               border: '1px solid rgba(255, 255, 255, 0.1)',
