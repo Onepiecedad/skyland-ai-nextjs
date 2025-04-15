@@ -89,17 +89,17 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="w-full max-w-md flex items-start lg:absolute lg:right-10 xl:right-[15%] lg:top-0">
+        <div className="w-full lg:w-1/2 flex items-center justify-center">
           <elevenlabs-convai 
-            agent-id="4mN4rizdi79gwLhFxlOu"
+            agent-id="TDgRNcUoUC1GHVKK0bHH"
             mode="embedded"
             style={{
               display: 'block',
               width: '100%',
               height: '520px',
-              background: 'transparent',
+              background: 'rgba(255, 255, 255, 0.02)',
               borderRadius: '16px',
-              border: 'none',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               margin: '0 auto'
             }}
           />
