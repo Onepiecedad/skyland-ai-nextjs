@@ -88,15 +88,18 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex items-center justify-center">
-          <elevenlabs-convai 
-            agent-id="TDgRNcUoUC1GHVKK0bHH"
-            mode="embedded"
-            style={{
-              display: 'block',
-              height: '520px'
-            }}
-          />
+        <div className="relative w-full lg:w-1/2">
+          <div className="sticky top-0">
+            <elevenlabs-convai 
+              agent-id="TDgRNcUoUC1GHVKK0bHH"
+              mode="embedded"
+              style={{
+                display: 'block',
+                height: '520px',
+                position: 'relative'
+              }}
+            />
+          </div>
         </div>
       </div>
     </BaseSection>
