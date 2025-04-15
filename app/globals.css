@@ -4,6 +4,7 @@
 
 @layer base {
   elevenlabs-convai {
+    padding-bottom: 2rem !important;
     position: relative !important;
     z-index: auto !important;
     display: block !important;
