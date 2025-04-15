@@ -32,35 +32,7 @@ export function HeroSection() {
 
   const danaCard = {
     title: 'Meet Dana—Our AI Assistant',
-    description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?",
-    expandedContent: (
-      <div className={cn("flex flex-col gap-4 max-h-[90vh] overflow-auto")}>
-        <h4 className={cn(typography.text.base, colors.text.primary, 'font-medium')}>
-          Your 24/7 Digital Employee
-        </h4>
-        <p className={cn(typography.text.sm, colors.text.secondary)}>
-          Dana helps you explore how AI can transform your business operations. She'll guide you through:
-        </p>
-        <ul className={cn("list-disc pl-4", typography.text.sm, colors.text.secondary, "space-y-2")}>
-          <li>Understanding what tasks can be automated</li>
-          <li>Exploring AI solutions for your business</li>
-          <li>Getting started with automation</li>
-          <li>Measuring the impact on your workflow</li>
-        </ul>
-        <div className="w-full max-w-sm mx-auto" hidden={!isWidgetReady}>
-          <elevenlabs-convai
-            agent-id="4mN4rizdi79gwLhFxlOu"
-            mode="embedded"
-            style={{
-              display: 'block',
-              width: '100%',
-              background: 'transparent',
-              borderRadius: '12px',
-            }}
-          />
-        </div>
-      </div>
-    ),
+    description: "She's here to show you how automation can save time, reduce workload, and help your business grow. What's the one task you'd automate today if you could?"
   };
 
   return (
