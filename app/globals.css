@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  elevenlabs-convai {
+    position: relative !important;
+    z-index: auto !important;
+    display: block !important;
+    max-width: 100% !important;
+  }
   :root {
     --black: #000000;
     --white: #ffffff;
