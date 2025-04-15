@@ -77,29 +77,28 @@ export function HeroSection() {
         <Logo className="text-lg sm:text-xl" />
       </div>
 
-      <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div className="space-y-8">
-          <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight tracking-tight')}>
+      <div className="w-full max-w-7xl px-6 md:px-8 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="space-y-6 lg:pr-8">
+          <h1 className={cn(typography.heading.h1, colors.text.primary, 'font-normal leading-tight tracking-tight max-w-xl')}>
             What if growing your business didn't mean more work?
           </h1>
-          <div className={cn(typography.text.xl, colors.text.secondary, 'leading-relaxed space-y-6')}>
+          <div className={cn(typography.text.xl, colors.text.secondary, 'leading-relaxed space-y-4')}>
             <p>Let AI Handle 80% of Your Work—Effortlessly</p>
             <p>Meet Your 24/7 Digital Employee—For Free</p>
           </div>
         </div>
 
-        <div className="relative w-full lg:w-1/2">
-          <div className="sticky top-0">
-            <elevenlabs-convai 
-              agent-id="TDgRNcUoUC1GHVKK0bHH"
-              mode="embedded"
-              style={{
-                display: 'block',
-                height: '520px',
-                position: 'relative'
-              }}
-            />
-          </div>
+        <div className="flex justify-center items-center w-full">
+          <elevenlabs-convai 
+            agent-id="TDgRNcUoUC1GHVKK0bHH"
+            mode="embedded"
+            style={{
+              display: 'block',
+              height: '520px',
+              maxWidth: '100%',
+              margin: '0 auto'
+            }}
+          />
         </div>
       </div>
     </BaseSection>
