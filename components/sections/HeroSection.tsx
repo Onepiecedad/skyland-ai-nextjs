@@ -51,12 +51,11 @@ export function HeroSection() {
 
         {/* Widget */}
         <div className="flex justify-center items-center w-full">
-          <div className="relative w-full max-w-[440px] max-h-[480px] sm:max-h-[520px] h-full">
+          <div className="widget-frame">
             <elevenlabs-convai
               agent-id="TDgRNcUoUC1GHVKK0bHH"
               mode="embedded"
               style={{
-                height: '100%',
                 width: '100%',
                 background: 'transparent',
                 borderRadius: '12px',
