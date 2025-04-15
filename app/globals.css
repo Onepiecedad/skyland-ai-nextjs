@@ -42,12 +42,11 @@
   }
 
   /* ElevenLabs widget credit text positioning */
-  elevenlabs-convai::after {
-    content: var(--powered-by-text);
-    display: block;
-    text-align: center;
-    width: 100%;
-    margin: 0.5rem auto 0;
+  elevenlabs-convai > div > div:last-child {
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+    position: relative !important;
+    bottom: auto !important;
   }
 
   /* Add visible home link */
