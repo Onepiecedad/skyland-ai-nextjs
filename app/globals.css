@@ -42,22 +42,16 @@
   }
 
   /* ElevenLabs widget credit text positioning */
-  elevenlabs-convai > div > div:last-child,
-  div:has(> a[href*="elevenlabs.io"]),
-  .elevenlabs-powered-by {
+  div[class*="powered-by"],
+  div:has(> a[href*="elevenlabs.io"]) {
+    display: block !important;
     width: 100% !important;
     text-align: center !important;
-    margin: 0.5rem auto 0 !important;
+    padding: 0.5rem 0 !important;
+    margin: 0 auto !important;
     position: relative !important;
-    bottom: auto !important;
     color: #E4E4E7 !important;
     font-size: 0.875rem !important;
-  }
-
-  /* Ensure link inherits styles */
-  div:has(> a[href*="elevenlabs.io"]) a {
-    color: inherit !important;
-    text-decoration: none !important;
   }
 
   /* Add visible home link */
