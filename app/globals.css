@@ -41,6 +41,15 @@
     @apply sr-only;
   }
 
+  /* ElevenLabs widget credit text positioning */
+  elevenlabs-convai::after {
+    content: var(--powered-by-text);
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0.5rem auto 0;
+  }
+
   /* Add visible home link */
   body > div.flex > div.flex::before {
     content: 'Skyland AI';
