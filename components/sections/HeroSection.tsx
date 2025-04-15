@@ -94,10 +94,7 @@ export function HeroSection() {
             mode="embedded"
             style={{
               display: 'block',
-              height: '520px',
-              background: 'rgba(255, 255, 255, 0.02)',
-              borderRadius: '16px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              height: '520px'
             }}
           />
         </div>
