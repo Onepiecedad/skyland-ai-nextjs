@@ -4,16 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  webpack: (config) => {
-    config.externals = [...(config.externals || []), { canvas: 'canvas' }];
-    return config;
-  },
-};
+  devIndicators: false,
+}
 
-export default nextConfig;
+export default nextConfig
