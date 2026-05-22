@@ -21,11 +21,19 @@ export default function ElevenLabsWidget() {
     // Add event listener for call end reporting
     widget.addEventListener("elevenlabs-convai:call", (event: any) => {
       if (event.detail && event.detail.status === "disconnected") {
+        
+        // Get or create a persistent session UUID for this browser
+        let sessionUuid = localStorage.getItem("skyland_session_uuid");
+        if (!sessionUuid) {
+          sessionUuid = crypto.randomUUID();
+          localStorage.setItem("skyland_session_uuid", sessionUuid);
+        }
+
         fetch("https://skyland-voice-proxy.fly.dev/voice/call-ended", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            session_uuid: null,
+            session_uuid: sessionUuid,
             conversation_id: event.detail.conversationId || null,
             agent_id: "TDgRNcUoUC1GHVKK0bHH",
             ended_at: new Date().toISOString(),
