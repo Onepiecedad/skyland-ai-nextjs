@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowRight, ArrowLeft, CheckCircle2, Gauge } from "lucide-react"
 
 const questions = [
@@ -87,7 +87,7 @@ function calculateScore(answers: Record<string, string | string[]>): number {
   return Math.min(score, 100)
 }
 
-function ScoreGauge({ score }: { score: number }) {
+function ScoreGauge({ score, sessionUuid }: { score: number, sessionUuid: string }) {
   const getColor = () => {
     if (score >= 75) return "#22c55e"
     if (score >= 50) return "#7ab8b8"
@@ -102,6 +102,8 @@ function ScoreGauge({ score }: { score: number }) {
 
   const circumference = 2 * Math.PI * 70
   const progress = (score / 100) * circumference
+  
+  const calendlyUrl = `https://calendly.com/joakim-skylandai/30min${sessionUuid ? `?utm_term=${sessionUuid}` : ""}`
 
   return (
     <div className="text-center">
@@ -139,7 +141,7 @@ function ScoreGauge({ score }: { score: number }) {
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
-          href="https://calendly.com/joakim-skylandai/30min"
+          href={calendlyUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium text-sm hover:bg-white/90 transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:scale-[1.02]"
@@ -156,6 +158,16 @@ export default function QualificationSection() {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
   const [showScore, setShowScore] = useState(false)
+  const [sessionUuid, setSessionUuid] = useState("")
+
+  useEffect(() => {
+    let uuid = localStorage.getItem("skyland_session_uuid");
+    if (!uuid) {
+      uuid = crypto.randomUUID();
+      localStorage.setItem("skyland_session_uuid", uuid);
+    }
+    setSessionUuid(uuid);
+  }, []);
 
   const question = questions[currentStep]
   const isLastStep = currentStep === questions.length - 1
@@ -308,7 +320,7 @@ export default function QualificationSection() {
         ) : (
           /* Score display */
           <div className="glass-card rounded-2xl p-10 sm:p-14">
-            <ScoreGauge score={score} />
+            <ScoreGauge score={score} sessionUuid={sessionUuid} />
           </div>
         )}
       </div>

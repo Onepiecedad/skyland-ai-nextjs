@@ -2,8 +2,22 @@
 
 import { PhoneCall, Shield } from "lucide-react"
 import AlexCTAButton from "@/components/ui/alex-cta-button"
+import { useState, useEffect } from "react"
 
 export default function FinalCTASection() {
+  const [sessionUuid, setSessionUuid] = useState("")
+
+  useEffect(() => {
+    let uuid = localStorage.getItem("skyland_session_uuid");
+    if (!uuid) {
+      uuid = crypto.randomUUID();
+      localStorage.setItem("skyland_session_uuid", uuid);
+    }
+    setSessionUuid(uuid);
+  }, []);
+
+  const calendlyUrl = `https://calendly.com/joakim-skylandai/30min${sessionUuid ? `?utm_term=${sessionUuid}` : ""}`
+
   return (
     <section id="contact" className="relative flex h-full items-start px-5 py-4 sm:px-6 sm:py-5">
       <div className="max-w-4xl mx-auto w-full text-center">
@@ -36,7 +50,7 @@ export default function FinalCTASection() {
             className="group cta-glow cta-primary-premium flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-[#8fd3d3] text-[#041012] font-medium text-base hover:bg-[#a5dddd] transition-all duration-300 hover:shadow-[0_0_60px_rgba(143,211,211,0.22)] hover:scale-[1.02]"
           />
           <a
-            href="https://calendly.com/joakim-skylandai/30min"
+            href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="cta-secondary-premium flex items-center gap-3 px-10 py-5 rounded-full glass hover:text-white font-medium text-base transition-all duration-300 hover:bg-white/[0.06]"
